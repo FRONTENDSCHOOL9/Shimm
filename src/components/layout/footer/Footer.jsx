@@ -7,8 +7,6 @@ function Footer(){
         justify-content: center;
         margin-top: auto;
         gap: 4rem;
-    
-    
     `
     return (
         <div>
