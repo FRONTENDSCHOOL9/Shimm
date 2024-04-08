@@ -1,0 +1,19 @@
+/* CSS Reset */
+body {
+  margin: unset;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+/* CSS Typography */
+:root {
+  font-size: 10px;
+}
