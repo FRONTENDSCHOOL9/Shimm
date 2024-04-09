@@ -1,42 +1,37 @@
-// import { StyledHeader } from '@components/layout/header/Header.style';
-import { Link } from 'react-router-dom';
-
-import styled from 'styled-components';
-
-const StyledHeader = styled.header`
-  height: 60px;
-  border-bottom: 2px solid #d4d4d4;
-  padding: 10px 20px;
-  box-shadow: inset 0 0 5px red;
-  font-size: 2rem;
-
-  display: flex;
-  gap: 10px;
-  align-items: center;
-`;
-
-const Logo = styled(Link)`
-  box-shadow: inset 0 0 5px purple;
-`;
-
-const StyledNav = styled.nav`
-  box-shadow: inset 0 0 5px blue;
-  margin-left: auto;
-
-  display: flex;
-  gap: 10px;
-`;
+import useWindowWide from '@hooks/useWindowWide.mjs';
+import { useEffect, useState } from 'react';
+import {
+  StyledHeader,
+  Logo,
+  StyledNav,
+  HeaderLink,
+  NavButton,
+} from '@components/layout/header/Header.style';
 
 function Header() {
+  const wide = useWindowWide(740);
+  const [isClicked, setIsClicked] = useState(false);
+
+  useEffect(() => {
+    setIsClicked(false);
+  }, [wide]);
+
+  function handleClick() {
+    setIsClicked(!isClicked);
+  }
+
   return (
     <StyledHeader>
       <Logo to="/">Shimm</Logo>
-      <StyledNav>
-        <Link to="/">명상하기</Link>
-        <Link to="/">커뮤니티</Link>
-        <Link to="/">마이페이지</Link>
-        <button type="button">버튼</button>
+      <StyledNav $clicked={isClicked}>
+        <HeaderLink to="/">명상하기</HeaderLink>
+        <HeaderLink to="/">커뮤니티</HeaderLink>
+        {/* user 정보가 sessionStorage에 존재할 때만 보여주기 */}
+        <HeaderLink to="/">마이페이지</HeaderLink>
       </StyledNav>
+      <NavButton onClick={handleClick} $clicked={isClicked}>
+        <i className="ir">버튼</i>
+      </NavButton>
     </StyledHeader>
   );
 }
