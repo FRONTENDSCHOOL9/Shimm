@@ -1,7 +1,9 @@
 /* CSS Reset */
 body,
-p {
+p,
+ul {
   margin: unset;
+  padding: unset;
 }
 
 h1,
@@ -10,6 +12,10 @@ h3 {
   margin: unset;
   font-size: unset;
   font-weight: unset;
+}
+
+li {
+  list-style-type: none;
 }
 
 a {
@@ -39,8 +45,3 @@ button {
 }
 
 /* Components */
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
