@@ -1,6 +1,15 @@
 /* CSS Reset */
-body {
+body,
+p {
   margin: unset;
+}
+
+h1,
+h2,
+h3 {
+  margin: unset;
+  font-size: unset;
+  font-weight: unset;
 }
 
 a {
@@ -27,4 +36,9 @@ button {
   height: 1px;
   margin: -1px;
   overflow: hidden;
+}
+
+/* Components */
+#root {
+  min-height: 100vh;
 }
