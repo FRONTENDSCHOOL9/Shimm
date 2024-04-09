@@ -1,4 +1,4 @@
-import Layout from '@components/layout/Layout';
+import Layout from '@components/layout/layout/Layout';
 import Community from '@pages/community/Community';
 import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
