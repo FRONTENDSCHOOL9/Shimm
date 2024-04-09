@@ -22,10 +22,10 @@ function Header() {
 
   return (
     <StyledHeader>
-      <Logo to="/">Shimm</Logo>
+      <Logo to="/home">Shimm</Logo>
       <StyledNav $clicked={isClicked}>
-        <HeaderLink to="/">명상하기</HeaderLink>
-        <HeaderLink to="/">커뮤니티</HeaderLink>
+        <HeaderLink to="/meditation">명상하기</HeaderLink>
+        <HeaderLink to="/community">커뮤니티</HeaderLink>
         {/* user 정보가 sessionStorage에 존재할 때만 보여주기 */}
         <HeaderLink to="/">마이페이지</HeaderLink>
       </StyledNav>
