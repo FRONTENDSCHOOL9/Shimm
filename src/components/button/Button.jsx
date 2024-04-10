@@ -1,11 +1,19 @@
-import { StyledButton } from '@components/button/Button.style';
+import { CommonButton } from '@components/button/Button.style';
+import PropTypes from 'prop-types';
 
-function Button({ children, type, color }) {
+function Button({ children, type = 'button', color = 'primary', handleClick }) {
   return (
-    <StyledButton type={type} color={color}>
+    <CommonButton type={type} color={color} onClick={handleClick}>
       {children}
-    </StyledButton>
+    </CommonButton>
   );
 }
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  type: PropTypes.string,
+  color: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default Button;
