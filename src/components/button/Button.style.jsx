@@ -6,7 +6,7 @@ const colors = {
   emphasis: 'rgba(238, 176, 86, 1)',
 };
 
-const StyledButton = styled.button`
+const CommonButton = styled.button`
   width: 120px;
   height: 40px;
   background-color: ${props => colors[props.color]};
@@ -17,4 +17,4 @@ const StyledButton = styled.button`
   font-weight: 200;
 `;
 
-export { StyledButton };
+export { CommonButton };
