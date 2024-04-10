@@ -1,5 +1,6 @@
 import Layout from '@components/layout/Layout';
 import Community from '@pages/community/Community';
+import { FeedDetail } from '@pages/community/feed/FeedDetail';
 import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         path: 'community',
         element: <Community />,
       },
+      {
+        path: 'detail/:id',
+        element: <FeedDetail />,
+      }
     ],
   },
 ]);
