@@ -70,7 +70,7 @@ function FeedList( ){
 
     return(
         <FeedTemplateWrapper>
-            <Search />
+             
             {feedList.map(item=>(
                 <Feed key={item.id} item={item} />))
             }

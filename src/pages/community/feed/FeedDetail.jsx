@@ -15,6 +15,15 @@ const replyer = [
     },
 ]
 
+const sample = [
+  {
+    _id: 1,
+    userId: 'user0202',
+    profileImg: '#',
+    post: 'jjj'
+  }
+]
+
 const ImageArea = styled.div`
    aspect-ratio: 16/9;
    margin-bottom: 1rem;
@@ -60,7 +69,7 @@ const Replyer = styled.div`
 
 function FeedDetail({ item }) {
   const [ comments, setComments ] = useState([]);
-  const { profileImg, userId, post } = item;
+  const { profileImg, userId, post } = sample;
 
   function handleAddComment(newComment){
     setComments([...comments, newComment])
