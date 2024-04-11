@@ -5,13 +5,14 @@ const UserContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-
+   
     & img {
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
         box-shadow: inset 0 0 20px #335635;
     }
+    
 `
 
 function UserInfo({ profileImg, userId, comment}){

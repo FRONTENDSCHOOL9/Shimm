@@ -7,7 +7,50 @@ import iconsend from '../../../assets/icon-send.svg'
 import { useState } from "react";
 import ReplyList from "@pages/community/feed/ReplyList";
 import ReplyCreate from "@pages/community/feed/ReplyCreate";
-
+const feedList = [
+        {
+        id: 1,
+        userId: 'user_01',
+        profileImgUrl: '#',
+        post: 'ㅁㄴㅇㄹ',
+        },   
+        {
+        id: 2,
+        userId: 'user_02',
+        profileImgUrl: '#',
+        post: '안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가',
+        },   
+        {
+        id: 3,
+        userId: 'user_03',
+        profileImgUrl: '#',
+        post: 'abcdefddf',
+        },   
+        {
+        id: 4,
+        userId: 'user_04',
+        profileImgUrl: '#',
+        post: '안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가',
+        },   
+        {
+        id: 5,
+        userId: 'user_05',
+        profileImgUrl: '#',
+        post: 'hit the road',
+        },   
+        {
+        id: 6,
+        userId: 'user_06',
+        profileImgUrl: '#',
+        post: 'cocococococococo',
+        },   
+        {
+        id: 7,
+        userId: 'user_07',
+        profileImgUrl: '#',
+        post: 'v안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가',
+        },   
+    ]   
 const replyer = [
     {
         id: 'i`m user2',
@@ -65,7 +108,7 @@ function Feed({ item }){
     
 
     function handleFeedClick(id){
-        navigate(`/detail/${id}`)
+        navigate(`/community/${id}`)
     }
     
     function handleAddComment(newComment){
@@ -93,14 +136,14 @@ function Feed({ item }){
             <ReplyList comments={comments}/>
                 {replyer && replyer.map(t=>
                 <Replyer key={t.id}>
-                    <img src={t.profileImgUrl} alt="#" />
+                    
                     <ReplyCreate onAddComment={handleAddComment}/>
                     <img src={iconsend} alt="댓글 등록 버튼" />
                 </Replyer>
                 )}
             
             <MoreComment>
-                <Link to={`/detail/${id}`}>
+                <Link to={`/community/${id}`}>
                     댓글 더보기
                 </Link>
             </MoreComment>

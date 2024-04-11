@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         element: <Community />,
       },
       {
-        path: 'detail/:id',
+        path: 'community/:id',
         element: <FeedDetail />,
       }
     ],
