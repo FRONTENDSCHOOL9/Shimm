@@ -14,6 +14,11 @@ const ThemeButton = styled.button`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px rgba(51, 86, 53, 1);
+    border-radius: 8px;
+  }
 `;
 
 const ThemePreview = styled.span`
@@ -21,9 +26,36 @@ const ThemePreview = styled.span`
   flex-grow: 1;
 `;
 
+const Contents = styled.span`
+  box-shadow: inset 0 0 2px red;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+`;
+
+const Description = styled.span`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
 const ThemeDescription = styled.span`
   font-size: 1.4rem;
   font-weight: 700;
 `;
 
-export { Theme, ThemeButton, ThemePreview, ThemeDescription };
+const Lock = styled.span`
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+export {
+  Theme,
+  ThemeButton,
+  ThemePreview,
+  ThemeDescription,
+  Lock,
+  Contents,
+  Description,
+};

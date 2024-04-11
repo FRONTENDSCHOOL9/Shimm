@@ -16,6 +16,37 @@ const StyledDiv = styled.div`
   color: ${props => (props.$active === true ? '#7BB67F' : 'unset')};
 `;
 
+const SelectButton = styled.button`
+  width: 100%;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  color: ${props => (props.$active === true ? '#7BB67F' : 'unset')};
+  position: relative;
+
+  &:focus {
+    border: 1px solid rgba(115, 146, 125, 1);
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  &:after {
+    content: ' ';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('/src/assets/icon-down.svg');
+    background-size: cover;
+    position: absolute;
+    margin: 0 15px;
+    right: 0;
+    top: 50%;
+    transform: ${props =>
+      props.$active === true
+        ? 'translateY(-50%) rotate(180deg)'
+        : 'translateY(-50%)'};
+  }
+`;
+
 const StyledUl = styled.ul`
   width: 100%;
   position: absolute;
@@ -34,6 +65,7 @@ const StyledButton = styled.button`
   padding: 12px 15px;
   box-sizing: border-box;
   color: ${props => (props.$active === true ? '#7BB67F' : 'unset')};
+  position: relative;
 
   &:focus {
     border: 1px solid rgba(115, 146, 125, 1);
@@ -48,4 +80,12 @@ const StyledLi = styled.li`
   }
 `;
 
-export { TimeSetting, Menu, StyledDiv, StyledUl, StyledLi, StyledButton };
+export {
+  TimeSetting,
+  Menu,
+  StyledDiv,
+  SelectButton,
+  StyledUl,
+  StyledLi,
+  StyledButton,
+};
