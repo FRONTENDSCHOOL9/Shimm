@@ -24,10 +24,16 @@ function Header() {
     <StyledHeader>
       <Logo to="/home">Shimm</Logo>
       <StyledNav $clicked={isClicked}>
-        <HeaderLink to="/meditation">명상하기</HeaderLink>
-        <HeaderLink to="/community">커뮤니티</HeaderLink>
+        <HeaderLink to="/meditation" onClick={handleClick}>
+          명상하기
+        </HeaderLink>
+        <HeaderLink to="/community" onClick={handleClick}>
+          커뮤니티
+        </HeaderLink>
         {/* user 정보가 sessionStorage에 존재할 때만 보여주기 */}
-        <HeaderLink to="/">마이페이지</HeaderLink>
+        <HeaderLink to="/" onClick={handleClick}>
+          마이페이지
+        </HeaderLink>
       </StyledNav>
       <NavButton onClick={handleClick} $clicked={isClicked}>
         <i className="ir">버튼</i>

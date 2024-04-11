@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+const aligns = {
+  left: 'left',
+  center: 'center',
+  right: 'right',
+};
+
 const StyledMain = styled.main`
   flex-grow: 1;
   display: flex;
@@ -39,7 +45,7 @@ const PageTitle = styled.h2`
 const Description = styled.h3`
   font-size: 2rem;
   font-weight: 200;
-  text-align: center;
+  text-align: ${props => aligns[props.$align]};
 `;
 
 const StyledDiv = styled.div`

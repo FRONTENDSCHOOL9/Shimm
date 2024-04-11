@@ -35,11 +35,15 @@ function MeditationProgress() {
     navigate(-1);
   }
 
+  function handleFinish() {
+    navigate('/meditation/record');
+  }
+
   return (
     <StyledMain>
       <StyledSection>
         <PageTitle>명상하기</PageTitle>
-        <Timer selectedTime={time} />
+        <Timer selectedTime={time} handleFinish={handleFinish} />
         <StyledDiv>
           <Button handleClick={handleReset}>다시하기</Button>
         </StyledDiv>

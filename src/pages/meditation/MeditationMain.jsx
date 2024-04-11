@@ -38,12 +38,14 @@ function MeditationMain() {
       <Cover>이미지</Cover>
       <StyledSection>
         <PageTitle>명상하기</PageTitle>
-        <Description>원하는 시간을 선택해 주세요.</Description>
+        <Description $align="center">원하는 시간을 선택해 주세요.</Description>
         <TimeSet />
 
         {isTimeSelected && (
           <>
-            <Description>마음에 드는 테마를 선택해 주세요.</Description>
+            <Description $align="center">
+              마음에 드는 테마를 선택해 주세요.
+            </Description>
             <ThemeSet />
           </>
         )}
