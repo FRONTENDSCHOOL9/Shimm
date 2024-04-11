@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+const aligns = {
+  left: 'left',
+  center: 'center',
+  right: 'right',
+};
+
 const StyledMain = styled.main`
   flex-grow: 1;
   display: flex;
@@ -18,7 +24,7 @@ const Cover = styled.section`
   }
 `;
 
-const Settings = styled.section`
+const StyledSection = styled.section`
   flex-grow: 1;
   margin: 0 auto;
   max-width: 500px;
@@ -39,11 +45,11 @@ const PageTitle = styled.h2`
 const Description = styled.h3`
   font-size: 2rem;
   font-weight: 200;
+  text-align: ${props => aligns[props.$align]};
+`;
+
+const StyledDiv = styled.div`
   text-align: center;
 `;
 
-const Start = styled.div`
-  text-align: center;
-`;
-
-export { StyledMain, Cover, Settings, PageTitle, Description, Start };
+export { StyledMain, Cover, StyledSection, PageTitle, Description, StyledDiv };

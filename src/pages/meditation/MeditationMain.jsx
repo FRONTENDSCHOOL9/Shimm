@@ -9,10 +9,10 @@ import {
 import {
   StyledMain,
   Cover,
-  Settings,
+  StyledSection,
   PageTitle,
   Description,
-  Start,
+  StyledDiv,
 } from '@pages/meditation/Meditation.style';
 import {
   useIsThemeSelectedStore,
@@ -36,24 +36,26 @@ function MeditationMain() {
   return (
     <StyledMain>
       <Cover>이미지</Cover>
-      <Settings>
+      <StyledSection>
         <PageTitle>명상하기</PageTitle>
-        <Description>원하는 시간을 선택해 주세요.</Description>
+        <Description $align="center">원하는 시간을 선택해 주세요.</Description>
         <TimeSet />
 
         {isTimeSelected && (
           <>
-            <Description>마음에 드는 테마를 선택해 주세요.</Description>
+            <Description $align="center">
+              마음에 드는 테마를 선택해 주세요.
+            </Description>
             <ThemeSet />
           </>
         )}
 
         {isTimeSelected && isThemeSelected && (
-          <Start>
+          <StyledDiv>
             <Button handleClick={handleStart}>명상 시작하기</Button>
-          </Start>
+          </StyledDiv>
         )}
-      </Settings>
+      </StyledSection>
     </StyledMain>
   );
 }

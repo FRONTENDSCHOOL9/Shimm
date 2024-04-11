@@ -5,6 +5,7 @@ import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
 import MeditationMain from '@pages/meditation/MeditationMain';
 import MeditationProgress from '@pages/meditation/MeditationProgress';
+import MeditationRecord from '@pages/meditation/MeditationRecord';
 import Purchase from '@pages/purchase/Purchase';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             path: 'progress',
             element: <MeditationProgress />,
           },
+          {
+            path: 'record',
+            element: <MeditationRecord />,
+          },
         ],
       },
       {
@@ -46,7 +51,7 @@ const router = createBrowserRouter([
       {
         path: 'community/:id',
         element: <FeedDetail />,
-      }
+      },
     ],
   },
 ]);
