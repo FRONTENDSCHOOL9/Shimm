@@ -18,7 +18,7 @@ const Cover = styled.section`
   }
 `;
 
-const Settings = styled.section`
+const StyledSection = styled.section`
   flex-grow: 1;
   margin: 0 auto;
   max-width: 500px;
@@ -42,8 +42,8 @@ const Description = styled.h3`
   text-align: center;
 `;
 
-const Start = styled.div`
+const StyledDiv = styled.div`
   text-align: center;
 `;
 
-export { StyledMain, Cover, Settings, PageTitle, Description, Start };
+export { StyledMain, Cover, StyledSection, PageTitle, Description, StyledDiv };
