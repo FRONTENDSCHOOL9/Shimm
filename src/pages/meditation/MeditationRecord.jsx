@@ -20,11 +20,28 @@ function MeditationRecord() {
     date.getDate() +
     '일';
 
-  console.log(selectedTime, completeTime);
+  let time = 0;
+  switch (selectedTime) {
+    case '5분':
+      time = 5 * 60;
+      break;
+    case '10분':
+      time = 10 * 60;
+      break;
+    case '30분':
+      time = 30 * 60;
+      break;
+    case '1시간':
+      time = 60 * 60;
+      break;
+    default:
+      time = 5 * 60;
+      break;
+  }
 
   const message =
-    selectedTime === completeTime + '초'
-      ? `목표한 ${completeTime}분 명상을 완료했어요.`
+    time === completeTime
+      ? `목표한 ${selectedTime} 명상을 완료했어요!`
       : `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초 동안 명상을 진행했어요.`;
 
   return (
