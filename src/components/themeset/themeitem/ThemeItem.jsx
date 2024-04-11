@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import {
   Lock,
   Theme,
+  Price,
   Contents,
+  LockIcon,
   Description,
   ThemeButton,
   ThemePreview,
@@ -13,7 +15,7 @@ function ThemeItem({ item, handleTheme }) {
   const { nameKor: kor, nameEng: eng, paid } = item;
 
   function handleClick() {
-    handleTheme(kor);
+    handleTheme(kor, paid);
   }
 
   return (
@@ -29,8 +31,10 @@ function ThemeItem({ item, handleTheme }) {
             ''
           ) : (
             <Lock>
-              <span>잠금</span>
-              <span>1000원</span>
+              <LockIcon>
+                <i className="ir">구매 필요</i>
+              </LockIcon>
+              <Price>1000원</Price>
             </Lock>
           )}
         </Contents>

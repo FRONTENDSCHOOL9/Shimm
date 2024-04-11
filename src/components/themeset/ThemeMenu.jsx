@@ -4,6 +4,7 @@ import {
   useIsThemeSelectedStore,
   useSelectedThemeStore,
 } from '@zustand/themeSelection.mjs';
+import { useNavigate } from 'react-router-dom';
 
 // mockup data (API 호출)
 const themeItem = [
@@ -40,10 +41,16 @@ function ThemeMenu() {
   const isThemeSelectedSet = useIsThemeSelectedStore(
     state => state.isThemeSelectedSet,
   );
+  const navigate = useNavigate();
 
-  function handleTheme(theme) {
+  function handleTheme(theme, isPaid) {
     selectedThemeSet(theme);
     isThemeSelectedSet(true);
+
+    if (!isPaid) {
+      // modal window
+      navigate('/purchase');
+    }
   }
 
   const themeList = themeItem.map(item => (

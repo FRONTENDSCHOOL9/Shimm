@@ -65,7 +65,7 @@ const StyledInput = styled.input`
   height: 40px;
   border: 1px solid #000;
   border-radius: 5px;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   padding: 10px;
   box-sizing: border-box;
 `;
