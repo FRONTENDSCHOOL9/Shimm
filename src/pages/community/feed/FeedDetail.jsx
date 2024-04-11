@@ -41,8 +41,8 @@ const Replyer = styled.div`
         cursor: pointer;
         position: absolute;
         width: 2rem;
-        right: 2rem;
-        top: 5.6rem;
+        right: 3rem;
+        top: 1.4rem;
     }
 
     & textarea {
@@ -73,17 +73,13 @@ function FeedDetail({ item }) {
     <ImageArea />
    
     <Replyer>
-      <img src={item.profileImg} alt="#" />
+
       <ReplyList comments={comments} />
-      
       <ReplyCreate onAddComment={handleAddComment} item={item}/>
-      
       
     </Replyer>
     
-    <MoreComment>
-      <p>댓글 더보기</p>
-    </MoreComment>
+
   </div>
   )
 }

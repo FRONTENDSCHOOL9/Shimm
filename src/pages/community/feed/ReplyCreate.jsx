@@ -4,21 +4,8 @@ import { useForm } from 'react-hook-form'
 
 
 
-const StyledTextarea = styled.textarea`
-    width: 100%;
-    height: 3rem;
-    box-sizing: border-box;
-    padding: 0 1.6rem;
-    line-height: 3rem;
-    border-radius: 2rem;
-    outline: none;
-    resize: none;
-    overflow: hidden;
-`;
-
 const Replyer = styled.div`
     display: flex;
-    flex-direction: column;
     gap: 1.2rem;
     margin-block: 1rem;
     position: relative;
@@ -38,7 +25,7 @@ const Replyer = styled.div`
         right: 2rem;
         top: 5.6rem;
     }
-`
+    `
 
 const ErrorStyled = {
     color: 'orangered',
@@ -70,21 +57,23 @@ function ReplyCreate({ onAddComment, item }) {;
     }
 
   return (
-        <Replyer>
+        
             <form onSubmit={ handleSubmit(onSubmit) }>
-                <div>
-                <img src={item?.profileImg || '#'} alt="#" />
-                <StyledTextarea { ...register('comment',
-                {minLength: {
-                    required: '댓글을 작성하세요.',
-                    value: 2,
-                    message: '두글자 이상 입력하세요.'
-                }})}
-                onKeyDown={handleEnter} />
-                {errors.comment && <p style={ErrorStyled}>{errors.comment.message}</p>}
-                </div>
+                <Replyer>
+                    <img src="" alt="#"/>
+                    <textarea { ...register('comment',
+                    {minLength: {
+                        required: '댓글을 입력해주세요.',
+                        value: 2,
+                        message: '두글자 이상 입력하세요.'
+                    }})}
+                    onKeyDown={handleEnter} />
+                    <br />
+                    {errors.comment && <span style={ErrorStyled}>{errors.comment.message}</span>}
+                   
+                </Replyer>
             </form>
-        </Replyer>
+        
   )
 }
 
