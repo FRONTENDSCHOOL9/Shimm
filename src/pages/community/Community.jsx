@@ -1,14 +1,11 @@
-import CommunityForMe from "@pages/community/CommunityForMe";
-import FeedList from "./FeedList";
-import styled from "styled-components";
+import FeedList from "./feed/FeedList";
 
 
 
 function Community(){    
     return (
         <>
-            <FeedList />
-            <CommunityForMe />
+           <FeedList />
         </>
     )
 }
