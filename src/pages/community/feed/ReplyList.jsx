@@ -1,5 +1,6 @@
 import { UserInfo } from '@pages/community/user/UserInfo';
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledReplies = styled.div`
@@ -17,22 +18,20 @@ const StyledReplies = styled.div`
     }
 `
 
-const ReplyerUserStyle = styled.div`
-  
-` 
+
 function ReplyList({ comments, profileImg, userId }) {
+   
     const commentsList = comments || [];
 
   return (
     <div>
         {commentsList.map((comment, index)=>(
             <StyledReplies key={index}>
-                
-                <img src={profileImg} alt='#' />
-                <span>{userId || <p>abcd</p>}</span>
-                <p>{comment.text}</p>
+            
+           
+                <img src={profileImg} alt='#' /><span>{userId || <p>user_03</p>}</span><p>{comment.text}</p>
+              
              
-
             </StyledReplies>
         ))}
     </div>

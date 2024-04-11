@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 
@@ -37,6 +37,7 @@ function ReplyCreate({ onAddComment, item }) {;
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [ comment, setComment ] = useState('');
 
+ 
     function onSubmit(formData){
         const { comment } = formData;
         if(comment.trim() !== ''){

@@ -1,45 +1,46 @@
 import useDetectClose from '@hooks/useDetectClose.mjs'
+import useClickOutside from '@hooks/useClickOutside.mjs'
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 import iconedit from '../../../assets/icon-edit.svg'
 import icondelete from '../../../assets/icon-delete.svg'
 import iconmore from '../../../assets/icon-more.svg'
+import { Link } from 'react-router-dom'
 
 const StyledDropDown = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
     right: 0;
-  `
+`
 
-const EditMenu = styled.div`
+const MoreButton = styled.button`
+    margin-left: auto;
+`
+
+const Menu = styled.div`
     position: absolute;
-
     text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: opacity 0.3s ease, transform 0.4s ease, visibility 0.4s;
-    padding: 10px;
+    transform: translate(-10px);
+    transition: opacity 0.3s ease, transform 0.4s ease, visibility 0.2s;
 `
 
 const OpenMenu = styled.div`
-    width: 100px;
-    padding: 1rem;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(20);
+    background-color: white;
+    width: 100%;
+    min-width: 2rem;
+    padding: 0.4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
     border: 1px solid #000000;
     border-radius: 8px;
     font-size: 2rem;
-    line-height: 2;
-
+    line-height: 1.8;
+    
     & img {
+      width: 2rem;
       margin-right: 1rem;
       vertical-align: center;
     }
@@ -50,24 +51,31 @@ const OpenMenu = styled.div`
 
 `
 
-function FeedDropdown() {
+function FeedDropDown() {
+    const menuRef = useRef('menu') 
     const dropDownRef = useRef(null)
     const [ isOpen, setIsOpen ] = useDetectClose(dropDownRef, false);
 
+    useClickOutside(menuRef, () => {
+      if(isOpen) {
+        setIsOpen(false);
+      }
+    })
+
   return (
-    <StyledDropDown>
-        <button onClick={()=>setIsOpen(!isOpen)}>{!isOpen ? <img src={iconmore}/>
-        : null}
-        </button>    
-        {!isOpen ? (<EditMenu></EditMenu> ) : 
+    <StyledDropDown ref={menuRef}>
+        <MoreButton onClick={()=>setIsOpen(!isOpen)}> <img src={iconmore}/>
+        
+        </MoreButton>    
+        {!isOpen ? (<Menu></Menu> ) : 
         (<OpenMenu>
           <div>
             <img src={iconedit} alt="#"/>
-            <span>수정</span>
+            <Link to='/'>수정</Link>
           </div>
           <div>
             <img src={icondelete} alt="#"/>
-            <span>삭제</span>
+            <Link to='/'>삭제</Link>
           </div>
         </OpenMenu>)
         }
@@ -75,4 +83,4 @@ function FeedDropdown() {
   )
 }
 
-export default FeedDropdown
+export default FeedDropDown
