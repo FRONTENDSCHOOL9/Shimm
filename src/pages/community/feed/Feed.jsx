@@ -7,6 +7,8 @@ import iconsend from '../../../assets/icon-send.svg'
 import { useState } from "react";
 import ReplyList from "@pages/community/feed/ReplyList";
 import ReplyCreate from "@pages/community/feed/ReplyCreate";
+import FeedDropdown from "@pages/community/feed/FeedDropdown";
+
 const feedList = [
         {
         id: 1,
@@ -67,6 +69,7 @@ const FeedWrapper = styled.li`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    position: relative;
 `
 
 const Post = styled.div`
@@ -101,6 +104,8 @@ const MoreComment = styled.div`
     margin-bottom: 2rem;
 `
 
+
+
 function Feed({ item }){
     const [ comments, setNewComment ] = useState([]);
     const { id, profileImg, userId, post } = item;
@@ -117,8 +122,11 @@ function Feed({ item }){
     
     return (
         <FeedWrapper>
-            <UserInfo profileImg={profileImg} userId={userId} />
+            <FeedDropdown />
+            <UserInfo profileImg={profileImg} userId={userId} >
+            </UserInfo >
             <div onClick={()=>handleFeedClick(item.id)}>
+               
                 <Post>
                    <span>{post}</span>
                 </Post>

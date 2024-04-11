@@ -1,3 +1,4 @@
+
 import React from "react";
 import styled from "styled-components";
 
@@ -12,7 +13,6 @@ const UserContainer = styled.div`
         border-radius: 50%;
         box-shadow: inset 0 0 20px #335635;
     }
-    
 `
 
 function UserInfo({ profileImg, userId, comment}){
@@ -20,7 +20,7 @@ function UserInfo({ profileImg, userId, comment}){
         <UserContainer>
             <img src={profileImg} alt='#' />
             <span>{userId}</span>
-            {comment && <span>{comment.text}</span>}
+            {comment && <span>{comment.text}</span>}            
         </UserContainer>
     )
 }
