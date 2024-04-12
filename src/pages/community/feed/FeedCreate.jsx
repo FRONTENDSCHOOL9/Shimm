@@ -1,6 +1,7 @@
 
-import { MdAdd } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 
 const CircleButton = styled.button`
 
@@ -23,13 +24,31 @@ const CircleButton = styled.button`
         transition: 0.14s all ease-in;
         transform: translate(-50%,50%) rotate(90deg)
     }
+
+    &::before{
+        content: 'wow';
+        height: 2px;
+        width: 10px;
+        color: white;
+    }
+
+    &::after{
+        content: 'wow';
+        height: 2px;
+        width: 100px;
+    }
 `
 
+
 function FeedCreate(){
+
+    const navigate = useNavigate();
+   
+    
+    
     return(
         <>
-        <CircleButton>
-            <MdAdd />
+        <CircleButton onClick={()=>navigate('/post')}>
         </CircleButton>
         </>
     )

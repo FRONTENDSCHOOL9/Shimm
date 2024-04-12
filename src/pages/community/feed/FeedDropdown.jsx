@@ -20,6 +20,7 @@ const MoreButton = styled.button`
 
 const Menu = styled.div`
     position: absolute;
+    width: 300px;
     text-align: center;
     transform: translate(-10px);
     transition: opacity 0.3s ease, transform 0.4s ease, visibility 0.2s;
@@ -28,8 +29,8 @@ const Menu = styled.div`
 const OpenMenu = styled.div`
     background-color: white;
     width: 100%;
-    min-width: 2rem;
-    padding: 0.4rem;
+    min-width: 4rem;
+    padding: 0.6rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,18 +38,17 @@ const OpenMenu = styled.div`
     border: 1px solid #000000;
     border-radius: 8px;
     font-size: 2rem;
-    line-height: 1.8;
     
     & img {
       width: 2rem;
       margin-right: 1rem;
       vertical-align: center;
     }
+`
 
-    & span {
-      padding-bottom: 2rem;
-    }
-
+const StyledLink = styled(Link)`
+      font-size: 2.2rem;
+      line-height: 1.8;
 `
 
 function FeedDropDown() {
@@ -71,11 +71,11 @@ function FeedDropDown() {
         (<OpenMenu>
           <div>
             <img src={iconedit} alt="#"/>
-            <Link to='/'>수정</Link>
+            <StyledLink to='/'>게시글 수정</StyledLink>
           </div>
           <div>
             <img src={icondelete} alt="#"/>
-            <Link to='/'>삭제</Link>
+            <StyledLink to='/'>게시글 삭제</StyledLink>
           </div>
         </OpenMenu>)
         }

@@ -1,6 +1,8 @@
 import Layout from '@components/layout/layout/Layout';
 import Community from '@pages/community/Community';
 import { FeedDetail } from '@pages/community/feed/FeedDetail';
+import FeedEdit from '@pages/community/feed/FeedEdit';
+import FeedNew from '@pages/community/feed/FeedNew';
 import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
 import MeditationMain from '@pages/meditation/MeditationMain';
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
       {
         path: 'community/:id',
         element: <FeedDetail />,
+      },
+      {
+        path: '/post',
+        element: <FeedNew />,
+      },
+      {
+        path: '/edit',
+        element: <FeedEdit />,
       },
     ],
   },
