@@ -71,7 +71,7 @@ function FeedDropDown() {
         (<OpenMenu>
           <div>
             <img src={iconedit} alt="#"/>
-            <StyledLink to='/'>게시글 수정</StyledLink>
+            <StyledLink to='/edit'>게시글 수정</StyledLink>
           </div>
           <div>
             <img src={icondelete} alt="#"/>

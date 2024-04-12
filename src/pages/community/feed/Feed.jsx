@@ -71,6 +71,11 @@ const FeedWrapper = styled.li`
     flex-direction: column;
     margin: 0 auto;
     position: relative;
+
+   @media screen and (max-width: 740px) {
+        width: 320px;
+        transition: all 5s easi-in-out;
+   } 
 `
 
 const Post = styled.div`
@@ -104,8 +109,6 @@ const MoreComment = styled.div`
     color: #727272;
     margin-bottom: 2rem;
 `
-
-
 
 function Feed({ item }){
     const [ comments, setNewComment ] = useState([]);
