@@ -24,7 +24,7 @@ function Header() {
   return (
     <StyledHeader>
       <Logo to="/home">
-        <Img src="/Logo.png" alt="쉼" />
+        <Img src="/logo.png" alt="쉼" />
       </Logo>
       <StyledNav $clicked={isClicked}>
         <HeaderLink to="/meditation" onClick={handleClick}>

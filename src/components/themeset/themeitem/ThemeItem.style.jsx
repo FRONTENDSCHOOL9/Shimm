@@ -83,7 +83,7 @@ export const StyledDiv = styled.div`
   position: absolute;
   right: 5px;
   top: 5px;
-  z-index: 2;
+  z-index: 1;
 `;
 
 export const LockIcon = styled.img`
