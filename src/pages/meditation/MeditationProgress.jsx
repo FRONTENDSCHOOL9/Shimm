@@ -31,6 +31,7 @@ function MeditationProgress() {
       time = 5 * 60;
       break;
   }
+
   function handleReset() {
     navigate(-1);
   }

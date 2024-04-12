@@ -52,4 +52,45 @@ const StyledDiv = styled.div`
   text-align: center;
 `;
 
-export { StyledMain, Cover, StyledSection, PageTitle, Description, StyledDiv };
+const StyledLabel = styled.label`
+  display: block;
+  font-size: 2rem;
+  font-weight: 200;
+  margin-bottom: 10px;
+`;
+
+const StyledInput = styled.input`
+  display: block;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  padding: 10px;
+  box-sizing: border-box;
+`;
+
+const StyledError = styled.div`
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: red;
+  margin: 10px 0;
+`;
+
+const SaveButtonContainer = styled.div`
+  text-align: center;
+  margin-top: 30px;
+`;
+
+export {
+  StyledMain,
+  Cover,
+  StyledSection,
+  PageTitle,
+  Description,
+  StyledDiv,
+  StyledLabel,
+  StyledInput,
+  StyledError,
+  SaveButtonContainer,
+};

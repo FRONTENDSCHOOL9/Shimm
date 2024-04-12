@@ -1,24 +1,43 @@
 import PropTypes from 'prop-types';
 import {
+  Lock,
   Theme,
+  Price,
+  Contents,
+  LockIcon,
+  Description,
   ThemeButton,
   ThemePreview,
   ThemeDescription,
 } from '@components/themeset/themeitem/ThemeItem.style';
 
 function ThemeItem({ item, handleTheme }) {
-  const { nameKor: kor, nameEng: eng } = item;
+  const { nameKor: kor, nameEng: eng, paid } = item;
 
   function handleClick() {
-    handleTheme(kor);
+    handleTheme(kor, paid);
   }
 
   return (
     <Theme>
       <ThemeButton type="button" onClick={handleClick}>
         <ThemePreview />
-        <ThemeDescription>{kor}</ThemeDescription>
-        <ThemeDescription>{eng}</ThemeDescription>
+        <Contents>
+          <Description>
+            <ThemeDescription>{kor}</ThemeDescription>
+            <ThemeDescription>{eng}</ThemeDescription>
+          </Description>
+          {paid ? (
+            ''
+          ) : (
+            <Lock>
+              <LockIcon>
+                <i className="ir">구매 필요</i>
+              </LockIcon>
+              <Price>1000원</Price>
+            </Lock>
+          )}
+        </Contents>
       </ThemeButton>
     </Theme>
   );
