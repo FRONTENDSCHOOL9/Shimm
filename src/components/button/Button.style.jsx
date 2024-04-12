@@ -28,11 +28,11 @@ const size = {
   },
 };
 
-const CommonButton = styled.button`
-  width: ${props => size[props.size.width]};
-  height: ${props => size[props.size.height]};
-  background-color: ${props => bgColors[props.bgColor]};
-  display: ${props => displays[props.display]};
+export const CommonButton = styled.button`
+  width: ${props => size[props.size]?.width};
+  height: ${props => size[props.size]?.height};
+  background-color: ${props => bgColors[props.$bg]};
+  display: ${props => displays[props.$display]};
   border-radius: 25px;
   text-align: center;
   color: ${props => (props.color ? '' : '#fff')};
@@ -41,12 +41,10 @@ const CommonButton = styled.button`
   transition: 0.3s ease-in-out;
 
   &:focus {
-    box-shadow: inset 0 0 0 2px ${props => shadowColors[props.bgColor]};
+    box-shadow: inset 0 0 0 2px ${props => shadowColors[props.$bg]};
   }
 
   &:hover {
-    background-color: ${props => hoverColors[props.color]};
+    background-color: ${props => hoverColors[props.$bg]};
   }
 `;
-
-export { CommonButton };

@@ -46,7 +46,9 @@ function MeditationProgress() {
         <PageTitle>명상하기</PageTitle>
         <Timer selectedTime={time} handleFinish={handleFinish} />
         <StyledDiv>
-          <Button handleClick={handleReset}>다시하기</Button>
+          <Button size="full" handleClick={handleReset}>
+            다시하기
+          </Button>
         </StyledDiv>
       </StyledSection>
     </StyledMain>

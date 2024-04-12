@@ -6,15 +6,17 @@ const aligns = {
   right: 'right',
 };
 
-const StyledMain = styled.main`
+export const StyledMain = styled.main`
   flex-grow: 1;
   display: flex;
 `;
 
-const Cover = styled.section`
+export const Cover = styled.section`
   flex-grow: 1;
-  background-color: salmon;
-  box-shadow: inset 0 0 20px black;
+  background-image: url('/meditation.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: none;
 
   @media (min-width: 740px) {
@@ -24,42 +26,59 @@ const Cover = styled.section`
   }
 `;
 
-const StyledSection = styled.section`
+export const StyledSection = styled.section`
   flex-grow: 1;
   margin: 0 auto;
   max-width: 500px;
-  padding: 40px 40px;
+  padding: 30px 20px;
   box-sizing: border-box;
 
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  @media (min-width: 740px) {
+    padding: 80px 60px;
+  }
 `;
 
-const PageTitle = styled.h2`
-  font-size: 3rem;
+export const PageTitle = styled.h2`
+  font-size: 2rem;
   font-weight: 600;
   text-align: center;
+  margin-bottom: 30px;
+
+  @media (min-width: 740px) {
+    font-size: 3.6rem;
+    margin-bottom: 60px;
+  }
 `;
 
-const Description = styled.h3`
-  font-size: 2rem;
+export const Description = styled.h3`
+  font-size: 1.4rem;
   font-weight: 200;
   text-align: ${props => aligns[props.$align]};
+  margin-bottom: 15px;
+
+  @media (min-width: 740px) {
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+  }
 `;
 
-const StyledDiv = styled.div`
+export const StyledDiv = styled.div`
+  margin-top: 15px;
   text-align: center;
+
+  @media (min-width: 740px) {
+    margin-top: 30px;
+  }
 `;
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   display: block;
   font-size: 2rem;
   font-weight: 200;
   margin-bottom: 10px;
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   display: block;
   width: 100%;
   height: 40px;
@@ -70,27 +89,14 @@ const StyledInput = styled.input`
   box-sizing: border-box;
 `;
 
-const StyledError = styled.div`
+export const StyledError = styled.div`
   font-size: 1.2rem;
   font-weight: 200;
   color: red;
   margin: 10px 0;
 `;
 
-const SaveButtonContainer = styled.div`
+export const SaveButtonContainer = styled.div`
   text-align: center;
   margin-top: 30px;
 `;
-
-export {
-  StyledMain,
-  Cover,
-  StyledSection,
-  PageTitle,
-  Description,
-  StyledDiv,
-  StyledLabel,
-  StyledInput,
-  StyledError,
-  SaveButtonContainer,
-};

@@ -6,7 +6,6 @@ import {
 } from '@zustand/timeSelection';
 import {
   Menu,
-  StyledDiv,
   SelectButton,
   StyledUl,
   StyledLi,
@@ -53,11 +52,9 @@ function TimeMenu() {
 
   return (
     <Menu ref={menuRef}>
-      <StyledDiv>
-        <SelectButton type="button" onClick={handleClick} $active={isActive}>
-          {selectedTime ? selectedTime : '시간을 선택해 주세요'}
-        </SelectButton>
-      </StyledDiv>
+      <SelectButton type="button" onClick={handleClick} $active={isActive}>
+        {selectedTime ? selectedTime : '시간을 선택해 주세요'}
+      </SelectButton>
       {isActive && (
         <StyledUl $active={isActive}>
           <StyledLi>
