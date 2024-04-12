@@ -8,10 +8,14 @@ const widths = {
 
 const StyledDiv = styled.section`
   width: ${props => widths[props.width]};
-  padding: 40px;
+  padding: 15px 35px;
   box-sizing: border-box;
   background-color: rgba(240, 245, 237, 1);
   border-radius: 10px;
+
+  @media (min-width: 740px) {
+    padding: 25px 70px;
+  }
 `;
 
 const StyledTitle = styled.h3`

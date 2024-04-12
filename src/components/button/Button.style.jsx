@@ -45,6 +45,6 @@ export const CommonButton = styled.button`
   }
 
   &:hover {
-    background-color: ${props => hoverColors[props.color]};
+    background-color: ${props => hoverColors[props.$bg]};
   }
 `;

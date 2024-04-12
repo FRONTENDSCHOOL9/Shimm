@@ -5,11 +5,11 @@ import Button from '@components/button/Button';
 import useCompleteTimeStore from '@zustand/timer.mjs';
 
 const StyledTimer = styled.div`
-  font-size: 6rem;
+  font-size: 8rem;
   font-weight: 700;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 50px;
   align-items: center;
 `;
 
@@ -92,7 +92,7 @@ function Timer({ selectedTime, handleFinish }) {
     <StyledTimer>
       {hour ? `${hour}:` : ''}
       {(minutes + '').padStart(2, '0')}:{(seconds + '').padStart(2, '0')}
-      <TimerButton handleClick={handleStop} display="block">
+      <TimerButton size="full" handleClick={handleStop} display="block">
         종료하기
       </TimerButton>
     </StyledTimer>
