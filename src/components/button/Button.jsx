@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 function Button({
   children,
   type = 'button',
+  size,
   bgColor = 'primary',
+  color,
   display = 'inline-block',
   handleClick,
 }) {
