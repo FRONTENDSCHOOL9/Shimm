@@ -6,14 +6,14 @@ import ReplyList from '@pages/community/feed/ReplyList'
 import { MoreComment } from '@pages/community/feed/Feed'
 import { useState } from 'react'
 
-const replyer = [
-    {
-        id: 1,
-        userId: 'replyer_01',
-        profileImg: '#',
-        comment: '사용자 댓글'
-    },
-]
+// const replyer = [
+//     {
+//         id: 1,
+//         userId: 'replyer_01',
+//         profileImg: '#',
+//         comment: '사용자 댓글'
+//     },
+// ]
 
 const sample = [
   {
