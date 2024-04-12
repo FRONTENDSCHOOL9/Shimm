@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 function Button({
   children,
   type = 'button',
-  color = 'primary',
+  bgColor = 'primary',
   display = 'inline-block',
   handleClick,
 }) {
   return (
     <CommonButton
       type={type}
+      size={size}
+      bgColor={bgColor}
       color={color}
       display={display}
       onClick={handleClick}
@@ -23,6 +25,8 @@ function Button({
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   type: PropTypes.string,
+  size: PropTypes.string,
+  bgColor: PropTypes.string,
   color: PropTypes.string,
   display: PropTypes.string,
   handleClick: PropTypes.func,
