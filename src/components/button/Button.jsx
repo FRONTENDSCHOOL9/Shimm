@@ -14,7 +14,7 @@ function Button({
     <CommonButton
       type={type}
       size={size}
-      bgColor={bgColor}
+      $bg={bgColor}
       color={color}
       display={display}
       onClick={handleClick}

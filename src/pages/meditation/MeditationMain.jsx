@@ -35,7 +35,7 @@ function MeditationMain() {
 
   return (
     <StyledMain>
-      <Cover>이미지</Cover>
+      <Cover></Cover>
       <StyledSection>
         <PageTitle>명상하기</PageTitle>
         <Description $align="center">원하는 시간을 선택해 주세요.</Description>
@@ -52,7 +52,9 @@ function MeditationMain() {
 
         {isTimeSelected && isThemeSelected && (
           <StyledDiv>
-            <Button handleClick={handleStart}>명상 시작하기</Button>
+            <Button handleClick={handleStart} size="full">
+              명상 시작하기
+            </Button>
           </StyledDiv>
         )}
       </StyledSection>

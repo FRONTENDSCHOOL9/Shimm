@@ -1,91 +1,74 @@
 import styled from 'styled-components';
 
-const TimeSetting = styled.div``;
+export const TimeSetting = styled.div``;
 
-const Menu = styled.div`
-  font-size: 1.8rem;
+export const Menu = styled.div`
+  font-size: 1.4rem;
   font-weight: 600;
-  position: relative;
   text-align: left;
+  margin-bottom: 30px;
+
+  @media (min-width: 740px) {
+    margin-bottom: 60px;
+  }
 `;
 
-const StyledDiv = styled.div`
-  border-radius: 8px;
-  border: 1px solid #000;
-  box-sizing: border-box;
-  color: ${props => (props.$active === true ? '#7BB67F' : 'unset')};
-`;
-
-const SelectButton = styled.button`
+export const SelectButton = styled.button`
   width: 100%;
-  padding: 12px 15px;
+  padding: 12px;
   box-sizing: border-box;
-  color: ${props => (props.$active === true ? '#7BB67F' : 'unset')};
-  position: relative;
+  color: ${props =>
+    props.$active === true ? '#7BB67F' : 'rgba(84, 89, 86, 1)'};
+  border: 1px solid rgba(156, 160, 157, 1);
+  border-radius: 8px;
 
+  position: relative;
   &:focus {
-    border: 1px solid rgba(115, 146, 125, 1);
-    border-radius: 8px;
-    box-sizing: border-box;
+    border-color: rgba(51, 86, 53, 1);
   }
 
   &:after {
     content: ' ';
-    display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     background-image: url('/src/assets/icon-down.svg');
     background-size: cover;
     position: absolute;
-    margin: 0 15px;
-    right: 0;
+    right: 12px;
     top: 50%;
     transform: ${props =>
       props.$active === true
-        ? 'translateY(-50%) rotate(180deg)'
-        : 'translateY(-50%)'};
+        ? 'translateY(-50%)'
+        : 'translateY(-50%) rotate(180deg)'};
   }
 `;
 
-const StyledUl = styled.ul`
+export const StyledUl = styled.ul`
   width: 100%;
-  position: absolute;
-  top: 140%;
-  left: 0;
-  overflow: hidden;
+  margin-top: 8px;
 
-  border: ${props => (props.$active === true ? '1px solid #000' : 'unset')};
+  overflow: hidden;
+  border: 1px solid rgba(156, 160, 157, 1);
   box-sizing: border-box;
   border-radius: 8px;
   max-height: ${props => (props.$active === true ? 'unset' : 0)};
 `;
 
-const StyledButton = styled.button`
+export const StyledLi = styled.li``;
+
+export const StyledButton = styled.button`
   width: 100%;
   padding: 12px 15px;
   box-sizing: border-box;
-  color: ${props => (props.$active === true ? '#7BB67F' : 'unset')};
-  position: relative;
+  border-radius: 8px;
+  color: rgba(66, 66, 66, 1);
+  border: 1px solid transparent;
 
-  &:focus {
-    border: 1px solid rgba(115, 146, 125, 1);
-    border-radius: 8px;
-    box-sizing: border-box;
-  }
-`;
-
-const StyledLi = styled.li`
-  ${StyledButton}:hover {
+  &:hover {
     background-color: #f0f5ed;
   }
-`;
 
-export {
-  TimeSetting,
-  Menu,
-  StyledDiv,
-  SelectButton,
-  StyledUl,
-  StyledLi,
-  StyledButton,
-};
+  &:focus {
+    border-color: rgba(115, 146, 125, 1);
+  }
+`;
