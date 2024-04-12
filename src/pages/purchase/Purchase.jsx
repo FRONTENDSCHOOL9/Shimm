@@ -1,6 +1,8 @@
 import Button from '@components/button/Button';
 import {
   Info,
+  Image,
+  ImageDiv,
   Preview,
   StyledMain,
   StyledSection,
@@ -30,21 +32,24 @@ function Purchase() {
   return (
     <StyledMain>
       <StyledSection>
+        <ImageDiv>
+          <Image src="/src/assets/icon-buy.svg" alt="테마 구매" />
+        </ImageDiv>
         <PageTitle>테마 구매</PageTitle>
         <Container>
           <Description>테마 정보</Description>
           <Info>
-            {`테마명: ${selectedTheme}`}
-            <br />
-            테마 가격: 1000원
-            <br />
-            유효기간: 제한 없음
+            <ul>
+              <li>{`테마명: ${selectedTheme}`}</li>
+              <li>테마 가격: 1000원</li>
+              <li>유효기간: 제한 없음</li>
+            </ul>
           </Info>
         </Container>
 
         <Container>
-          <Description>테마 정보</Description>
-          <Preview>미리보기</Preview>
+          <Description>테마 미리듣기</Description>
+          <Preview></Preview>
         </Container>
 
         <CheckBoxContainer>
@@ -61,7 +66,7 @@ function Purchase() {
 
         {isChecked && (
           <ButtonContainer>
-            <Button type="button" color="dark" handleClick={handlePay}>
+            <Button size="full" bgColor="primary" handleClick={handlePay}>
               결제하기
             </Button>
           </ButtonContainer>
