@@ -34,7 +34,7 @@ function Header() {
           커뮤니티
         </HeaderLink>
         {/* user 정보가 sessionStorage에 존재할 때만 보여주기 */}
-        <HeaderLink to="/" onClick={handleClick}>
+        <HeaderLink to="/mypage" onClick={handleClick}>
           마이페이지
         </HeaderLink>
       </StyledNav>

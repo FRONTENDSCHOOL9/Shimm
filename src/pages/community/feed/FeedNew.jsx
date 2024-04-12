@@ -27,6 +27,7 @@ const UploadFile = styled.div`
     line-height: 1.4;
     margin-bottom: 1rem;
     margin-right: 220px;
+
     & img {
         vertical-align: top;
         width: 2rem;
@@ -79,7 +80,6 @@ function FeedNew() {
         )
     }
 
-
      function handleEnter(e){
         if(e.key === 'Enter'){
             e.preventDefault();
@@ -118,4 +118,4 @@ function FeedNew() {
   )
 }
 
-export default FeedNew;
+export { FeedNew, UploadCase, UploadFile, WriteTextarea, SubmitButton }; 

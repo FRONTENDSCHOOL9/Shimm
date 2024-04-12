@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 
 
 const Replyer = styled.div`
-    display: flex;
+    display: flex; 
     gap: 1.2rem;
     margin-block: 1rem;
     position: relative;
@@ -28,6 +28,7 @@ const Replyer = styled.div`
     `
 
 const ErrorStyled = {
+    display: 'block',
     color: 'orangered',
     fontSize: '1.2rem',
     fontWeight: 'bold'
@@ -70,9 +71,8 @@ function ReplyCreate({ onAddComment, item }) {;
                     }})}
                     onKeyUp={handleEnter} />
                     <br />
-                    {errors.comment && <span style={ErrorStyled}>{errors.comment.message}</span>}
-                   
                 </Replyer>
+                {errors.comment && <span style={ErrorStyled}>{errors.comment.message}</span>}
             </form>
         
   )

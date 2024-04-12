@@ -60,7 +60,7 @@ const Replyer = styled.div`
         box-sizing: border-box;
         padding: 0 1.6rem;
         line-height: 3rem;
-        border-radius: 2rem;
+        border-radius: 6px;
         outline: none;
         resize: none;
         overflow: hidden;
