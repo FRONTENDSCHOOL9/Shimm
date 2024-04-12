@@ -32,7 +32,7 @@ function ThemeItem({ item, handleTheme }) {
           ) : (
             <Lock>
               <LockIcon>
-                <i className="ir">구매 필요</i>
+                <i>구매 필요</i>
               </LockIcon>
               <Price>1000원</Price>
             </Lock>

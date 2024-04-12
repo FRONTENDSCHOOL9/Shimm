@@ -18,15 +18,23 @@ const StyledHeader = styled.header`
 `;
 
 const Logo = styled(Link)`
-  box-shadow: inset 0 0 5px red;
-  width: 130px;
-  height: 40px;
+  width: 70px;
+  height: 16px;
   order: 1;
 
   &:focus {
     box-shadow: 0 0 0 2px rgba(115, 146, 125, 1);
     border-radius: 4px;
   }
+
+  @media (min-width: 740px) {
+    width: 130px;
+    height: 30px;
+  }
+`;
+
+const Img = styled.img`
+  object-fit: cover;
 `;
 
 const StyledNav = styled.nav`
@@ -77,14 +85,14 @@ const NavButton = styled.button`
   &:before {
     content: ' ';
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 12px;
     background-image: ${props =>
       props.$clicked === true
         ? `url('/src/assets/icon-close.svg')`
         : `url('/src/assets/icon-menu.svg')`};
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
   }
 
   &:focus {
@@ -97,4 +105,4 @@ const NavButton = styled.button`
   }
 `;
 
-export { StyledHeader, Logo, StyledNav, HeaderLink, NavButton };
+export { StyledHeader, Logo, Img, StyledNav, HeaderLink, NavButton };

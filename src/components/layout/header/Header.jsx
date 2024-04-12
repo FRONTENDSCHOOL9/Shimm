@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {
   StyledHeader,
   Logo,
+  Img,
   StyledNav,
   HeaderLink,
   NavButton,
@@ -22,7 +23,9 @@ function Header() {
 
   return (
     <StyledHeader>
-      <Logo to="/home">Shimm</Logo>
+      <Logo to="/home">
+        <Img src="/Logo.png" alt="쉼" />
+      </Logo>
       <StyledNav $clicked={isClicked}>
         <HeaderLink to="/meditation" onClick={handleClick}>
           명상하기
