@@ -32,6 +32,7 @@ Button.propTypes = {
   color: PropTypes.string,
   display: PropTypes.string,
   handleClick: PropTypes.func,
+  round: PropTypes.bool,
 };
 
 export default Button;

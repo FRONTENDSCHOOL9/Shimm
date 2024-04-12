@@ -1,4 +1,5 @@
 import {
+  Form,
   StyledSection,
   StyledMain,
   PageTitle,
@@ -72,27 +73,27 @@ function MeditationRecord() {
       <StyledSection>
         <PageTitle>기록 저장하기</PageTitle>
         <Result width="wide" date={currentDate} message={message} />
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel htmlFor="comment">한 줄 기록 남기기</StyledLabel>
           <StyledInput
             type="text"
             id="comment"
             placeholder="소감을 입력하세요..."
             {...register('comment', {
-              required: '소감을 입력하세요.',
+              required: '내용을 입력해 주세요.',
               minLength: {
                 value: 2,
-                message: '두 글자 이상 입력하세요.',
+                message: '두 글자 이상 입력해 주세요.',
               },
             })}
           />
           {errors && <StyledError>{errors.comment?.message}</StyledError>}
           <SaveButtonContainer>
-            <Button type="submit" color="dark">
+            <Button type="submit" bgColor="primary" size="full">
               저장하기
             </Button>
           </SaveButtonContainer>
-        </form>
+        </Form>
       </StyledSection>
     </StyledMain>
   );

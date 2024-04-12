@@ -29,7 +29,7 @@ export const Cover = styled.section`
 export const StyledSection = styled.section`
   flex-grow: 1;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 600px;
   padding: 30px 20px;
   box-sizing: border-box;
 
@@ -78,19 +78,23 @@ export const StyledLabel = styled.label`
   margin-bottom: 10px;
 `;
 
+export const Form = styled.form`
+  margin-top: 30px;
+`;
+
 export const StyledInput = styled.input`
   display: block;
   width: 100%;
-  height: 40px;
-  border: 1px solid #000;
+  border: 1px solid #545956;
   border-radius: 5px;
   font-size: 1.4rem;
+  line-height: 2rem;
   padding: 10px;
   box-sizing: border-box;
 `;
 
 export const StyledError = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 200;
   color: red;
   margin: 10px 0;

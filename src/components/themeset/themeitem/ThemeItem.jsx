@@ -32,7 +32,7 @@ function ThemeItem({ item, handleTheme }) {
             <>
               <Lock />
               <StyledDiv>
-                <LockIcon src="/lock.png" alt="구매 필요" />
+                <LockIcon src="/src/assets/icon-lock.svg" alt="구매 필요" />
                 <Price>1000원</Price>
               </StyledDiv>
             </>

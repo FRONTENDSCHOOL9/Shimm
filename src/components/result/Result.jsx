@@ -1,4 +1,6 @@
 import {
+  Text,
+  Image,
   StyledDiv,
   StyledTitle,
   StyledDescription,
@@ -7,8 +9,11 @@ import {
 function Result({ width = 'wide', date, message }) {
   return (
     <StyledDiv width={width}>
-      <StyledTitle>{date}</StyledTitle>
-      <StyledDescription>{message}</StyledDescription>
+      <Image src="/src/assets/icon-good.svg" alt="Good" />
+      <Text>
+        <StyledTitle>{date}</StyledTitle>
+        <StyledDescription>{message}</StyledDescription>
+      </Text>
     </StyledDiv>
   );
 }
