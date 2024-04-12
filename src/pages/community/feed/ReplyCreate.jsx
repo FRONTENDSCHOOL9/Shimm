@@ -68,7 +68,7 @@ function ReplyCreate({ onAddComment, item }) {;
                         value: 2,
                         message: '두글자 이상 입력하세요.'
                     }})}
-                    onKeyDown={handleEnter} />
+                    onKeyUp={handleEnter} />
                     <br />
                     {errors.comment && <span style={ErrorStyled}>{errors.comment.message}</span>}
                    
