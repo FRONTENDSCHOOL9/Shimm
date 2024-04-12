@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import iconfile from '../../../assets/icon-file.svg'
+import iconfile from '@assets/icon-file.svg'
 import { useForm } from 'react-hook-form';
 
 const FeedWrite = styled.div`

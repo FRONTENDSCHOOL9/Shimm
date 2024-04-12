@@ -2,9 +2,9 @@ import useDetectClose from '@hooks/useDetectClose.mjs'
 import useClickOutside from '@hooks/useClickOutside.mjs'
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import iconedit from '../../../assets/icon-edit.svg'
-import icondelete from '../../../assets/icon-delete.svg'
-import iconmore from '../../../assets/icon-more.svg'
+import iconedit from '@assets/icon-edit.svg'
+import icondelete from '@assets/icon-delete-post.svg'
+import iconmore from '@assets/icon-more.svg'
 import { Link } from 'react-router-dom'
 
 const StyledDropDown = styled.div`

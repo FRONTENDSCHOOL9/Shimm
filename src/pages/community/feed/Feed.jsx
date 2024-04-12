@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { UserInfo } from "@pages/community/user/UserInfo";
 import { Link, useNavigate } from "react-router-dom";
 import { ImageArea, Replyer } from "@pages/community/feed/FeedDetail";
-import iconlike from '../../../assets/icon-like.svg'
-import iconsend from '../../../assets/icon-send.svg'
+import iconbookmark from '@assets/icon-bookmark.svg'
+import iconbookmarkactive from '@assets/icon-bookmark-active.svg'
+import iconsend from '@assets/icon-send.svg'
 import { useState } from "react";
 import ReplyList from "@pages/community/feed/ReplyList";
 import ReplyCreate from "@pages/community/feed/ReplyCreate";
@@ -134,7 +135,7 @@ function Feed({ item }){
             </div>
             <StateWrapper>
                 <span>3분 전</span>
-                <img src={iconlike} alt="게시글 좋아요 버튼" />
+                <img src={iconbookmark} alt="게시글 좋아요 버튼" />
             </StateWrapper>
             <UserInfo 
                 profileImg={profileImg} 
