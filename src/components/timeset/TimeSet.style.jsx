@@ -1,0 +1,74 @@
+import styled from 'styled-components';
+
+export const TimeSetting = styled.div``;
+
+export const Menu = styled.div`
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 30px;
+
+  @media (min-width: 740px) {
+    margin-bottom: 60px;
+  }
+`;
+
+export const SelectButton = styled.button`
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  color: ${props =>
+    props.$active === true ? '#7BB67F' : 'rgba(84, 89, 86, 1)'};
+  border: 1px solid rgba(156, 160, 157, 1);
+  border-radius: 8px;
+
+  position: relative;
+  &:focus {
+    border-color: rgba(51, 86, 53, 1);
+  }
+
+  &:after {
+    content: ' ';
+    width: 24px;
+    height: 24px;
+    background-image: url('/src/assets/icon-down.svg');
+    background-size: cover;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: ${props =>
+      props.$active === true
+        ? 'translateY(-50%)'
+        : 'translateY(-50%) rotate(180deg)'};
+  }
+`;
+
+export const StyledUl = styled.ul`
+  width: 100%;
+  margin-top: 8px;
+
+  overflow: hidden;
+  border: 1px solid rgba(156, 160, 157, 1);
+  box-sizing: border-box;
+  border-radius: 8px;
+  max-height: ${props => (props.$active === true ? 'unset' : 0)};
+`;
+
+export const StyledLi = styled.li``;
+
+export const StyledButton = styled.button`
+  width: 100%;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  color: rgba(66, 66, 66, 1);
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: #f0f5ed;
+  }
+
+  &:focus {
+    border-color: rgba(115, 146, 125, 1);
+  }
+`;
