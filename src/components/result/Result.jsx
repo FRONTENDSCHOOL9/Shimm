@@ -5,11 +5,12 @@ import {
   StyledTitle,
   StyledDescription,
 } from '@components/result/Result.style';
+import iconGood from '@assets/icon-good.svg';
 
 function Result({ width = 'wide', date, message }) {
   return (
     <StyledDiv width={width}>
-      <Image src="/src/assets/icon-good.svg" alt="Good" />
+      <Image src={iconGood} alt="Good" />
       <Text>
         <StyledTitle>{date}</StyledTitle>
         <StyledDescription>{message}</StyledDescription>

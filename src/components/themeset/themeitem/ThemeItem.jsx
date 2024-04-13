@@ -10,6 +10,8 @@ import {
   ThemeButton,
   ThemeDescription,
 } from '@components/themeset/themeitem/ThemeItem.style';
+import iconMusic from '@assets/icon-music.svg';
+import iconLock from '@assets/icon-lock.svg';
 
 function ThemeItem({ item, handleTheme }) {
   const { nameKor: kor, nameEng: eng, paid, code } = item;
@@ -22,7 +24,7 @@ function ThemeItem({ item, handleTheme }) {
     <Theme>
       <ThemeButton type="button" onClick={handleClick} $themeCode={code}>
         <Contents>
-          <Icon src="/src/assets/icon-music.svg" alt={kor} />
+          <Icon src={iconMusic} alt={kor} />
           <ThemeDescription>
             {kor} {eng}
           </ThemeDescription>
@@ -32,7 +34,7 @@ function ThemeItem({ item, handleTheme }) {
             <>
               <Lock />
               <StyledDiv>
-                <LockIcon src="/src/assets/icon-lock.svg" alt="구매 필요" />
+                <LockIcon src={iconLock} alt="구매 필요" />
                 <Price>1000원</Price>
               </StyledDiv>
             </>
