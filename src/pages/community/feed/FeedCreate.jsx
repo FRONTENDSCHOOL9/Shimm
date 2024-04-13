@@ -56,8 +56,7 @@ function FeedCreate(){
 
     return(
         <>
-        <CircleButton onClick={()=>navigate('/post')}>
-        </CircleButton>
+        <CircleButton onClick={()=>navigate('/post')} />
         </>
     )
 }

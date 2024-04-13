@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import iconfile from '@assets/icon-file.svg'
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { ErrorStyled } from '@pages/community/ErrorStyled';
+
+
 
 const FeedWrite = styled.div`
     width: 100%;
@@ -70,17 +74,23 @@ const SubmitButton = styled.button`
 
 function FeedNew() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    
-    
-    function onSubmit({ children, ...rest}) {
+    const [ newPost, setNewPost ] = useState('')
+    const navigate = useNavigate()
+
+    function onSubmit(data) {
+        console.log(data)
         navigate(`/community`);
-        return (
-            <button type="submit" {...rest}>{children}
-            </button>
-        )
+        // return (
+        //     <button type="submit" {...rest}>{children}
+        //     </button>
+        // )
     }
 
-     function handleEnter(e){
+    function handleTextareaChange(e){
+        setNewPost(e.target.value)
+    }
+
+    function handleEnter(e){
         if(e.key === 'Enter'){
             e.preventDefault();
             handleSubmit(onSubmit)();
@@ -97,23 +107,26 @@ function FeedNew() {
         <UploadCase>가로 500px, 세로 500px 이상의 이미지를 등록해 주세요.
         </UploadCase>
         
-        <WriteTextarea onSubmit={handleSubmit(onSubmit)}>
-            <textarea id="post"
-                      placeholder="글 내용을 입력해주세요." { ...register('post', {
-                    minLength: {
-                    required: '내용을 입력해주세요.',
-                    value: 1,
-                    message: '한글자 이상 입력해주세요.'
+        <WriteTextarea 
+            id="post"
+            value={newPost}
+            placeholder="글 내용을 입력해주세요." 
+            { ...register('post', {
+                required: '내용을 입력해주세요.',  
+                minLength: { 
+                value: 1,
+                message: '한글자 이상 입력해주세요.'
                 }
             })}
-            onKeyUp={handleEnter}>
-                {errors.post && <ErrorStyle>
-                    {errors.post.message} </ErrorStyle>}
-            </textarea>
- 
-        </WriteTextarea>
-        <SubmitButton>등록하기</SubmitButton>
+            onChange={handleTextareaChange}
+            onKeyUp={handleEnter}/>
+            {errors.post && 
+            <ErrorStyled>{errors.post.message}</ErrorStyled>}
 
+            <form onSubmit={handleSubmit(onSubmit)}>
+            <SubmitButton type="submit">등록하기</SubmitButton>
+            </form>
+ 
     </FeedWrite>
   )
 }
