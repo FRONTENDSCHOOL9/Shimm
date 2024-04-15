@@ -22,6 +22,14 @@ const displays = {
 };
 
 const size = {
+  small: {
+    width: '80px',
+    height: '30px',
+  },
+  medium: {
+    width: '100px',
+    height: '30px',
+  },
   full: {
     width: '100%',
     height: '50px',

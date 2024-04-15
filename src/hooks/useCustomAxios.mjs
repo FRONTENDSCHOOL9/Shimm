@@ -17,6 +17,7 @@ function useCustomAxios() {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      'client-id': '02-Shimm',
     },
   });
 
