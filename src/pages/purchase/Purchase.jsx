@@ -1,9 +1,12 @@
 import Button from '@components/button/Button';
+import iconPlay from '@assets/icon-play.svg';
 import {
   Info,
   Image,
   ImageDiv,
   Preview,
+  PlayButton,
+  PlayIcon,
   StyledMain,
   StyledSection,
   PageTitle,
@@ -12,21 +15,32 @@ import {
   CheckBox,
   ButtonContainer,
   CheckBoxContainer,
-  StyledLabel,
 } from '@pages/purchase/Purchase.style';
 import { useSelectedThemeStore } from '@zustand/themeSelection.mjs';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ModalWindow from '@components/modal/ModalWindow';
 
 function Purchase() {
   const selectedTheme = useSelectedThemeStore(state => state.selectedTheme);
   const [isChecked, setIsChecked] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
+  const navigate = useNavigate();
 
   function handleCheck() {
     setIsChecked(!isChecked);
   }
 
   function handlePay() {
-    console.log('결제하기');
+    setIsPaid(true);
+  }
+
+  function handleClose() {
+    navigate('/meditation');
+  }
+
+  function handleOk() {
+    navigate('/meditation/progress');
   }
 
   return (
@@ -49,7 +63,11 @@ function Purchase() {
 
         <Container>
           <Description>테마 미리듣기</Description>
-          <Preview></Preview>
+          <Preview>
+            <PlayButton>
+              <PlayIcon src={iconPlay} alt="음악 재생" />
+            </PlayButton>
+          </Preview>
         </Container>
 
         <CheckBoxContainer>
@@ -59,9 +77,9 @@ function Purchase() {
             checked={isChecked}
             onChange={handleCheck}
           />
-          <StyledLabel htmlFor="agree">
+          <label htmlFor="agree">
             주문 내용 및 결제 조건을 확인했으며, 결제 진행에 동의합니다.
-          </StyledLabel>
+          </label>
         </CheckBoxContainer>
 
         {isChecked && (
@@ -70,6 +88,13 @@ function Purchase() {
               결제하기
             </Button>
           </ButtonContainer>
+        )}
+
+        {isPaid && (
+          <ModalWindow handleClose={handleClose} handleOk={handleOk}>
+            테마 구매가 완료되었습니다. <br />
+            구매하신 테마로 명상을 시작할까요?
+          </ModalWindow>
         )}
       </StyledSection>
     </StyledMain>

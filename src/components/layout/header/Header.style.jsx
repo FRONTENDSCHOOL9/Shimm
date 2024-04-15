@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledHeader = styled.header`
-  border-bottom: 2px solid #d4d4d4;
   background-color: #fff;
-  padding: 10px 20px;
+  padding: 20px;
   position: relative;
 
   display: flex;

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import iconCheck from '@assets/icon-check.svg';
 
-const StyledMain = styled.main`
+export const StyledMain = styled.main`
   flex-grow: 1;
   display: flex;
 `;
 
-const StyledSection = styled.section`
+export const StyledSection = styled.section`
   flex-grow: 1;
   margin: 0 auto;
   max-width: 500px;
@@ -28,7 +29,7 @@ export const Image = styled.img`
   height: 100px;
 `;
 
-const PageTitle = styled.h2`
+export const PageTitle = styled.h2`
   font-size: 1.6rem;
   font-weight: 600;
   text-align: center;
@@ -40,9 +41,9 @@ const PageTitle = styled.h2`
   }
 `;
 
-const Container = styled.div``;
+export const Container = styled.div``;
 
-const Description = styled.h3`
+export const Description = styled.h3`
   font-size: 1.4rem;
   font-weight: 500;
   margin-bottom: 6px;
@@ -53,7 +54,7 @@ const Description = styled.h3`
   }
 `;
 
-const Info = styled.div`
+export const Info = styled.div`
   background-color: #f5f5f5;
   padding: 25px 15px;
   box-sizing: border-box;
@@ -79,24 +80,38 @@ const Info = styled.div`
   }
 `;
 
-const Preview = styled.div`
+export const Preview = styled.div`
   height: 170px;
   background: linear-gradient(45deg, #60e66d 0%, #f6815b 100%);
   padding: 20px;
   box-sizing: border-box;
+  border: 2px solid #fffffd;
   border-radius: 8px;
   margin-bottom: 12px;
+
+  display: flex;
 
   @media (min-width: 740px) {
     margin-bottom: 28px;
   }
 `;
 
-const ButtonContainer = styled.div`
+export const PlayButton = styled.button`
+  width: 50px;
+  height: 50px;
+  margin-top: auto;
+`;
+
+export const PlayIcon = styled.img`
+  width: 50px;
+  height: 50px;
+`;
+
+export const ButtonContainer = styled.div`
   text-align: center;
 `;
 
-const CheckBoxContainer = styled.div`
+export const CheckBoxContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -109,20 +124,37 @@ const CheckBoxContainer = styled.div`
   }
 `;
 
-const StyledLabel = styled.label``;
+export const CheckBox = styled.input`
+  display: none;
 
-const CheckBox = styled.input``;
+  & + label {
+    letter-spacing: -0.02rem;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
 
-export {
-  StyledMain,
-  StyledSection,
-  PageTitle,
-  Description,
-  Container,
-  Info,
-  Preview,
-  ButtonContainer,
-  CheckBoxContainer,
-  CheckBox,
-  StyledLabel,
-};
+  & + label::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #55a25a;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+
+  &:checked + label::before {
+    content: '';
+    background-color: #55a25a;
+    background-image: url(${iconCheck});
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  @media (min-width: 740px) {
+    & + label {
+      gap: 10px;
+    }
+  }
+`;
