@@ -111,7 +111,13 @@ const MoreComment = styled.div`
 
 function Feed({ item }){
     const [ comments, setNewComment ] = useState([]);
-    const { id, profileImg, userId, post } = item;
+    const { 
+        _id,
+        user, 
+        profile, 
+        content,
+        product,
+        createdAt } = item;
     const navigate = useNavigate();
     
 
@@ -126,21 +132,21 @@ function Feed({ item }){
     return (
         <FeedWrapper>
             <FeedDropDown />
-            <UserInfo profileImg={profileImg} userId={userId} >
+            <UserInfo profile={profile} userId={user.name} >
             </UserInfo >
-            <div onClick={()=>handleFeedClick(item.id)}>
+            <div onClick={()=>handleFeedClick(item._id)}>
                 <Post>
-                   <span>{post}</span>
+                   <span>{content}</span>
                 </Post>
-                <ImageArea />
+                <ImageArea product={product.image}/>
             </div>
             <StateWrapper>
-                <span>3분 전</span>
+                <span>{createdAt}</span>
                 <img src={iconbookmark} alt="게시글 좋아요 버튼" />
             </StateWrapper>
             <UserInfo 
-                profileImg={profileImg} 
-                userId={userId} 
+                profile={profile} 
+                userId={_id} 
                 comment={replyer}/>
             
             <ReplyList comments={comments}/>
@@ -152,7 +158,7 @@ function Feed({ item }){
                 )}
             
             <MoreComment>
-                <Link to={`/community/${id}`}>
+                <Link to={`/community/${_id}`}>
                     댓글 더보기
                 </Link>
             </MoreComment>
