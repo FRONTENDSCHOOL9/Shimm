@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-
-
+import { ErrorStyled } from '@pages/community/ErrorStyled';
 
 const Replyer = styled.div`
     display: flex; 
@@ -25,14 +24,7 @@ const Replyer = styled.div`
         right: 2rem;
         top: 5.6rem;
     }
-    `
-
-const ErrorStyled = {
-    display: 'block',
-    color: 'orangered',
-    fontSize: '1.2rem',
-    fontWeight: 'bold'
-}
+`
 
 function ReplyCreate({ onAddComment, item }) {;
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -72,10 +64,12 @@ function ReplyCreate({ onAddComment, item }) {;
                     onKeyUp={handleEnter} />
                     <br />
                 </Replyer>
-                {errors.comment && <span style={ErrorStyled}>{errors.comment.message}</span>}
+                {errors.comment && <ErrorStyled>
+                    {errors.comment.message}
+                </ErrorStyled>}
             </form>
         
   )
 }
 
-export default ReplyCreate
+export default ReplyCreate;
