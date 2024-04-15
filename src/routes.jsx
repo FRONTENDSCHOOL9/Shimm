@@ -3,13 +3,18 @@ import Community from '@pages/community/Community';
 import { FeedDetail } from '@pages/community/feed/FeedDetail';
 import FeedEdit from '@pages/community/feed/FeedEdit';
 import { FeedNew } from '@pages/community/feed/FeedNew';
+import EditProfile from '@pages/community/mypage/EditProfile';
+import { MyInfo } from '@pages/community/mypage/MyInfo';
+import MyInfoCheck from '@pages/community/mypage/MyInfoCheck';
 import MyPage from '@pages/community/mypage/MyPage';
+import MyRecord from '@pages/community/mypage/MyRecord';
 import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
 import MeditationMain from '@pages/meditation/MeditationMain';
 import MeditationProgress from '@pages/meditation/MeditationProgress';
 import MeditationRecord from '@pages/meditation/MeditationRecord';
 import Purchase from '@pages/purchase/Purchase';
+import Login from '@pages/users/Login';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -24,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: 'home',
         element: <Home />,
+      },
+      {
+        path: 'users/login',
+        element: <Login />,
       },
       {
         path: 'meditation',
@@ -56,17 +65,33 @@ const router = createBrowserRouter([
         element: <FeedDetail />,
       },
       {
-        path: '/post',
+        path: 'post',
         element: <FeedNew />,
       },
       {
-        path: '/edit',
+        path: 'edit',
         element: <FeedEdit />,
       },
       {
         path: 'mypage',
-        element: <MyPage />
-      }
+        element: <MyPage />,
+      },
+      {
+        path: 'myinfo',
+        element: <MyInfo />,
+      },
+      {
+        path: 'checktoinfo',
+        element: <MyInfoCheck />,
+      },
+      {
+        path: 'editprofile',
+        element: <EditProfile />,
+      },
+      {
+        path: 'archive',
+        element: <MyRecord />,
+      },
     ],
   },
 ]);

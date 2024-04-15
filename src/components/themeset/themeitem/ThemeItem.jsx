@@ -6,38 +6,50 @@ import {
   Price,
   Contents,
   LockIcon,
+  PaidBadge,
   StyledDiv,
   ThemeButton,
   ThemeDescription,
 } from '@components/themeset/themeitem/ThemeItem.style';
+import iconMusic from '@assets/images/icon-music.svg';
+import iconLock from '@assets/images/icon-lock.svg';
 
-function ThemeItem({ item, handleTheme }) {
-  const { nameKor: kor, nameEng: eng, paid, code } = item;
-
+function ThemeItem({ item, handleTheme, isNotPaid }) {
   function handleClick() {
-    handleTheme(kor, paid);
+    handleTheme(item.name, item._id, item.extra.background, isNotPaid);
   }
 
   return (
     <Theme>
-      <ThemeButton type="button" onClick={handleClick} $themeCode={code}>
-        <Contents>
-          <Icon src="/src/assets/icon-music.svg" alt={kor} />
-          <ThemeDescription>
-            {kor} {eng}
-          </ThemeDescription>
-          {paid ? (
-            ''
-          ) : (
-            <>
-              <Lock />
-              <StyledDiv>
-                <LockIcon src="/src/assets/icon-lock.svg" alt="구매 필요" />
-                <Price>1000원</Price>
-              </StyledDiv>
-            </>
-          )}
+      <ThemeButton
+        type="button"
+        onClick={handleClick}
+        $bgColor={item.extra.background}
+      >
+        <Contents
+          $url={`${import.meta.env.VITE_API_SERVER}${item.mainImages[0]['path ']}`}
+        >
+          <Icon src={iconMusic} alt="테마 재생" />
+          <ThemeDescription>{item.name}</ThemeDescription>
         </Contents>
+
+        {item.price > 0 && isNotPaid && (
+          <>
+            <Lock />
+            <StyledDiv>
+              <LockIcon src={iconLock} alt="유료 테마" />
+              <Price>{item.price.toLocaleString()}원</Price>
+            </StyledDiv>
+          </>
+        )}
+
+        {item.price > 0 && !isNotPaid && (
+          <>
+            <StyledDiv>
+              <PaidBadge>구매함</PaidBadge>
+            </StyledDiv>
+          </>
+        )}
       </ThemeButton>
     </Theme>
   );

@@ -15,21 +15,7 @@ export const initData = async nextSeq => {
     // 회원
     user: [],
     // 상품
-    product: [
-      {
-        price: 1000,
-        quantity: 600,
-        name: '밤하늘',
-        content: '밤하늘 유료 테마입니다.',
-        show: false,
-      },
-      {
-        price: 0,
-        quantity: 600,
-        name: '숲',
-        content: '숲 무료 테마입니다.',
-      },
-    ],
+    product: [],
     // 주문
     order: [],
     // 후기

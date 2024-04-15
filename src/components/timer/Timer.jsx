@@ -1,31 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Button from '@components/button/Button';
 import useCompleteTimeStore from '@zustand/timer.mjs';
+import ModalWindow from '@components/modal/ModalWindow';
+import { useNavigate } from 'react-router-dom';
+import { StyledTimer, TimerDiv } from '@components/timer/Timer.style';
 
-const StyledTimer = styled.div`
-  font-size: 8rem;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  align-items: center;
-`;
-
-const TimerButton = styled(Button)`
-  display: block;
-  box-shadow: inset 0 0 20px red;
-`;
-
-function Timer({ selectedTime, handleFinish }) {
+function Timer({ selectedTime }) {
   const [time, setTime] = useState(selectedTime);
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   const timerRef = useRef(null);
   const completeTimeSet = useCompleteTimeStore(state => state.completeTimeSet);
+  const navigate = useNavigate();
 
   useEffect(() => {
     formatTime();
@@ -38,11 +29,9 @@ function Timer({ selectedTime, handleFinish }) {
 
   function formatTime() {
     if (time < 0) {
-      completeTimeSet(selectedTime);
-      resetTimer();
-      alert('명상이 종료되었습니다!');
-      handleFinish();
       setIsStarted(false);
+      setIsFinished(true);
+      completeTimeSet(selectedTime);
     } else {
       const hour = Math.floor(time / 3600);
       const minute = Math.floor((time % 3600) / 60);
@@ -54,7 +43,7 @@ function Timer({ selectedTime, handleFinish }) {
     }
   }
 
-  function handleStart() {
+  (function handleStart() {
     if (!isStarted) {
       formatTime();
       timerRef.current = setInterval(() => {
@@ -62,46 +51,59 @@ function Timer({ selectedTime, handleFinish }) {
       }, 1000);
       setIsStarted(true);
     }
+  })();
+
+  function handlePause() {
+    setIsPaused(true);
+    completeTimeSet(selectedTime - time);
+    resetTimer();
+  }
+
+  function handleRestart() {
+    setIsPaused(false);
+    timerRef.current = setInterval(() => {
+      setTime(prevTime => prevTime - 1);
+    }, 1000);
   }
 
   function handleStop() {
-    completeTimeSet(selectedTime - time);
-    resetTimer();
-
-    if (time > 0) {
-      const response = confirm(
-        time > 0 && '시간이 남았습니다. 정말 종료하시겠습니까?',
-      );
-      if (response) {
-        setTime(0);
-        handleFinish();
-      } else {
-        timerRef.current = setInterval(() => {
-          setTime(prevTime => prevTime - 1);
-        }, 1000);
-      }
-    } else {
-      alert('명상이 종료되었습니다!');
-      handleFinish();
-    }
+    setTime(0);
+    navigate('/meditation/record');
   }
-
-  handleStart();
 
   return (
     <StyledTimer>
-      {hour ? `${hour}:` : ''}
-      {(minutes + '').padStart(2, '0')}:{(seconds + '').padStart(2, '0')}
-      <TimerButton size="full" handleClick={handleStop} display="block">
+      <TimerDiv>
+        {hour ? `${hour}:` : ''}
+        {(minutes + '').padStart(2, '0')}:{(seconds + '').padStart(2, '0')}
+        <br />
+        <span>
+          잘 하고 있어요! <br /> 집중하는 모습이 멋져요.
+        </span>
+      </TimerDiv>
+      <Button size="full" handleClick={handlePause}>
         종료하기
-      </TimerButton>
+      </Button>
+
+      {time > 0 && isPaused && (
+        <ModalWindow handleClose={handleRestart} handleOk={handleStop}>
+          명상이 아직 진행 중입니다. <br /> 정말 종료하시겠습니까?
+        </ModalWindow>
+      )}
+      {isFinished && (
+        <ModalWindow
+          twoButton={false}
+          handleOk={() => navigate('/meditation/record')}
+        >
+          명상이 종료되었습니다! 기록 페이지로 이동합니다.
+        </ModalWindow>
+      )}
     </StyledTimer>
   );
 }
 
 Timer.propTypes = {
   selectedTime: PropTypes.number.isRequired,
-  handleFinish: PropTypes.func.isRequired,
 };
 
 export default Timer;

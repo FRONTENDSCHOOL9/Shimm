@@ -1,5 +1,5 @@
 import { UserInfo } from '@pages/community/user/UserInfo';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -10,32 +10,28 @@ const StyledReplies = styled.div`
   gap: 1rem;
   margin-top: 1.2rem;
 
-    & img {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        box-shadow: inset 0 0 20px #335635;
-    }
-`
-
+  & img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px #335635;
+  }
+`;
 
 function ReplyList({ comments, profileImg, userId }) {
-   
-    const commentsList = comments || [];
+  const commentsList = comments || [];
 
   return (
     <div>
-        {commentsList.map((comment, index)=>(
-            <StyledReplies key={index}>
-            
-           
-                <img src={profileImg} alt='#' /><span>{userId || <p>user_03</p>}</span><p>{comment.text}</p>
-              
-             
-            </StyledReplies>
-        ))}
+      {commentsList.map((comment, index) => (
+        <StyledReplies key={index}>
+          <img src={profileImg} alt="#" />
+          <span>{userId || <p>user_03</p>}</span>
+          <p>{comment.text}</p>
+        </StyledReplies>
+      ))}
     </div>
-  )
+  );
 }
 
-export default ReplyList
+export default ReplyList;

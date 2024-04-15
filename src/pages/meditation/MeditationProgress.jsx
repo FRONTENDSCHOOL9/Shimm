@@ -1,22 +1,24 @@
 import Button from '@components/button/Button';
 import Timer from '@components/timer/Timer';
+import { useNavigate } from 'react-router-dom';
+import { useSelectedTimeStore } from '@zustand/timeSelection';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
 import {
   PageTitle,
   StyledSection,
   StyledMain,
   StyledDiv,
 } from '@pages/meditation/Meditation.style';
-import { useSelectedTimeStore } from '@zustand/timeSelection.mjs';
-import { useNavigate } from 'react-router-dom';
 
 function MeditationProgress() {
-  const selectedTime = useSelectedTimeStore(state => state.selectedTime);
+  const { selectedTime } = useSelectedTimeStore();
+  const { selectedTheme } = useSelectedThemeStore();
   const navigate = useNavigate();
 
   let time = 0;
   switch (selectedTime) {
     case '5분':
-      time = 5 * 60;
+      time = 5;
       break;
     case '10분':
       time = 10 * 60;
@@ -33,18 +35,14 @@ function MeditationProgress() {
   }
 
   function handleReset() {
-    navigate(-1);
-  }
-
-  function handleFinish() {
-    navigate('/meditation/record');
+    navigate('/meditation');
   }
 
   return (
-    <StyledMain>
+    <StyledMain $bgColor={selectedTheme.background}>
       <StyledSection>
         <PageTitle>명상하기</PageTitle>
-        <Timer selectedTime={time} handleFinish={handleFinish} />
+        <Timer selectedTime={time} />
         <StyledDiv>
           <Button size="full" handleClick={handleReset}>
             다시하기

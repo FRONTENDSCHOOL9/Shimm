@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Inside,
   Modal,
@@ -5,7 +6,6 @@ import {
   ModalClose,
   ModalOk,
 } from '@components/modal/ModalWindow.style';
-import PropTypes from 'prop-types';
 
 function ModalWindow({ children, twoButton = true, handleClose, handleOk }) {
   return (
@@ -13,11 +13,15 @@ function ModalWindow({ children, twoButton = true, handleClose, handleOk }) {
       <Inside>
         <Message>{children}</Message>
         {twoButton && (
-          <ModalClose type="button" onClick={handleClose}>
+          <ModalClose
+            type="button"
+            onClick={handleClose}
+            $twoButton={twoButton}
+          >
             취소
           </ModalClose>
         )}
-        <ModalOk type="button" onClick={handleOk}>
+        <ModalOk type="button" onClick={handleOk} $twoButton={twoButton}>
           확인
         </ModalOk>
       </Inside>

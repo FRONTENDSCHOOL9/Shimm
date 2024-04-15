@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import iconDown from '@assets/images/icon-down.svg';
 
 export const TimeSetting = styled.div``;
 
 export const Menu = styled.div`
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: 500;
   text-align: left;
   margin-bottom: 30px;
 
@@ -31,7 +32,7 @@ export const SelectButton = styled.button`
     content: ' ';
     width: 24px;
     height: 24px;
-    background-image: url('/src/assets/icon-down.svg');
+    background-image: url(${iconDown});
     background-size: cover;
     position: absolute;
     right: 12px;
