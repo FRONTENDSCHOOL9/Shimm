@@ -10,6 +10,6 @@ export const StyledUl = styled.ul`
   transition: all 0.2s ease-in-out;
 
   @media (min-width: 740px) {
-    aspect-ratio: 7/5;
+    aspect-ratio: 6/5;
   }
 `;

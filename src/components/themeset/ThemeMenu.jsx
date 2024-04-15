@@ -1,57 +1,40 @@
 import ModalWindow from '@components/modal/ModalWindow';
 import { StyledUl } from '@components/themeset/ThemeSet.style';
 import ThemeItem from '@components/themeset/themeitem/ThemeItem';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import {
   useIsThemeSelectedStore,
   useSelectedThemeStore,
 } from '@zustand/themeSelection.mjs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// mockup data (API 호출)
-const themeItem = [
-  {
-    _id: 1,
-    code: 'T01',
-    nameKor: '숲',
-    nameEng: 'Forest',
-    paid: true,
-  },
-  {
-    _id: 2,
-    code: 'T02',
-    nameKor: '바다',
-    nameEng: 'Sea',
-    paid: true,
-  },
-  {
-    _id: 3,
-    code: 'T03',
-    nameKor: '아침',
-    nameEng: 'Morning',
-    paid: true,
-  },
-  {
-    _id: 4,
-    code: 'T04',
-    nameKor: '노을',
-    nameEng: 'Sunset',
-    paid: false,
-  },
-  {
-    _id: 5,
-    code: 'T05',
-    nameKor: '밤하늘',
-    nameEng: 'Night Sky',
-    paid: false,
-  },
-];
+import { ReactCsspin } from 'react-csspin';
+import 'react-csspin/dist/style.css';
 
 function ThemeMenu() {
   const { selectedThemeSet } = useSelectedThemeStore();
   const { isThemeSelectedSet } = useIsThemeSelectedStore();
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState();
+  const axios = useCustomAxios();
+
+  useEffect(() => {
+    fetchThemes();
+  }, []);
+
+  async function fetchThemes() {
+    try {
+      setIsLoading(true);
+      const res = await axios(`/products?sort={"_id": 1}`);
+      setIsLoading(false);
+      setData(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   function handleTheme(theme, isPaid) {
     selectedThemeSet(theme);
@@ -62,7 +45,7 @@ function ThemeMenu() {
     }
   }
 
-  const themeList = themeItem.map(item => (
+  const themeList = data?.item?.map(item => (
     <ThemeItem key={item._id} item={item} handleTheme={handleTheme} />
   ));
 
@@ -76,7 +59,12 @@ function ThemeMenu() {
 
   return (
     <>
-      <StyledUl>{themeList}</StyledUl>
+      {isLoading && <ReactCsspin />}
+      {data?.item ? (
+        <StyledUl>{themeList}</StyledUl>
+      ) : (
+        <div>테마가 존재하지 않습니다</div>
+      )}
       {isActive && (
         <ModalWindow handleClose={handleClose} handleOk={handleOk}>
           선택하신 테마는 유료테마입니다. <br />

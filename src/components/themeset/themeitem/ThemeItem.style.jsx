@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
-const themeCode = {
-  T01: 'linear-gradient(45deg, #B5DE13 0%, #06B7AC 100%)',
-  T02: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
-  T03: 'linear-gradient(45deg, #60E66D 0%, #F6815B 100%)',
-  T04: 'linear-gradient(45deg, #FF8541 0%, #F0B31A 100%)',
-  T05: 'linear-gradient(45deg, #9A17C8 0%, #4E81EB 100%)',
-};
+// const bgColor = {
+//   T01: 'linear-gradient(45deg, #B5DE13 0%, #06B7AC 100%)',
+//   T02: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
+//   T03: 'linear-gradient(45deg, #60E66D 0%, #F6815B 100%)',
+//   T04: 'linear-gradient(45deg, #FF8541 0%, #F0B31A 100%)',
+//   T05: 'linear-gradient(45deg, #9A17C8 0%, #4E81EB 100%)',
+// };
 
 export const Theme = styled.li`
   position: relative;
-  min-height: 120px;
+  min-height: 140px;
   border-radius: 8px;
+  font-family: 'NanumSquareNeo', sans-serif;
 `;
 
 export const ThemeButton = styled.button`
@@ -23,7 +24,7 @@ export const ThemeButton = styled.button`
   transition: 0.5s ease-in-out;
   border-radius: 8px;
   color: #fff;
-  background: ${props => themeCode[props.$themeCode]};
+  background: ${props => props.$bgColor};
   position: relative;
 
   display: flex;
@@ -45,6 +46,15 @@ export const ThemeButton = styled.button`
 
 export const Contents = styled.span`
   margin-top: auto;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-image: url(${props => props.$url});
+    background-size: cover;
+  }
 `;
 
 export const Icon = styled.img`
@@ -60,10 +70,11 @@ export const Icon = styled.img`
 
 export const ThemeDescription = styled.span`
   font-size: 1.2rem;
+  line-height: 1.8rem;
   font-weight: 500;
 
   @media (min-width: 740px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
     white-space: nowrap;
   }
 `;
