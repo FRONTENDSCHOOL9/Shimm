@@ -20,12 +20,10 @@ import {
 } from '@zustand/themeSelection.mjs';
 
 function MeditationMain() {
-  const selectedTime = useSelectedTimeStore(state => state.selectedTime);
-  const isTimeSelected = useIsTimeSelectedStore(state => state.isTimeSelected);
-  const selectedTheme = useSelectedThemeStore(state => state.selectedTheme);
-  const isThemeSelected = useIsThemeSelectedStore(
-    state => state.isThemeSelected,
-  );
+  const { selectedTime } = useSelectedTimeStore();
+  const { isTimeSelected } = useIsTimeSelectedStore();
+  const { selectedTheme } = useSelectedThemeStore();
+  const { isThemeSelected } = useIsThemeSelectedStore();
   const navigate = useNavigate();
 
   function handleStart() {

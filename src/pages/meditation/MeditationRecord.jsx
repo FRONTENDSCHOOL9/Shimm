@@ -15,8 +15,8 @@ import { useForm } from 'react-hook-form';
 import Button from '@components/button/Button';
 
 function MeditationRecord() {
-  const selectedTime = useSelectedTimeStore(state => state.selectedTime);
-  const completeTime = useCompleteTimeStore(state => state.completeTime);
+  const { selectedTime } = useSelectedTimeStore();
+  const { completeTime } = useCompleteTimeStore();
   const {
     register,
     handleSubmit,
