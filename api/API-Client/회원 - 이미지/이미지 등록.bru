@@ -1,0 +1,15 @@
+meta {
+  name: 이미지 등록
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/files
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  attach: @file(/Users/jinwook/FES09-Shimm/Shimm/src/assets/bg-theme01.svg)
+}

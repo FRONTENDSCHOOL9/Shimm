@@ -1,0 +1,22 @@
+meta {
+  name: 회원가입
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "seller@test.com",
+    "password": "12345678",
+    "name": "판매자 계정",
+    "phone": "01033334444",
+    "address": "서울시 강남구 역삼동 123",
+    "type": "seller"
+  }
+}
