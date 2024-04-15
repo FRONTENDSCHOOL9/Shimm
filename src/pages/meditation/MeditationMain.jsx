@@ -15,8 +15,10 @@ import {
   Description,
   StyledDiv,
 } from '@pages/meditation/Meditation.style';
+import useUserStore from '@zustand/user.mjs';
 
 function MeditationMain() {
+  const { user } = useUserStore();
   const { selectedTimeSet } = useSelectedTimeStore();
   const { selectedThemeSet } = useSelectedThemeStore();
   const { isTimeSelected } = useIsTimeSelectedStore();

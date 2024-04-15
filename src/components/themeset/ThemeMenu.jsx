@@ -10,9 +10,11 @@ import 'react-csspin/dist/style.css';
 import ModalWindow from '@components/modal/ModalWindow';
 import ThemeItem from '@components/themeset/themeitem/ThemeItem';
 import { StyledUl } from '@components/themeset/ThemeSet.style';
+import useUserStore from '@zustand/user.mjs';
 
 function ThemeMenu() {
-  const { selectedThemeSet } = useSelectedThemeStore();
+  const { user } = useUserStore();
+  const { selectedThemeSet, selectedThemeIdSet } = useSelectedThemeStore();
   const { isThemeSelectedSet } = useIsThemeSelectedStore();
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
@@ -23,7 +25,9 @@ function ThemeMenu() {
 
   useEffect(() => {
     fetchThemes();
-    fetchOrders();
+    if (user) {
+      fetchOrders();
+    }
   }, []);
 
   async function fetchThemes() {
@@ -47,8 +51,9 @@ function ThemeMenu() {
     }
   }
 
-  function handleTheme(theme, isNotPaid) {
+  function handleTheme(theme, id, isNotPaid) {
     selectedThemeSet(theme);
+    selectedThemeIdSet(id);
 
     if (isNotPaid) {
       setIsActive(true);
@@ -57,10 +62,14 @@ function ThemeMenu() {
     }
   }
 
-  const orderArr = [];
-  orderData?.item?.map(order =>
-    order.products.map(product => orderArr.push(product._id)),
-  );
+  let orderArr = [];
+  if (user) {
+    orderData?.item?.map(order =>
+      order.products.map(product => orderArr.push(product._id)),
+    );
+  } else {
+    orderArr = [15, 16, 17];
+  }
 
   let themeArr = [];
   themeData?.item?.map(item => themeArr.push(item._id));

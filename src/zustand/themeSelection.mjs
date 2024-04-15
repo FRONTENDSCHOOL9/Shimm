@@ -5,7 +5,9 @@ const useSelectedThemeStore = create(
   persist(
     set => ({
       selectedTheme: '',
+      selectedThemeId: null,
       selectedThemeSet: value => set({ selectedTheme: value }),
+      selectedThemeIdSet: value => set({ selectedThemeId: value }),
     }),
     {
       name: 'theme',

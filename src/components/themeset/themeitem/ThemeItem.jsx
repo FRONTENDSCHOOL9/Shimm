@@ -16,7 +16,7 @@ import iconLock from '@assets/images/icon-lock.svg';
 
 function ThemeItem({ item, handleTheme, isNotPaid }) {
   function handleClick() {
-    handleTheme(item.name, isNotPaid);
+    handleTheme(item.name, item._id, isNotPaid);
   }
 
   return (
@@ -38,7 +38,7 @@ function ThemeItem({ item, handleTheme, isNotPaid }) {
             <Lock />
             <StyledDiv>
               <LockIcon src={iconLock} alt="유료 테마" />
-              <Price>{item.price}원</Price>
+              <Price>{item.price.toLocaleString()}원</Price>
             </StyledDiv>
           </>
         )}
