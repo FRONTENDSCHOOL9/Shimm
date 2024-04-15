@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { UserInfo } from "@pages/community/user/UserInfo";
 import { Link, useNavigate } from "react-router-dom";
-import { ImageArea, Replyer } from "@pages/community/feed/FeedDetail";
+import { ImageArea } from "@pages/community/feed/FeedDetail";
 import iconbookmark from '@assets/icon-bookmark.svg'
 import iconbookmarkactive from '@assets/icon-bookmark-active.svg'
 import iconsend from '@assets/icon-send.svg'
 import { useState } from "react";
 import ReplyList from "@pages/community/feed/ReplyList";
-import ReplyCreate from "@pages/community/feed/ReplyCreate";
+import { ReplyCreate, Replyer } from "@pages/community/feed/ReplyCreate";
 import FeedDropDown from "@pages/community/feed/FeedDropdown";
 
 const feedList = [
@@ -83,7 +83,6 @@ const Post = styled.div`
     display: flex;
     flex-wrap: nowrap;
     overflow-wrap: break-word;
-    
 `
 
 const StateWrapper = styled.div`
@@ -130,7 +129,6 @@ function Feed({ item }){
             <UserInfo profileImg={profileImg} userId={userId} >
             </UserInfo >
             <div onClick={()=>handleFeedClick(item.id)}>
-               
                 <Post>
                    <span>{post}</span>
                 </Post>
@@ -148,9 +146,8 @@ function Feed({ item }){
             <ReplyList comments={comments}/>
                 {replyer && replyer.map(t=>
                 <Replyer key={t.id}>
-                    
                     <ReplyCreate onAddComment={handleAddComment}/>
-                    <img src={iconsend} alt="댓글 등록 버튼" />
+                    {/* <img src={iconsend} alt="댓글 등록 버튼" /> */}
                 </Replyer>
                 )}
             
@@ -163,5 +160,5 @@ function Feed({ item }){
     )
 }
 
-export { MoreComment, Feed }
+export { MoreComment, Feed, FeedWrapper }
 
