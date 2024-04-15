@@ -14,6 +14,7 @@ import MeditationMain from '@pages/meditation/MeditationMain';
 import MeditationProgress from '@pages/meditation/MeditationProgress';
 import MeditationRecord from '@pages/meditation/MeditationRecord';
 import Purchase from '@pages/purchase/Purchase';
+import Login from '@pages/users/Login';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: 'home',
         element: <Home />,
+      },
+      {
+        path: 'users/login',
+        element: <Login />,
       },
       {
         path: 'meditation',
@@ -81,12 +86,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'editprofile',
-        element: <EditProfile />
+        element: <EditProfile />,
       },
       {
         path: 'archive',
-        element: <MyRecord />
-      }
+        element: <MyRecord />,
+      },
     ],
   },
 ]);

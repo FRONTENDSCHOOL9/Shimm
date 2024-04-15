@@ -13,10 +13,15 @@ import useCompleteTimeStore from '@zustand/timer.mjs';
 import { useSelectedTimeStore } from '@zustand/timeSelection.mjs';
 import { useForm } from 'react-hook-form';
 import Button from '@components/button/Button';
+import useUserStore from '@zustand/user.mjs';
+import ModalWindow from '@components/modal/ModalWindow';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function MeditationRecord() {
   const { selectedTime } = useSelectedTimeStore();
   const { completeTime } = useCompleteTimeStore();
+  const { user } = useUserStore();
   const {
     register,
     handleSubmit,
@@ -24,6 +29,9 @@ function MeditationRecord() {
     reset,
     setFocus,
   } = useForm();
+  const navigate = useNavigate();
+  const [isClicked, setIsClicked] = useState(false);
+  const location = useLocation();
 
   const date = new Date();
   const currentDate =
@@ -58,14 +66,30 @@ function MeditationRecord() {
       ? `목표한 ${selectedTime} 명상을 완료했어요!`
       : `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초 동안 명상을 진행했어요.`;
 
+  let modal = null;
   function onSubmit(formData) {
-    try {
-      console.log(formData);
-      reset();
-    } catch (err) {
-      console.error(err);
-      setFocus();
+    setIsClicked(true);
+
+    if (user) {
+      try {
+        console.log(formData);
+        reset();
+        setIsClicked(false);
+        navigate('/mypage');
+      } catch (err) {
+        console.error(err);
+        setFocus();
+      }
     }
+  }
+
+  function handleClose() {
+    setIsClicked(false);
+  }
+
+  function handleOk() {
+    setIsClicked(false);
+    navigate('/users/login', { state: { from: location.pathname } });
   }
 
   return (
@@ -94,6 +118,13 @@ function MeditationRecord() {
             </Button>
           </SaveButtonContainer>
         </Form>
+        {isClicked && !user && (
+          <ModalWindow handleClose={handleClose} handleOk={handleOk}>
+            기록을 저장하려면 로그인해야 합니다.
+            <br />
+            로그인하시겠습니까?
+          </ModalWindow>
+        )}
       </StyledSection>
     </StyledMain>
   );
