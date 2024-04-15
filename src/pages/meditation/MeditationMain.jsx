@@ -19,13 +19,15 @@ import {
 function MeditationMain() {
   const { selectedTimeSet } = useSelectedTimeStore();
   const { selectedThemeSet } = useSelectedThemeStore();
-  const { isTimeSelected } = useIsTimeSelectedStore();
-  const { isThemeSelected } = useIsThemeSelectedStore();
+  const { isTimeSelected, isTimeSelectedSet } = useIsTimeSelectedStore();
+  const { isThemeSelected, isThemeSelectedSet } = useIsThemeSelectedStore();
   const navigate = useNavigate();
 
   useEffect(() => {
     selectedTimeSet(null);
     selectedThemeSet(null);
+    isTimeSelectedSet(null);
+    isThemeSelectedSet(null);
   }, []);
 
   function handleStart() {

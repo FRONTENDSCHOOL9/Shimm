@@ -23,7 +23,7 @@ import {
 function MeditationRecord() {
   const { selectedTime, selectedTimeSet } = useSelectedTimeStore();
   const { selectedTheme, selectedThemeSet } = useSelectedThemeStore();
-  const { completeTime } = useCompleteTimeStore();
+  const { completeTime, completeTimeSet } = useCompleteTimeStore();
   const { user } = useUserStore();
   const {
     register,
@@ -88,6 +88,7 @@ function MeditationRecord() {
         setIsClicked(false);
         selectedTimeSet(null);
         selectedThemeSet(null);
+        completeTimeSet(0);
         navigate('/mypage');
       } catch (err) {
         console.error(err);
