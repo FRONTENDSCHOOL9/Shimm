@@ -1,7 +1,7 @@
 
 import styled from 'styled-components'
 import { UserInfo } from '@pages/community/user/UserInfo'
-import ReplyCreate from '@pages/community/feed/ReplyCreate'
+import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate'
 import ReplyList from '@pages/community/feed/ReplyList'
 import { MoreComment } from '@pages/community/feed/Feed'
 import { useState } from 'react'
@@ -31,41 +31,28 @@ const ImageArea = styled.div`
    border-radius: 8px;
 `
 
-const Replyer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    margin-block: 1rem;
-    position: relative;
+// const Replyer = styled.div`
+//     display: flex;
+//     align-items: center;
+//     gap: 1.2rem;
+//     margin-block: 1rem;
+//     position: relative;
     
-    & img:first-child {
-        flex-shrink: 0;
-        width: 3rem;
-        height: 3rem;
-        box-shadow: inset 0 0 20px #335635;
-        border-radius: 50%;
-    }
+//     & img:first-child {
+//         flex-shrink: 0;
+//         width: 3rem;
+//         height: 3rem;
+//         box-shadow: inset 0 0 20px #335635;
+//         border-radius: 50%;
+//     }
 
-    & img:last-child {
-        cursor: pointer;
-        position: absolute;
-        width: 2rem;
-        right: 3rem;
-        top: 1.4rem;
-    }
-
-    & textarea {
-        width: 100%;
-        height: 3rem;
-        box-sizing: border-box;
-        padding: 0 1.6rem;
-        line-height: 3rem;
-        border-radius: 6px;
-        outline: none;
-        resize: none;
-        overflow: hidden;
-    }
-`
+//     & img:last-child {
+//         cursor: pointer;
+//         flex-shrink: 1;
+//         height: 20px;
+//         width: 22px;
+//        }
+// `
 
 function FeedDetail({ item }) {
   const [ comments, setComments ] = useState([]);
@@ -93,4 +80,4 @@ function FeedDetail({ item }) {
   )
 }
 
-export { FeedDetail, ImageArea, Replyer };
+export { FeedDetail, ImageArea };

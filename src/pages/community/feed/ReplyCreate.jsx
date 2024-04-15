@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ErrorStyled } from '@pages/community/ErrorStyled';
+import iconsend from '@assets/icon-send.svg'
 
 const Replyer = styled.div`
     display: flex; 
+    width: 100%;
     gap: 1.2rem;
     margin-block: 1rem;
     position: relative;
@@ -19,10 +21,22 @@ const Replyer = styled.div`
 
     & img:last-child {
         cursor: pointer;
-        position: absolute;
         width: 2rem;
         right: 2rem;
-        top: 5.6rem;
+    }
+
+    & textarea {
+        width: 100%;
+        flex-shrink: 0;
+        height: 3rem;
+        box-sizing: border-box;
+        padding: 0 1.6rem;
+        line-height: 3rem;
+        border-radius: 6px;
+        outline: none;
+        resize: none;
+        overflow: hidden;
+        flex-grow: 1;
     }
 `
 
@@ -51,7 +65,7 @@ function ReplyCreate({ onAddComment, item }) {;
     }
 
   return (
-        
+          
             <form onSubmit={ handleSubmit(onSubmit) }>
                 <Replyer>
                     <img src="" alt="#"/>
@@ -62,14 +76,14 @@ function ReplyCreate({ onAddComment, item }) {;
                         message: '두글자 이상 입력하세요.'
                     }})}
                     onKeyUp={handleEnter} />
-                    <br />
+                    <img src={iconsend} alt="댓글 등록 버튼" />
                 </Replyer>
                 {errors.comment && <ErrorStyled>
                     {errors.comment.message}
                 </ErrorStyled>}
             </form>
-        
+          
   )
 }
 
-export default ReplyCreate;
+export { ReplyCreate, Replyer };
