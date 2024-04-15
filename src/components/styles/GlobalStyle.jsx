@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
-import PretendardLight from '@assets/fonts/Pretendard-Light.subset.woff'
-import PretendardLight2 from '@assets/fonts/Pretendard-Light.subset.woff2'
-import PretendardMedium from '@assets/fonts/Pretendard-Medium.subset.woff'
-import PretendardMedium2 from '@assets/fonts/Pretendard-Medium.subset.woff2'
-import NanumSquareNeo from '@assets/fonts/NanumSquareNeoTTF-cBd.woff'
-import NanumSquareNeo2 from '@assets/fonts/NanumSquareNeoTTF-cBd.woff2'
+import PretendardLight from '@assets/fonts/Pretendard-Light.subset.woff';
+import PretendardLight2 from '@assets/fonts/Pretendard-Light.subset.woff2';
+import PretendardMedium from '@assets/fonts/Pretendard-Medium.subset.woff';
+import PretendardMedium2 from '@assets/fonts/Pretendard-Medium.subset.woff2';
+import NanumSquareNeo from '@assets/fonts/NanumSquareNeoTTF-cBd.woff';
+import NanumSquareNeo2 from '@assets/fonts/NanumSquareNeoTTF-cBd.woff2';
 
 const GlobalStyle = createGlobalStyle`
   
@@ -89,7 +89,7 @@ const GlobalStyle = createGlobalStyle`
   
 
   :root {
-    font-family: 'PretendardLight', sans-serif;
+    font-family: 'Pretendard', sans-serif;
     font-size: 10px;
   }
 

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import iconClose from '@assets/images/icon-close.svg';
+import iconMenu from '@assets/images/icon-menu.svg';
 
 export const StyledHeader = styled.header`
   background-color: #fff;
@@ -88,9 +90,7 @@ export const NavButton = styled.button`
     width: 16px;
     height: 12px;
     background-image: ${props =>
-      props.$clicked === true
-        ? `url('/src/assets/icon-close.svg')`
-        : `url('/src/assets/icon-menu.svg')`};
+      props.$clicked === true ? `url(${iconClose})` : `url(${iconMenu})`};
     background-repeat: no-repeat;
     background-size: contain;
   }

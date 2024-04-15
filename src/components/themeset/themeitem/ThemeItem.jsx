@@ -10,8 +10,8 @@ import {
   ThemeButton,
   ThemeDescription,
 } from '@components/themeset/themeitem/ThemeItem.style';
-import iconMusic from '@assets/icon-music.svg';
-import iconLock from '@assets/icon-lock.svg';
+import iconMusic from '@assets/images/icon-music.svg';
+import iconLock from '@assets/images/icon-lock.svg';
 
 function ThemeItem({ item, handleTheme }) {
   const { nameKor: kor, nameEng: eng, paid, code } = item;

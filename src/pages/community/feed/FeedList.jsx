@@ -59,26 +59,25 @@ const FeedTemplateWrapper = styled.div`
   padding: 2rem;
 `;
 
-
 function FeedList() {
   const [newComment, setNewComment] = useState([]);
   const axios = useCustomAxios();
-  const [ data, setData ] = useState()
+  const [data, setData] = useState();
   useEffect(() => {
     fetchList();
   }, []);
-  
+
   async function fetchList() {
-     try {
-        const res = await axios.get('/posts');
-        console.log(res.data)
-        setData(res.data)
-     } catch(err) {
-         console.log(err);
-     }
+    try {
+      const res = await axios.get('/posts');
+      console.log(res.data);
+      setData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  const item = data?.item
+  const item = data?.item;
   function handleSubmit(e) {
     e.preventDefault();
     console.log(newComment);

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import iconCheck from '@assets/icon-check.svg';
+import iconCheck from '@assets/images/icon-check.svg';
 
 export const StyledMain = styled.main`
   flex-grow: 1;

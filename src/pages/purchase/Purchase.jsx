@@ -1,5 +1,5 @@
 import Button from '@components/button/Button';
-import iconPlay from '@assets/icon-play.svg';
+import iconPlay from '@assets/images/icon-play.svg';
 import {
   Info,
   Image,

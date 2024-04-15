@@ -1,10 +1,9 @@
-
-import styled from 'styled-components'
-import { UserInfo } from '@pages/community/user/UserInfo'
-import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate'
-import ReplyList from '@pages/community/feed/ReplyList'
-import { MoreComment } from '@pages/community/feed/Feed'
-import { useState } from 'react'
+import styled from 'styled-components';
+import { UserInfo } from '@pages/community/user/UserInfo';
+import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate';
+import ReplyList from '@pages/community/feed/ReplyList';
+import { MoreComment } from '@pages/community/feed/Feed';
+import { useState } from 'react';
 
 // const replyer = [
 //     {
@@ -20,16 +19,16 @@ const sample = [
     _id: 1,
     userId: 'user0202',
     profileImg: '#',
-    post: 'jjj'
-  }
-]
+    post: 'jjj',
+  },
+];
 
 const ImageArea = styled.div`
-   aspect-ratio: 16/9;
-   margin-bottom: 1rem;
-   background-color: #F0F5ED;
-   border-radius: 8px;
-`
+  aspect-ratio: 16/9;
+  margin-bottom: 1rem;
+  background-color: #f0f5ed;
+  border-radius: 8px;
+`;
 
 // const Replyer = styled.div`
 //     display: flex;
@@ -37,7 +36,7 @@ const ImageArea = styled.div`
 //     gap: 1.2rem;
 //     margin-block: 1rem;
 //     position: relative;
-    
+
 //     & img:first-child {
 //         flex-shrink: 0;
 //         width: 3rem;
@@ -55,35 +54,25 @@ const ImageArea = styled.div`
 // `
 
 function FeedDetail({ item }) {
-  const [ comments, setComments ] = useState([]);
-  const { 
-    _id,
-    user, 
-    profile, 
-    content,
-    product,
-    createdAt } = item;
+  const [comments, setComments] = useState([]);
+  const { _id, user, profile, content, product, createdAt } = item;
 
-  function handleAddComment(newComment){
-    setComments([...comments, newComment])
+  function handleAddComment(newComment) {
+    setComments([...comments, newComment]);
   }
-  
-  return ( 
+
+  return (
     <div>
-    <UserInfo profile={profile} userId={user.name} />
-    <div>{post}</div>
-    <ImageArea />
-   
-    <Replyer>
+      <UserInfo profile={profile} userId={user.name} />
+      <div>{post}</div>
+      <ImageArea />
 
-      <ReplyList comments={comments} />
-      <ReplyCreate onAddComment={handleAddComment} item={item}/>
-      
-    </Replyer>
-    
-
-  </div>
-  )
+      <Replyer>
+        <ReplyList comments={comments} />
+        <ReplyCreate onAddComment={handleAddComment} item={item} />
+      </Replyer>
+    </div>
+  );
 }
 
 export { FeedDetail, ImageArea };

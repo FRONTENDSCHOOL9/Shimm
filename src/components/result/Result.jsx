@@ -5,7 +5,7 @@ import {
   StyledTitle,
   StyledDescription,
 } from '@components/result/Result.style';
-import iconGood from '@assets/icon-good.svg';
+import iconGood from '@assets/images/icon-good.svg';
 
 function Result({ width = 'wide', date, message }) {
   return (

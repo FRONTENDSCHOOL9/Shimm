@@ -60,7 +60,7 @@ export const Icon = styled.img`
 
 export const ThemeDescription = styled.span`
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 500;
 
   @media (min-width: 740px) {
     font-size: 2rem;
