@@ -4,7 +4,7 @@ import Button from '@components/button/Button';
 import useCompleteTimeStore from '@zustand/timer.mjs';
 import ModalWindow from '@components/modal/ModalWindow';
 import { useNavigate } from 'react-router-dom';
-import { StyledTimer } from '@components/timer/Timer.style';
+import { StyledTimer, TimerDiv } from '@components/timer/Timer.style';
 
 function Timer({ selectedTime }) {
   const [time, setTime] = useState(selectedTime);
@@ -73,11 +73,18 @@ function Timer({ selectedTime }) {
 
   return (
     <StyledTimer>
-      {hour ? `${hour}:` : ''}
-      {(minutes + '').padStart(2, '0')}:{(seconds + '').padStart(2, '0')}
+      <TimerDiv>
+        {hour ? `${hour}:` : ''}
+        {(minutes + '').padStart(2, '0')}:{(seconds + '').padStart(2, '0')}
+        <br />
+        <span>
+          잘 하고 있어요! <br /> 집중하는 모습이 멋져요.
+        </span>
+      </TimerDiv>
       <Button size="full" handleClick={handlePause}>
         종료하기
       </Button>
+
       {time > 0 && isPaused && (
         <ModalWindow handleClose={handleRestart} handleOk={handleStop}>
           명상이 아직 진행 중입니다. <br /> 정말 종료하시겠습니까?

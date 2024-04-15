@@ -16,7 +16,7 @@ import iconLock from '@assets/images/icon-lock.svg';
 
 function ThemeItem({ item, handleTheme, isNotPaid }) {
   function handleClick() {
-    handleTheme(item.name, item._id, isNotPaid);
+    handleTheme(item.name, item._id, item.extra.background, isNotPaid);
   }
 
   return (

@@ -2,6 +2,7 @@ import Button from '@components/button/Button';
 import Timer from '@components/timer/Timer';
 import { useNavigate } from 'react-router-dom';
 import { useSelectedTimeStore } from '@zustand/timeSelection';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
 import {
   PageTitle,
   StyledSection,
@@ -11,6 +12,7 @@ import {
 
 function MeditationProgress() {
   const { selectedTime } = useSelectedTimeStore();
+  const { selectedTheme } = useSelectedThemeStore();
   const navigate = useNavigate();
 
   let time = 0;
@@ -37,7 +39,7 @@ function MeditationProgress() {
   }
 
   return (
-    <StyledMain>
+    <StyledMain $bgColor={selectedTheme.background}>
       <StyledSection>
         <PageTitle>명상하기</PageTitle>
         <Timer selectedTime={time} />

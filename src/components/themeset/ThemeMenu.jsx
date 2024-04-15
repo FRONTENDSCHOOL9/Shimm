@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
+import useUserStore from '@zustand/user';
 import {
   useIsThemeSelectedStore,
   useSelectedThemeStore,
@@ -10,11 +11,10 @@ import 'react-csspin/dist/style.css';
 import ModalWindow from '@components/modal/ModalWindow';
 import ThemeItem from '@components/themeset/themeitem/ThemeItem';
 import { StyledUl } from '@components/themeset/ThemeSet.style';
-import useUserStore from '@zustand/user.mjs';
 
 function ThemeMenu() {
   const { user } = useUserStore();
-  const { selectedThemeSet, selectedThemeIdSet } = useSelectedThemeStore();
+  const { selectedThemeSet } = useSelectedThemeStore();
   const { isThemeSelectedSet } = useIsThemeSelectedStore();
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
@@ -51,9 +51,12 @@ function ThemeMenu() {
     }
   }
 
-  function handleTheme(theme, id, isNotPaid) {
-    selectedThemeSet(theme);
-    selectedThemeIdSet(id);
+  function handleTheme(theme, id, background, isNotPaid) {
+    selectedThemeSet({
+      name: theme,
+      id,
+      background,
+    });
 
     if (isNotPaid) {
       setIsActive(true);

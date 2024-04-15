@@ -28,7 +28,7 @@ import useUserStore from '@zustand/user.mjs';
 
 function Purchase() {
   const { user } = useUserStore();
-  const { selectedTheme, selectedThemeId } = useSelectedThemeStore();
+  const { selectedTheme } = useSelectedThemeStore();
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
@@ -41,10 +41,12 @@ function Purchase() {
     fetchTheme();
   }, []);
 
+  console.log(selectedTheme);
+
   async function fetchTheme() {
     try {
       setIsLoading(true);
-      const res = await axios(`/products/${selectedThemeId}`);
+      const res = await axios(`/products/${selectedTheme.id}`);
       setData(res.data);
     } catch (err) {
       console.error(err);
@@ -84,7 +86,7 @@ function Purchase() {
               <Description>테마 정보</Description>
               <Info>
                 <ul>
-                  <li>{`테마명: ${selectedTheme}`}</li>
+                  <li>{`테마명: ${selectedTheme.name}`}</li>
                   {item?.price && (
                     <>
                       <li>{`테마 가격: ${item.price.toLocaleString()}원`}</li>
@@ -99,7 +101,7 @@ function Purchase() {
               <Description>테마 미리듣기</Description>
               {isLoading && <ReactCsspin />}
               <Preview
-                $bgColor={item?.extra.background}
+                $bgColor={selectedTheme.background}
                 $url={`${import.meta.env.VITE_API_SERVER}${item?.mainImages[0]['path ']}`}
               >
                 <PlayButton>
@@ -143,7 +145,7 @@ function Purchase() {
             navigate('/users/login', { state: { from: location.pathname } })
           }
         >
-          테마를 구매는 로그인 후 가능합니다.
+          테마 구매는 로그인 후 가능합니다.
           <br />
           로그인 하시겠습니까?
         </ModalWindow>
