@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import FeedCreate from '@pages/community/feed/FeedCreate';
 import { Feed } from '@pages/community/feed/Feed';
@@ -59,11 +59,26 @@ const FeedTemplateWrapper = styled.div`
   padding: 2rem;
 `;
 
+
 function FeedList() {
   const [newComment, setNewComment] = useState([]);
-  const { _id } = useParams();
   const axios = useCustomAxios();
+  const [ data, setData ] = useState()
+  useEffect(() => {
+    fetchList();
+  }, []);
+  
+  async function fetchList() {
+     try {
+        const res = await axios.get('/posts');
+        console.log(res.data)
+        setData(res.data)
+     } catch(err) {
+         console.log(err);
+     }
+  }
 
+  const item = data?.item
   function handleSubmit(e) {
     e.preventDefault();
     console.log(newComment);
@@ -73,8 +88,8 @@ function FeedList() {
 
   return (
     <FeedTemplateWrapper>
-      {data.map(item => (
-        <Feed key={item.id} item={item} />
+      {item?.map(item => (
+        <Feed key={item._id} item={item} />
       ))}
       <FeedCreate />
     </FeedTemplateWrapper>

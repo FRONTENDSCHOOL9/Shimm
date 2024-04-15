@@ -56,7 +56,13 @@ const ImageArea = styled.div`
 
 function FeedDetail({ item }) {
   const [ comments, setComments ] = useState([]);
-  const { profileImg, userId, post } = sample;
+  const { 
+    _id,
+    user, 
+    profile, 
+    content,
+    product,
+    createdAt } = item;
 
   function handleAddComment(newComment){
     setComments([...comments, newComment])
@@ -64,7 +70,7 @@ function FeedDetail({ item }) {
   
   return ( 
     <div>
-    <UserInfo profileImg={profileImg} userId={userId} />
+    <UserInfo profile={profile} userId={user.name} />
     <div>{post}</div>
     <ImageArea />
    
