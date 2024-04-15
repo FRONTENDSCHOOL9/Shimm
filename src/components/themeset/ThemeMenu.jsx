@@ -48,12 +48,8 @@ const themeItem = [
 ];
 
 function ThemeMenu() {
-  const selectedThemeSet = useSelectedThemeStore(
-    state => state.selectedThemeSet,
-  );
-  const isThemeSelectedSet = useIsThemeSelectedStore(
-    state => state.isThemeSelectedSet,
-  );
+  const { selectedThemeSet } = useSelectedThemeStore();
+  const { isThemeSelectedSet } = useIsThemeSelectedStore();
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
 

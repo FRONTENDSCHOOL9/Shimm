@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
 import ModalWindow from '@components/modal/ModalWindow';
 
 function Purchase() {
-  const selectedTheme = useSelectedThemeStore(state => state.selectedTheme);
+  const { selectedTheme } = useSelectedThemeStore();
   const [isChecked, setIsChecked] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
   const navigate = useNavigate();

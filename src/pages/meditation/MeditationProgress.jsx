@@ -10,7 +10,7 @@ import { useSelectedTimeStore } from '@zustand/timeSelection.mjs';
 import { useNavigate } from 'react-router-dom';
 
 function MeditationProgress() {
-  const selectedTime = useSelectedTimeStore(state => state.selectedTime);
+  const { selectedTime } = useSelectedTimeStore();
   const navigate = useNavigate();
 
   let time = 0;
