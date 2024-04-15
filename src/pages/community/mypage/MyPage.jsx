@@ -43,6 +43,7 @@ const ArchiveContainer = styled.div`
 const ArchiveHeader = styled.div`
   display: flex;
   padding: 40px 0 10px; 
+  align-items: center;
  
   & h2 {
     font-size: 2rem;
@@ -73,7 +74,7 @@ const MyArchive = styled.ul`
   gap: 15px;
   overflow-y: hidden;
   line-height: 0.8;
-
+  
   & hr {
     width: 1px;
     height: 35px;
@@ -129,13 +130,16 @@ const ActiveLi = styled.li`
 `
 
 function MyPage() {
+  const navigate = useNavigate();
 
-  function handleMoreIconClick() {
+  function handleMoveArchive() {
     console.log('나의 기록화면으로 전환')
+    navigate('/archive')
   }
 
-  function handleMoveRecords() {
+  function handleMoveArchive() {
     console.log('나의 기록화면으로 전환')
+    navigate('/archive')
   }
 
   function handleMoveMyList() {
@@ -150,7 +154,6 @@ function MyPage() {
     console.log('내가 북마크한 목록으로 전환')
   }
 
-  
   return (
     <MyPageWrapper>
       <UserProfile>
@@ -170,27 +173,27 @@ function MyPage() {
       <ArchiveContainer>
         <ArchiveHeader>
           <h2>나의 기록</h2>
-          <img src={iconright} alt="더보기 버튼" onClick={handleMoreIconClick}/>
+          <img src={iconright} alt="더보기 버튼" onClick={handleMoveArchive}/>
         </ArchiveHeader>
         <ArchiveBox>
           <MyArchive>
-              <RecordLi onClick={handleMoveRecords}>
+              <RecordLi onClick={handleMoveArchive}>
                 <h4>2024/4/7</h4>
                 <span>25분동안<br/>명상했어요.</span>
               </RecordLi>
-              <RecordLi onClick={handleMoveRecords}>
+              <RecordLi onClick={handleMoveArchive}>
                 <h4>2024/4/7</h4>
                 <span>25분동안<br/>명상했어요.</span>
               </RecordLi>
-              <RecordLi onClick={handleMoveRecords}>
+              <RecordLi onClick={handleMoveArchive}>
                 <h4>2024/4/7</h4>
                 <span>25분동안<br/>명상했어요.</span>
               </RecordLi>
-              <RecordLi onClick={handleMoveRecords}>
+              <RecordLi onClick={handleMoveArchive}>
                 <h4>2024/4/7</h4>
                 <span>25분동안<br/>명상했어요.</span>
               </RecordLi>
-              <RecordLi onClick={handleMoveRecords}>
+              <RecordLi onClick={handleMoveArchive}>
                 <h4>2024/4/7</h4>
                 <span>25분동안<br/>명상했어요.</span>
               </RecordLi>
@@ -198,7 +201,7 @@ function MyPage() {
         </ArchiveBox>
         <ArchiveHeader>
           <h2>나의 활동</h2>
-          <img src={iconright} alt="더보기 버튼" onClick={handleMoreIconClick}/>
+          <img src={iconright} alt="더보기 버튼" onClick={handleMoveMyList}/>
         </ArchiveHeader>
         <ArchiveBox>
           <MyArchive>

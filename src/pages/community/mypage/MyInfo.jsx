@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import iconbase from '@assets/icon-login.svg'
 import { Link } from 'react-router-dom'
 
-
 const MyInfoWrapper = styled.div`
     padding: 20px;
     max-width: 740px;
@@ -17,7 +16,7 @@ const MyInfoWrapper = styled.div`
     position: relative;
     box-sizing: border-box;
     align-items: center;
-    
+     
     & img {
         width: 80px;
     }
@@ -68,6 +67,7 @@ const UserInfoStyled = styled.ul`
 
 const ButtonLink = styled(Link)`
   width: 100%;
+  display: flex;
 `
 
 const EditButton = styled.button`
@@ -116,4 +116,4 @@ function MyInfo() {
   )
 }
 
-export default MyInfo
+export {MyInfoWrapper, MyInfo, ButtonLink}

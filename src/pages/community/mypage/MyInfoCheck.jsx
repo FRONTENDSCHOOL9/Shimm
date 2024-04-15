@@ -41,6 +41,8 @@ const StyledLabel = styled.label`
   & input {
     height: 40px;
     margin-bottom: 64px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
   }
 `
 
@@ -81,12 +83,13 @@ function MyInfoCheck() {
           <input type="password"
                  id="checkpassword"
                  { ...register('checkpassword', {
-                  required: '정확한 비밀번호를 입력하세요.',
+                  required: <span className='required'>'정확한 비밀번호를 입력하세요.'</span>,
                   minLength: {
                     value: 8,
                     message: '비밀번호는 8글자 이상입니다.'
                   }})
                  } />
+         
         </StyledLabel>
         {errors.checkpassword && (
           <p>{errors.checkpassword.message}</p>

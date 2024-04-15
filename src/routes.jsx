@@ -4,10 +4,10 @@ import { FeedDetail } from '@pages/community/feed/FeedDetail';
 import FeedEdit from '@pages/community/feed/FeedEdit';
 import { FeedNew } from '@pages/community/feed/FeedNew';
 import EditProfile from '@pages/community/mypage/EditProfile';
-import MyInfo from '@pages/community/mypage/MyInfo';
+import { MyInfo } from '@pages/community/mypage/MyInfo';
 import MyInfoCheck from '@pages/community/mypage/MyInfoCheck';
-import MyInfoEdit from '@pages/community/mypage/MyInfoEdit';
 import MyPage from '@pages/community/mypage/MyPage';
+import MyRecord from '@pages/community/mypage/MyRecord';
 import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
 import MeditationMain from '@pages/meditation/MeditationMain';
@@ -82,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: 'editprofile',
         element: <EditProfile />
+      },
+      {
+        path: 'archive',
+        element: <MyRecord />
       }
     ],
   },
