@@ -1,11 +1,12 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelectedTimeStore } from '@zustand/timeSelection';
+import { useIsTimeSelectedStore } from '@zustand/timeSelection';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
+import { useIsThemeSelectedStore } from '@zustand/themeSelection';
 import Button from '@components/button/Button';
 import TimeSet from '@components/timeset/TimeSet';
 import ThemeSet from '@components/themeset/ThemeSet';
-import { useNavigate } from 'react-router-dom';
-import {
-  useIsTimeSelectedStore,
-  useSelectedTimeStore,
-} from '@zustand/timeSelection';
 import {
   StyledMain,
   Cover,
@@ -14,20 +15,22 @@ import {
   Description,
   StyledDiv,
 } from '@pages/meditation/Meditation.style';
-import {
-  useIsThemeSelectedStore,
-  useSelectedThemeStore,
-} from '@zustand/themeSelection.mjs';
 
 function MeditationMain() {
-  const { selectedTime } = useSelectedTimeStore();
-  const { isTimeSelected } = useIsTimeSelectedStore();
-  const { selectedTheme } = useSelectedThemeStore();
-  const { isThemeSelected } = useIsThemeSelectedStore();
+  const { selectedTimeSet } = useSelectedTimeStore();
+  const { selectedThemeSet } = useSelectedThemeStore();
+  const { isTimeSelected, isTimeSelectedSet } = useIsTimeSelectedStore();
+  const { isThemeSelected, isThemeSelectedSet } = useIsThemeSelectedStore();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    selectedTimeSet(null);
+    selectedThemeSet(null);
+    isTimeSelectedSet(null);
+    isThemeSelectedSet(null);
+  }, []);
+
   function handleStart() {
-    console.log(`${selectedTime} ${selectedTheme} 명상 시작`);
     navigate('/meditation/progress');
   }
 

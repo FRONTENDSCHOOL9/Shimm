@@ -4,8 +4,8 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 const useSelectedThemeStore = create(
   persist(
     set => ({
-      selectedTheme: '',
-      selectedThemeSet: value => set({ selectedTheme: value }),
+      selectedTheme: null,
+      selectedThemeSet: obj => set({ selectedTheme: obj }),
     }),
     {
       name: 'theme',

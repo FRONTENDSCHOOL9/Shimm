@@ -82,14 +82,25 @@ export const Info = styled.div`
 
 export const Preview = styled.div`
   height: 170px;
-  background: linear-gradient(45deg, #60e66d 0%, #f6815b 100%);
+  background: ${props => props.$bgColor};
   padding: 20px;
   box-sizing: border-box;
   border: 2px solid #fffffd;
   border-radius: 8px;
   margin-bottom: 12px;
+  position: relative;
 
   display: flex;
+
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(${props => props.$url});
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center right;
+  }
 
   @media (min-width: 740px) {
     margin-bottom: 28px;

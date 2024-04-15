@@ -85,9 +85,6 @@ const GlobalStyle = createGlobalStyle`
     src: local('NanumSquareNeo'), url(${NanumSquareNeo2}) format('woff2'), url(${NanumSquareNeo}) format('woff');
   }
 
-  
-  
-
   :root {
     font-family: 'Pretendard', sans-serif;
     font-size: 10px;

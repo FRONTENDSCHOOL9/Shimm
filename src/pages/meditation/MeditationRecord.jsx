@@ -1,3 +1,14 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useCustomAxios from '@hooks/useCustomAxios';
+import useUserStore from '@zustand/user';
+import useCompleteTimeStore from '@zustand/timer';
+import { useSelectedTimeStore } from '@zustand/timeSelection';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
+import Result from '@components/result/Result';
+import Button from '@components/button/Button';
+import ModalWindow from '@components/modal/ModalWindow';
 import {
   Form,
   StyledSection,
@@ -8,19 +19,11 @@ import {
   StyledError,
   SaveButtonContainer,
 } from '@pages/meditation/Meditation.style';
-import Result from '@components/result/Result';
-import useCompleteTimeStore from '@zustand/timer.mjs';
-import { useSelectedTimeStore } from '@zustand/timeSelection.mjs';
-import { useForm } from 'react-hook-form';
-import Button from '@components/button/Button';
-import useUserStore from '@zustand/user.mjs';
-import ModalWindow from '@components/modal/ModalWindow';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 function MeditationRecord() {
-  const { selectedTime } = useSelectedTimeStore();
-  const { completeTime } = useCompleteTimeStore();
+  const { selectedTime, selectedTimeSet } = useSelectedTimeStore();
+  const { selectedTheme, selectedThemeSet } = useSelectedThemeStore();
+  const { completeTime, completeTimeSet } = useCompleteTimeStore();
   const { user } = useUserStore();
   const {
     register,
@@ -29,9 +32,10 @@ function MeditationRecord() {
     reset,
     setFocus,
   } = useForm();
-  const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
+  const axios = useCustomAxios();
 
   const date = new Date();
   const currentDate =
@@ -66,15 +70,25 @@ function MeditationRecord() {
       ? `목표한 ${selectedTime} 명상을 완료했어요!`
       : `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초 동안 명상을 진행했어요.`;
 
-  let modal = null;
-  function onSubmit(formData) {
+  async function onSubmit(formData) {
     setIsClicked(true);
 
     if (user) {
       try {
-        console.log(formData);
+        formData.order_id = 2;
+        formData.product_id = selectedTheme.id;
+        formData.extra = {
+          theme: selectedTheme.name,
+          time: `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초`,
+        };
+
+        const res = await axios.post('/replies', formData);
+        console.log(res);
         reset();
         setIsClicked(false);
+        selectedTimeSet(null);
+        selectedThemeSet(null);
+        completeTimeSet(0);
         navigate('/mypage');
       } catch (err) {
         console.error(err);
@@ -98,12 +112,12 @@ function MeditationRecord() {
         <PageTitle>기록 저장하기</PageTitle>
         <Result width="wide" date={currentDate} message={message} />
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <StyledLabel htmlFor="comment">한 줄 기록 남기기</StyledLabel>
+          <StyledLabel htmlFor="content">한 줄 기록 남기기</StyledLabel>
           <StyledInput
             type="text"
-            id="comment"
+            id="content"
             placeholder="소감을 입력하세요..."
-            {...register('comment', {
+            {...register('content', {
               required: '내용을 입력해 주세요.',
               minLength: {
                 value: 2,

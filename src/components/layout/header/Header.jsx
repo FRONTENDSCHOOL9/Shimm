@@ -1,6 +1,8 @@
-import useWindowWide from '@hooks/useWindowWide.mjs';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useWindowWide from '@hooks/useWindowWide';
+import useUserStore from '@zustand/user';
+import Button from '@components/button/Button';
 import {
   StyledHeader,
   Logo,
@@ -10,8 +12,6 @@ import {
   NavButton,
   LoginContainer,
 } from '@components/layout/header/Header.style';
-import useUserStore from '@zustand/user.mjs';
-import Button from '@components/button/Button';
 
 function Header() {
   const wide = useWindowWide(740);
