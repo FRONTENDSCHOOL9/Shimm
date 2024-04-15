@@ -1,17 +1,10 @@
 import styled from 'styled-components';
 
-const themeCode = {
-  T01: 'linear-gradient(45deg, #B5DE13 0%, #06B7AC 100%)',
-  T02: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
-  T03: 'linear-gradient(45deg, #60E66D 0%, #F6815B 100%)',
-  T04: 'linear-gradient(45deg, #FF8541 0%, #F0B31A 100%)',
-  T05: 'linear-gradient(45deg, #9A17C8 0%, #4E81EB 100%)',
-};
-
 export const Theme = styled.li`
   position: relative;
-  min-height: 120px;
+  min-height: 140px;
   border-radius: 8px;
+  font-family: 'NanumSquareNeo', sans-serif;
 `;
 
 export const ThemeButton = styled.button`
@@ -23,7 +16,7 @@ export const ThemeButton = styled.button`
   transition: 0.5s ease-in-out;
   border-radius: 8px;
   color: #fff;
-  background: ${props => themeCode[props.$themeCode]};
+  background: ${props => props.$bgColor};
   position: relative;
 
   display: flex;
@@ -45,6 +38,15 @@ export const ThemeButton = styled.button`
 
 export const Contents = styled.span`
   margin-top: auto;
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    inset: 0;
+    background-image: url(${props => props.$url});
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 `;
 
 export const Icon = styled.img`
@@ -60,10 +62,11 @@ export const Icon = styled.img`
 
 export const ThemeDescription = styled.span`
   font-size: 1.2rem;
-  font-weight: 700;
+  line-height: 1.8rem;
+  font-weight: 500;
 
   @media (min-width: 740px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
     white-space: nowrap;
   }
 `;
@@ -81,8 +84,8 @@ export const Lock = styled.span`
 
 export const StyledDiv = styled.div`
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 10px;
+  top: 10px;
   z-index: 1;
 `;
 
@@ -97,4 +100,12 @@ export const Price = styled.span`
   font-size: 1.4rem;
   font-weight: 200;
   color: #fff;
+`;
+
+export const PaidBadge = styled.span`
+  background-color: #000;
+  padding: 3px 14px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 15px;
 `;

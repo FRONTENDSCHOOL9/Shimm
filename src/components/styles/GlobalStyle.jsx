@@ -1,4 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
+import PretendardLight from '@assets/fonts/Pretendard-Light.subset.woff';
+import PretendardLight2 from '@assets/fonts/Pretendard-Light.subset.woff2';
+import PretendardMedium from '@assets/fonts/Pretendard-Medium.subset.woff';
+import PretendardMedium2 from '@assets/fonts/Pretendard-Medium.subset.woff2';
+import NanumSquareNeo from '@assets/fonts/NanumSquareNeoTTF-cBd.woff';
+import NanumSquareNeo2 from '@assets/fonts/NanumSquareNeoTTF-cBd.woff2';
 
 const GlobalStyle = createGlobalStyle`
   
@@ -57,15 +63,30 @@ const GlobalStyle = createGlobalStyle`
   }
   
   // Typography
+  
   @font-face {
-      font-family: 'Pretendard-Regular';
-      src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-      font-weight: 400;
-      font-style: normal;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-display: swap;
+    src: local('PretendardMedium'), url(${PretendardMedium2}) format('woff2'), url(${PretendardMedium}) format('woff');
+  }
+  
+  @font-face {
+    font-family: 'Pretendard';
+    font-weight: 300;
+    font-display: swap;
+    src: local('PretendardLight'), url(${PretendardLight2}) format('woff2'), url(${PretendardLight}) format('woff');
+  }
+
+  @font-face {
+    font-family: 'NanumSquareNeo';
+    font-weight: 300;
+    font-display: swap;
+    src: local('NanumSquareNeo'), url(${NanumSquareNeo2}) format('woff2'), url(${NanumSquareNeo}) format('woff');
   }
 
   :root {
-    font-family: 'Pretendard-Regular', sans-serif;
+    font-family: 'Pretendard', sans-serif;
     font-size: 10px;
   }
 

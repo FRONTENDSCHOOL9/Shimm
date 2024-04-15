@@ -1,5 +1,8 @@
-import useWindowWide from '@hooks/useWindowWide.mjs';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useWindowWide from '@hooks/useWindowWide';
+import useUserStore from '@zustand/user';
+import Button from '@components/button/Button';
 import {
   StyledHeader,
   Logo,
@@ -7,11 +10,14 @@ import {
   StyledNav,
   HeaderLink,
   NavButton,
+  LoginContainer,
 } from '@components/layout/header/Header.style';
 
 function Header() {
   const wide = useWindowWide(740);
   const [isClicked, setIsClicked] = useState(false);
+  const { user, setUser } = useUserStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsClicked(false);
@@ -21,10 +27,23 @@ function Header() {
     setIsClicked(!isClicked);
   }
 
+  function handleLogout() {
+    setUser(null);
+    navigate('/');
+  }
+
+  function handleLogin() {
+    navigate('/users/login');
+  }
+
+  function handleSignup() {
+    console.log('회원가입');
+  }
+
   return (
     <StyledHeader>
       <Logo to="/home">
-        <Img src="logo.png" alt="쉼" />
+        <Img src="/logo.png" alt="쉼" />
       </Logo>
       <StyledNav $clicked={isClicked}>
         <HeaderLink to="/meditation" onClick={handleClick}>
@@ -34,12 +53,29 @@ function Header() {
           커뮤니티
         </HeaderLink>
         {/* user 정보가 sessionStorage에 존재할 때만 보여주기 */}
-        <HeaderLink to="/mypage" onClick={handleClick}>
-          마이페이지
-        </HeaderLink>
+        {user && (
+          <HeaderLink to="/mypage" onClick={handleClick}>
+            마이페이지
+          </HeaderLink>
+        )}
+        {user && (
+          <Button size="medium" bgColor="dark" handleClick={handleLogout}>
+            로그아웃
+          </Button>
+        )}
+        {!user && (
+          <LoginContainer>
+            <Button size="medium" bgColor="dark" handleClick={handleLogin}>
+              로그인
+            </Button>
+            <Button size="medium" bgColor="dark" handleClick={handleSignup}>
+              회원가입
+            </Button>
+          </LoginContainer>
+        )}
       </StyledNav>
       <NavButton onClick={handleClick} $clicked={isClicked}>
-        <i className="ir">버튼</i>
+        <i>버튼</i>
       </NavButton>
     </StyledHeader>
   );

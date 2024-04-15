@@ -1,0 +1,22 @@
+meta {
+  name: 명상 후기 등록
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{url}}/replies
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "product_id": 15,
+    "content": "오늘은 집중이 안 되네요",
+    "extra": {
+      "theme": "숲 Forest",
+      "time": "5분"
+    }
+  }
+}

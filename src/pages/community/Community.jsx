@@ -1,13 +1,11 @@
-import FeedList from "./feed/FeedList";
+import FeedList from './feed/FeedList';
 
-
-
-function Community(){    
-    return (
-        <>
-           <FeedList />
-        </>
-    )
+function Community() {
+  return (
+    <>
+      <FeedList />
+    </>
+  );
 }
 
 export default Community;

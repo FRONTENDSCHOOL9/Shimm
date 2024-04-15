@@ -15,11 +15,8 @@ import {
 function TimeMenu() {
   const menuRef = useRef('menu');
   const [isActive, setIsActive] = useState(false);
-  const selectedTime = useSelectedTimeStore(state => state.selectedTime);
-  const selectedTimeSet = useSelectedTimeStore(state => state.selectedTimeSet);
-  const isTimeSelectedSet = useIsTimeSelectedStore(
-    state => state.isTimeSelectedSet,
-  );
+  const { selectedTime, selectedTimeSet } = useSelectedTimeStore();
+  const { isTimeSelectedSet } = useIsTimeSelectedStore();
 
   useClickOutside(menuRef, () => {
     if (!selectedTime) {

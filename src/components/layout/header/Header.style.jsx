@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import iconClose from '@assets/images/icon-close.svg';
+import iconMenu from '@assets/images/icon-menu.svg';
 
-const StyledHeader = styled.header`
-  border-bottom: 2px solid #d4d4d4;
+export const StyledHeader = styled.header`
   background-color: #fff;
-  padding: 10px 20px;
+  padding: 20px;
   position: relative;
 
   display: flex;
@@ -17,7 +18,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Logo = styled(Link)`
+export const Logo = styled(Link)`
   width: 70px;
   height: 16px;
   order: 1;
@@ -33,11 +34,11 @@ const Logo = styled(Link)`
   }
 `;
 
-const Img = styled.img`
+export const Img = styled.img`
   object-fit: cover;
 `;
 
-const StyledNav = styled.nav`
+export const StyledNav = styled.nav`
   background-color: #fff;
   width: 100%;
   display: ${props => (props.$clicked === true ? 'block' : 'none')};
@@ -46,11 +47,12 @@ const StyledNav = styled.nav`
   @media (min-width: 740px) {
     order: 2;
     display: flex;
-    gap: 20px;
+    gap: 60px;
+    align-items: center;
   }
 `;
 
-const HeaderLink = styled(Link)`
+export const HeaderLink = styled(Link)`
   display: block;
   margin-bottom: 20px;
   font-size: 1.8rem;
@@ -77,7 +79,7 @@ const HeaderLink = styled(Link)`
   }
 `;
 
-const NavButton = styled.button`
+export const NavButton = styled.button`
   order: 2;
   width: 20px;
   margin-left: auto;
@@ -88,9 +90,7 @@ const NavButton = styled.button`
     width: 16px;
     height: 12px;
     background-image: ${props =>
-      props.$clicked === true
-        ? `url('/src/assets/icon-close.svg')`
-        : `url('/src/assets/icon-menu.svg')`};
+      props.$clicked === true ? `url(${iconClose})` : `url(${iconMenu})`};
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -105,4 +105,11 @@ const NavButton = styled.button`
   }
 `;
 
-export { StyledHeader, Logo, Img, StyledNav, HeaderLink, NavButton };
+export const LoginContainer = styled.div`
+  display: flex;
+  gap: 10px;
+
+  @media (min-width: 740px) {
+    gap: 20px;
+  }
+`;
