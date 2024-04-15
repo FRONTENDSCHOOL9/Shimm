@@ -3,9 +3,13 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import useUserStore from '@zustand/user.mjs';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ReactCsspin } from 'react-csspin';
+import 'react-csspin/dist/style.css';
+import { useState } from 'react';
 
 function Login() {
   const { setUser } = useUserStore();
+  const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const axios = useCustomAxios();
   const navigate = useNavigate();
@@ -18,6 +22,7 @@ function Login() {
 
   async function onSubmit(formData) {
     try {
+      setIsLoading(true);
       const res = await axios.post('/users/login', formData);
       setUser({
         _id: res.data.item._id,
@@ -25,8 +30,7 @@ function Login() {
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
-
-      alert(res.data.item.name + '님 로그인 되었습니다.');
+      setIsLoading(false);
       navigate(location.state?.from ? location.state?.from : '/');
     } catch (err) {
       console.error(err);
@@ -78,6 +82,8 @@ function Login() {
           로그인
         </Button>
       </form>
+
+      {isLoading && <ReactCsspin />}
     </div>
   );
 }

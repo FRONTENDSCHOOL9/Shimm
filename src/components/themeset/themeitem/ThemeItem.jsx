@@ -14,30 +14,36 @@ import iconMusic from '@assets/images/icon-music.svg';
 import iconLock from '@assets/images/icon-lock.svg';
 
 function ThemeItem({ item, handleTheme }) {
-  const { nameKor: kor, nameEng: eng, paid, code } = item;
-
   function handleClick() {
-    handleTheme(kor, paid);
+    handleTheme(item.name, item.price);
   }
+
+  console.log(
+    `${import.meta.env.VITE_API_SERVER}${item.mainImages[0]['path ']}`,
+  );
 
   return (
     <Theme>
-      <ThemeButton type="button" onClick={handleClick} $themeCode={code}>
-        <Contents>
-          <Icon src={iconMusic} alt={kor} />
-          <ThemeDescription>
-            {kor} {eng}
-          </ThemeDescription>
-          {paid ? (
-            ''
-          ) : (
+      <ThemeButton
+        type="button"
+        onClick={handleClick}
+        $bgColor={item.extra.background}
+      >
+        <Contents
+          $url={`${import.meta.env.VITE_API_SERVER}${item.mainImages[0]['path ']}`}
+        >
+          <Icon src={iconMusic} alt="테마 재생" />
+          <ThemeDescription>{item.name}</ThemeDescription>
+          {item.price ? (
             <>
               <Lock />
               <StyledDiv>
-                <LockIcon src={iconLock} alt="구매 필요" />
-                <Price>1000원</Price>
+                <LockIcon src={iconLock} alt="유료 테마" />
+                <Price>{item.price}</Price>
               </StyledDiv>
             </>
+          ) : (
+            ''
           )}
         </Contents>
       </ThemeButton>
