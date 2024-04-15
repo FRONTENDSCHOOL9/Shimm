@@ -40,7 +40,7 @@ export const Contents = styled.span`
   margin-top: auto;
 
   &:after {
-    content: '';
+    content: ' ';
     position: absolute;
     inset: 0;
     background-image: url(${props => props.$url});
@@ -100,4 +100,12 @@ export const Price = styled.span`
   font-size: 1.4rem;
   font-weight: 200;
   color: #fff;
+`;
+
+export const PaidBadge = styled.span`
+  background-color: #000;
+  padding: 3px 14px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 15px;
 `;

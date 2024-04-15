@@ -6,6 +6,7 @@ import {
   Price,
   Contents,
   LockIcon,
+  PaidBadge,
   StyledDiv,
   ThemeButton,
   ThemeDescription,
@@ -13,9 +14,9 @@ import {
 import iconMusic from '@assets/images/icon-music.svg';
 import iconLock from '@assets/images/icon-lock.svg';
 
-function ThemeItem({ item, handleTheme }) {
+function ThemeItem({ item, handleTheme, isNotPaid }) {
   function handleClick() {
-    handleTheme(item.name, item.price);
+    handleTheme(item.name, isNotPaid);
   }
 
   return (
@@ -30,18 +31,25 @@ function ThemeItem({ item, handleTheme }) {
         >
           <Icon src={iconMusic} alt="테마 재생" />
           <ThemeDescription>{item.name}</ThemeDescription>
-          {item.price ? (
-            <>
-              <Lock />
-              <StyledDiv>
-                <LockIcon src={iconLock} alt="유료 테마" />
-                <Price>{item.price}원</Price>
-              </StyledDiv>
-            </>
-          ) : (
-            ''
-          )}
         </Contents>
+
+        {item.price > 0 && isNotPaid && (
+          <>
+            <Lock />
+            <StyledDiv>
+              <LockIcon src={iconLock} alt="유료 테마" />
+              <Price>{item.price}원</Price>
+            </StyledDiv>
+          </>
+        )}
+
+        {item.price > 0 && !isNotPaid && (
+          <>
+            <StyledDiv>
+              <PaidBadge>구매함</PaidBadge>
+            </StyledDiv>
+          </>
+        )}
       </ThemeButton>
     </Theme>
   );
