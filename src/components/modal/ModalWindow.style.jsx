@@ -11,7 +11,6 @@ export const Modal = styled.div`
 `;
 
 export const Inside = styled.div`
-  box-shadow: inset 0 0 20px lime;
   width: 100%;
   max-width: 250px;
   margin: auto;
@@ -32,7 +31,7 @@ export const Inside = styled.div`
 
 export const Message = styled.div`
   background-color: #fff;
-  padding: 60px;
+  padding: 40px;
 `;
 
 export const ModalClose = styled.button`

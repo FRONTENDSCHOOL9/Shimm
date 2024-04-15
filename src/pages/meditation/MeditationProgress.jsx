@@ -1,13 +1,13 @@
 import Button from '@components/button/Button';
 import Timer from '@components/timer/Timer';
+import { useNavigate } from 'react-router-dom';
+import { useSelectedTimeStore } from '@zustand/timeSelection';
 import {
   PageTitle,
   StyledSection,
   StyledMain,
   StyledDiv,
 } from '@pages/meditation/Meditation.style';
-import { useSelectedTimeStore } from '@zustand/timeSelection.mjs';
-import { useNavigate } from 'react-router-dom';
 
 function MeditationProgress() {
   const { selectedTime } = useSelectedTimeStore();

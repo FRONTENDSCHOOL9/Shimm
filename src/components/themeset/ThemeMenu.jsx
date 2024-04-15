@@ -1,15 +1,15 @@
-import ModalWindow from '@components/modal/ModalWindow';
-import { StyledUl } from '@components/themeset/ThemeSet.style';
-import ThemeItem from '@components/themeset/themeitem/ThemeItem';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useCustomAxios from '@hooks/useCustomAxios';
 import {
   useIsThemeSelectedStore,
   useSelectedThemeStore,
-} from '@zustand/themeSelection.mjs';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+} from '@zustand/themeSelection';
 import { ReactCsspin } from 'react-csspin';
 import 'react-csspin/dist/style.css';
+import ModalWindow from '@components/modal/ModalWindow';
+import ThemeItem from '@components/themeset/themeitem/ThemeItem';
+import { StyledUl } from '@components/themeset/ThemeSet.style';
 
 function ThemeMenu() {
   const { selectedThemeSet } = useSelectedThemeStore();
@@ -30,7 +30,6 @@ function ThemeMenu() {
       const res = await axios(`/products?sort={"_id": 1}`);
       setIsLoading(false);
       setData(res.data);
-      console.log(res.data);
     } catch (err) {
       console.error(err);
     }
@@ -60,11 +59,7 @@ function ThemeMenu() {
   return (
     <>
       {isLoading && <ReactCsspin />}
-      {data?.item ? (
-        <StyledUl>{themeList}</StyledUl>
-      ) : (
-        <div>테마가 존재하지 않습니다</div>
-      )}
+      {data?.item && <StyledUl>{themeList}</StyledUl>}
       {isActive && (
         <ModalWindow handleClose={handleClose} handleOk={handleOk}>
           선택하신 테마는 유료테마입니다. <br />

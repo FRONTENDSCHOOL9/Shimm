@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-// const bgColor = {
-//   T01: 'linear-gradient(45deg, #B5DE13 0%, #06B7AC 100%)',
-//   T02: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
-//   T03: 'linear-gradient(45deg, #60E66D 0%, #F6815B 100%)',
-//   T04: 'linear-gradient(45deg, #FF8541 0%, #F0B31A 100%)',
-//   T05: 'linear-gradient(45deg, #9A17C8 0%, #4E81EB 100%)',
-// };
-
 export const Theme = styled.li`
   position: relative;
   min-height: 140px;
@@ -49,11 +41,11 @@ export const Contents = styled.span`
 
   &:after {
     content: '';
-    display: block;
-    width: 40px;
-    height: 40px;
+    position: absolute;
+    inset: 0;
     background-image: url(${props => props.$url});
     background-size: cover;
+    background-repeat: no-repeat;
   }
 `;
 
@@ -92,8 +84,8 @@ export const Lock = styled.span`
 
 export const StyledDiv = styled.div`
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 10px;
+  top: 10px;
   z-index: 1;
 `;
 

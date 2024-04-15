@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Inside,
   Modal,
@@ -5,7 +6,6 @@ import {
   ModalClose,
   ModalOk,
 } from '@components/modal/ModalWindow.style';
-import PropTypes from 'prop-types';
 
 function ModalWindow({ children, twoButton = true, handleClose, handleOk }) {
   return (

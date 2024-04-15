@@ -18,10 +18,6 @@ function ThemeItem({ item, handleTheme }) {
     handleTheme(item.name, item.price);
   }
 
-  console.log(
-    `${import.meta.env.VITE_API_SERVER}${item.mainImages[0]['path ']}`,
-  );
-
   return (
     <Theme>
       <ThemeButton
@@ -39,7 +35,7 @@ function ThemeItem({ item, handleTheme }) {
               <Lock />
               <StyledDiv>
                 <LockIcon src={iconLock} alt="유료 테마" />
-                <Price>{item.price}</Price>
+                <Price>{item.price}원</Price>
               </StyledDiv>
             </>
           ) : (

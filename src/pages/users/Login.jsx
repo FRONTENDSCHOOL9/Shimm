@@ -30,7 +30,6 @@ function Login() {
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
-      setIsLoading(false);
       navigate(location.state?.from ? location.state?.from : '/');
     } catch (err) {
       console.error(err);
@@ -41,6 +40,8 @@ function Login() {
       } else if (err.response?.data.message) {
         alert(err.response?.data.message);
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 

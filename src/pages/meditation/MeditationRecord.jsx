@@ -1,3 +1,13 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useUserStore from '@zustand/user';
+import useCompleteTimeStore from '@zustand/timer';
+import { useSelectedTimeStore } from '@zustand/timeSelection';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
+import Result from '@components/result/Result';
+import Button from '@components/button/Button';
+import ModalWindow from '@components/modal/ModalWindow';
 import {
   Form,
   StyledSection,
@@ -8,18 +18,10 @@ import {
   StyledError,
   SaveButtonContainer,
 } from '@pages/meditation/Meditation.style';
-import Result from '@components/result/Result';
-import useCompleteTimeStore from '@zustand/timer.mjs';
-import { useSelectedTimeStore } from '@zustand/timeSelection.mjs';
-import { useForm } from 'react-hook-form';
-import Button from '@components/button/Button';
-import useUserStore from '@zustand/user.mjs';
-import ModalWindow from '@components/modal/ModalWindow';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 function MeditationRecord() {
-  const { selectedTime } = useSelectedTimeStore();
+  const { selectedTime, selectedTimeSet } = useSelectedTimeStore();
+  const { selectedTheme, selectedThemeSet } = useSelectedThemeStore();
   const { completeTime } = useCompleteTimeStore();
   const { user } = useUserStore();
   const {
@@ -29,8 +31,8 @@ function MeditationRecord() {
     reset,
     setFocus,
   } = useForm();
-  const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
 
   const date = new Date();
@@ -66,7 +68,6 @@ function MeditationRecord() {
       ? `목표한 ${selectedTime} 명상을 완료했어요!`
       : `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초 동안 명상을 진행했어요.`;
 
-  let modal = null;
   function onSubmit(formData) {
     setIsClicked(true);
 
@@ -75,6 +76,8 @@ function MeditationRecord() {
         console.log(formData);
         reset();
         setIsClicked(false);
+        selectedTimeSet(null);
+        selectedThemeSet(null);
         navigate('/mypage');
       } catch (err) {
         console.error(err);
