@@ -2,7 +2,10 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import FeedCreate from '@pages/community/feed/FeedCreate'
 import { Feed } from '@pages/community/feed/Feed'
-import Search from '@pages/community/feed/Search'
+
+import useCustomAxios from '@hooks/useCustomAxios.mjs'
+import { QueryClientProvider, useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 
 const feedList = [
     {
@@ -57,9 +60,14 @@ const FeedTemplateWrapper = styled.div`
     padding: 2rem;
 `
 
-function FeedList( ){
+async function FeedList( ){
     const [ newComment, setNewComment ] = useState([]);
-
+    const { _id } = useParams();
+    const axios = useCustomAxios();
+   
+    
+    }
+    
     function handleSubmit(e){
         e.preventDefault();
         console.log(newComment)
@@ -68,14 +76,16 @@ function FeedList( ){
         setNewComment('');
         }
 
+    
+
     return(
-        <FeedTemplateWrapper>
-             
-            {feedList.map(item=>(
-                <Feed key={item.id} item={item} />))
-            }
-            <FeedCreate />
-        </FeedTemplateWrapper>
+            <FeedTemplateWrapper>
+                
+                {data.map(item=>(
+                    <Feed key={item.id} item={item} />))
+                }
+                <FeedCreate />
+            </FeedTemplateWrapper>   
     )
 }
 export default FeedList;
