@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
 import { useSelectedThemeStore } from '@zustand/themeSelection';
+import useUserStore from '@zustand/user';
+import useModalStore from '@zustand/modal';
 import { ReactCsspin } from 'react-csspin';
 import 'react-csspin/dist/style.css';
 import Button from '@components/button/Button';
@@ -23,11 +25,11 @@ import {
   ButtonContainer,
   CheckBoxContainer,
 } from '@pages/purchase/Purchase.style';
-import useUserStore from '@zustand/user';
 
 function Purchase() {
   const { user } = useUserStore();
   const { selectedTheme } = useSelectedThemeStore();
+  const { setShowModal, setModalData } = useModalStore();
   const [isPaid, setIsPaid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +40,11 @@ function Purchase() {
   const axios = useCustomAxios();
 
   useEffect(() => {
-    fetchTheme();
+    if (!user) {
+      handleLogin();
+    } else {
+      fetchTheme();
+    }
   }, []);
 
   async function fetchTheme() {
@@ -53,6 +59,27 @@ function Purchase() {
     }
   }
 
+  function handleLogin() {
+    setShowModal(true);
+    setModalData({
+      children: (
+        <span>
+          테마 구매는 로그인 후 가능합니다.
+          <br />
+          로그인 하시겠습니까?
+        </span>
+      ),
+      handleClose() {
+        setShowModal(false);
+        navigate(-1);
+      },
+      handleOk() {
+        setShowModal(false);
+        navigate('/users/login', { state: { from: location.pathname } });
+      },
+    });
+  }
+
   function handleCheck() {
     setIsChecked(!isChecked);
   }
@@ -65,7 +92,7 @@ function Purchase() {
 
   return (
     <>
-      {user ? (
+      {user && (
         <StyledMain>
           <StyledSection>
             <ImageDiv>
@@ -132,17 +159,6 @@ function Purchase() {
             )}
           </StyledSection>
         </StyledMain>
-      ) : (
-        <ModalWindow
-          handleClose={() => navigate(-1)}
-          handleOk={() =>
-            navigate('/users/login', { state: { from: location.pathname } })
-          }
-        >
-          테마 구매는 로그인 후 가능합니다.
-          <br />
-          로그인 하시겠습니까?
-        </ModalWindow>
       )}
 
       {isPaid && (
