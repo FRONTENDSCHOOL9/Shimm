@@ -1,11 +1,17 @@
 import Footer from '@components/layout/footer/Footer';
+import HomeCarousel from './HomeCarousel';
 
 function Home() {
   return (
     <>
-      <main>Home</main>
+      <main>
+        <section>
+          <HomeCarousel></HomeCarousel>
+        </section>
+      </main>
       <Footer />
     </>
+    
   );
 }
 
