@@ -90,7 +90,7 @@ export const NavButton = styled.button`
     width: 16px;
     height: 12px;
     background-image: ${props =>
-      props.$clicked === true ? `url(${iconClose})` : `url(${iconMenu})`};
+      props.$clicked ? `url(${iconClose})` : `url(${iconMenu})`};
     background-repeat: no-repeat;
     background-size: contain;
   }
