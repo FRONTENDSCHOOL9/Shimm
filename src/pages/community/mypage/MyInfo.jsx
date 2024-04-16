@@ -107,7 +107,7 @@ function MyInfo() {
           <span>1994년 5월 15일</span>
         </UserInfoStyled>
       </MyInfoMain>
-      <ButtonLink to="/checktoinfo">
+      <ButtonLink to="/mypage/checkpw">
         <EditButton>프로필 수정</EditButton>
       </ButtonLink>
     </MyInfoWrapper>
