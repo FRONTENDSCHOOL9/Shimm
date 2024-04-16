@@ -50,6 +50,10 @@ function Login() {
     }
   }
 
+  function handleSignUp() {
+    navigate('/users/signup');
+  }
+
   return (
     <div>
       <h3>로그인</h3>
@@ -84,10 +88,14 @@ function Login() {
           {errors.password && <p>{errors.password.message}</p>}
         </div>
 
-        <Button type="submit" size="full" bgColor="primary">
+        <Button type="submit" size="medium" bgColor="primary">
           로그인
         </Button>
       </form>
+
+      <Button size="medium" bgColor="primary" handleClick={handleSignUp}>
+        회원가입
+      </Button>
 
       {isLoading && <ReactCsspin />}
     </div>
