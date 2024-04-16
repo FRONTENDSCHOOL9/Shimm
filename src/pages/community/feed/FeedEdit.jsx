@@ -7,7 +7,8 @@ import {
 import React from 'react';
 import styled from 'styled-components';
 import iconfile from '@assets/images/icon-file.svg';
-import { ImageArea } from '@pages/community/feed/FeedDetail';
+import { ImageArea } from '@pages/community/feed/FeedList';
+
 
 const EditWrapper = styled.div`
   max-width: 740px;

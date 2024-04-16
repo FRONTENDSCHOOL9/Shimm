@@ -10,7 +10,9 @@ import MeditationRecord from '@pages/meditation/MeditationRecord';
 import Purchase from '@pages/purchase/Purchase';
 import Community from '@pages/community/Community';
 import { FeedDetail } from '@pages/community/feed/FeedDetail';
+
 import FeedEdit from '@pages/community/feed/FeedEdit';
+
 import { FeedNew } from '@pages/community/feed/FeedNew';
 import EditProfile from '@pages/community/mypage/EditProfile';
 import { MyInfo } from '@pages/community/mypage/MyInfo';
@@ -63,7 +65,7 @@ const router = createBrowserRouter([
         element: <Community />,
       },
       {
-        path: 'community/:id',
+        path: 'community/:_id',
         element: <FeedDetail />,
       },
       {
