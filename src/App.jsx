@@ -17,6 +17,7 @@ function App() {
         <RouterProvider router={router} />
         {showModal && (
           <ModalWindow
+            twoButton={modalData.twoButton}
             handleClose={modalData.handleClose}
             handleOk={modalData.handleOk}
           >

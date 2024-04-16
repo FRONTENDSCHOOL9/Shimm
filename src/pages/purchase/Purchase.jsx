@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import useCustomAxios from '@hooks/useCustomAxios';
-import { useSelectedThemeStore } from '@zustand/themeSelection';
-import useUserStore from '@zustand/user';
-import useModalStore from '@zustand/modal';
-import { ReactCsspin } from 'react-csspin';
-import 'react-csspin/dist/style.css';
+import iconBuy from '@assets/images/icon-buy.svg';
+import iconPlay from '@assets/images/icon-play.svg';
 import Button from '@components/button/Button';
 import ModalWindow from '@components/modal/ModalWindow';
-import iconPlay from '@assets/images/icon-play.svg';
-import iconBuy from '@assets/images/icon-buy.svg';
+import useCustomAxios from '@hooks/useCustomAxios';
 import {
-  Info,
-  Image,
-  ImageDiv,
-  Preview,
-  PlayButton,
-  PlayIcon,
-  StyledMain,
-  StyledSection,
-  PageTitle,
-  Description,
-  Container,
   ButtonContainer,
   CheckBoxContainer,
+  Container,
+  Description,
+  Image,
+  ImageDiv,
+  Info,
+  PageTitle,
+  PlayButton,
+  PlayIcon,
+  Preview,
+  StyledMain,
+  StyledSection,
 } from '@pages/purchase/Purchase.style';
+import useModalStore from '@zustand/modal';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
+import useUserStore from '@zustand/user';
+import { useEffect, useState } from 'react';
+import { ReactCsspin } from 'react-csspin';
+import 'react-csspin/dist/style.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Purchase() {
   const { user } = useUserStore();
@@ -33,7 +33,6 @@ function Purchase() {
   const [isPaid, setIsPaid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isAgreed, setIsAgreed] = useState(false);
   const [data, setData] = useState();
   const navigate = useNavigate();
   const location = useLocation();
@@ -84,8 +83,25 @@ function Purchase() {
     setIsChecked(!isChecked);
   }
 
+  // 결제 API 호출
   function handlePay() {
-    setIsAgreed(true);
+    setShowModal(true);
+    setModalData({
+      children: (
+        <span>
+          테마 구매가 완료되었습니다. <br />
+          구매하신 테마로 명상을 시작할까요?
+        </span>
+      ),
+      handleClose() {
+        setShowModal(false);
+        navigate('/meditation');
+      },
+      handleOk() {
+        setShowModal(false);
+        navigate('/meditation/progress');
+      },
+    });
   }
 
   const item = data?.item;
@@ -145,17 +161,6 @@ function Purchase() {
                   결제하기
                 </Button>
               </ButtonContainer>
-            )}
-
-            {/* 결제 API 호출 */}
-            {isAgreed && (
-              <ModalWindow
-                handleClose={() => navigate('/meditation')}
-                handleOk={() => navigate('/meditation/progress')}
-              >
-                테마 구매가 완료되었습니다. <br />
-                구매하신 테마로 명상을 시작할까요?
-              </ModalWindow>
             )}
           </StyledSection>
         </StyledMain>

@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useNavigationType, useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
-import useUserStore from '@zustand/user';
+import { Menu, StyledUl } from '@pages/meditation/themeset/ThemeSet.style';
+import ThemeItem from '@pages/meditation/themeset/themeitem/ThemeItem';
+import useModalStore from '@zustand/modal';
 import {
   useIsThemeSelectedStore,
   useSelectedThemeStore,
 } from '@zustand/themeSelection';
-import useModalStore from '@zustand/modal';
+import useUserStore from '@zustand/user';
+import { useEffect, useState } from 'react';
 import { ReactCsspin } from 'react-csspin';
 import 'react-csspin/dist/style.css';
-import ThemeItem from '@pages/meditation/themeset/themeitem/ThemeItem';
-import { Menu, StyledUl } from '@pages/meditation/themeset/ThemeSet.style';
+import { useNavigate } from 'react-router-dom';
 
 function ThemeMenu() {
   const { user } = useUserStore();
@@ -22,7 +22,7 @@ function ThemeMenu() {
   const [orderData, setOrderData] = useState();
   const navigate = useNavigate();
   const axios = useCustomAxios();
-  const navigationType = useNavigationType();
+  // const navigationType = useNavigationType();
 
   useEffect(() => {
     fetchThemes();
@@ -31,11 +31,11 @@ function ThemeMenu() {
     }
   }, []);
 
-  useEffect(() => {
-    if (navigationType === 'POP') {
-      console.log('뒤로가기');
-    }
-  }, [navigationType]);
+  // useEffect(() => {
+  //   if (navigationType === 'POP') {
+  //     console.log('뒤로가기');
+  //   }
+  // }, [navigationType]);
 
   async function fetchThemes() {
     try {
