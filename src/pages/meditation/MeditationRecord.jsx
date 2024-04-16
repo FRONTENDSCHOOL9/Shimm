@@ -75,14 +75,13 @@ function MeditationRecord() {
 
     if (user) {
       try {
-        formData.order_id = 2;
-        formData.product_id = selectedTheme.id;
+        formData.type = 'meditation';
         formData.extra = {
           theme: selectedTheme.name,
           time: `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초`,
         };
 
-        const res = await axios.post('/replies', formData);
+        const res = await axios.post('/posts', formData);
         console.log(res);
         reset();
         setIsClicked(false);

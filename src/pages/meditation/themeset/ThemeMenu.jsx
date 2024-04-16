@@ -9,8 +9,8 @@ import {
 import { ReactCsspin } from 'react-csspin';
 import 'react-csspin/dist/style.css';
 import ModalWindow from '@components/modal/ModalWindow';
-import ThemeItem from '@components/themeset/themeitem/ThemeItem';
-import { Menu, StyledUl } from '@components/themeset/ThemeSet.style';
+import ThemeItem from '@pages/meditation/themeset/themeitem/ThemeItem';
+import { Menu, StyledUl } from '@pages/meditation/themeset/ThemeSet.style';
 
 function ThemeMenu() {
   const { user } = useUserStore();

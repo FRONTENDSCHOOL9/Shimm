@@ -26,6 +26,7 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-100, -60 * 60 * 3),
         extra: {
           birthday: '1995-04-14',
+          profileImage: `/files/02-Shimm/yogaman.png`,
         },
       },
       {
@@ -140,7 +141,7 @@ export const initData = async nextSeq => {
       {
         _id: await nextSeq('product'),
         seller_id: 1,
-        price: 0,
+        price: 1000,
         shippingFees: 0,
         show: true,
         active: true,

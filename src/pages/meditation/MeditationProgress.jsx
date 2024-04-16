@@ -1,5 +1,5 @@
 import Button from '@components/button/Button';
-import Timer from '@components/timer/Timer';
+import Timer from '@pages/meditation/timer/Timer';
 import { useNavigate } from 'react-router-dom';
 import { useSelectedTimeStore } from '@zustand/timeSelection';
 import { useSelectedThemeStore } from '@zustand/themeSelection';
