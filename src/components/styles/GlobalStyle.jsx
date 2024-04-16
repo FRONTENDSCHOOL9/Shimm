@@ -88,6 +88,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     font-family: 'Pretendard', sans-serif;
     font-size: 10px;
+    padding-top: 70px;
   }
 
   // Commons
