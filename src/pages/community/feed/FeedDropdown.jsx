@@ -36,16 +36,16 @@ const OpenMenu = styled.div`
   padding: 0.6rem 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   border: 1px solid #000000;
   border-radius: 8px;
   font-size: 2rem;
+  box-sizing: border-box;
 
   & img {
-    width: 2rem;
-    margin-right: 1rem;
-    vertical-align: center;
+    width: 30px;
+    margin: 4px 10px 0 0;
+
   }
 `;
 
