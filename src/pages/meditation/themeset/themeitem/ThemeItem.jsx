@@ -15,7 +15,6 @@ import iconMusic from '@assets/images/icon-music.svg';
 import iconLock from '@assets/images/icon-lock.svg';
 
 function ThemeItem({ item, handleTheme, isNotPaid }) {
-  console.log(item);
   function handleClick() {
     handleTheme(item.name, item._id, item.extra.background, isNotPaid);
   }
