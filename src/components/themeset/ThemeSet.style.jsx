@@ -13,3 +13,7 @@ export const StyledUl = styled.ul`
     aspect-ratio: 7/5;
   }
 `;
+
+export const Menu = styled.div`
+  width: 100%;
+`;

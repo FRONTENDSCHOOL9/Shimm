@@ -8,6 +8,7 @@ import Button from '@components/button/Button';
 import ModalWindow from '@components/modal/ModalWindow';
 import iconPlay from '@assets/images/icon-play.svg';
 import iconBuy from '@assets/images/icon-buy.svg';
+import iconCheck from '@assets/images/icon-check.svg';
 import {
   Info,
   Image,
@@ -114,6 +115,7 @@ function Purchase() {
                 id="agree"
                 checked={isChecked}
                 onChange={handleCheck}
+                $iconCheck={iconCheck}
               />
               <label htmlFor="agree">
                 주문 내용 및 결제 조건을 확인했으며, 결제 진행에 동의합니다.

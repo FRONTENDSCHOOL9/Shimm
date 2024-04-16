@@ -10,7 +10,7 @@ import { ReactCsspin } from 'react-csspin';
 import 'react-csspin/dist/style.css';
 import ModalWindow from '@components/modal/ModalWindow';
 import ThemeItem from '@components/themeset/themeitem/ThemeItem';
-import { StyledUl } from '@components/themeset/ThemeSet.style';
+import { Menu, StyledUl } from '@components/themeset/ThemeSet.style';
 
 function ThemeMenu() {
   const { user } = useUserStore();
@@ -104,7 +104,7 @@ function ThemeMenu() {
   }
 
   return (
-    <>
+    <Menu>
       {isLoading && <ReactCsspin />}
       {themeData?.item && <StyledUl>{themeList}</StyledUl>}
       {isActive && (
@@ -113,7 +113,7 @@ function ThemeMenu() {
           구매를 진행하시겠습니까?
         </ModalWindow>
       )}
-    </>
+    </Menu>
   );
 }
 
