@@ -26,38 +26,39 @@ function SignUp() {
     try {
       setIsLoading(true);
       formData.type = 'user';
-      formData.extra = {
-        profileImage: '',
-      };
-      console.log(formData);
 
       // 이미지 먼저 업로드
       if (formData.profileImage.length > 0) {
+        // 프로필 이미지를 추가한 경우
         const imageFormData = new FormData();
-        imageFormData.append('attach', formData.profileImage);
+        imageFormData.append('attach', formData.profileImage[0]);
 
         const fileRes = await axios('/files', {
           method: 'post',
           headers: {
+            // 파일 업로드시 필요한 설정
             'Content-Type': 'multipart/form-data',
           },
           data: imageFormData,
         });
 
-        formData.extra.profileImage = fileRes.data.file.name;
+        // 서버로부터 응답받은 이미지 이름을 회원 정보에 포함
+        formData.extra = {
+          profileImage: fileRes.data.item[0].name,
+        };
+
         delete formData.profileImage;
       } else {
+        // profileImage 속성을 제거
         delete formData.profileImage;
       }
-
-      console.log(formData);
 
       const res = await axios.post('/users', formData);
       alert(
         res.data.item.name +
           '님 회원가입이 완료 되었습니다.\n로그인 후에 이용하세요.',
       );
-      console.log(res);
+
       navigate('/users/login');
     } catch (err) {
       if (err.response?.data.errors) {
