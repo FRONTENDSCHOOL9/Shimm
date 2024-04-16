@@ -41,8 +41,6 @@ function Purchase() {
     fetchTheme();
   }, []);
 
-  console.log(selectedTheme);
-
   async function fetchTheme() {
     try {
       setIsLoading(true);

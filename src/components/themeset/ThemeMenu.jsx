@@ -16,11 +16,11 @@ function ThemeMenu() {
   const { user } = useUserStore();
   const { selectedThemeSet } = useSelectedThemeStore();
   const { isThemeSelectedSet } = useIsThemeSelectedStore();
-  const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [themeData, setThemeData] = useState();
   const [orderData, setOrderData] = useState();
+  const navigate = useNavigate();
   const axios = useCustomAxios();
 
   useEffect(() => {
