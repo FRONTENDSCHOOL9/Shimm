@@ -38,8 +38,8 @@ function Header() {
     navigate('/users/login');
   }
 
-  function handleSignup() {
-    console.log('회원가입');
+  function handleSignUp() {
+    navigate('/users/signup');
   }
 
   return (
@@ -70,7 +70,7 @@ function Header() {
             <Button size="medium" bgColor="dark" handleClick={handleLogin}>
               로그인
             </Button>
-            <Button size="medium" bgColor="dark" handleClick={handleSignup}>
+            <Button size="medium" bgColor="dark" handleClick={handleSignUp}>
               회원가입
             </Button>
           </LoginContainer>
