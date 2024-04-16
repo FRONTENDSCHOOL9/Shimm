@@ -13,6 +13,7 @@ export const StyledHeader = styled.header`
   gap: 20px;
   flex-wrap: wrap;
   z-index: 999;
+  padding-bottom: 20px;
 
   @media (min-width: 740px) {
     flex-wrap: nowrap;
