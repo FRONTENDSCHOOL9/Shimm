@@ -23,14 +23,15 @@ import {
   ButtonContainer,
   CheckBoxContainer,
 } from '@pages/purchase/Purchase.style';
-import useUserStore from '@zustand/user.mjs';
+import useUserStore from '@zustand/user';
 
 function Purchase() {
   const { user } = useUserStore();
   const { selectedTheme } = useSelectedThemeStore();
+  const [isPaid, setIsPaid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isPaid, setIsPaid] = useState(false);
+  const [isAgreed, setIsAgreed] = useState(false);
   const [data, setData] = useState();
   const navigate = useNavigate();
   const location = useLocation();
@@ -57,15 +58,7 @@ function Purchase() {
   }
 
   function handlePay() {
-    setIsPaid(true);
-  }
-
-  function handleClose() {
-    navigate('/meditation');
-  }
-
-  function handleOk() {
-    navigate('/meditation/progress');
+    setIsAgreed(true);
   }
 
   const item = data?.item;
@@ -127,8 +120,12 @@ function Purchase() {
               </ButtonContainer>
             )}
 
-            {isPaid && (
-              <ModalWindow handleClose={handleClose} handleOk={handleOk}>
+            {/* 결제 API 호출 */}
+            {isAgreed && (
+              <ModalWindow
+                handleClose={() => navigate('/meditation')}
+                handleOk={() => navigate('/meditation/progress')}
+              >
                 테마 구매가 완료되었습니다. <br />
                 구매하신 테마로 명상을 시작할까요?
               </ModalWindow>
@@ -145,6 +142,13 @@ function Purchase() {
           테마 구매는 로그인 후 가능합니다.
           <br />
           로그인 하시겠습니까?
+        </ModalWindow>
+      )}
+
+      {isPaid && (
+        <ModalWindow handleClose={() => {}} handleOk={() => {}}>
+          이미 구매한 테마입니다. <br />
+          명상을 시작하시겠습니까?
         </ModalWindow>
       )}
     </>
