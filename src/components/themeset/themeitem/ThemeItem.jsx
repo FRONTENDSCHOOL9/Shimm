@@ -15,6 +15,7 @@ import iconMusic from '@assets/images/icon-music.svg';
 import iconLock from '@assets/images/icon-lock.svg';
 
 function ThemeItem({ item, handleTheme, isNotPaid }) {
+  console.log(item);
   function handleClick() {
     handleTheme(item.name, item._id, item.extra.background, isNotPaid);
   }
@@ -27,7 +28,7 @@ function ThemeItem({ item, handleTheme, isNotPaid }) {
         $bgColor={item.extra.background}
       >
         <Contents
-          $url={`${import.meta.env.VITE_API_SERVER}${item.mainImages[0]['path ']}`}
+          $url={`${import.meta.env.VITE_API_SERVER}${item.mainImages[0]['path']}`}
         >
           <Icon src={iconMusic} alt="테마 재생" />
           <ThemeDescription>{item.name}</ThemeDescription>

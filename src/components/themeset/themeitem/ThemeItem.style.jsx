@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Theme = styled.li`
   position: relative;
-  min-height: 140px;
+  min-height: 120px;
   border-radius: 8px;
   font-family: 'NanumSquareNeo', sans-serif;
 `;
@@ -66,7 +66,7 @@ export const ThemeDescription = styled.span`
   font-weight: 500;
 
   @media (min-width: 740px) {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     white-space: nowrap;
   }
 `;

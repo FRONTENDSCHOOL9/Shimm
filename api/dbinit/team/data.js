@@ -17,7 +17,8 @@ export const initData = async nextSeq => {
       {
         _id: await nextSeq('user'),
         email: 'kiho@test.com',
-        password: '12345678',
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
         name: '요가맨',
         phone: '01011112222',
         type: 'user',
@@ -30,7 +31,8 @@ export const initData = async nextSeq => {
       {
         _id: await nextSeq('user'),
         email: 'seller@test.com',
-        password: '12345678',
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
         name: '판매자',
         phone: '01011112222',
         type: 'seller',
@@ -142,7 +144,7 @@ export const initData = async nextSeq => {
         shippingFees: 0,
         show: true,
         active: true,
-        name: '아침 Morning',
+        name: '밤하늘 Night Sky',
         quantity: 99999,
         buyQuantity: 1,
         mainImages: [
