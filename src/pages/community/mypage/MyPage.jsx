@@ -136,12 +136,12 @@ function MyPage() {
 
   function handleMoveArchive() {
     console.log('나의 기록화면으로 전환');
-    navigate('/archive');
+    navigate('/mypage/archive');
   }
 
   function handleMoveArchive() {
     console.log('나의 기록화면으로 전환');
-    navigate('/archive');
+    navigate('/mypage/archive');
   }
 
   function handleMoveMyList() {
@@ -166,7 +166,7 @@ function MyPage() {
         </h2>
         <img src={iconbase} alt="기본프로필 사진" />
       </UserProfile>
-      <Link to="/myinfo">
+      <Link to="mypage/info">
         <ButtonContainer>
           <Button
             type="button"

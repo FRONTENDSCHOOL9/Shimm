@@ -68,7 +68,7 @@ function MyInfoCheck() {
 
   function onSubmit(){
     console.log('확인validation 후 editprofile 페이지로 이동')
-    navigate('/editprofile')
+    navigate('/mypage/editprofile')
   }
 
   return (
