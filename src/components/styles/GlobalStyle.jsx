@@ -63,7 +63,6 @@ const GlobalStyle = createGlobalStyle`
   }
   
   // Typography
-  
   @font-face {
     font-family: 'Pretendard';
     font-weight: 500;
@@ -88,7 +87,6 @@ const GlobalStyle = createGlobalStyle`
   :root {
     font-family: 'Pretendard', sans-serif;
     font-size: 10px;
-    padding-top: 70px;
   }
 
   // Commons
@@ -99,6 +97,11 @@ const GlobalStyle = createGlobalStyle`
     height: 1px;
     margin: -1px;
     overflow: hidden;
+  }
+
+  // Layout
+  :root {
+    padding-top: 110px;
   }
 `;
 
