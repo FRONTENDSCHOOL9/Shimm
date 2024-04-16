@@ -122,7 +122,7 @@ function MeditationRecord() {
               },
             })}
           />
-          {errors && <StyledError>{errors.comment?.message}</StyledError>}
+          {errors && <StyledError>{errors.content?.message}</StyledError>}
           <SaveButtonContainer>
             <Button type="submit" bgColor="primary" size="full">
               저장하기

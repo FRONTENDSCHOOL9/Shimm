@@ -1,10 +1,12 @@
-import useUserStore from '@zustand/user.mjs';
+import useModalStore from '@zustand/modal';
+import useUserStore from '@zustand/user';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const REFRESH_URL = '/auth/refresh';
 
 function useCustomAxios() {
+  const { setShowModal, setModalData } = useModalStore();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -42,11 +44,17 @@ function useCustomAxios() {
       if (response?.status === 401) {
         // refresh 토큰도 만료된 경우
         if (config.url === REFRESH_URL) {
-          const toLogin = confirm(
-            '로그인 후 이용 가능합니다. 로그인 하시겠습니까?',
-          );
-          toLogin &&
-            navigate('/users/login', { state: { from: location.pathname } });
+          setShowModal(true);
+          setModalData({
+            children: '로그인 후 이용 가능합니다. 로그인하시겠습니까?',
+            handleClose() {
+              setShowModal(false);
+            },
+            handleOk() {
+              setShowModal(false);
+              navigate('/users/login', { state: { from: location.pathname } });
+            },
+          });
         } else {
           // access 토큰 재발급 요청
           const accessToken = await getAccessToken(instance);

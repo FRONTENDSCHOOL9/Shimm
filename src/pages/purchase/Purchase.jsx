@@ -107,7 +107,10 @@ function Purchase() {
           명상을 시작하시겠습니까?
         </span>
       ),
-      twoButton: false,
+      handleClose() {
+        setShowModal(false);
+        navigate('/meditation');
+      },
       handleOk() {
         setShowModal(false);
         navigate('/meditation/progress');
