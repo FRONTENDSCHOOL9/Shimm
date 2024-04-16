@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useWindowWide from '@hooks/useWindowWide';
 import useUserStore from '@zustand/user';
+import iconClose from '@assets/images/icon-close.svg';
+import iconMenu from '@assets/images/icon-menu.svg';
 import Button from '@components/button/Button';
 import {
   StyledHeader,
@@ -74,7 +76,12 @@ function Header() {
           </LoginContainer>
         )}
       </StyledNav>
-      <NavButton onClick={handleClick} $clicked={isClicked}>
+      <NavButton
+        onClick={handleClick}
+        $clicked={isClicked}
+        $iconClose={iconClose}
+        $iconMenu={iconMenu}
+      >
         <i>버튼</i>
       </NavButton>
     </StyledHeader>

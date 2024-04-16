@@ -1,4 +1,13 @@
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import Layout from '@components/layout/layout/Layout';
+import ErrorPage from '@pages/ErrorPage';
+import Home from '@pages/home/Home';
+import Login from '@pages/users/Login';
+import Meditation from '@pages/meditation/Meditation';
+import MeditationMain from '@pages/meditation/MeditationMain';
+import MeditationProgress from '@pages/meditation/MeditationProgress';
+import MeditationRecord from '@pages/meditation/MeditationRecord';
+import Purchase from '@pages/purchase/Purchase';
 import Community from '@pages/community/Community';
 import { FeedDetail } from '@pages/community/feed/FeedDetail';
 import FeedEdit from '@pages/community/feed/FeedEdit';
@@ -8,19 +17,12 @@ import { MyInfo } from '@pages/community/mypage/MyInfo';
 import MyInfoCheck from '@pages/community/mypage/MyInfoCheck';
 import MyPage from '@pages/community/mypage/MyPage';
 import MyRecord from '@pages/community/mypage/MyRecord';
-import Home from '@pages/home/Home';
-import Meditation from '@pages/meditation/Meditation';
-import MeditationMain from '@pages/meditation/MeditationMain';
-import MeditationProgress from '@pages/meditation/MeditationProgress';
-import MeditationRecord from '@pages/meditation/MeditationRecord';
-import Purchase from '@pages/purchase/Purchase';
-import Login from '@pages/users/Login';
-import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
