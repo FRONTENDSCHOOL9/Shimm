@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
   padding: 20px;
-  position: relative;
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -37,7 +40,6 @@ export const Img = styled.img`
 `;
 
 export const StyledNav = styled.nav`
-  background-color: #fff;
   width: 100%;
   display: ${props => (props.$clicked === true ? 'block' : 'none')};
   order: 3;
@@ -57,9 +59,14 @@ export const HeaderLink = styled(Link)`
   line-height: 2rem;
   font-weight: 200;
   color: rgba(51, 86, 53, 1);
+  transition: color 0.5s ease-out;
 
   &:last-child {
     margin-bottom: unset;
+  }
+
+  &:hover {
+    color: rgba(85, 162, 90, 1)
   }
 
   &:focus {
@@ -83,7 +90,7 @@ export const NavButton = styled.button`
   margin-left: auto;
 
   &:before {
-    content: ' ';
+    content: '';
     display: block;
     width: 16px;
     height: 12px;
