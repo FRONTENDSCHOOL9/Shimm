@@ -26,7 +26,7 @@ function ReplyList({ comments, profileImg, userId }) {
       {commentsList.map((comment, index) => (
         <StyledReplies key={index}>
           <img src={profileImg} alt="#" />
-          <span>{userId || <p>user_03</p>}</span>
+          <span>{userId && userId }</span>
           <p>{comment.text}</p>
         </StyledReplies>
       ))}

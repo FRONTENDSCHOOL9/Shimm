@@ -7,27 +7,29 @@ import iconsend from '@assets/images/icon-send.svg';
 const Replyer = styled.div`
   display: flex;
   width: 100%;
-  gap: 1.2rem;
-  margin-block: 1rem;
+  gap: 10px;
+  margin-block: 10px;
+  box-sizing: border-box;
   position: relative;
 
   & img:first-child {
-    flex-shrink: 0;
     width: 3rem;
     height: 3rem;
     box-shadow: inset 0 0 20px #335635;
     border-radius: 50%;
   }
-
+  
   & img:last-child {
+    box-shadow: inset 0 0 10px lime;
     cursor: pointer;
-    width: 2rem;
-    right: 2rem;
+    width: 3rem;
+    right: 3rem;
+    display: inline
   }
 
   & textarea {
     width: 100%;
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
     height: 3rem;
     box-sizing: border-box;
     padding: 0 1.6rem;
@@ -36,7 +38,7 @@ const Replyer = styled.div`
     outline: none;
     resize: none;
     overflow: hidden;
-    flex-grow: 1;
+    /* flex-grow: 1; */
   }
 `;
 
@@ -47,7 +49,7 @@ function ReplyCreate({ onAddComment, item }) {
     reset,
     formState: { errors },
   } = useForm();
-  const [comment, setComment] = useState('');
+
 
   function onSubmit(formData) {
     const { comment } = formData;
@@ -71,6 +73,7 @@ function ReplyCreate({ onAddComment, item }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Replyer>
+        
         <img src="" alt="#" />
         <textarea
           {...register('comment', {
@@ -83,6 +86,7 @@ function ReplyCreate({ onAddComment, item }) {
           onKeyUp={handleEnter}
         />
         <img src={iconsend} alt="댓글 등록 버튼" />
+        
       </Replyer>
       {errors.comment && <ErrorStyled>{errors.comment.message}</ErrorStyled>}
     </form>

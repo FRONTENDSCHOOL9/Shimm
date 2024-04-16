@@ -35,7 +35,7 @@ const FeedWrapper = styled.li`
 `
 
 const Post = styled.div`
-    margin-block: 2rem;
+    margin-block: 20px;
     display: flex;
     flex-wrap: nowrap;
     overflow-wrap: break-word;
@@ -98,22 +98,22 @@ function FeedList({ item }){
     return (
         <FeedWrapper>
             <FeedDropDown />
-            <UserInfo profile={profile} userId={name} >
+            <UserInfo profile={item.user.profile} userId={item.user.name} >
             </UserInfo >
             <div onClick={handleFeedClick}>
                 <Post>
                    <span>{content}</span>
                 </Post>
-                <ImageArea product={product.image}/>
+                { product.image && <ImageArea />}
             </div>
             <StateWrapper>
                 <span>{createdAt}</span>
                 <img src={iconbookmark} alt="게시글 좋아요 버튼" />
             </StateWrapper>
             <UserInfo 
-                profile={profile} 
-                userId={_id} 
-                comment={replyer}/>
+                profile={item.user.profile} 
+                userId={item.user._id} 
+                comment={item.user.comments}/>
             
             <ReplyList comments={comments}/>
                 {replyer && replyer.map(t=>

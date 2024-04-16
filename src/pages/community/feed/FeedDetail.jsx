@@ -3,7 +3,7 @@ import { UserInfo } from '@pages/community/user/UserInfo';
 import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate';
 import ReplyList from '@pages/community/feed/ReplyList';
 import { useEffect, useState } from 'react';
-import { ImageArea } from '@pages/community/feed/FeedList';
+import { FeedWrapper, ImageArea } from '@pages/community/feed/FeedList';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useParams } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ function FeedDetail() {
 
   return (
     
-    <div>
+    <FeedWrapper>
       {item && (
         <>
           <UserInfo profileImg={item.user._id} userId={item.user.name} />
@@ -64,7 +64,7 @@ function FeedDetail() {
           </Replyer>
         </>
       )}
-      </div>
+      </FeedWrapper>
   );
   }
 
