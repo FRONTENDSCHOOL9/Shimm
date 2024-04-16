@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import iconCheck from '@assets/images/icon-check.svg';
 
 export const StyledMain = styled.main`
   flex-grow: 1;
@@ -111,6 +110,7 @@ export const PlayButton = styled.button`
   width: 50px;
   height: 50px;
   margin-top: auto;
+  z-index: 1;
 `;
 
 export const PlayIcon = styled.img`
@@ -158,7 +158,7 @@ export const CheckBox = styled.input`
   &:checked + label::before {
     content: '';
     background-color: #55a25a;
-    background-image: url(${iconCheck});
+    background-image: url(${props => props.$iconCheck});
     background-repeat: no-repeat;
     background-size: contain;
   }
