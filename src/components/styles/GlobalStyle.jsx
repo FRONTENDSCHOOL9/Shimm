@@ -87,6 +87,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     font-family: 'Pretendard', sans-serif;
     font-size: 10px;
+    font-weight: 300;
   }
 
   // Commons
@@ -101,8 +102,12 @@ const GlobalStyle = createGlobalStyle`
 
   // Layout
   :root {
-    padding-top: 110px;
-  }
+    padding-top: 50px;
+
+    @media (min-width: 740px) {
+      padding-top: 110px;
+      }
+    }
 `;
 
 export default GlobalStyle;
