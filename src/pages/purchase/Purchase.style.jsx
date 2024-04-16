@@ -123,49 +123,48 @@ export const ButtonContainer = styled.div`
 `;
 
 export const CheckBoxContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  position: relative;
+  margin-bottom: 20px;
 
-  margin-bottom: 30px;
-
-  @media (min-width: 740px) {
-    margin-bottom: 55px;
+  & input {
+    display: none;
   }
-`;
 
-export const CheckBox = styled.input`
-  display: none;
-
-  & + label {
-    letter-spacing: -0.02rem;
+  & label {
     display: flex;
     gap: 5px;
     align-items: center;
+    position: relative;
   }
 
-  & + label::before {
+  & label::before {
     content: '';
-    display: inline-block;
     width: 16px;
     height: 16px;
-    border: 1px solid #55a25a;
+    background-color: #fff;
+    border: 1px solid #ccc;
     border-radius: 50%;
     box-sizing: border-box;
+    cursor: pointer;
   }
 
-  &:checked + label::before {
-    content: '';
+  & input:checked + label::before {
     background-color: #55a25a;
-    background-image: url(${props => props.$iconCheck});
-    background-repeat: no-repeat;
-    background-size: contain;
+    border-color: #55a25a;
+  }
+
+  & input:checked + label::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 7px;
+    top: 8px;
+    left: 8px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
   }
 
   @media (min-width: 740px) {
-    & + label {
-      gap: 10px;
-    }
+    margin-bottom: 30px;
   }
 `;
