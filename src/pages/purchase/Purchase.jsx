@@ -1,7 +1,6 @@
 import iconBuy from '@assets/images/icon-buy.svg';
 import iconPlay from '@assets/images/icon-play.svg';
 import Button from '@components/button/Button';
-import ModalWindow from '@components/modal/ModalWindow';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   ButtonContainer,
@@ -30,7 +29,7 @@ function Purchase() {
   const { user } = useUserStore();
   const { selectedTheme } = useSelectedThemeStore();
   const { setShowModal, setModalData } = useModalStore();
-  const [isPaid, setIsPaid] = useState(false);
+  // const [isPaid, setIsPaid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
@@ -42,9 +41,29 @@ function Purchase() {
     if (!user) {
       handleLogin();
     } else {
+      fetchOrders();
       fetchTheme();
     }
   }, []);
+
+  async function fetchOrders() {
+    try {
+      const res = await axios('/orders');
+
+      let orderArr = [];
+      res.data?.item.map(order => {
+        order.products.map(product => {
+          orderArr.push(product._id);
+        });
+      });
+
+      if (orderArr.includes(selectedTheme.id)) {
+        handlePaid();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   async function fetchTheme() {
     try {
@@ -75,6 +94,23 @@ function Purchase() {
       handleOk() {
         setShowModal(false);
         navigate('/users/login', { state: { from: location.pathname } });
+      },
+    });
+  }
+
+  function handlePaid() {
+    setShowModal(true);
+    setModalData({
+      children: (
+        <span>
+          이미 구매한 테마입니다. <br />
+          명상을 시작하시겠습니까?
+        </span>
+      ),
+      twoButton: false,
+      handleOk() {
+        setShowModal(false);
+        navigate('/meditation/progress');
       },
     });
   }
@@ -164,13 +200,6 @@ function Purchase() {
             )}
           </StyledSection>
         </StyledMain>
-      )}
-
-      {isPaid && (
-        <ModalWindow handleClose={() => {}} handleOk={() => {}}>
-          이미 구매한 테마입니다. <br />
-          명상을 시작하시겠습니까?
-        </ModalWindow>
       )}
     </>
   );
