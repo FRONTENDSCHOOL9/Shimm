@@ -18,7 +18,12 @@ function Login() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm();
+  } = useForm({
+    values: {
+      email: 'kiho@test.com',
+      password: '11111111',
+    },
+  });
 
   async function onSubmit(formData) {
     try {
