@@ -71,7 +71,7 @@ function ThemeMenu() {
       order.products.map(product => orderArr.push(product._id)),
     );
   } else {
-    orderArr = [15, 16, 17];
+    orderArr = [1, 2, 3];
   }
 
   let themeArr = [];
