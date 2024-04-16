@@ -1,5 +1,5 @@
-import useClickOutside from '@hooks/useClickOutside';
 import { useRef, useState } from 'react';
+import useClickOutside from '@hooks/useClickOutside';
 import {
   useIsTimeSelectedStore,
   useSelectedTimeStore,
@@ -10,7 +10,7 @@ import {
   StyledUl,
   StyledLi,
   StyledButton,
-} from '@components/timeset/TimeSet.style';
+} from '@pages/meditation/timeset/TimeSet.style';
 
 function TimeMenu() {
   const menuRef = useRef('menu');

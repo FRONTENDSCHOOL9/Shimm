@@ -4,7 +4,7 @@ import Button from '@components/button/Button';
 import useCompleteTimeStore from '@zustand/timer.mjs';
 import ModalWindow from '@components/modal/ModalWindow';
 import { useNavigate } from 'react-router-dom';
-import { StyledTimer, TimerDiv } from '@components/timer/Timer.style';
+import { StyledTimer, TimerDiv } from '@pages/meditation/timer/Timer.style';
 
 function Timer({ selectedTime }) {
   const [time, setTime] = useState(selectedTime);

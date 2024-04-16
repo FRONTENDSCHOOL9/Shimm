@@ -10,7 +10,7 @@ import {
   StyledDiv,
   ThemeButton,
   ThemeDescription,
-} from '@components/themeset/themeitem/ThemeItem.style';
+} from '@pages/meditation/themeset/themeitem/ThemeItem.style';
 import iconMusic from '@assets/images/icon-music.svg';
 import iconLock from '@assets/images/icon-lock.svg';
 
