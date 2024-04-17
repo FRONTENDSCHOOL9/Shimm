@@ -91,6 +91,12 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
+          // 변경 필요
+          music: {
+            path: `/files/02-Shimm/forest.mp3`,
+            name: 'forest.mp3',
+            originalname: 'forest.mp3',
+          },
         },
       },
       {
@@ -220,19 +226,6 @@ export const initData = async nextSeq => {
               path: `/files/02-Shimm/bg-theme-03.png`,
               name: 'bg-theme-03.png',
               originalname: 'morning.png',
-            },
-            quantity: 1,
-            price: 0,
-          },
-          {
-            _id: 5,
-            seller_id: 1,
-            state: 'OS020',
-            name: '밤하늘 Night Sky',
-            image: {
-              path: `/files/02-Shimm/bg-theme-05.png`,
-              name: 'bg-theme-05.png',
-              originalname: 'nightsky.png',
             },
             quantity: 1,
             price: 0,

@@ -21,6 +21,7 @@ function ThemeItem({ item, handleTheme, isNotPaid }) {
       item._id,
       item.price,
       item.extra.background,
+      item.extra.music.path,
       isNotPaid,
     );
   }
