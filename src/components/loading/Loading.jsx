@@ -15,7 +15,7 @@ const LoadingText = styled.p`
   width: 100%;
   flex-shrink: 0;
   text-align: center;
-`
+`;
 
 function Loading() {
   const defaultOptions = {
@@ -23,14 +23,14 @@ function Loading() {
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   return (
     <StyledDiv>
-      <LoadingText>로딩중입니다 🏃🏻‍♀️‍➡️</LoadingText>
-      <Lottie options={defaultOptions} width={150} height={150}/>
+      <LoadingText>로딩중입니다 🏃🏻‍♀️</LoadingText>
+      <Lottie options={defaultOptions} width={150} height={150} />
     </StyledDiv>
   );
 }
