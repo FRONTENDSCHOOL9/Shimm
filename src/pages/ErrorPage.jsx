@@ -13,9 +13,14 @@ function ErrorPage() {
     justify-content: center;
     gap: 30px;
     height: 100vh;
+    margin: -50px;
 
     @media (min-width: 1080px) {
       flex-direction: row;
+    }
+
+    @media (min-width: 740px) {
+      margin: -110px;
     }
   `;
 
