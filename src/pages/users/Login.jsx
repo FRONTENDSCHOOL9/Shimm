@@ -28,7 +28,6 @@ function Login() {
     try {
       setIsLoading(true);
       const res = await axios.post('/users/login', formData);
-      console.log(res);
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
@@ -37,6 +36,7 @@ function Login() {
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
+
       navigate(location.state?.from ? location.state?.from : '/');
     } catch (err) {
       console.error(err);

@@ -138,7 +138,7 @@ function Purchase() {
       async res => {
         try {
           if (res.success) {
-            const orderRes = await axios.post('/orders', {
+            await axios.post('/orders', {
               products: [
                 {
                   _id: JSON.parse(sessionStorage.getItem('theme')).state
