@@ -50,11 +50,12 @@ function ThemeMenu() {
     }
   }
 
-  function handleTheme(theme, id, price, background, isNotPaid) {
+  function handleTheme(theme, id, price, background, url, isNotPaid) {
     selectedThemeSet({
       name: theme,
       id,
       background,
+      music: url,
     });
 
     if (price > 0 && isNotPaid) {

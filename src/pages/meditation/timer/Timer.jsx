@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Timer({ selectedTime }) {
+function Timer({ selectedTime, handleMusic }) {
   const [time, setTime] = useState(selectedTime);
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -54,6 +54,7 @@ function Timer({ selectedTime }) {
   })();
 
   function handlePause() {
+    handleMusic(false);
     resetTimer();
     completeTimeSet(selectedTime - time);
     setShowModal(true);
@@ -67,6 +68,7 @@ function Timer({ selectedTime }) {
         ),
         handleClose() {
           setShowModal(false);
+          handleMusic(true);
           timerRef.current = setInterval(() => {
             setTime(prevTime => prevTime - 1);
           }, 1000);
@@ -81,6 +83,7 @@ function Timer({ selectedTime }) {
   }
 
   function handleFinish() {
+    handleMusic(false);
     setShowModal(true);
     setModalData({
       children: <span>명상이 종료되었습니다! 기록 페이지로 이동합니다.</span>,
@@ -111,6 +114,7 @@ function Timer({ selectedTime }) {
 
 Timer.propTypes = {
   selectedTime: PropTypes.number.isRequired,
+  handleMusic: PropTypes.func,
 };
 
 export default Timer;
