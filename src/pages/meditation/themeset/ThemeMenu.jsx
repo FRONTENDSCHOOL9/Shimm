@@ -81,15 +81,12 @@ function ThemeMenu() {
   }
 
   let orderArr = [];
+  let themeArr = [];
   if (user) {
     orderData?.item?.map(order =>
       order.products.map(product => orderArr.push(product._id)),
     );
-  } else {
-    orderArr = [1, 2, 3];
   }
-
-  let themeArr = [];
   themeData?.item?.map(item => themeArr.push(item._id));
   themeArr = [...themeArr.filter(item => !orderArr.includes(item))];
 
