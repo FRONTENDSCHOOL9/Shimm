@@ -24,10 +24,8 @@ export const initData = async nextSeq => {
         type: 'user',
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
-        extra: {
-          birthday: '1995-04-14',
-          profileImage: `/files/02-Shimm/yogaman.png`,
-        },
+        birthday: '1995-04-14',
+        profileImage: `/files/02-Shimm/yogaman.png`,
       },
       {
         _id: await nextSeq('user'),
@@ -39,9 +37,7 @@ export const initData = async nextSeq => {
         type: 'seller',
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
-        extra: {
-          birthday: '1997-03-25',
-        },
+        birthday: '1997-03-25',
       },
     ],
     // 상품
@@ -67,6 +63,11 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #B5DE13 0%, #06B7AC 100%)',
+          music: {
+            path: `/files/02-Shimm/forest.mp3`,
+            name: 'forest.mp3',
+            originalname: 'forest.mp3',
+          },
         },
       },
       {
@@ -113,6 +114,11 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #60E66D 0%, #F6815B 100%)',
+          music: {
+            path: `/files/02-Shimm/morning.mp3`,
+            name: 'morning.mp3',
+            originalname: 'morning.mp3',
+          },
         },
       },
       {
@@ -136,6 +142,11 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #FF8541 0%, #F0B31A 100%)',
+          music: {
+            path: `/files/02-Shimm/sunset.mp3`,
+            name: 'sunset.mp3',
+            originalname: 'sunset.mp3',
+          },
         },
       },
       {
@@ -159,6 +170,11 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #9A17C8 0%, #4E81EB 100%)',
+          music: {
+            path: `/files/02-Shimm/nightsky.mp3`,
+            name: 'nightsky.mp3',
+            originalname: 'nightsky.mp3',
+          },
         },
       },
     ],

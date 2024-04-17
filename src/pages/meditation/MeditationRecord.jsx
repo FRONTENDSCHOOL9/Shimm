@@ -80,7 +80,7 @@ function MeditationRecord() {
         formData.time = `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초`;
 
         const res = await axios.post('/posts', formData);
-        console.log(res);
+
         reset();
         setIsClicked(false);
         selectedTimeSet(null);

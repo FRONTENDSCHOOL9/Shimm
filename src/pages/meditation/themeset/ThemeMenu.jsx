@@ -21,7 +21,6 @@ function ThemeMenu() {
   const [orderData, setOrderData] = useState();
   const navigate = useNavigate();
   const axios = useCustomAxios();
-  // const navigationType = useNavigationType();
 
   useEffect(() => {
     fetchThemes();
@@ -29,12 +28,6 @@ function ThemeMenu() {
       fetchOrders();
     }
   }, []);
-
-  // useEffect(() => {
-  //   if (navigationType === 'POP') {
-  //     console.log('뒤로가기');
-  //   }
-  // }, [navigationType]);
 
   async function fetchThemes() {
     try {
@@ -57,14 +50,14 @@ function ThemeMenu() {
     }
   }
 
-  function handleTheme(theme, id, background, isNotPaid) {
+  function handleTheme(theme, id, price, background, isNotPaid) {
     selectedThemeSet({
       name: theme,
       id,
       background,
     });
 
-    if (isNotPaid) {
+    if (price > 0 && isNotPaid) {
       setShowModal(true);
       setModalData({
         children: (
