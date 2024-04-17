@@ -1,15 +1,14 @@
 import router from '@/routes';
 import GlobalStyle from '@components/styles/GlobalStyle';
 import { Suspense } from 'react';
-import { ReactCsspin } from 'react-csspin';
-import 'react-csspin/dist/style.css';
+import Loading from '@components/loading/Loading';
 import { RouterProvider } from 'react-router-dom';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Suspense fallback={<ReactCsspin />}>
+      <Suspense fallback={<Loading />}>
         <RouterProvider router={router} />
       </Suspense>
     </>
