@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
 import Button from '@components/button/Button';
-import useCompleteTimeStore from '@zustand/timer.mjs';
-import ModalWindow from '@components/modal/ModalWindow';
-import { useNavigate } from 'react-router-dom';
 import { StyledTimer, TimerDiv } from '@pages/meditation/timer/Timer.style';
+import useModalStore from '@zustand/modal';
+import useCompleteTimeStore from '@zustand/timer';
+import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Timer({ selectedTime }) {
   const [time, setTime] = useState(selectedTime);
@@ -12,8 +12,7 @@ function Timer({ selectedTime }) {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
+  const { setShowModal, setModalData } = useModalStore();
   const timerRef = useRef(null);
   const completeTimeSet = useCompleteTimeStore(state => state.completeTimeSet);
   const navigate = useNavigate();
@@ -30,8 +29,9 @@ function Timer({ selectedTime }) {
   function formatTime() {
     if (time < 0) {
       setIsStarted(false);
-      setIsFinished(true);
+      setTime(0);
       completeTimeSet(selectedTime);
+      handleFinish();
     } else {
       const hour = Math.floor(time / 3600);
       const minute = Math.floor((time % 3600) / 60);
@@ -54,21 +54,42 @@ function Timer({ selectedTime }) {
   })();
 
   function handlePause() {
-    setIsPaused(true);
-    completeTimeSet(selectedTime - time);
     resetTimer();
+    completeTimeSet(selectedTime - time);
+    setShowModal(true);
+
+    if (time > 0) {
+      setModalData({
+        children: (
+          <span>
+            명상이 아직 진행 중입니다. <br /> 정말 종료하시겠습니까?
+          </span>
+        ),
+        handleClose() {
+          setShowModal(false);
+          timerRef.current = setInterval(() => {
+            setTime(prevTime => prevTime - 1);
+          }, 1000);
+        },
+        handleOk() {
+          setShowModal(false);
+          setTime(0);
+          navigate('/meditation/record');
+        },
+      });
+    }
   }
 
-  function handleRestart() {
-    setIsPaused(false);
-    timerRef.current = setInterval(() => {
-      setTime(prevTime => prevTime - 1);
-    }, 1000);
-  }
-
-  function handleStop() {
-    setTime(0);
-    navigate('/meditation/record');
+  function handleFinish() {
+    setShowModal(true);
+    setModalData({
+      children: <span>명상이 종료되었습니다! 기록 페이지로 이동합니다.</span>,
+      twoButton: false,
+      handleOk() {
+        setShowModal(false);
+        navigate('/meditation/record');
+      },
+    });
   }
 
   return (
@@ -84,20 +105,6 @@ function Timer({ selectedTime }) {
       <Button size="full" handleClick={handlePause}>
         종료하기
       </Button>
-
-      {time > 0 && isPaused && (
-        <ModalWindow handleClose={handleRestart} handleOk={handleStop}>
-          명상이 아직 진행 중입니다. <br /> 정말 종료하시겠습니까?
-        </ModalWindow>
-      )}
-      {isFinished && (
-        <ModalWindow
-          twoButton={false}
-          handleOk={() => navigate('/meditation/record')}
-        >
-          명상이 종료되었습니다! 기록 페이지로 이동합니다.
-        </ModalWindow>
-      )}
     </StyledTimer>
   );
 }

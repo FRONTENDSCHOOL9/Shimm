@@ -1,27 +1,28 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
-import useUserStore from '@zustand/user';
+import { Menu, StyledUl } from '@pages/meditation/themeset/ThemeSet.style';
+import ThemeItem from '@pages/meditation/themeset/themeitem/ThemeItem';
+import useModalStore from '@zustand/modal';
 import {
   useIsThemeSelectedStore,
   useSelectedThemeStore,
 } from '@zustand/themeSelection';
+import useUserStore from '@zustand/user';
+import { useEffect, useState } from 'react';
 import { ReactCsspin } from 'react-csspin';
 import 'react-csspin/dist/style.css';
-import ModalWindow from '@components/modal/ModalWindow';
-import ThemeItem from '@pages/meditation/themeset/themeitem/ThemeItem';
-import { Menu, StyledUl } from '@pages/meditation/themeset/ThemeSet.style';
+import { useNavigate } from 'react-router-dom';
 
 function ThemeMenu() {
   const { user } = useUserStore();
+  const { setShowModal, setModalData } = useModalStore();
   const { selectedThemeSet } = useSelectedThemeStore();
   const { isThemeSelectedSet } = useIsThemeSelectedStore();
-  const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [themeData, setThemeData] = useState();
   const [orderData, setOrderData] = useState();
   const navigate = useNavigate();
   const axios = useCustomAxios();
+  // const navigationType = useNavigationType();
 
   useEffect(() => {
     fetchThemes();
@@ -29,6 +30,12 @@ function ThemeMenu() {
       fetchOrders();
     }
   }, []);
+
+  // useEffect(() => {
+  //   if (navigationType === 'POP') {
+  //     console.log('뒤로가기');
+  //   }
+  // }, [navigationType]);
 
   async function fetchThemes() {
     try {
@@ -59,7 +66,22 @@ function ThemeMenu() {
     });
 
     if (isNotPaid) {
-      setIsActive(true);
+      setShowModal(true);
+      setModalData({
+        children: (
+          <span>
+            선택하신 테마는 유료테마입니다. <br />
+            구매를 진행하시겠습니까?
+          </span>
+        ),
+        handleClose() {
+          setShowModal(false);
+        },
+        handleOk() {
+          setShowModal(false);
+          navigate('/purchase');
+        },
+      });
     } else {
       isThemeSelectedSet(true);
     }
@@ -95,24 +117,10 @@ function ThemeMenu() {
     />
   ));
 
-  function handleClose() {
-    setIsActive(false);
-  }
-
-  function handleOk() {
-    navigate('/purchase');
-  }
-
   return (
     <Menu>
       {isLoading && <ReactCsspin />}
       {themeData?.item && <StyledUl>{themeList}</StyledUl>}
-      {isActive && (
-        <ModalWindow handleClose={handleClose} handleOk={handleOk}>
-          선택하신 테마는 유료테마입니다. <br />
-          구매를 진행하시겠습니까?
-        </ModalWindow>
-      )}
     </Menu>
   );
 }
