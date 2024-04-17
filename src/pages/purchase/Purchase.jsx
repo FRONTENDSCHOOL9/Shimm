@@ -28,7 +28,6 @@ function Purchase() {
   const { user } = useUserStore();
   const { selectedTheme } = useSelectedThemeStore();
   const { setShowModal, setModalData } = useModalStore();
-  // const [isPaid, setIsPaid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
@@ -121,25 +120,75 @@ function Purchase() {
     setIsChecked(!isChecked);
   }
 
-  // 결제 API 호출
   function handlePay() {
-    setShowModal(true);
-    setModalData({
-      children: (
-        <span>
-          테마 구매가 완료되었습니다. <br />
-          구매하신 테마로 명상을 시작할까요?
-        </span>
-      ),
-      handleClose() {
-        setShowModal(false);
-        navigate('/meditation');
+    const { IMP } = window;
+    IMP.init(import.meta.env.VITE_MERCHANT_CODE);
+    IMP.request_pay(
+      {
+        pg: 'kcp',
+        pay_method: 'card',
+        merchant_uid:
+          new Date().getTime() + Math.floor(Math.random() * 1000000),
+        name: '테마 결제',
+        amount: 1000,
+        buyer_name: user.name,
+        buyer_tel: user.phone,
+        buyer_email: user.email,
       },
-      handleOk() {
-        setShowModal(false);
-        navigate('/meditation/progress');
+      async res => {
+        try {
+          if (res.success) {
+            const orderRes = await axios.post('/orders', {
+              products: [
+                {
+                  _id: JSON.parse(sessionStorage.getItem('theme')).state
+                    .selectedTheme.id,
+                  quantity: 1,
+                  extra: { ...res },
+                },
+              ],
+            });
+
+            setShowModal(true);
+            setModalData({
+              children: (
+                <span>
+                  테마 구매가 완료되었습니다. <br />
+                  구매하신 테마로 명상을 시작할까요?
+                </span>
+              ),
+              handleClose() {
+                setShowModal(false);
+                navigate('/meditation');
+              },
+              handleOk() {
+                setShowModal(false);
+                navigate('/meditation/progress');
+              },
+            });
+          } else {
+            setShowModal(true);
+            setModalData({
+              children: <span>결제를 취소하셨습니다.</span>,
+              twoButton: false,
+              handleOk() {
+                setShowModal(false);
+              },
+            });
+          }
+        } catch (err) {
+          console.error(err);
+          setShowModal(true);
+          setModalData({
+            children: <span>결제에 실패했습니다. 다시 시도해주세요.</span>,
+            twoButton: false,
+            handleOk() {
+              setShowModal(false);
+            },
+          });
+        }
       },
-    });
+    );
   }
 
   const item = data?.item;

@@ -24,10 +24,8 @@ export const initData = async nextSeq => {
         type: 'user',
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
-        extra: {
-          birthday: '1995-04-14',
-          profileImage: `/files/02-Shimm/yogaman.png`,
-        },
+        birthday: '1995-04-14',
+        profileImage: `/files/02-Shimm/yogaman.png`,
       },
       {
         _id: await nextSeq('user'),
@@ -39,9 +37,7 @@ export const initData = async nextSeq => {
         type: 'seller',
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
-        extra: {
-          birthday: '1997-03-25',
-        },
+        birthday: '1997-03-25',
       },
     ],
     // 상품
