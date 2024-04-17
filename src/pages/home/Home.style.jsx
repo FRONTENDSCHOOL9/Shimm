@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import iconOvals from '@assets/images/icon-ovals.svg';
 import iconShapes from '@assets/images/icon-shapes.svg';
 import iconArrow from '@assets/images/icon-arrow-black.svg';
-import { Link } from 'react-router-dom';
 // import iconLogin from '@assets/images/icon-login.svg'
 // import iconSignup from '@assets/images/icon-signup.svg'
 
