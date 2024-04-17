@@ -52,7 +52,7 @@ function FeedCreate() {
 
   return (
     <>
-      <CircleButton onClick={() => navigate('/post')} />
+      <CircleButton onClick={() => navigate('/community/new')} />
     </>
   );
 }

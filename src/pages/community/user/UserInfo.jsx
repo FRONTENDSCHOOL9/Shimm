@@ -14,12 +14,12 @@ const UserContainer = styled.div`
   }
 `;
 
-function UserInfo({ profileImg, userId, comment }) {
+function UserInfo({ profile, userId, comment }) {
   return (
     <UserContainer>
-      <img src={profileImg} alt="#" />
+      <img src={profile} alt="#" />
       <span>{userId}</span>
-      {comment && <span>{comment.text}</span>}
+      {comment && <span>{comment}</span>}
     </UserContainer>
   );
 }

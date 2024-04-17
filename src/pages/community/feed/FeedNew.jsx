@@ -4,6 +4,7 @@ import iconfile from '@assets/images/icon-file.svg';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ErrorStyled } from '@pages/community/ErrorStyled';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
 const FeedWrite = styled.div`
   width: 100%;
@@ -75,20 +76,30 @@ function FeedNew() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [newPost, setNewPost] = useState('');
+  const [ content, setContent ] = useState('');
+  const [ file, setFile ] = useState(null)
   const navigate = useNavigate();
+  const axios = useCustomAxios();
+  
 
-  function onSubmit(data) {
-    console.log(data);
-    navigate(`/community`);
-    // return (
-    //     <button type="submit" {...rest}>{children}
-    //     </button>
-    // )
+  async function onSubmit(data) {
+    try {
+      const formData = new FormData();
+      formData.append('type', 'community');
+      formData.append('content', data.content);
+      if (data.image) {
+      formData.append('image', data.image[0]);
+    }
+  
+      await axios.post(`/posts`, formData)
+    navigate(`/community`); 
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   function handleTextareaChange(e) {
-    setNewPost(e.target.value);
+    setContent(e.target.value);
   }
 
   function handleEnter(e) {
@@ -98,22 +109,30 @@ function FeedNew() {
     }
   }
 
+  function handleUploadFile(e) {
+    setFile(e.target.files[0])
+  }
+
   return (
     <FeedWrite>
       <h1>글쓰기</h1>
       <UploadFile>
         <img src={iconfile} alt="이미지 첨부하기" />
+        <input {...register('image')} 
+          type='file' 
+          accept='image/*' 
+          onChange={handleUploadFile} />
         <span>이미지 첨부</span>
       </UploadFile>
       <UploadCase>
         가로 500px, 세로 500px 이상의 이미지를 등록해 주세요.
       </UploadCase>
-
+      <form onSubmit={handleSubmit(onSubmit)}>
       <WriteTextarea
-        id="post"
-        value={newPost}
+        id="content"
+        value={content}
         placeholder="글 내용을 입력해주세요."
-        {...register('post', {
+        {...register('content', {
           required: '내용을 입력해주세요.',
           minLength: {
             value: 1,
@@ -123,9 +142,7 @@ function FeedNew() {
         onChange={handleTextareaChange}
         onKeyUp={handleEnter}
       />
-      {errors.post && <ErrorStyled>{errors.post.message}</ErrorStyled>}
-
-      <form onSubmit={handleSubmit(onSubmit)}>
+      {errors.content && <ErrorStyled>{errors.content.message}</ErrorStyled>}
         <SubmitButton type="submit">등록하기</SubmitButton>
       </form>
     </FeedWrite>
