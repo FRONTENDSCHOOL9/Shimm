@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Modal = styled.div`
   background-color: rgb(0 0 0 /0.8);
+  font-weight: 500;
   position: fixed;
   inset: 0;
   padding: 0 45px;
@@ -30,8 +31,13 @@ export const Inside = styled.div`
 `;
 
 export const Message = styled.div`
+  font-size: 1.2rem;
   background-color: #fff;
   padding: 40px;
+
+  @media (min-width: 740px) {
+    font-size: 1.6rem;
+  }
 `;
 
 export const ModalClose = styled.button`
