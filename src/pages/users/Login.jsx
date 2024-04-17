@@ -3,9 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
 import useUserStore from '@zustand/user';
-import { ReactCsspin } from 'react-csspin';
-import 'react-csspin/dist/style.css';
 import Button from '@components/button/Button';
+import Loading from '@components/loading/Loading';
 
 function Login() {
   const { setUser } = useUserStore();
@@ -97,7 +96,7 @@ function Login() {
         회원가입
       </Button>
 
-      {isLoading && <ReactCsspin />}
+      {isLoading && <Loading />}
     </div>
   );
 }

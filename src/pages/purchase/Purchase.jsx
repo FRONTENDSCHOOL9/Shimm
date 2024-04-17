@@ -1,6 +1,7 @@
 import iconBuy from '@assets/images/icon-buy.svg';
 import iconPlay from '@assets/images/icon-play.svg';
 import Button from '@components/button/Button';
+import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   ButtonContainer,
@@ -21,8 +22,6 @@ import useModalStore from '@zustand/modal';
 import { useSelectedThemeStore } from '@zustand/themeSelection';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
-import { ReactCsspin } from 'react-csspin';
-import 'react-csspin/dist/style.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function Purchase() {
@@ -171,7 +170,7 @@ function Purchase() {
 
             <Container>
               <Description>테마 미리듣기</Description>
-              {isLoading && <ReactCsspin />}
+              {isLoading && <Loading />}
               <Preview
                 $bgColor={selectedTheme.background}
                 $url={`${import.meta.env.VITE_API_SERVER}${item?.mainImages[0]['path ']}`}

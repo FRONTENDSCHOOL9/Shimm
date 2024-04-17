@@ -1,19 +1,18 @@
 import { RouterProvider } from 'react-router-dom';
 import router from '@/routes';
 import GlobalStyle from '@components/styles/GlobalStyle';
-import { ReactCsspin } from 'react-csspin';
-import 'react-csspin/dist/style.css';
 import { Suspense } from 'react';
 import ModalWindow from '@components/modal/ModalWindow';
 import useModalStore from '@zustand/modal.mjs';
+import Loading from '@components/loading/Loading';
 
 function App() {
-  const { showModal, modalData, setShowModal } = useModalStore();
+  const { showModal, modalData } = useModalStore();
 
   return (
     <>
       <GlobalStyle />
-      <Suspense fallback={<ReactCsspin />}>
+      <Suspense fallback={<Loading />}>
         <RouterProvider router={router} />
         {showModal && (
           <ModalWindow

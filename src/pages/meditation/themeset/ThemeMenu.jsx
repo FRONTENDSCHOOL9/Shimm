@@ -1,3 +1,4 @@
+import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
 import { Menu, StyledUl } from '@pages/meditation/themeset/ThemeSet.style';
 import ThemeItem from '@pages/meditation/themeset/themeitem/ThemeItem';
@@ -8,8 +9,6 @@ import {
 } from '@zustand/themeSelection';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
-import { ReactCsspin } from 'react-csspin';
-import 'react-csspin/dist/style.css';
 import { useNavigate } from 'react-router-dom';
 
 function ThemeMenu() {
@@ -119,7 +118,7 @@ function ThemeMenu() {
 
   return (
     <Menu>
-      {isLoading && <ReactCsspin />}
+      {isLoading && <Loading />}
       {themeData?.item && <StyledUl>{themeList}</StyledUl>}
     </Menu>
   );

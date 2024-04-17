@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
 import Button from '@components/button/Button';
-import { ReactCsspin } from 'react-csspin';
-import 'react-csspin/dist/style.css';
+import Loading from '@components/loading/Loading';
 
 function SignUp() {
   const axios = useCustomAxios();
@@ -166,7 +165,7 @@ function SignUp() {
         홈화면으로
       </Button>
 
-      {isLoading && <ReactCsspin />}
+      {isLoading && <Loading />}
     </div>
   );
 }
