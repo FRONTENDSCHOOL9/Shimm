@@ -6,64 +6,50 @@ import { useEffect, useState } from 'react';
 import { FeedWrapper, ImageArea } from '@pages/community/feed/FeedList';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useParams } from 'react-router-dom';
+import useUserStore from '@zustand/user.mjs';
+import { useQuery } from 'react-query';
 
 
 function FeedDetail() {
   const [comments, setComments] = useState([]);
   const axios = useCustomAxios();
-  const [ data, setData ] = useState();
-  const { _id } = useParams();
+  const { id } = useParams();
+  console.log(id)
+  useEffect(()=>{
+    
+  },[])
 
-  useEffect(() => {
-    fetchDetail();
-  }, []);
+  const { data } = useQuery({
+    queryKey: [`/posts/${id}`],
+    queryFn: ()=>axios.get(`/posts//${id}`),
+    select: response => response.data
+  })
   
-  const fetchDetail = async () => {
-    try {
-      const res = await axios.get(`/posts/${_id}`)
-      console.log(res.data)
-      setData(res.data)
-    }
-     catch (err) {
-     console.log(err)
-     }
-    }
-
+ 
   const item = data?.item;
-     
-
-  
-  // async function fetchList() {
-  //    try {
-  //       const res = await axios.get(`/posts/${_id}`);
-  //        console.log(res)
-  //       // setData(res.data)
-  //    } catch(err) {
-  //        console.log(err);
-  //    }
-  // }
-
+  console.log(item)
 
   function handleAddComment(newComment) {
     setComments([...comments, newComment]);
   }
 
   return (
-    
+   
     <FeedWrapper>
-      {item && (
-        <>
-          <UserInfo profileImg={item.user._id} userId={item.user.name} />
-          <div>{item.content}</div>
-          { item.image || <ImageArea />}
+    
+       {data && (
+     <>
+         <UserInfo profile={item.user.profile} userId={item.user.name} />
+           <div>{item.content}</div>
+         { item.image || <ImageArea />}
           
 
-          <Replyer>
-            <ReplyList comments={comments} />
+           <Replyer>
+           <ReplyList comments={comments} />
             <ReplyCreate onAddComment={handleAddComment} item={item} />
-          </Replyer>
+        </Replyer>
         </>
-      )}
+     )} 
       </FeedWrapper>
   );
   }

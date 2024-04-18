@@ -3,6 +3,7 @@ import styled from "styled-components";
 import useCustomAxios from '@hooks/useCustomAxios.mjs'
 import FeedCreate from "@pages/community/feed/FeedCreate";
 import { FeedList } from "@pages/community/feed/FeedList";
+import { FeedDetail } from "@pages/community/feed/FeedDetail";
 
 const FeedTemplateWrapper = styled.div`
   display: flex;
@@ -16,22 +17,21 @@ function Feed() {
 
   const [newComment, setNewComment] = useState([]);
   const axios = useCustomAxios();
-  const [ data, setData ] = useState()
+  const [ data, setData ] = useState([])
   useEffect(() => {
     fetchList();
   }, []);
   
   async function fetchList() {
      try {
-        const res = await axios.get('/posts');
+        const res = await axios.get('/posts?type=community');
         console.log(res.data)
-        setData(res.data)
+        setData(res.data.item)
      } catch(err) {
          console.log(err);
      }
+     return <FeedDetail res={res} />
   }
-
-  const item = data?.item
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,7 +42,7 @@ function Feed() {
 
   return (
     <FeedTemplateWrapper>
-      {item?.map(item => (
+      {data.map(item => (
         <FeedList key={item._id} item={item} />
       ))}
       <FeedCreate />

@@ -5,7 +5,9 @@ import styled from 'styled-components';
 import iconedit from '@assets/images/icon-edit.svg';
 import icondelete from '@assets/images/icon-delete-post.svg';
 import iconmore from '@assets/images/icon-more.svg';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+
 
 const StyledDropDown = styled.div`
   display: flex;
@@ -54,16 +56,27 @@ const StyledLink = styled(Link)`
   line-height: 1.8;
 `;
 
-function FeedDropDown() {
+function FeedDropDown({ item }) {
   const menuRef = useRef('menu');
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = useDetectClose(dropDownRef, false);
-
+  const axios = useCustomAxios();
+  const navigate = useNavigate();
   useClickOutside(menuRef, () => {
     if (isOpen) {
       setIsOpen(false);
     }
   });
+
+  async function handleDelete() { 
+    try {
+      await axios.delete(`/posts/${item._id}`)
+      alert('삭제되었습니다')
+      navigate('/community', { replace: true})
+    } catch(err) {
+      console.error('삭제 중 오류', err)
+    }
+  }
 
   return (
     <StyledDropDown ref={menuRef}>
@@ -77,11 +90,14 @@ function FeedDropDown() {
         <OpenMenu>
           <div>
             <img src={iconedit} alt="#" />
-            <StyledLink to="/edit">게시글 수정</StyledLink>
+            <StyledLink to="/community/edit">게시글 수정</StyledLink>
           </div>
           <div>
             <img src={icondelete} alt="#" />
-            <StyledLink to="/">게시글 삭제</StyledLink>
+            <StyledLink
+                        onClick={handleDelete}>
+                          게시글 삭제
+            </StyledLink>
           </div>
         </OpenMenu>
       )}

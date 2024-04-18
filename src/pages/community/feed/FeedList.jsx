@@ -8,7 +8,7 @@ import { useState } from "react";
 import ReplyList from "@pages/community/feed/ReplyList";
 import { ReplyCreate, Replyer } from "@pages/community/feed/ReplyCreate";
 import FeedDropDown from "@pages/community/feed/FeedDropdown";
-import { FeedDetail } from "@pages/community/feed/FeedDetail";
+
 
 const replyer = [
     {
@@ -74,8 +74,6 @@ const MoreComment = styled.div`
 
 function FeedList({ item }){
     const [ comments, setNewComment ] = useState([]);
-    
-    const [ postId, setPostId ] = useState();
     const { 
         _id,
         name, 
@@ -87,7 +85,7 @@ function FeedList({ item }){
     
 
     function handleFeedClick(){
-        console.log(_id, name, profile, content, product, createdAt)
+        // console.log(_id, name, profile, content, product, createdAt)
         navigate(`/community/${_id}`)
     }
     
@@ -97,24 +95,24 @@ function FeedList({ item }){
     
     return (
         <FeedWrapper>
-            <FeedDropDown />
+            <FeedDropDown item={item}/>
             <UserInfo profile={item.user.profile} userId={item.user.name} >
             </UserInfo >
             <div onClick={handleFeedClick}>
-                <Post>
-                   <span>{content}</span>
-                </Post>
-                { product.image && <ImageArea />}
+            <Post>
+                <span>{content}</span>
+            </Post>
+            {item.product && item.product.image && <ImageArea />}
             </div>
             <StateWrapper>
                 <span>{createdAt}</span>
                 <img src={iconbookmark} alt="게시글 좋아요 버튼" />
             </StateWrapper>
             <UserInfo 
-                profile={item.user.profile} 
-                userId={item.user._id} 
-                comment={item.user.comments}/>
-            
+                profile={profile} 
+                userId={name} 
+                comment={comments}/>
+
             <ReplyList comments={comments}/>
                 {replyer && replyer.map(t=>
                 <Replyer key={t.id}>
@@ -123,7 +121,7 @@ function FeedList({ item }){
                 </Replyer>
                 )}
             <MoreComment>
-                <Link to={`/community/${_id}`}>
+                <Link to={`/community/${item._id}`}>
                     댓글 더보기
                 </Link>
             </MoreComment>
