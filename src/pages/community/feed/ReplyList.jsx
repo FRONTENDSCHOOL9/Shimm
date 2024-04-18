@@ -1,3 +1,4 @@
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { UserInfo } from '@pages/community/user/UserInfo';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -19,17 +20,24 @@ const StyledReplies = styled.div`
 `;
 
 function ReplyList({ comments, profileImg, userId }) {
-
-
-  
   const commentsList = comments || [];
+  const axios = useCustomAxios();
 
+  // useEffect(() => {
+  //   fetchReply();
+  // }, []);
+  // async function fetchReply() {
+  //   const res = await axios.post(`/posts/${_id}/replies`);
+
+  //   console.log(res.data);
+  //   console.log(commentsList);
+  // }
   return (
     <div>
       {commentsList.map((comment, index) => (
         <StyledReplies key={index}>
           <img src={profileImg} alt="#" />
-          <span>{userId && userId }</span>
+          <span>{userId && userId}</span>
           <p>{comment.text}</p>
         </StyledReplies>
       ))}

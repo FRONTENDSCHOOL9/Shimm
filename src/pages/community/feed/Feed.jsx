@@ -24,8 +24,8 @@ function Feed() {
   async function fetchList() {
     try {
       const res = await axios('/posts?type=community');
-      console.log(res.data);
-      setData(res.data.item);
+
+      setData(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +41,7 @@ function Feed() {
 
   return (
     <FeedTemplateWrapper>
-      {data.map(item => (
+      {data?.item?.map(item => (
         <FeedList key={item._id} item={item} />
       ))}
       <FeedCreate />

@@ -1,3 +1,4 @@
+import { SpaRounded } from '@mui/icons-material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -15,16 +16,16 @@ const UserContainer = styled.div`
 `;
 
 function UserInfo({ profile, userId, comment }) {
-  console.log();
-
   return (
     <UserContainer>
       <img
         src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${profile}`}
         alt="#"
       />
-      <span>{userId}</span>
-      {comment && <span>{comment}</span>}
+      <div>
+        <p>{userId}</p>
+        {comment && <span>{comment.text}</span>}
+      </div>
     </UserContainer>
   );
 }
