@@ -8,7 +8,6 @@ import iconmore from '@assets/images/icon-more.svg';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
-
 const StyledDropDown = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,8 +33,8 @@ const Menu = styled.div`
 const OpenMenu = styled.div`
   background-color: white;
   width: 100%;
-  min-width: 4rem;
-  padding: 0.6rem 1rem;
+  min-width: 40px;
+  padding: 6px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,7 +46,6 @@ const OpenMenu = styled.div`
   & img {
     width: 30px;
     margin: 4px 10px 0 0;
-
   }
 `;
 
@@ -68,13 +66,13 @@ function FeedDropDown({ item }) {
     }
   });
 
-  async function handleDelete() { 
+  async function handleDelete() {
     try {
-      await axios.delete(`/posts/${item._id}`)
-      alert('삭제되었습니다')
-      navigate('/community', { replace: true})
-    } catch(err) {
-      console.error('삭제 중 오류', err)
+      await axios.delete(`/posts/${item._id}`);
+      alert('삭제되었습니다');
+      navigate('/community', { replace: true });
+    } catch (err) {
+      console.error('삭제 중 오류', err);
     }
   }
 
@@ -94,10 +92,7 @@ function FeedDropDown({ item }) {
           </div>
           <div>
             <img src={icondelete} alt="#" />
-            <StyledLink
-                        onClick={handleDelete}>
-                          게시글 삭제
-            </StyledLink>
+            <StyledLink onClick={handleDelete}>게시글 삭제</StyledLink>
           </div>
         </OpenMenu>
       )}

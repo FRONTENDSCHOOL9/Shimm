@@ -5,13 +5,13 @@ import styled from 'styled-components';
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 10px;
 
   & img {
-    width: 3rem;
-    height: 3rem;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    box-shadow: inset 0 0 20px #335635;
+    margin-bottom: 10px;
   }
 `;
 

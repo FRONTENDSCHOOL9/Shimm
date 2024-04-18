@@ -13,17 +13,27 @@ function FeedDetail() {
   const [comments, setComments] = useState([]);
   const axios = useCustomAxios();
   const { id } = useParams();
-  console.log(id);
-  useEffect(() => {}, []);
 
-  const { data } = useQuery({
-    queryKey: [`/posts/${id}`],
-    queryFn: () => axios.get(`/posts//${id}`),
-    select: response => response.data,
-  });
+  useEffect(() => {}, []);
+  const [data, setData] = useState('');
+
+  // const { data } = useQuery({
+  //   queryKey: [`/posts/${id}`],
+  //   queryFn: () => axios.get(`/posts/${id}`),
+  //   select: response => response.data,
+  // });
+
+  const fetchDetail = async () => {
+    const res = await axios.get(`/posts/${id}`);
+
+    setData(res.data);
+  };
+
+  useEffect(() => {
+    fetchDetail();
+  }, []);
 
   const item = data?.item;
-  console.log(item);
 
   function handleAddComment(newComment) {
     setComments([...comments, newComment]);

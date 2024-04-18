@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import iconfile from '@assets/images/icon-file.svg';
 import { ImageArea } from '@pages/community/feed/FeedList';
 
-
 const EditWrapper = styled.div`
   max-width: 740px;
   width: 100%;
@@ -28,7 +27,6 @@ const EditWrapper = styled.div`
 
 const UploadedImg = styled.img`
   aspect-ratio: 16/9;
-  background-color: F0F5ED;
 `;
 
 const Edit = styled.div`
@@ -38,11 +36,11 @@ const Edit = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 3rem;
+  padding: 30px;
   box-sizing: border-box;
 
   & h1 {
-    margin: 3rem;
+    margin: 30px;
     font-size: 2.2rem;
     font-weight: 500;
   }

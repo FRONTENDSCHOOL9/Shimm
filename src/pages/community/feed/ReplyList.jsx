@@ -1,28 +1,30 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { UserInfo } from '@pages/community/user/UserInfo';
+import useUserStore from '@zustand/user.mjs';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledReplies = styled.div`
-  box-shadow: inset 0 0 20px rebeccapurple;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 1.2rem;
+  gap: 10px;
+  margin-top: 12px;
 
   & img {
-    width: 3rem;
-    height: 3rem;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    box-shadow: inset 0 0 20px #335635;
   }
 `;
 
 function ReplyList({ comments, profileImg, userId }) {
   const commentsList = comments || [];
   const axios = useCustomAxios();
-
+  const { user } = useUserStore();
+  const { _id } = useParams();
+  console.log(_id);
+  console.log(user);
   // useEffect(() => {
   //   fetchReply();
   // }, []);
@@ -36,8 +38,11 @@ function ReplyList({ comments, profileImg, userId }) {
     <div>
       {commentsList.map((comment, index) => (
         <StyledReplies key={index}>
-          <img src={profileImg} alt="#" />
-          <span>{userId && userId}</span>
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user?.profile}`}
+            alt="댓글작성한 사용자의 사진"
+          />
+          <span>{user.name}</span>
           <p>{comment.text}</p>
         </StyledReplies>
       ))}

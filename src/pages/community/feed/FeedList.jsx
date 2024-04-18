@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { UserInfo } from '@pages/community/user/UserInfo';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import iconbookmark from '@assets/images/icon-bookmark.svg';
-import iconbookmarkactive from '@assets/images/icon-bookmark-active.svg';
-import iconsend from '@assets/images/icon-send.svg';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import ReplyList from '@pages/community/feed/ReplyList';
 import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate';
 import FeedDropDown from '@pages/community/feed/FeedDropdown';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useUserStore from '@zustand/user.mjs';
 
 const replyer = [
   {
@@ -53,8 +54,12 @@ const StateWrapper = styled.div`
 
   & img {
     cursor: pointer;
-    width: 3rem;
+    width: 24px;
   }
+
+  /* & img:isactive {
+    background-color: red;
+  } */
 `;
 
 const ImageArea = styled.div`
@@ -75,18 +80,17 @@ function FeedList({ item }) {
   const [comments, setNewComment] = useState([]);
   const { _id, name, profile, content, createdAt } = item;
   const navigate = useNavigate();
+  const { id } = useParams();
+  const axios = useCustomAxios();
 
   function handleFeedClick() {
-    // console.log(_id, name, profile, content, product, createdAt)
     navigate(`/community/${_id}`);
   }
 
   function handleAddComment(newComment) {
     setNewComment([...comments, newComment]);
   }
-  //   console.log(
-  //     `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.user.profile}`,
-  //   );
+
   return (
     <FeedWrapper>
       <FeedDropDown item={item} />
@@ -95,11 +99,9 @@ function FeedList({ item }) {
         <Post>
           <span>{content}</span>
         </Post>
-        <ImageArea>
-          <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.extra?.image}`}
-          />
-        </ImageArea>
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.extra?.image}`}
+        />
       </div>
       <StateWrapper>
         <span>{createdAt}</span>
