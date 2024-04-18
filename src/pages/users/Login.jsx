@@ -5,7 +5,7 @@ import useCustomAxios from '@hooks/useCustomAxios';
 import useUserStore from '@zustand/user';
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
-import GoogleLoginButton from '../../components/socialLogin/SocialGoogle';
+import GoogleLoginButton from '@components/socialLogin/SocialGoogle';
 import SocialKakao from '@components/socialLogin/SocialKakao';
 import SocialNaver from '@components/socialLogin/SocialNaver';
 
