@@ -1,11 +1,10 @@
-import { SocialButton } from '@components/socail/SocialButton.style';
+import { SocialButton } from '@components/social/SocialButton.style';
 import PropTypes from 'prop-types';
 
 function SocialButtons({
   children,
   type = 'button',
   bgColor = 'white',
-  color,
   icons = 'white',
   handleClick,
 }) {
@@ -13,7 +12,6 @@ function SocialButtons({
     <SocialButton
       type={type}
       $bg={bgColor}
-      color={color}
       onClick={handleClick}
       icons={icons}
     >
@@ -27,7 +25,6 @@ SocialButtons.propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   bgColor: PropTypes.string,
-  color: PropTypes.string,
   icons: PropTypes.string,
   handleClick: PropTypes.func,
 };

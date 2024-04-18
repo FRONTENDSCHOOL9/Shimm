@@ -5,6 +5,8 @@ import useCustomAxios from '@hooks/useCustomAxios';
 import useUserStore from '@zustand/user';
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
+import SocialButtons from '@components/social/SocialButton';
+import GoogleLoginButton from './GoogleLoginButton';
 
 function Login() {
   const { setUser } = useUserStore();
@@ -91,14 +93,23 @@ function Login() {
           {errors.password && <p>{errors.password.message}</p>}
         </div>
 
-        <Button type="submit" size="medium" bgColor="primary">
+        <Button type='submit' size='full' bgColor='dark'>
           로그인
         </Button>
       </form>
 
-      <Button size="medium" bgColor="primary" handleClick={handleSignUp}>
-        회원가입
-      </Button>
+      <div>
+        <p>또는</p>
+      </div>
+
+      <div>
+        <SocialButtons bgColor='white' handleClick={GoogleLoginButton}>구글로 로그인 하기</SocialButtons>
+        <SocialButtons bgColor='yellow'>카카오로 로그인 하기</SocialButtons>
+        <SocialButtons bgColor='green'>네이버로 로그인 하기</SocialButtons>
+        <Button size='full' bgColor='dark' $display='block' handleClick={handleSignUp}>회원가입</Button>
+      </div>
+
+
 
       {isLoading && <Loading />}
     </div>
