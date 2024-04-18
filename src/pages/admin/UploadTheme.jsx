@@ -1,6 +1,8 @@
 import Input from '@components/input/Input';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import iconDropper from '@assets/images/icon-dropper.svg';
+import { SketchPicker } from 'react-color';
 import styled from 'styled-components';
 
 const Main = styled.main`
@@ -53,10 +55,22 @@ const Main = styled.main`
     left: calc(100% - 18px);
     background-color: #fff;
   }
+
+  & button {
+    width: 50px;
+    height: 25px;
+    border-radius: 10px;
+    background-color: #000;
+  }
 `;
 
 function UploadTheme() {
   const [isChecked, setIsChecked] = useState(true);
+  const [isStartOpen, setIsStartOpen] = useState(false);
+  const [isEndOpen, setIsEndOpen] = useState(false);
+  const [startColor, setStartColor] = useState();
+  const [endColor, setEndColor] = useState();
+
   const {
     register,
     handleSubmit,
@@ -109,10 +123,21 @@ function UploadTheme() {
           <div>
             <p>테마 배경 색상</p>
             <div>
-              <img src="" alt="" />
+              <img src={iconDropper} alt="시작 색상 선택" />
+              <button
+                type="button"
+                onClick={() => setIsStartOpen(!isStartOpen)}
+              >
+                <i>색상 선택</i>
+              </button>
+              {isStartOpen && <SketchPicker />}
             </div>
             <div>
-              <img src="" alt="" />
+              <img src={iconDropper} alt="종료 색상 선택" />
+              <button type="button" onClick={() => setIsEndOpen(!isEndOpen)}>
+                <i>색상 선택</i>
+              </button>
+              {isEndOpen && <SketchPicker />}
             </div>
           </div>
         </form>
