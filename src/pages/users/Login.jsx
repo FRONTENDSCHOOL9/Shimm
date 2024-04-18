@@ -111,7 +111,7 @@ function Login() {
         <Button
           size="full"
           bgColor="dark"
-          $display="block"
+          display="block"
           handleClick={handleSignUp}
         >
           회원가입
