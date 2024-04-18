@@ -126,6 +126,7 @@ function Purchase() {
   }
 
   function handlePay() {
+    setIsPlaying(false);
     const { IMP } = window;
     IMP.init(import.meta.env.VITE_MERCHANT_CODE);
     IMP.request_pay(
