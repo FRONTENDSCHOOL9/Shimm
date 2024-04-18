@@ -76,25 +76,41 @@ function FeedNew() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [ content, setContent ] = useState('');
-  const [ file, setFile ] = useState(null)
+  const [content, setContent] = useState('');
+  const [file, setFile] = useState(null);
   const navigate = useNavigate();
   const axios = useCustomAxios();
-  
 
   async function onSubmit(data) {
     try {
-      const formData = new FormData();
-      formData.append('type', 'community');
-      formData.append('content', data.content);
-      if (data.image) {
-      formData.append('image', data.image[0]);
-    }
-  
-      await axios.post(`/posts`, formData)
-    navigate(`/community`); 
+      data.type = 'community';
+      // 이미지 먼저 업로드
+      if (data.image.length > 0) {
+        // 프로필 이미지를 추가한 경우
+        const imageFormData = new FormData();
+        imageFormData.append('attach', data.image[0]);
+
+        const fileRes = await axios('/files', {
+          method: 'post',
+          headers: {
+            // 파일 업로드시 필요한 설정
+            'Content-Type': 'multipart/form-data',
+          },
+          data: imageFormData,
+        });
+
+        // 서버로부터 응답받은 이미지 이름을 회원 정보에 포함
+        data.image = fileRes.data.item[0].name;
+      } else {
+        // profileImage 속성을 제거
+        delete data.image;
+      }
+
+      const res = await axios.post(`/posts`, data);
+      console.log(res.data);
+      // navigate(`/community`);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   }
 
@@ -102,47 +118,51 @@ function FeedNew() {
     setContent(e.target.value);
   }
 
-  function handleEnter(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleSubmit(onSubmit)();
-    }
-  }
+  // function handleEnter(e) {
+  //   if (e.key === 'Enter') {
+  //     e.preventDefault();
+  //     handleSubmit(onSubmit)();
+  //   }
+  // }
 
   function handleUploadFile(e) {
-    setFile(e.target.files[0])
+    setFile(e.target.files[0]);
   }
 
   return (
     <FeedWrite>
       <h1>글쓰기</h1>
-      <UploadFile>
-        <img src={iconfile} alt="이미지 첨부하기" />
-        <input {...register('image')} 
-          type='file' 
-          accept='image/*' 
-          onChange={handleUploadFile} />
-        <span>이미지 첨부</span>
-      </UploadFile>
-      <UploadCase>
-        가로 500px, 세로 500px 이상의 이미지를 등록해 주세요.
-      </UploadCase>
       <form onSubmit={handleSubmit(onSubmit)}>
-      <WriteTextarea
-        id="content"
-        value={content}
-        placeholder="글 내용을 입력해주세요."
-        {...register('content', {
-          required: '내용을 입력해주세요.',
-          minLength: {
-            value: 1,
-            message: '한글자 이상 입력해주세요.',
-          },
-        })}
-        onChange={handleTextareaChange}
-        onKeyUp={handleEnter}
-      />
-      {errors.content && <ErrorStyled>{errors.content.message}</ErrorStyled>}
+        <div>
+          <UploadFile>
+            <img src={iconfile} alt="이미지 첨부하기" />
+            <input
+              {...register('image')}
+              type="file"
+              accept="image/*"
+              onChange={handleUploadFile}
+            />
+            <span>이미지 첨부</span>
+          </UploadFile>
+          <UploadCase>
+            가로 500px, 세로 500px 이상의 이미지를 등록해 주세요.
+          </UploadCase>
+        </div>
+
+        <WriteTextarea
+          id="content"
+          value={content}
+          placeholder="글 내용을 입력해주세요."
+          {...register('content', {
+            required: '내용을 입력해주세요.',
+            minLength: {
+              value: 1,
+              message: '한글자 이상 입력해주세요.',
+            },
+          })}
+          onChange={handleTextareaChange}
+        />
+        {errors.content && <ErrorStyled>{errors.content.message}</ErrorStyled>}
         <SubmitButton type="submit">등록하기</SubmitButton>
       </form>
     </FeedWrite>

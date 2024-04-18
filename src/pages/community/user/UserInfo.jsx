@@ -15,9 +15,14 @@ const UserContainer = styled.div`
 `;
 
 function UserInfo({ profile, userId, comment }) {
+  console.log();
+
   return (
     <UserContainer>
-      <img src={profile} alt="#" />
+      <img
+        src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${profile}`}
+        alt="#"
+      />
       <span>{userId}</span>
       {comment && <span>{comment}</span>}
     </UserContainer>

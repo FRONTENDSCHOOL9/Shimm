@@ -6,6 +6,11 @@ meta {
 
 post {
   url: {{url}}/files
-  body: none
+  body: multipartForm
   auth: none
+}
+
+body:multipart-form {
+  attach: @file(/Users/kiho/Desktop/testimg/yogaman.png)
+  attach: @file(/Users/kiho/Desktop/testimg/mid.png)
 }
