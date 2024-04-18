@@ -9,12 +9,7 @@ function SocialButtons({
   handleClick,
 }) {
   return (
-    <SocialButton
-      type={type}
-      $bg={bgColor}
-      onClick={handleClick}
-      icons={icons}
-    >
+    <SocialButton type={type} $bg={bgColor} onClick={handleClick} icons={icons}>
       {children}
     </SocialButton>
   );

@@ -1,8 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import iconGoogle from '@assets/images/icon-google.png';
 import iconKakao from '@assets/images/icon-kakao.png';
 import iconNaver from '@assets/images/icon-naver.png';
-
 
 const bgColors = {
   white: '#fff',
@@ -13,8 +12,8 @@ const bgColors = {
 const colors = {
   white: '#333',
   yellow: '#3c1e1e',
-  green: '#fff'
-}
+  green: '#fff',
+};
 
 const hoverColors = {
   white: '#e6e6e6',
@@ -32,15 +31,13 @@ const icons = {
   white: iconGoogle,
   yellow: iconKakao,
   green: iconNaver,
-}
+};
 
 const borders = {
   white: '#b4b4b4',
   yellow: 'none',
-  green: 'none'
-}
-
-
+  green: 'none',
+};
 
 export const SocialButton = styled.button`
   width: 100%;
@@ -49,7 +46,7 @@ export const SocialButton = styled.button`
   background-color: ${props => bgColors[props.$bg]};
   border-radius: 25px;
   border: 1px solid transparent;
-  border-color: ${props => borders[props.$bg]};;
+  border-color: ${props => borders[props.$bg]};
   text-align: center;
   color: ${props => colors[props.$bg]};
   font-size: 1.4rem;

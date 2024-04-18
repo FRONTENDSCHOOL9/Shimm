@@ -1,5 +1,5 @@
-import { GoogleLogin } from "@react-oauth/google";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const GoogleLoginButton = () => {
   const clientId = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
@@ -9,10 +9,10 @@ const GoogleLoginButton = () => {
       <GoogleOAuthProvider clientId={clientId}>
         <GoogleLogin
           onSuccess={credentialResponse => {
-            console.log((credentialResponse));
+            console.log(credentialResponse);
           }}
           onError={() => {
-            console.log("Login Failed");
+            console.log('Login Failed');
           }}
         />
       </GoogleOAuthProvider>
