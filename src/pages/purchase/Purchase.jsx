@@ -207,7 +207,7 @@ function Purchase() {
     const { playedSeconds } = state;
     setPlayTime(playedSeconds);
 
-    if (playTime >= 5) {
+    if (playTime >= 60) {
       setIsPlaying(false);
       setPlayTime(0);
     }
