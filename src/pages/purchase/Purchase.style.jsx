@@ -168,3 +168,8 @@ export const CheckBoxContainer = styled.div`
     margin-bottom: 30px;
   }
 `;
+
+export const Player = styled.div`
+  display: none;
+  box-shadow: inset 0 0 5px white;
+`;

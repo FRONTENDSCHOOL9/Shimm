@@ -1,5 +1,6 @@
 import iconBuy from '@assets/images/icon-buy.svg';
 import iconPlay from '@assets/images/icon-play.svg';
+import iconPause from '@assets/images/icon-pause.svg';
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
@@ -14,6 +15,7 @@ import {
   PageTitle,
   PlayButton,
   PlayIcon,
+  Player,
   Preview,
   StyledMain,
   StyledSection,
@@ -22,6 +24,7 @@ import useModalStore from '@zustand/modal';
 import { useSelectedThemeStore } from '@zustand/themeSelection';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
+import ReactPlayer from 'react-player';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function Purchase() {
@@ -30,7 +33,9 @@ function Purchase() {
   const { setShowModal, setModalData } = useModalStore();
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [data, setData] = useState();
+  const [playTime, setPlayTime] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
   const axios = useCustomAxios();
@@ -191,6 +196,20 @@ function Purchase() {
     );
   }
 
+  function handlePlay() {
+    setIsPlaying(!isPlaying);
+  }
+
+  function handleProgress(state) {
+    const { playedSeconds } = state;
+    setPlayTime(playedSeconds);
+
+    if (playTime >= 60) {
+      setIsPlaying(false);
+      setPlayTime(0);
+    }
+  }
+
   const item = data?.item;
 
   return (
@@ -219,13 +238,25 @@ function Purchase() {
 
             <Container>
               <Description>테마 미리듣기</Description>
+              <Player>
+                <ReactPlayer
+                  url={`${import.meta.env.VITE_API_SERVER}${item?.extra.music.path}`}
+                  loop={false}
+                  playing={isPlaying}
+                  onProgress={handleProgress}
+                />
+              </Player>
               {isLoading && <Loading />}
               <Preview
                 $bgColor={selectedTheme.background}
-                $url={`${import.meta.env.VITE_API_SERVER}${item?.mainImages[0]['path ']}`}
+                $url={`${import.meta.env.VITE_API_SERVER}${item?.mainImages[0]['path']}`}
               >
-                <PlayButton>
-                  <PlayIcon src={iconPlay} alt="음악 재생" />
+                <PlayButton type="button" onClick={handlePlay}>
+                  {isPlaying ? (
+                    <PlayIcon src={iconPause} alt="재생" />
+                  ) : (
+                    <PlayIcon src={iconPlay} alt="중지" />
+                  )}
                 </PlayButton>
               </Preview>
             </Container>

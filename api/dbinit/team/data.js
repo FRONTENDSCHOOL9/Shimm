@@ -29,6 +29,19 @@ export const initData = async nextSeq => {
       },
       {
         _id: await nextSeq('user'),
+        email: 'yogagirl@test.com',
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        name: '요가걸',
+        phone: '01011112222',
+        type: 'user',
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+        birthday: '1995-04-14',
+        profileImage: `/files/02-Shimm/yogaman.png`,
+      },
+      {
+        _id: await nextSeq('user'),
         email: 'seller@test.com',
         password:
           '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
@@ -251,7 +264,106 @@ export const initData = async nextSeq => {
     // 즐겨찾기/북마크
     bookmark: [],
     // QnA, 공지사항, 게시판
-    post: [],
+    post: [
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        title: '게시물 제목',
+        content: '요가 하시는 분 있나요~?',
+        image: '/files/02-Shimm/yogagirl.png',
+        user: {
+          _id: 1,
+          name: '요가맨',
+          profile: 'yogaman.png',
+        },
+        replies: [
+          {
+            _id: 1,
+            user: {
+              _id: 2,
+              name: '요가걸',
+              profile: 'yogagirl.png',
+            },
+            content: '요가 …짱!',
+            createdAt: getTime(-2, -60 * 60 * 20),
+            updatedAt: getTime(-2, -60 * 60 * 2),
+          },
+          {
+            _id: 2,
+            user: {
+              _id: 2,
+              name: '요가걸',
+              profile: 'yogagirl.png',
+            },
+            content: '요가좋툐',
+            createdAt: getTime(-2, -60 * 60 * 10),
+            updatedAt: getTime(-2, -60 * 60 * 1),
+          },
+          {
+            _id: 3,
+            user: {
+              _id: 2,
+              name: '요가걸',
+              profile: 'yogagirl.png',
+            },
+            content: '굿',
+            createdAt: getTime(-2, -60 * 60 * 9),
+            updatedAt: getTime(-1, -60 * 60 * 20),
+          },
+        ],
+        createdAt: getTime(-3, -60 * 60 * 2),
+        updatedAt: getTime(-3, -60 * 60 * 2),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        title: '게시물 제목',
+        content: '피곤하네여…',
+        image: '/files/02-Shimm/yogagirl.png',
+        user: {
+          _id: 1,
+          name: '쓰러지다',
+          profile: 'yogagirl.png',
+        },
+        replies: [
+          {
+            _id: 1,
+            user: {
+              _id: 1,
+              name: '요가맨',
+              profile: 'yogaman.png',
+            },
+            content: '힘내요!',
+            createdAt: getTime(-2, -60 * 60 * 20),
+            updatedAt: getTime(-2, -60 * 60 * 2),
+          },
+          {
+            _id: 2,
+            user: {
+              _id: 1,
+              name: '요가맨',
+              profile: 'yogaman.png',
+            },
+            content: '화이토화이토',
+            createdAt: getTime(-2, -60 * 60 * 10),
+            updatedAt: getTime(-2, -60 * 60 * 1),
+          },
+          {
+            _id: 3,
+            user: {
+              _id: 2,
+              name: '요가걸',
+              profile: 'yogagirl.png',
+            },
+            content: '밥 잘 챙겨드셔요',
+            createdAt: getTime(-2, -60 * 60 * 9),
+            updatedAt: getTime(-1, -60 * 60 * 20),
+          },
+        ],
+        createdAt: getTime(-3, -60 * 60 * 2),
+        updatedAt: getTime(-3, -60 * 60 * 2),
+      },
+    ],
     // 코드
     code: [],
     // 설정
