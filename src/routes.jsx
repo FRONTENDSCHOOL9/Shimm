@@ -1,5 +1,6 @@
 import Layout from '@components/layout/layout/Layout';
 import ErrorPage from '@pages/ErrorPage';
+import UploadTheme from '@pages/admin/UploadTheme';
 import Community from '@pages/community/Community';
 import { FeedDetail } from '@pages/community/feed/FeedDetail';
 import FeedEdit from '@pages/community/feed/FeedEdit';
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
       {
         path: '/mypage/archive',
         element: <MyRecord />,
+      },
+      {
+        path: '/admin/theme',
+        element: <UploadTheme />,
       },
     ],
   },

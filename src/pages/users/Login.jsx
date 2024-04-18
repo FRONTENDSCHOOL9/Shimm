@@ -32,6 +32,7 @@ function Login() {
         _id: res.data.item._id,
         name: res.data.item.name,
         email: res.data.item.email,
+        type: res.data.item.type,
         phone: res.data.item.phone,
         profile: res.data.item.profileImage,
         token: res.data.item.token,

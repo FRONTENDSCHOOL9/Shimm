@@ -1,5 +1,4 @@
-
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const size = {
   small: {
@@ -14,21 +13,29 @@ const size = {
     width: '100%',
     height: '50px',
   },
-}
-
+};
 
 export const CommonInput = styled.input`
-  width: ${props => size[props.size]?.width};
-  height: ${props => size[props.size]?.height};
+  width: ${props => size[props.size].width};
+  height: ${props => size[props.size].height};
+  padding: 11px 6px;
   border-radius: 6px;
-  border: 1px solid #CBCDCC;
+  border: 1px solid #cbcdcc;
+  box-sizing: border-box;
   background-color: #fff;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  outline: none;
+
+  &::placeholder {
+    color: #949494;
+  }
 
   &:focus {
-    box-shadow: inset 0 0 0 2px #55A25A;
+    box-shadow: inset 0 0 0 2px #55a25a;
   }
 
   @media (min-width: 740) {
     max-width: 450px;
   }
-`
+`;

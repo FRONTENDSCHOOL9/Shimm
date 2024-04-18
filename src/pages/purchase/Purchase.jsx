@@ -90,6 +90,7 @@ function Purchase() {
           로그인 하시겠습니까?
         </span>
       ),
+      button: 2,
       handleClose() {
         setShowModal(false);
         navigate(-1);
@@ -110,6 +111,7 @@ function Purchase() {
           명상을 시작하시겠습니까?
         </span>
       ),
+      button: 2,
       handleClose() {
         setShowModal(false);
         navigate('/meditation');
@@ -163,6 +165,7 @@ function Purchase() {
                   구매하신 테마로 명상을 시작할까요?
                 </span>
               ),
+              button: 2,
               handleClose() {
                 setShowModal(false);
                 navigate('/meditation');
@@ -176,7 +179,7 @@ function Purchase() {
             setShowModal(true);
             setModalData({
               children: <span>결제를 취소하셨습니다.</span>,
-              twoButton: false,
+              button: 1,
               handleOk() {
                 setShowModal(false);
               },
@@ -187,7 +190,7 @@ function Purchase() {
           setShowModal(true);
           setModalData({
             children: <span>결제에 실패했습니다. 다시 시도해주세요.</span>,
-            twoButton: false,
+            button: 1,
             handleOk() {
               setShowModal(false);
             },
