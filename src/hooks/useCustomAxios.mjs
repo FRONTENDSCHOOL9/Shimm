@@ -47,6 +47,7 @@ function useCustomAxios() {
           setShowModal(true);
           setModalData({
             children: '로그인 후 이용 가능합니다. 로그인하시겠습니까?',
+            button: 2,
             handleClose() {
               setShowModal(false);
             },

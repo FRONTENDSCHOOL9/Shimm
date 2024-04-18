@@ -5,25 +5,26 @@ import {
   Message,
   ModalClose,
   ModalOk,
+  ButtonContainer,
 } from '@components/modal/ModalWindow.style';
 
-function ModalWindow({ children, twoButton = true, handleClose, handleOk }) {
+function ModalWindow({ children, button, handleClose, handleOk }) {
   return (
     <Modal>
       <Inside>
         <Message>{children}</Message>
-        {twoButton && (
-          <ModalClose
-            type="button"
-            onClick={handleClose}
-            $twoButton={twoButton}
-          >
-            취소
-          </ModalClose>
+        {button > 0 && (
+          <ButtonContainer>
+            {button > 1 && (
+              <ModalClose type="button" onClick={handleClose}>
+                취소
+              </ModalClose>
+            )}
+            <ModalOk type="button" onClick={handleOk}>
+              확인
+            </ModalOk>
+          </ButtonContainer>
         )}
-        <ModalOk type="button" onClick={handleOk} $twoButton={twoButton}>
-          확인
-        </ModalOk>
       </Inside>
     </Modal>
   );
@@ -31,7 +32,7 @@ function ModalWindow({ children, twoButton = true, handleClose, handleOk }) {
 
 ModalWindow.propTypes = {
   children: PropTypes.node.isRequired,
-  twoButton: PropTypes.bool,
+  button: PropTypes.number.isRequired,
   handleClose: PropTypes.func,
   handleOk: PropTypes.func.isRequired,
 };

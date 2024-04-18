@@ -66,6 +66,7 @@ function Timer({ selectedTime, handleMusic }) {
             명상이 아직 진행 중입니다. <br /> 정말 종료하시겠습니까?
           </span>
         ),
+        button: 2,
         handleClose() {
           setShowModal(false);
           handleMusic(true);
@@ -87,7 +88,7 @@ function Timer({ selectedTime, handleMusic }) {
     setShowModal(true);
     setModalData({
       children: <span>명상이 종료되었습니다! 기록 페이지로 이동합니다.</span>,
-      twoButton: false,
+      button: 1,
       handleOk() {
         setShowModal(false);
         navigate('/meditation/record');

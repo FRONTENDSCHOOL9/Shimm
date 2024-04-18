@@ -67,6 +67,7 @@ function ThemeMenu() {
             구매를 진행하시겠습니까?
           </span>
         ),
+        button: 2,
         handleClose() {
           setShowModal(false);
         },

@@ -40,14 +40,17 @@ export const Message = styled.div`
   }
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+`;
+
 export const ModalClose = styled.button`
-  width: 50%;
+  flex-grow: 1;
   height: 50px;
   font-size: 1.6rem;
   background-color: rgba(107, 177, 112, 1);
   text-align: center;
   color: #fff;
-  display: ${props => (props.$twoButton ? '' : 'none')};
 
   @media (min-width: 740px) {
     height: 60px;
@@ -55,7 +58,7 @@ export const ModalClose = styled.button`
 `;
 
 export const ModalOk = styled.button`
-  width: ${props => (props.$twoButton ? '50%' : '100%')};
+  flex-grow: 1;
   height: 50px;
   font-size: 1.6rem;
   background-color: rgba(85, 162, 90, 1);

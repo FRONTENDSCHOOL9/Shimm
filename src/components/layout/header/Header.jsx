@@ -54,7 +54,7 @@ function Header() {
         <HeaderLink to="/community" onClick={handleClick}>
           커뮤니티
         </HeaderLink>
-        {user.type === 'seller' && (
+        {user?.type === 'seller' && (
           <HeaderLink to="/admin/theme" onClick={handleClick}>
             테마 등록하기
           </HeaderLink>
