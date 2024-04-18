@@ -1,29 +1,31 @@
+import Button from '@components/button/Button';
+import Input from '@components/input/Input';
+import ModalWindow from '@components/modal/ModalWindow';
+import Result from '@components/result/Result';
+import useCustomAxios from '@hooks/useCustomAxios';
+import {
+  Form,
+  PageTitle,
+  SaveButtonContainer,
+  StyledError,
+  StyledLabel,
+  StyledMain,
+  StyledSection,
+} from '@pages/meditation/Meditation.style';
+import useModalStore from '@zustand/modal';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
+import { useSelectedTimeStore } from '@zustand/timeSelection';
+import useCompleteTimeStore from '@zustand/timer';
+import useUserStore from '@zustand/user';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useCustomAxios from '@hooks/useCustomAxios';
-import useUserStore from '@zustand/user';
-import useCompleteTimeStore from '@zustand/timer';
-import { useSelectedTimeStore } from '@zustand/timeSelection';
-import { useSelectedThemeStore } from '@zustand/themeSelection';
-import Result from '@components/result/Result';
-import Button from '@components/button/Button';
-import ModalWindow from '@components/modal/ModalWindow';
-import {
-  Form,
-  StyledSection,
-  StyledMain,
-  PageTitle,
-  StyledLabel,
-  StyledError,
-  SaveButtonContainer,
-} from '@pages/meditation/Meditation.style';
-import Input from '@components/input/Input';
 
 function MeditationRecord() {
   const { selectedTime, selectedTimeSet } = useSelectedTimeStore();
   const { selectedTheme, selectedThemeSet } = useSelectedThemeStore();
   const { completeTime, completeTimeSet } = useCompleteTimeStore();
+  const { setShowModal, setModalData } = useModalStore();
   const { user } = useUserStore();
   const {
     register,
@@ -79,17 +81,39 @@ function MeditationRecord() {
         formData.theme = selectedTheme.name;
         formData.time = `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초`;
 
-        await axios.post('/posts', formData);
+        const res = await axios.post('/posts', formData);
 
         reset();
         setIsClicked(false);
         selectedTimeSet(null);
         selectedThemeSet(null);
         completeTimeSet(0);
-        navigate('/mypage');
+
+        setShowModal(true);
+        setModalData({
+          children: <span>명상 기록이 저장되었습니다.</span>,
+          button: 1,
+          handleOk() {
+            setShowModal(false);
+            navigate('/mypage');
+          },
+        });
       } catch (err) {
-        console.error(err);
-        setFocus();
+        setShowModal(true);
+        setModalData({
+          children: (
+            <span>
+              이미 기록된 명상입니다.
+              <br />
+              다시 시도해 주세요.
+            </span>
+          ),
+          button: 1,
+          handleOk() {
+            setShowModal(false);
+            navigate('/meditation');
+          },
+        });
       }
     }
   }

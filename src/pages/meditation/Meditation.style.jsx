@@ -96,6 +96,7 @@ export const SaveButtonContainer = styled.div`
 `;
 
 export const Player = styled.div`
-  display: none;
-  box-shadow: inset 0 0 5px white;
+  visibility: hidden;
+  width: 0;
+  height: 0;
 `;

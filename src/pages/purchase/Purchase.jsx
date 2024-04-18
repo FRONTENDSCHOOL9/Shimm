@@ -207,7 +207,7 @@ function Purchase() {
     const { playedSeconds } = state;
     setPlayTime(playedSeconds);
 
-    if (playTime >= 60) {
+    if (playTime >= 5) {
       setIsPlaying(false);
       setPlayTime(0);
     }
@@ -224,64 +224,75 @@ function Purchase() {
               <Image src={iconBuy} alt="테마 구매" />
             </ImageDiv>
             <PageTitle>테마 구매</PageTitle>
-            <Container>
-              <Description>테마 정보</Description>
-              <Info>
-                <ul>
-                  <li>{`테마명: ${selectedTheme.name}`}</li>
-                  {item?.price && (
-                    <>
-                      <li>{`테마 가격: ${item.price.toLocaleString()}원`}</li>
-                      <li>유효기간: 제한 없음</li>
-                    </>
-                  )}
-                </ul>
-              </Info>
-            </Container>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <>
+                <Container>
+                  <Description>테마 정보</Description>
+                  <Info>
+                    <ul>
+                      <li>{`테마명: ${selectedTheme.name}`}</li>
+                      {item?.price && (
+                        <>
+                          <li>{`테마 가격: ${item.price.toLocaleString()}원`}</li>
+                          <li>유효기간: 제한 없음</li>
+                        </>
+                      )}
+                    </ul>
+                  </Info>
+                </Container>
 
-            <Container>
-              <Description>테마 미리듣기</Description>
-              <Player>
-                <ReactPlayer
-                  url={`${import.meta.env.VITE_API_SERVER}${item?.extra.music.path}`}
-                  loop={false}
-                  playing={isPlaying}
-                  onProgress={handleProgress}
-                />
-              </Player>
-              {isLoading && <Loading />}
-              <Preview
-                $bgColor={selectedTheme.background}
-                $url={`${import.meta.env.VITE_API_SERVER}${item?.mainImages[0]['path']}`}
-              >
-                <PlayButton type="button" onClick={handlePlay}>
-                  {isPlaying ? (
-                    <PlayIcon src={iconPause} alt="재생" />
-                  ) : (
-                    <PlayIcon src={iconPlay} alt="중지" />
-                  )}
-                </PlayButton>
-              </Preview>
-            </Container>
+                <Container>
+                  <Description>테마 미리듣기</Description>
+                  <Player>
+                    <ReactPlayer
+                      //url={`${import.meta.env.VITE_API_SERVER}${selectedTheme.music}`}
+                      url="https://soundcloud.com/marogobran/vivaldi?in=hanangobran/sets/classic&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+                      loop={false}
+                      playing={isPlaying}
+                      onProgress={handleProgress}
+                    />
+                  </Player>
 
-            <CheckBoxContainer>
-              <input
-                type="checkbox"
-                id="agree"
-                checked={isChecked}
-                onChange={handleCheck}
-              />
-              <label htmlFor="agree">
-                주문 내용 및 결제 조건을 확인했으며, 결제 진행에 동의합니다.
-              </label>
-            </CheckBoxContainer>
+                  <Preview
+                    $bgColor={selectedTheme.background}
+                    $url={`${import.meta.env.VITE_API_SERVER}${item?.mainImages[0]['path']}`}
+                  >
+                    <PlayButton type="button" onClick={handlePlay}>
+                      {isPlaying ? (
+                        <PlayIcon src={iconPause} alt="재생" />
+                      ) : (
+                        <PlayIcon src={iconPlay} alt="중지" />
+                      )}
+                    </PlayButton>
+                  </Preview>
+                </Container>
 
-            {isChecked && (
-              <ButtonContainer>
-                <Button size="full" bgColor="primary" handleClick={handlePay}>
-                  결제하기
-                </Button>
-              </ButtonContainer>
+                <CheckBoxContainer>
+                  <input
+                    type="checkbox"
+                    id="agree"
+                    checked={isChecked}
+                    onChange={handleCheck}
+                  />
+                  <label htmlFor="agree">
+                    주문 내용 및 결제 조건을 확인했으며, 결제 진행에 동의합니다.
+                  </label>
+                </CheckBoxContainer>
+
+                {isChecked && (
+                  <ButtonContainer>
+                    <Button
+                      size="full"
+                      bgColor="primary"
+                      handleClick={handlePay}
+                    >
+                      결제하기
+                    </Button>
+                  </ButtonContainer>
+                )}
+              </>
             )}
           </StyledSection>
         </StyledMain>
