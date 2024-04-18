@@ -23,7 +23,7 @@ function Layout() {
       </Wrapper>
       {showModal && (
         <ModalWindow
-          twoButton={modalData.twoButton}
+          button={modalData.button}
           handleClose={modalData.handleClose}
           handleOk={modalData.handleOk}
         >

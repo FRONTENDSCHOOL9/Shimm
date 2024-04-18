@@ -1,28 +1,27 @@
-import { CommonInput } from '@components/socail/SocialButton.style';
+import { CommonInput } from '@components/input/Input.style';
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
-function Input({
-  children,
-  type = 'text',
-  size = 'full',
-  handleClick,
-}) {
-  return (
-    <CommonInput
-      type={type}
-      size={size}
-      onClick={handleClick}
-    >
-      {children}
-    </CommonInput>
-  );
-}
+const Input = forwardRef(
+  ({ type = 'text', size = 'full', id, placeholder, ...rest }, ref) => {
+    return (
+      <CommonInput
+        ref={ref}
+        id={id}
+        type={type}
+        size={size}
+        {...rest}
+        placeholder={placeholder}
+      />
+    );
+  },
+);
 
 Input.propTypes = {
-  children: PropTypes.node.isRequired,
+  id: PropTypes.string.isRequired,
   type: PropTypes.string,
   size: PropTypes.string,
-  handleClick: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 export default Input;
