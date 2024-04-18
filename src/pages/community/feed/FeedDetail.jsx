@@ -7,7 +7,7 @@ import { FeedWrapper, ImageArea } from '@pages/community/feed/FeedList';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useParams } from 'react-router-dom';
 import useUserStore from '@zustand/user.mjs';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 function FeedDetail() {
   const [comments, setComments] = useState([]);
