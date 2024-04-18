@@ -18,7 +18,7 @@ const size = {
 export const CommonInput = styled.input`
   width: ${props => size[props.size].width};
   height: ${props => size[props.size].height};
-  padding: 11px 6px;
+  padding: 11px 10px;
   border-radius: 6px;
   border: 1px solid #cbcdcc;
   box-sizing: border-box;
