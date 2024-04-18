@@ -5,8 +5,9 @@ import useCustomAxios from '@hooks/useCustomAxios';
 import useUserStore from '@zustand/user';
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
-import SocialButtons from '@components/social/SocialButton';
-import GoogleLoginButton from './GoogleLoginButton';
+import GoogleLoginButton from '../../components/socialLogin/SocialGoogle';
+import SocialKakao from '@components/socialLogin/socialKakao';
+import SocialNaver from '@components/socialLogin/SocialNaver';
 
 function Login() {
   const { setUser } = useUserStore();
@@ -103,9 +104,10 @@ function Login() {
       </div>
 
       <div>
-        <SocialButtons bgColor='white' handleClick={GoogleLoginButton}>구글로 로그인 하기</SocialButtons>
-        <SocialButtons bgColor='yellow'>카카오로 로그인 하기</SocialButtons>
-        <SocialButtons bgColor='green'>네이버로 로그인 하기</SocialButtons>
+        {/* <SocialButtons bgColor='white' handleClick={GoogleLoginButton}>구글로 로그인 하기</SocialButtons> */}
+        <GoogleLoginButton />
+        <SocialKakao />
+        <SocialNaver />
         <Button size='full' bgColor='dark' $display='block' handleClick={handleSignUp}>회원가입</Button>
       </div>
 

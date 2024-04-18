@@ -1,4 +1,4 @@
-import { SocialButton } from '@components/social/SocialButton.style';
+import { SocialButton } from '@components/socialButton/SocialButton.style';
 import PropTypes from 'prop-types';
 
 function SocialButtons({
