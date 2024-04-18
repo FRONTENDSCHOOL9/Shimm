@@ -1,4 +1,5 @@
 import Input from '@components/input/Input';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
@@ -14,15 +15,58 @@ const Main = styled.main`
     max-width: 600px;
     margin: 0 auto;
   }
+
+  & .toggleInput {
+    display: none;
+  }
+
+  & .toggleLabel {
+    display: inline-block;
+    cursor: pointer;
+    width: 40px;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    position: relative;
+    transition: 0.5s ease-out;
+  }
+
+  & .toggleInput:checked + .toggleLabel {
+    background-color: #55a25a;
+  }
+
+  & .toggleLabel:after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    transition: 0.5s ease-out;
+  }
+
+  & .toggleInput:checked + .toggleLabel:after {
+    background-color: #55a25a;
+    left: calc(100% - 18px);
+    background-color: #fff;
+  }
 `;
 
 function UploadTheme() {
+  const [isChecked, setIsChecked] = useState(true);
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
   } = useForm();
+
+  function handleCheck() {
+    setIsChecked(!isChecked);
+  }
 
   async function onSubmit(formData) {}
   return (
@@ -48,6 +92,28 @@ function UploadTheme() {
             <label htmlFor="file">테마 파일</label>
             <Input id="file" type="file" />
             <p>테마에 쓰일 오디오 파일을 선택해 주세요.</p>
+          </div>
+          <div>
+            <p>유료 테마</p>
+            <input
+              className="toggleInput"
+              type="checkbox"
+              id="toggle"
+              checked={isChecked}
+              onChange={handleCheck}
+            />
+            <label className="toggleLabel" htmlFor="toggle">
+              {' '}
+            </label>
+          </div>
+          <div>
+            <p>테마 배경 색상</p>
+            <div>
+              <img src="" alt="" />
+            </div>
+            <div>
+              <img src="" alt="" />
+            </div>
           </div>
         </form>
       </section>
