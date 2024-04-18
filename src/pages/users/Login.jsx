@@ -6,7 +6,7 @@ import useUserStore from '@zustand/user';
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
 import GoogleLoginButton from '../../components/socialLogin/SocialGoogle';
-import SocialKakao from '@components/socialLogin/socialKakao';
+import SocialKakao from '@components/socialLogin/SocialKakao';
 import SocialNaver from '@components/socialLogin/SocialNaver';
 
 function Login() {
@@ -94,7 +94,7 @@ function Login() {
           {errors.password && <p>{errors.password.message}</p>}
         </div>
 
-        <Button type='submit' size='full' bgColor='dark'>
+        <Button type="submit" size="full" bgColor="dark">
           로그인
         </Button>
       </form>
@@ -108,10 +108,15 @@ function Login() {
         <GoogleLoginButton />
         <SocialKakao />
         <SocialNaver />
-        <Button size='full' bgColor='dark' $display='block' handleClick={handleSignUp}>회원가입</Button>
+        <Button
+          size="full"
+          bgColor="dark"
+          $display="block"
+          handleClick={handleSignUp}
+        >
+          회원가입
+        </Button>
       </div>
-
-
 
       {isLoading && <Loading />}
     </div>
