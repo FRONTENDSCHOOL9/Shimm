@@ -15,10 +15,10 @@ import {
   StyledMain,
   PageTitle,
   StyledLabel,
-  StyledInput,
   StyledError,
   SaveButtonContainer,
 } from '@pages/meditation/Meditation.style';
+import Input from '@components/input/Input';
 
 function MeditationRecord() {
   const { selectedTime, selectedTimeSet } = useSelectedTimeStore();
@@ -79,7 +79,7 @@ function MeditationRecord() {
         formData.theme = selectedTheme.name;
         formData.time = `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초`;
 
-        const res = await axios.post('/posts', formData);
+        await axios.post('/posts', formData);
 
         reset();
         setIsClicked(false);
@@ -110,8 +110,7 @@ function MeditationRecord() {
         <Result width="wide" date={currentDate} message={message} />
         <Form onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel htmlFor="content">한 줄 기록 남기기</StyledLabel>
-          <StyledInput
-            type="text"
+          <Input
             id="content"
             placeholder="소감을 입력하세요..."
             {...register('content', {

@@ -47,6 +47,7 @@ function UploadTheme() {
           <div>
             <label htmlFor="file">테마 파일</label>
             <Input id="file" type="file" />
+            <p>테마에 쓰일 오디오 파일을 선택해 주세요.</p>
           </div>
         </form>
       </section>
