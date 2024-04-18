@@ -73,7 +73,7 @@ const MoreComment = styled.div`
 
 function FeedList({ item }) {
   const [comments, setNewComment] = useState([]);
-  const { _id, name, profile, product, content, createdAt } = item;
+  const { _id, name, profile, content, createdAt } = item;
   const navigate = useNavigate();
 
   function handleFeedClick() {
@@ -95,7 +95,11 @@ function FeedList({ item }) {
         <Post>
           <span>{content}</span>
         </Post>
-        {item.product && item.product.image && <ImageArea />}
+        <ImageArea>
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.extra?.image}`}
+          />
+        </ImageArea>
       </div>
       <StateWrapper>
         <span>{createdAt}</span>
