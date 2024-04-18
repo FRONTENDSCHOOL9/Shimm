@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorStyled } from '@pages/community/ErrorStyled';
 import iconsend from '@assets/images/icon-send.svg';
+import useUserStore from '@zustand/user.mjs';
 
 const ReplyWrapper = styled.form`
   width: 100%;
@@ -20,7 +21,6 @@ const Replyer = styled.div`
   & img:first-child {
     width: 3rem;
     height: 3rem;
-    box-shadow: inset 0 0 20px #335635;
     border-radius: 50%;
     flex-shrink: 0;
   }
@@ -45,13 +45,14 @@ const Replyer = styled.div`
   }
 `;
 
-function ReplyCreate({ onAddComment, item }) {
+function ReplyCreate({ onAddComment, item, currentUser }) {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
+  const { user } = useUserStore();
 
   function onSubmit(formData) {
     const { comment } = formData;
@@ -75,7 +76,10 @@ function ReplyCreate({ onAddComment, item }) {
   return (
     <ReplyWrapper onSubmit={handleSubmit(onSubmit)}>
       <Replyer>
-        <img src="" alt="#" />
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user?.profile}`}
+          alt="댓글 작성자의 프로필 사진"
+        />
         <textarea
           {...register('comment', {
             minLength: {

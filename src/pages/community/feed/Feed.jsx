@@ -10,7 +10,8 @@ const FeedTemplateWrapper = styled.div`
   flex-direction: column;
   position: relative;
   overflow-y: hidden;
-  padding: 2rem;
+  padding: 2px;
+  margin-top: 60px;
 `;
 
 function Feed() {
