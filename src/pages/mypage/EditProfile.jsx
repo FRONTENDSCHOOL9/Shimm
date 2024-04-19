@@ -1,4 +1,4 @@
-import { ButtonLink, MyInfoWrapper } from '@pages/community/mypage/MyInfo';
+import { ButtonLink, MyInfoWrapper } from '@pages/mypage/MyInfo';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import iconbase from '@assets/images/icon-login.svg';

@@ -48,7 +48,7 @@ const Replyer = styled.div`
   }
 `;
 
-function ReplyCreate() {
+function ReplyCreate({ feedId }) {
   const { user } = useUserStore();
 
   const axios = useCustomAxios();
@@ -63,7 +63,7 @@ function ReplyCreate() {
   const queryClient = useQueryClient();
 
   const addReply = useMutation({
-    mutitionFn: formData => axios.post(`/posts/${_id}/replies`, formData),
+    mutitionFn: formData => axios.post(`/posts/${feedId}/replies`, formData),
     onSuccess() {
       queryClient.invalidateQueries(['posts', _id, 'replies']);
       reset();
@@ -73,7 +73,6 @@ function ReplyCreate() {
     addReply.mutate(formData);
   };
 
-  // console.log(addReply);
   //   register,
   //   handleSubmit,
   //   reset,

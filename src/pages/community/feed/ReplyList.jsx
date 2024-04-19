@@ -23,7 +23,7 @@ const StyledReplies = styled.div`
 function ReplyList({ feedId }) {
   const axios = useCustomAxios();
   const { user } = useUserStore();
-  const [commentList, setCommentList] = useState([]);
+  const [commentList, setCommentList] = useState();
 
   useEffect(() => {
     fetchReply();
@@ -31,26 +31,20 @@ function ReplyList({ feedId }) {
 
   async function fetchReply() {
     const res = await axios.get(`/posts/${feedId}/replies`);
-    setCommentList(res.data.content);
-    console.log(setCommentList);
-    // console.log(res);
-
-    // console.log(res.data);
-    // console.log(commentsList);
+    setCommentList(res.data);
   }
 
+  console.log(commentList);
   return (
     <div>
-      {commentList.map((comment, index) => (
-        <StyledReplies key={index}>
-          <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user?.profile}`}
-            alt="댓글작성한 사용자의 사진"
-          />
-          <span>{user.name}</span>
-          <p>{comment.text}</p>
-        </StyledReplies>
-      ))}
+      <StyledReplies>
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user?.profile}`}
+          alt="댓글작성한 사용자의 사진"
+        />
+        <span>{user.name}</span>
+        <p>{content}</p>
+      </StyledReplies>
     </div>
   );
 }

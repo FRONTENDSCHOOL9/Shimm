@@ -115,7 +115,7 @@ function FeedList({ item }) {
       {replyer &&
         replyer.map(t => (
           <Replyer key={t.id}>
-            <ReplyCreate onAddComment={handleAddComment} />
+            <ReplyCreate feedId={item._id} onAddComment={handleAddComment} />
             {/* <img src={iconsend} alt="댓글 등록 버튼" /> */}
           </Replyer>
         ))}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MyInfoWrapper } from '@pages/community/mypage/MyInfo';
+import { MyInfoWrapper } from '@pages/mypage/MyInfo';
 import Calendar from '@components/calendar/Calendar';
 
 const TitleSpan = styled.span`

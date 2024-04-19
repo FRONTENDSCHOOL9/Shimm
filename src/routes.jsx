@@ -5,11 +5,11 @@ import Community from '@pages/community/Community';
 import { FeedDetail } from '@pages/community/feed/FeedDetail';
 import FeedEdit from '@pages/community/feed/FeedEdit';
 import { FeedNew } from '@pages/community/feed/FeedNew';
-import EditProfile from '@pages/community/mypage/EditProfile';
-import { MyInfo } from '@pages/community/mypage/MyInfo';
-import MyInfoCheck from '@pages/community/mypage/MyInfoCheck';
-import MyPage from '@pages/community/mypage/MyPage';
-import MyRecord from '@pages/community/mypage/MyRecord';
+import EditProfile from '@pages/mypage/EditProfile';
+import { MyInfo } from '@pages/mypage/MyInfo';
+import MyInfoCheck from '@pages/mypage/MyInfoCheck';
+import MyPage from '@pages/mypage/MyPage';
+import MyRecord from '@pages/mypage/MyRecord';
 import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
 import MeditationMain from '@pages/meditation/MeditationMain';
@@ -85,23 +85,23 @@ const router = createBrowserRouter([
         element: <MyPage />,
       },
       {
-        path: '/mypage/info',
+        path: 'mypage/info',
         element: <MyInfo />,
       },
       {
-        path: '/mypage/checkpw',
+        path: 'mypage/checkpw',
         element: <MyInfoCheck />,
       },
       {
-        path: '/mypage/editprofile',
+        path: 'mypage/editprofile',
         element: <EditProfile />,
       },
       {
-        path: '/mypage/archive',
+        path: 'mypage/archive',
         element: <MyRecord />,
       },
       {
-        path: '/admin/theme',
+        path: 'admin/theme',
         element: <UploadTheme />,
       },
     ],
