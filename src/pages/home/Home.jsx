@@ -21,7 +21,6 @@ function Home() {
   const navigate = useNavigate();
   const { setShowModal, setModalData } = useModalStore();
 
-
   function handleLogin() {
     navigate('/users/login');
   }
@@ -38,7 +37,9 @@ function Home() {
           </div>
           <p>또는</p>
           <div>
-            <Button size='full' bgColor='dark' handleClick={handleSignUp}>회원가입</Button>
+            <Button size="full" bgColor="dark" handleClick={handleSignUp}>
+              회원가입
+            </Button>
           </div>
         </section>
       ),
@@ -48,7 +49,7 @@ function Home() {
       },
       handleClose() {
         setShowModal(false);
-      }
+      },
     });
   }
 
@@ -76,7 +77,13 @@ function Home() {
                 <br />
                 고요함을 선물해 보세요.
               </p>
-              <Button type='button' size='medium' handleClick={handleMeditation}>명상하기</Button>
+              <Button
+                type="button"
+                size="medium"
+                handleClick={handleMeditation}
+              >
+                명상하기
+              </Button>
             </TextSection>
           </RightBox>
           <LeftBox>
@@ -85,7 +92,12 @@ function Home() {
                 서로의 경험을 나누고 소통하면서
                 <br />더 큰 가치를 발견해 보세요.
               </p>
-              <Button type='button' size="medium" bgColor="secondary" handleClick={handleCommunity}>
+              <Button
+                type="button"
+                size="medium"
+                bgColor="secondary"
+                handleClick={handleCommunity}
+              >
                 커뮤니티
               </Button>
             </TextSection>
@@ -93,8 +105,12 @@ function Home() {
         </SectionLink>
         {!user && (
           <SectionUser>
-            <button type='button' onClick={handleLogin}>로그인</button>
-            <button type='button' onClick={handleSignupModal}>회원가입</button>
+            <button type="button" onClick={handleLogin}>
+              로그인
+            </button>
+            <button type="button" onClick={handleSignupModal}>
+              회원가입
+            </button>
           </SectionUser>
         )}
       </StyledMain>
