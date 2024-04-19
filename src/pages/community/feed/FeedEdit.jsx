@@ -4,10 +4,11 @@ import {
   UploadFile,
   WriteTextarea,
 } from '@pages/community/feed/FeedNew';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import iconfile from '@assets/images/icon-file.svg';
 import { ImageArea } from '@pages/community/feed/FeedList';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
 const EditWrapper = styled.div`
   max-width: 740px;
@@ -47,6 +48,13 @@ const Edit = styled.div`
 `;
 
 function FeedEdit() {
+  const axios = useCustomAxios();
+  const [data, setData] = useState();
+  async function fetchFeedEdit() {
+    const res = await axios.patch(`/posts/${_id}`);
+    setData(res.data);
+    console.log(setData);
+  }
   return (
     <EditWrapper>
       <Edit>
