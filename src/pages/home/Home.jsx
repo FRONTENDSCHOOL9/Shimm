@@ -2,6 +2,7 @@ import Footer from '@components/layout/footer/Footer';
 import HomeCarousel from './HomeCarousel';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '@zustand/user';
+import useModalStore from '@zustand/modal.mjs';
 import {
   StyledMain,
   SectionLink,
@@ -11,16 +12,47 @@ import {
   SectionUser,
 } from '@pages/home/Home.style';
 import Button from '@components/button/Button';
+import GoogleLoginButton from '@components/socialLogin/SocialGoogle';
+import SocialKakao from '@components/socialLogin/SocialKakao';
+import SocialNaver from '@components/socialLogin/SocialNaver';
 
 function Home() {
   const { user } = useUserStore();
   const navigate = useNavigate();
+  const { setShowModal, setModalData } = useModalStore();
+
 
   function handleLogin() {
     navigate('/users/login');
   }
 
-  function handleSignup() {
+  function handleSignupModal() {
+    setShowModal(true);
+    setModalData({
+      children: (
+        <section>
+          <div>
+            <GoogleLoginButton />
+            <SocialKakao />
+            <SocialNaver />
+          </div>
+          <p>또는</p>
+          <div>
+            <Button size='full' bgColor='dark' handleClick={handleSignUp}>회원가입</Button>
+          </div>
+        </section>
+      ),
+      button: 0,
+      handleOk() {
+        setShowModal(false);
+      },
+      handleClose() {
+        setShowModal(false);
+      }
+    });
+  }
+
+  function handleSignUp() {
     navigate('/users/signup');
   }
 
@@ -44,7 +76,7 @@ function Home() {
                 <br />
                 고요함을 선물해 보세요.
               </p>
-              <Button type='button' size="medium" handleClick={handleMeditation}>명상하기</Button>
+              <Button type='button' size='medium' handleClick={handleMeditation}>명상하기</Button>
             </TextSection>
           </RightBox>
           <LeftBox>
@@ -62,7 +94,7 @@ function Home() {
         {!user && (
           <SectionUser>
             <button type='button' onClick={handleLogin}>로그인</button>
-            <button type='button' onClick={handleSignup}>회원가입</button>
+            <button type='button' onClick={handleSignupModal}>회원가입</button>
           </SectionUser>
         )}
       </StyledMain>

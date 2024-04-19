@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import iconClose from '@assets/images/icon-close.svg';
 import {
   Inside,
   Modal,
@@ -6,12 +7,19 @@ import {
   ModalClose,
   ModalOk,
   ButtonContainer,
+  ButtonClose
 } from '@components/modal/ModalWindow.style';
 
-function ModalWindow({ children, button, handleClose, handleOk }) {
+function ModalWindow({ children, button, closeButton = true, handleClose, handleOk }) {
+  console.log(closeButton)
   return (
     <Modal>
       <Inside>
+        {closeButton && (
+          <ButtonClose type='button' onClick={handleClose}>
+            <img src={iconClose} alt='닫기 버튼' />
+          </ButtonClose>
+        )}
         <Message>{children}</Message>
         {button > 0 && (
           <ButtonContainer>
@@ -33,6 +41,7 @@ function ModalWindow({ children, button, handleClose, handleOk }) {
 ModalWindow.propTypes = {
   children: PropTypes.node.isRequired,
   button: PropTypes.number.isRequired,
+  closeButton: PropTypes.bool,
   handleClose: PropTypes.func,
   handleOk: PropTypes.func.isRequired,
 };
