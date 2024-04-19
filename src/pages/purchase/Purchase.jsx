@@ -248,8 +248,7 @@ function Purchase() {
                   <Description>테마 미리듣기</Description>
                   <Player>
                     <ReactPlayer
-                      url={`${import.meta.env.VITE_API_SERVER}${selectedTheme.music}`}
-                      // url="https://soundcloud.com/marogobran/vivaldi?in=hanangobran/sets/classic&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+                      url={selectedTheme.music}
                       loop={false}
                       playing={isPlaying}
                       onProgress={handleProgress}
