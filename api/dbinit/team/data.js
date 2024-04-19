@@ -65,6 +65,7 @@ export const initData = async nextSeq => {
         name: '숲 Forest',
         quantity: 99999,
         buyQuantity: 1,
+        content: '숲 테마로 명상을 진행해 보세요.',
         mainImages: [
           {
             path: `/files/02-Shimm/bg-theme-01.png`,
@@ -93,10 +94,11 @@ export const initData = async nextSeq => {
         name: '바다 Sea',
         quantity: 99999,
         buyQuantity: 1,
+        content: '바다 테마로 명상을 진행해 보세요.',
         mainImages: [
           {
             path: `/files/02-Shimm/bg-theme-02.png`,
-            name: 'bg-theme-03.png',
+            name: 'bg-theme-02.png',
             originalname: 'sea.png',
           },
         ],
@@ -122,6 +124,7 @@ export const initData = async nextSeq => {
         name: '아침 Morning',
         quantity: 99999,
         buyQuantity: 1,
+        content: '아침 테마로 명상을 진행해 보세요.',
         mainImages: [
           {
             path: `/files/02-Shimm/bg-theme-03.png`,
@@ -150,6 +153,7 @@ export const initData = async nextSeq => {
         name: '노을 Sunset',
         quantity: 99999,
         buyQuantity: 1,
+        content: '노을 테마로 명상을 진행해 보세요.',
         mainImages: [
           {
             path: `/files/02-Shimm/bg-theme-04.png`,
@@ -178,6 +182,7 @@ export const initData = async nextSeq => {
         name: '밤하늘 Night Sky',
         quantity: 99999,
         buyQuantity: 1,
+        content: '밤하늘 테마로 명상을 진행해 보세요.',
         mainImages: [
           {
             path: `/files/02-Shimm/bg-theme-05.png`,

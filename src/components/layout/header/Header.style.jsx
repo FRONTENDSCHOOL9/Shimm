@@ -90,6 +90,7 @@ export const HeaderLink = styled(Link)`
   @media (min-width: 740px) {
     margin-bottom: unset;
     display: unset;
+    font-size: 1.4rem;
 
     &:first-child {
       margin-left: auto;

@@ -39,3 +39,10 @@ export const CommonInput = styled.input`
     max-width: 450px;
   }
 `;
+
+export const StyledError = styled.div`
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: red;
+  margin-top: 10px;
+`;
