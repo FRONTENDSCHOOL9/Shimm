@@ -53,7 +53,7 @@ function FeedDetail() {
           )}
 
           <Replyer />
-          <ReplyList comments={comments} />
+          <ReplyList feedId={id} />
           <ReplyCreate onAddComment={handleAddComment} item={item} />
         </>
       )}

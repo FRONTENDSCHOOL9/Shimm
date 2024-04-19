@@ -166,7 +166,7 @@ function MyPage() {
         </h2>
         <img src={iconbase} alt="기본프로필 사진" />
       </UserProfile>
-      <Link to="mypage/info">
+      <Link to="/mypage/info">
         <ButtonContainer>
           <Button
             type="button"

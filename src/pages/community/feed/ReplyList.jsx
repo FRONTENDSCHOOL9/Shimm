@@ -1,7 +1,9 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { UserInfo } from '@pages/community/user/UserInfo';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useUserStore from '@zustand/user.mjs';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -18,25 +20,28 @@ const StyledReplies = styled.div`
   }
 `;
 
-function ReplyList({ comments, profileImg, userId }) {
-  const commentsList = comments || [];
+function ReplyList({ feedId }) {
   const axios = useCustomAxios();
   const { user } = useUserStore();
-  const { _id } = useParams();
-  console.log(_id);
-  console.log(user);
-  // useEffect(() => {
-  //   fetchReply();
-  // }, []);
-  // async function fetchReply() {
-  //   const res = await axios.post(`/posts/${_id}/replies`);
+  const [commentList, setCommentList] = useState([]);
 
-  //   console.log(res.data);
-  //   console.log(commentsList);
-  // }
+  useEffect(() => {
+    fetchReply();
+  }, []);
+
+  async function fetchReply() {
+    const res = await axios.get(`/posts/${feedId}/replies`);
+    setCommentList(res.data.content);
+    console.log(setCommentList);
+    // console.log(res);
+
+    // console.log(res.data);
+    // console.log(commentsList);
+  }
+
   return (
     <div>
-      {commentsList.map((comment, index) => (
+      {commentList.map((comment, index) => (
         <StyledReplies key={index}>
           <img
             src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user?.profile}`}
