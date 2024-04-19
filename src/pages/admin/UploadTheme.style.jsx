@@ -44,29 +44,6 @@ export const ThemeLabel = styled.label`
   margin-bottom: 7px;
 `;
 
-export const FileInput = styled(Input)`
-  line-height: 2.6rem;
-  font-weight: 200;
-  color: #0a0b0a;
-
-  &::file-selector-button {
-    background-color: transparent;
-    border: unset;
-    font-weight: 500;
-  }
-
-  &::file-selector-button:hover {
-    color: #335635;
-  }
-`;
-
-export const Description = styled.p`
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: #545956;
-  margin-top: 4px;
-`;
-
 export const ThemePrice = styled.div`
   margin-bottom: 18px;
   & div {

@@ -1,16 +1,9 @@
 import iconDropper from '@assets/images/icon-dropper.svg';
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
-import theme01 from '@assets/images/bg-theme01.svg';
-import theme02 from '@assets/images/bg-theme02.svg';
-import theme03 from '@assets/images/bg-theme03.svg';
-import theme04 from '@assets/images/bg-theme04.svg';
-import theme05 from '@assets/images/bg-theme05.svg';
 import {
   ColorButton,
   ColorPicker,
-  Description,
-  FileInput,
   Main,
   PageTitle,
   Popover,
@@ -26,13 +19,19 @@ import {
 import { useState } from 'react';
 import { ChromePicker } from 'react-color';
 import { useForm } from 'react-hook-form';
+import { StyledError } from '@components/input/Input.style';
+import useCustomAxios from '@hooks/useCustomAxios';
+import useModalStore from '@zustand/modal';
 
 function UploadTheme() {
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
   const [isStartOpen, setIsStartOpen] = useState(false);
   const [isEndOpen, setIsEndOpen] = useState(false);
+  const { setShowModal, setModalData } = useModalStore();
   const [startColor, setStartColor] = useState('#4FEA7D');
   const [endColor, setEndColor] = useState('#E4626F');
+  const [bgImage, setBgImage] = useState();
+  const axios = useCustomAxios();
 
   const {
     register,
@@ -75,10 +74,51 @@ function UploadTheme() {
 
   async function onSubmit(formData) {
     try {
-      console.log(formData);
+      if (!bgImage) {
+        setShowModal(true);
+        setModalData({
+          children: <span>테마 배경 패턴을 선택하세요!</span>,
+          button: 1,
+          handleOk() {
+            setShowModal(false);
+          },
+        });
+      } else {
+        formData = {
+          ...formData,
+          name: `${formData.nameKor} ${formData.nameEng}`,
+          mainImages: {
+            path: `/files/02-Shimm/${bgImage}`,
+            name: bgImage,
+            originalname: `${formData.nameEng.toLowerCase()}.png`,
+          },
+          content: `${formData.nameKor} 테마로 명상을 진행해 보세요.`,
+          price: formData.price ? formData.price : 0,
+          quantity: 99999,
+          extra: {
+            background: `linear-gradient(45deg, ${startColor} 0%, ${endColor} 100%)`,
+            music: formData.url,
+          },
+        };
+
+        delete formData.url;
+
+        const res = await axios.post('/seller/products', formData);
+      }
     } catch (err) {
-      console.error(err);
+      if (err.response?.data.errors) {
+        err.response?.data.errors.forEach(error =>
+          setError(error.path, { message: error.msg }),
+        );
+      } else if (err.response?.data.message) {
+        alert(err.response?.data.message);
+      }
     }
+  }
+
+  function handlePattern(e) {
+    const temp = e.target.src?.split('/');
+    setBgImage(temp[temp.length - 1]);
   }
 
   return (
@@ -97,9 +137,15 @@ function UploadTheme() {
                   value: 1,
                   message: '테마 한글 이름을 1글자 이상 입력하세요.',
                 },
+                pattern: {
+                  value: /^[ㄱ-ㅎ가-힣]*$/,
+                  message: '한글 이름을 입력하세요.',
+                },
               })}
             />
+            {errors && <StyledError>{errors.nameKor?.message}</StyledError>}
           </ThemeInput>
+
           <ThemeInput>
             <ThemeLabel htmlFor="nameEng">테마 이름 (영문)</ThemeLabel>
             <Input
@@ -111,19 +157,29 @@ function UploadTheme() {
                   value: 1,
                   message: '테마 영문 이름을 1글자 이상 입력하세요.',
                 },
+                pattern: {
+                  value: /^[a-zA-Z]*$/,
+                  message: '영문 이름을 입력하세요.',
+                },
               })}
             />
+            {errors && <StyledError>{errors.nameEng?.message}</StyledError>}
           </ThemeInput>
           <ThemeInput>
-            <ThemeLabel htmlFor="file">테마 파일</ThemeLabel>
-            <FileInput
-              id="file"
-              type="file"
-              {...register('themeMusic', {
-                required: '배경 음악을 업로드 하세요.',
+            <ThemeLabel htmlFor="url">테마 링크</ThemeLabel>
+            <Input
+              id="url"
+              placeholder="테마 음악 링크를 입력해 주세요."
+              {...register('url', {
+                required: '테마 음악 링크를 입력하세요.',
+                pattern: {
+                  value:
+                    /^(https?|ftp):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i,
+                  message: '유효한 링크를 입력하세요.',
+                },
               })}
             />
-            <Description>테마에 쓰일 오디오 파일을 선택해 주세요.</Description>
+            {errors && <StyledError>{errors.url?.message}</StyledError>}
           </ThemeInput>
           <ThemePrice>
             <div>
@@ -139,11 +195,18 @@ function UploadTheme() {
                 {' '}
               </label>
             </div>
-            <Input
-              placeholder="테마 가격을 입력해 주세요."
-              title="price"
-              {...register('price')}
-            />
+            {isChecked && (
+              <>
+                <Input
+                  placeholder="테마 가격을 입력해 주세요."
+                  title="price"
+                  {...register('price', {
+                    required: '가격을 입력하세요.',
+                  })}
+                />
+                {errors && <StyledError>{errors.price?.message}</StyledError>}
+              </>
+            )}
           </ThemePrice>
 
           <ThemeColor>
@@ -202,28 +265,38 @@ function UploadTheme() {
             <ThemeDesc>테마 배경 패턴</ThemeDesc>
             <ul>
               <li>
-                <button type="button" onClick={() => {}}>
-                  <img src={theme01} />
+                <button type="button" onClick={handlePattern}>
+                  <img
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-01.png`}
+                  />
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => {}}>
-                  <img src={theme02} />
+                <button type="button" onClick={handlePattern}>
+                  <img
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-02.png`}
+                  />
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => {}}>
-                  <img src={theme03} />
+                <button type="button" onClick={handlePattern}>
+                  <img
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-03.png`}
+                  />
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => {}}>
-                  <img src={theme04} />
+                <button type="button" onClick={handlePattern}>
+                  <img
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-04.png`}
+                  />
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => {}}>
-                  <img src={theme05} />
+                <button type="button" onClick={handlePattern}>
+                  <img
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-05.png`}
+                  />
                 </button>
               </li>
             </ul>
