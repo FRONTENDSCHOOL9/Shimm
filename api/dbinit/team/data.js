@@ -264,7 +264,7 @@ export const initData = async nextSeq => {
         user: {
           _id: 1,
           name: '요가맨',
-          profile: 'yogaman.png',
+          profile: '/files/02-Shimm/yogaman.png',
         },
         replies: [
           {
@@ -272,7 +272,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 2,
               name: '요가걸',
-              profile: 'yogagirl.png',
+              profile: '/files/02-Shimm/yogagirl.png',
             },
             content: '요가 …짱!',
             createdAt: getTime(-2, -60 * 60 * 20),
@@ -283,7 +283,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 2,
               name: '요가걸',
-              profile: 'yogagirl.png',
+              profile: '/files/02-Shimm/yogagirl.png',
             },
             content: '요가좋툐',
             createdAt: getTime(-2, -60 * 60 * 10),
@@ -294,7 +294,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 2,
               name: '요가걸',
-              profile: 'yogagirl.png',
+              profile: '/files/02-Shimm/yogagirl.png',
             },
             content: '굿',
             createdAt: getTime(-2, -60 * 60 * 9),
@@ -313,7 +313,7 @@ export const initData = async nextSeq => {
         user: {
           _id: 1,
           name: '쓰러지다',
-          profile: 'yogagirl.png',
+          profile: '/files/02-Shimm/yogagirl.png',
         },
         replies: [
           {
@@ -321,7 +321,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 1,
               name: '요가맨',
-              profile: 'yogaman.png',
+              profile: '/files/02-Shimm/yogaman.png',
             },
             content: '힘내요!',
             createdAt: getTime(-2, -60 * 60 * 20),
@@ -332,7 +332,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 1,
               name: '요가맨',
-              profile: 'yogaman.png',
+              profile: '/files/02-Shimm/yogaman.png',
             },
             content: '화이토화이토',
             createdAt: getTime(-2, -60 * 60 * 10),
@@ -343,7 +343,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 2,
               name: '요가걸',
-              profile: 'yogagirl.png',
+              profile: '/files/02-Shimm/yogagirl.png',
             },
             content: '밥 잘 챙겨드셔요',
             createdAt: getTime(-2, -60 * 60 * 9),
