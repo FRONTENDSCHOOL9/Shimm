@@ -7,7 +7,8 @@ import {
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import iconfile from '@assets/images/icon-file.svg';
-import { ImageArea } from '@pages/community/feed/FeedList';
+//진욱
+// import { ImageArea } from '@pages/community/feed/FeedList';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
 const EditWrapper = styled.div`
