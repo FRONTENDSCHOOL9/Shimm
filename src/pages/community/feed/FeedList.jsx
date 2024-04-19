@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { UserInfo } from '@pages/community/user/UserInfo';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import iconbookmark from '@assets/images/icon-bookmark.svg';
-
+import icondefault from '@assets/images/icon-user-default.png';
 import { useEffect, useState } from 'react';
 import ReplyList from '@pages/community/feed/ReplyList';
 import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate';
@@ -90,11 +90,13 @@ function FeedList({ item }) {
   function handleAddComment(newComment) {
     setNewComment([...comments, newComment]);
   }
-
+  // console.log(item.user);
   return (
     <FeedWrapper>
       <FeedDropDown item={item} />
-      <UserInfo profile={item.user.profile} userId={item.user.name}></UserInfo>
+
+      <UserInfo profile={item.user.profile} userId={item.user.name} />
+
       <div onClick={handleFeedClick}>
         <Post>
           <span>{content}</span>
@@ -109,7 +111,7 @@ function FeedList({ item }) {
       </StateWrapper>
       <UserInfo profile={profile} userId={name} comment={comments} />
 
-      <ReplyList comments={comments} />
+      <ReplyList feedId={item._id} />
       {replyer &&
         replyer.map(t => (
           <Replyer key={t.id}>

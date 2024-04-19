@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form';
 import { ErrorStyled } from '@pages/community/ErrorStyled';
 import iconsend from '@assets/images/icon-send.svg';
 import useUserStore from '@zustand/user.mjs';
+import { useParams } from 'react-router-dom';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const ReplyWrapper = styled.form`
   width: 100%;
@@ -45,26 +48,53 @@ const Replyer = styled.div`
   }
 `;
 
-function ReplyCreate({ onAddComment, item, currentUser }) {
+function ReplyCreate() {
+  const { user } = useUserStore();
+
+  const axios = useCustomAxios();
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const { user } = useUserStore();
 
-  function onSubmit(formData) {
-    const { comment } = formData;
-    if (comment.trim() !== '') {
-      const newCommentObj = {
-        no: Date.now() /*임시*/,
-        text: comment.trim(),
-      };
-      onAddComment(newCommentObj);
+  const queryClient = useQueryClient();
+
+  const addReply = useMutation({
+    mutitionFn: formData => axios.post(`/posts/${_id}/replies`, formData),
+    onSuccess() {
+      queryClient.invalidateQueries(['posts', _id, 'replies']);
       reset();
-    }
-  }
+    },
+  });
+  const onSubmit = async formData => {
+    addReply.mutate(formData);
+  };
+
+  // console.log(addReply);
+  //   register,
+  //   handleSubmit,
+  //   reset,
+  //   formState: { errors },
+  // } = useForm();
+  // const { _id } = useParams();
+  // const axios = useCustomAxios();
+
+  // async function onSubmit(formData) {
+  //   const { comment } = formData;
+  //   if (comment.trim() !== '') {
+  //     const newCommentObj = {
+  //       no: Date.now() /*임시*/,
+  //       text: comment.trim(),
+  //     };
+
+  //     await axios.post(`/posts/${_id}/replies`, content);
+  //     onAddComment(newCommentObj);
+  //     reset();
+  //   }
+  // }
 
   function handleEnter(e) {
     if (e.key === 'Enter') {
@@ -76,12 +106,14 @@ function ReplyCreate({ onAddComment, item, currentUser }) {
   return (
     <ReplyWrapper onSubmit={handleSubmit(onSubmit)}>
       <Replyer>
-        <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user?.profile}`}
-          alt="댓글 작성자의 프로필 사진"
-        />
+        {
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user?.profile}`}
+            alt="댓글 작성자의 프로필 사진"
+          />
+        }
         <textarea
-          {...register('comment', {
+          {...register('content', {
             minLength: {
               required: '댓글을 입력해주세요.',
               value: 2,
