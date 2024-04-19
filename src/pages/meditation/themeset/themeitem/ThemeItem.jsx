@@ -15,7 +15,6 @@ import {
 import iconMusic from '@assets/images/icon-music.svg';
 import iconLock from '@assets/images/icon-lock.svg';
 import useUserStore from '@zustand/user';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
 function ThemeItem({ item, handleTheme, handleDelete, isNotPaid }) {
   const { user } = useUserStore();
@@ -26,7 +25,7 @@ function ThemeItem({ item, handleTheme, handleDelete, isNotPaid }) {
       item._id,
       item.price,
       item.extra.background,
-      item.extra.music.path,
+      item.extra.music,
       isNotPaid,
     );
   }
