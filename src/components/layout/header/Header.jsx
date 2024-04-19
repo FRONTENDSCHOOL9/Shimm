@@ -38,10 +38,6 @@ function Header() {
     navigate('/users/login');
   }
 
-  function handleSignUp() {
-    navigate('/users/signup');
-  }
-
   return (
     <StyledHeader>
       <Logo to="/home">
@@ -72,9 +68,6 @@ function Header() {
           <LoginContainer>
             <Button size="medium" bgColor="dark" handleClick={handleLogin}>
               로그인
-            </Button>
-            <Button size="medium" bgColor="dark" handleClick={handleSignUp}>
-              회원가입
             </Button>
           </LoginContainer>
         )}
