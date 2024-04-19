@@ -1,6 +1,8 @@
 import iconDropper from '@assets/images/icon-dropper.svg';
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
+import { StyledError } from '@components/input/Input.style';
+import useCustomAxios from '@hooks/useCustomAxios';
 import {
   ColorButton,
   ColorPicker,
@@ -13,15 +15,14 @@ import {
   ThemeDesc,
   ThemeInput,
   ThemeLabel,
-  ThemePrice,
   ThemePattern,
+  ThemePrice,
 } from '@pages/admin/UploadTheme.style';
+import useModalStore from '@zustand/modal';
 import { useState } from 'react';
 import { ChromePicker } from 'react-color';
 import { useForm } from 'react-hook-form';
-import { StyledError } from '@components/input/Input.style';
-import useCustomAxios from '@hooks/useCustomAxios';
-import useModalStore from '@zustand/modal';
+import { useNavigate } from 'react-router-dom';
 
 function UploadTheme() {
   const [isChecked, setIsChecked] = useState(false);
@@ -31,6 +32,7 @@ function UploadTheme() {
   const [startColor, setStartColor] = useState('#4FEA7D');
   const [endColor, setEndColor] = useState('#E4626F');
   const [bgImage, setBgImage] = useState();
+  const navigate = useNavigate();
   const axios = useCustomAxios();
 
   const {
@@ -104,6 +106,16 @@ function UploadTheme() {
         delete formData.url;
 
         const res = await axios.post('/seller/products', formData);
+
+        setShowModal(true);
+        setModalData({
+          children: <span>테마 등록이 완료되었습니다.</span>,
+          button: 1,
+          handleOk() {
+            setShowModal(false);
+            navigate('/meditation');
+          },
+        });
       }
     } catch (err) {
       if (err.response?.data.errors) {

@@ -99,11 +99,36 @@ function ThemeMenu() {
     }
   }
 
+  async function handleDelete(id) {
+    try {
+      const res = await axios.delete(`/seller/products/${id}`);
+      setShowModal(true);
+      setModalData({
+        children: <span>테마가 삭제되었습니다.</span>,
+        button: 1,
+        handleOk() {
+          setShowModal(false);
+        },
+      });
+      fetchThemes();
+    } catch (err) {
+      setShowModal(true);
+      setModalData({
+        children: <span>삭제 중 오류가 발생했습니다! 다시 시도해 보세요.</span>,
+        button: 1,
+        handleOk() {
+          setShowModal(false);
+        },
+      });
+    }
+  }
+
   const themeList = themeData?.item?.map(item => (
     <ThemeItem
       key={item._id}
       item={item}
       handleTheme={handleTheme}
+      handleDelete={handleDelete}
       isNotPaid={checkIsNotPaid(item._id)}
     />
   ));

@@ -236,7 +236,7 @@ function Purchase() {
                       <li>{`테마명: ${selectedTheme.name}`}</li>
                       {item?.price && (
                         <>
-                          <li>{`테마 가격: ${item.price.toLocaleString()}원`}</li>
+                          <li>{`테마 가격: ${Number(item.price).toLocaleString()}원`}</li>
                           <li>유효기간: 제한 없음</li>
                         </>
                       )}
@@ -248,8 +248,8 @@ function Purchase() {
                   <Description>테마 미리듣기</Description>
                   <Player>
                     <ReactPlayer
-                      //url={`${import.meta.env.VITE_API_SERVER}${selectedTheme.music}`}
-                      url="https://soundcloud.com/marogobran/vivaldi?in=hanangobran/sets/classic&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+                      url={`${import.meta.env.VITE_API_SERVER}${selectedTheme.music}`}
+                      // url="https://soundcloud.com/marogobran/vivaldi?in=hanangobran/sets/classic&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
                       loop={false}
                       playing={isPlaying}
                       onProgress={handleProgress}

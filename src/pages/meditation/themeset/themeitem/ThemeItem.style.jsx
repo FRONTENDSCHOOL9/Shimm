@@ -109,3 +109,28 @@ export const PaidBadge = styled.span`
   font-weight: 500;
   border-radius: 15px;
 `;
+
+export const DeleteButton = styled.button`
+  background-color: #f00;
+  color: #fff;
+  padding: 3px 14px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 15px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 3;
+
+  &:hover {
+    box-shadow: inset 0 0 0 2px #000;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px #000;
+  }
+
+  @media (min-width: 740px) {
+    left: 7px;
+  }
+`;

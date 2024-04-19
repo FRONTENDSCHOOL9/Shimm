@@ -114,16 +114,26 @@ function MeditationRecord() {
           },
         });
       }
+    } else {
+      setShowModal(true);
+      setModalData({
+        children: (
+          <span>
+            기록을 저장하려면 로그인해야 합니다.
+            <br />
+            로그인하시겠습니까?
+          </span>
+        ),
+        button: 2,
+        handleClose() {
+          setShowModal(false);
+        },
+        handleOk() {
+          setShowModal(false);
+          navigate('/users/login', { state: { from: location.pathname } });
+        },
+      });
     }
-  }
-
-  function handleClose() {
-    setIsClicked(false);
-  }
-
-  function handleOk() {
-    setIsClicked(false);
-    navigate('/users/login', { state: { from: location.pathname } });
   }
 
   return (
@@ -151,13 +161,6 @@ function MeditationRecord() {
             </Button>
           </SaveButtonContainer>
         </Form>
-        {isClicked && !user && (
-          <ModalWindow handleClose={handleClose} handleOk={handleOk}>
-            기록을 저장하려면 로그인해야 합니다.
-            <br />
-            로그인하시겠습니까?
-          </ModalWindow>
-        )}
       </StyledSection>
     </StyledMain>
   );
