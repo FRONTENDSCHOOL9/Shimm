@@ -6,6 +6,7 @@ import {
   Price,
   Contents,
   LockIcon,
+  DeleteButton,
   PaidBadge,
   StyledDiv,
   ThemeButton,
@@ -13,8 +14,12 @@ import {
 } from '@pages/meditation/themeset/themeitem/ThemeItem.style';
 import iconMusic from '@assets/images/icon-music.svg';
 import iconLock from '@assets/images/icon-lock.svg';
+import useUserStore from '@zustand/user';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
-function ThemeItem({ item, handleTheme, isNotPaid }) {
+function ThemeItem({ item, handleTheme, handleDelete, isNotPaid }) {
+  const { user } = useUserStore();
+
   function handleClick() {
     handleTheme(
       item.name,
@@ -45,7 +50,7 @@ function ThemeItem({ item, handleTheme, isNotPaid }) {
             <Lock />
             <StyledDiv>
               <LockIcon src={iconLock} alt="유료 테마" />
-              <Price>{item.price.toLocaleString()}원</Price>
+              <Price>{Number(item.price).toLocaleString()}원</Price>
             </StyledDiv>
           </>
         )}
@@ -58,6 +63,12 @@ function ThemeItem({ item, handleTheme, isNotPaid }) {
           </>
         )}
       </ThemeButton>
+
+      {user?.type === 'seller' && (
+        <DeleteButton type="button" onClick={() => handleDelete(item._id)}>
+          삭제
+        </DeleteButton>
+      )}
     </Theme>
   );
 }
@@ -69,6 +80,7 @@ ThemeItem.propTypes = {
     nameEng: PropTypes.string,
     paid: PropTypes.bool,
     handleTheme: PropTypes.func,
+    handleDelete: PropTypes.func,
   }),
 };
 
