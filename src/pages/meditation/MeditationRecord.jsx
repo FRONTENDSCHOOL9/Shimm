@@ -32,7 +32,6 @@ function MeditationRecord() {
     handleSubmit,
     formState: { errors },
     reset,
-    setFocus,
   } = useForm();
   const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate();

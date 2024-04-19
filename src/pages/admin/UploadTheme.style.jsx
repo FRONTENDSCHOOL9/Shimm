@@ -75,6 +75,10 @@ export const ThemePrice = styled.div`
     align-items: center;
     margin-bottom: 10px;
 
+    & p {
+      margin-bottom: unset;
+    }
+
     & input {
       display: none;
     }
@@ -167,7 +171,7 @@ export const StyledDiv = styled.div`
   }
 
   @media (min-width: 740px) {
-    justify-content: ${props => (props.position === 'right' ? 'flex-end' : '')};
+    justify-content: ${props => (props.$align === 'right' ? 'flex-end' : '')};
 
     & img {
       width: 30px;
@@ -188,6 +192,11 @@ export const ColorButton = styled.button`
   border-radius: 5px;
   background-color: ${props => props.$bgColor};
 
+  &:focus {
+    box-shadow: 0 0 0 2px #55a25a;
+    border-radius: 5px;
+  }
+
   @media (min-width: 740px) {
     height: 30px;
   }
@@ -205,11 +214,39 @@ export const Popover = styled.div`
 
 export const ThemePattern = styled.div`
   margin-bottom: 30px;
+
   & ul {
-    box-shadow: inset 0 0 5px red;
+    display: grid;
+    row-gap: 10%;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, 60px);
 
     & li {
-      box-shadow: inset 0 0 5px blue;
+      & button {
+        aspect-ratio: 1/1;
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+        background-color: #eba034;
+        position: relative;
+
+        & img {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+      }
+
+      & button:hover {
+        box-shadow: 0 0 0 2px #55a25a;
+        border-radius: 5px;
+      }
+
+      & button:focus {
+        box-shadow: 0 0 0 2px #55a25a;
+        border-radius: 5px;
+      }
     }
   }
 

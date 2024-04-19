@@ -1,25 +1,22 @@
 import { CommonInput } from '@components/input/Input.style';
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
-function Input({
-  type = 'text',
-  size = 'full',
-  id,
-  placeholder,
-  title,
-  ...rest
-}) {
-  return (
-    <CommonInput
-      id={id}
-      type={type}
-      size={size}
-      placeholder={placeholder}
-      title={title}
-      {...rest}
-    />
-  );
-}
+const Input = forwardRef(
+  ({ type = 'text', size = 'full', id, placeholder, title, ...rest }, ref) => {
+    return (
+      <CommonInput
+        ref={ref}
+        id={id}
+        type={type}
+        size={size}
+        placeholder={placeholder}
+        title={title}
+        {...rest}
+      />
+    );
+  },
+);
 
 Input.propTypes = {
   id: PropTypes.string,

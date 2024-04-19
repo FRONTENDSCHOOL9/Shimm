@@ -19,7 +19,6 @@ export const StyledHeader = styled.header`
     flex-wrap: nowrap;
     padding: 20px;
   }
-
 `;
 
 export const Logo = styled(Link)`
@@ -29,7 +28,7 @@ export const Logo = styled(Link)`
   padding: 20px 20px 0 20px;
 
   &:focus {
-    box-shadow: 0 0 0 2px rgba(115, 146, 125, 1);
+    box-shadow: 0 0 0 2px #55a25a;
     border-radius: 4px;
   }
 
@@ -53,7 +52,7 @@ export const StyledNav = styled.nav`
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   padding: 20px;
-  box-shadow: 2px 10px 12px -15px rgba(0,0,0,0.64);
+  box-shadow: 2px 10px 12px -15px rgba(0, 0, 0, 0.64);
 
   @media (min-width: 740px) {
     order: 2;
@@ -80,7 +79,7 @@ export const HeaderLink = styled(Link)`
   }
 
   &:hover {
-    color: rgba(85, 162, 90, 1)
+    color: rgba(85, 162, 90, 1);
   }
 
   &:focus {
