@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useCustomAxios from '@hooks/useCustomAxios';
 import FeedCreate from '@pages/community/feed/FeedCreate';
 import { FeedList } from '@pages/community/feed/FeedList';
-import { FeedDetail } from '@pages/community/feed/FeedDetail';
 
 const FeedTemplateWrapper = styled.div`
   display: flex;
@@ -15,9 +14,10 @@ const FeedTemplateWrapper = styled.div`
 `;
 
 function Feed() {
-  const [newComment, setNewComment] = useState([]);
+  const [newComment, setNewComment] = useState();
+  const [data, setData] = useState();
   const axios = useCustomAxios();
-  const [data, setData] = useState([]);
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -25,26 +25,27 @@ function Feed() {
   async function fetchList() {
     try {
       const res = await axios('/posts?type=community');
-
+      console.log(res);
       setData(res.data);
     } catch (err) {
       console.log(err);
     }
-    //  return <FeedDetail res={res} />
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(newComment);
-    if (newComment.trim() !== '') setNewComment([...newComment, setNewComment]);
-    setNewComment('');
-  }
+  const feedList = data?.item?.map(item => (
+    <FeedList key={item._id} item={item} />
+  ));
+
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   console.log(newComment);
+  //   if (newComment.trim() !== '') setNewComment([...newComment, setNewComment]);
+  //   setNewComment('');
+  // }
 
   return (
     <FeedTemplateWrapper>
-      {data?.item?.map(item => (
-        <FeedList key={item._id} item={item} />
-      ))}
+      {feedList}
       <FeedCreate />
     </FeedTemplateWrapper>
   );

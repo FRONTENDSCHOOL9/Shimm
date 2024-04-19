@@ -1,7 +1,7 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { UserInfo } from '@pages/community/user/UserInfo';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useUserStore from '@zustand/user.mjs';
+import useUserStore from '@zustand/user';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
@@ -34,7 +34,6 @@ function ReplyList({ feedId }) {
     setCommentList(res.data);
   }
 
-  console.log(commentList);
   return (
     <div>
       <StyledReplies>
@@ -42,8 +41,8 @@ function ReplyList({ feedId }) {
           src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user?.profile}`}
           alt="댓글작성한 사용자의 사진"
         />
-        <span>{user.name}</span>
-        <p>{content}</p>
+        <span>{user?.name}</span>
+        {/* <p>{content}</p> */}
       </StyledReplies>
     </div>
   );
