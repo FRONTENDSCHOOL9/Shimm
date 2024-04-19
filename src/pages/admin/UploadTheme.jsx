@@ -1,75 +1,38 @@
-import Input from '@components/input/Input';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import iconDropper from '@assets/images/icon-dropper.svg';
-import { SketchPicker } from 'react-color';
-import styled from 'styled-components';
-
-const Main = styled.main`
-  box-shadow: inset 0 0 5px red;
-  flex-grow: 1;
-
-  display: flex;
-
-  & section {
-    box-shadow: inset 0 0 5px blue;
-    flex-grow: 1;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  & .toggleInput {
-    display: none;
-  }
-
-  & .toggleLabel {
-    display: inline-block;
-    cursor: pointer;
-    width: 40px;
-    height: 20px;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    position: relative;
-    transition: 0.5s ease-out;
-  }
-
-  & .toggleInput:checked + .toggleLabel {
-    background-color: #55a25a;
-  }
-
-  & .toggleLabel:after {
-    content: '';
-    width: 15px;
-    height: 15px;
-    background-color: #fff;
-    position: absolute;
-    border-radius: 50%;
-    top: 50%;
-    left: 3px;
-    transform: translateY(-50%);
-    transition: 0.5s ease-out;
-  }
-
-  & .toggleInput:checked + .toggleLabel:after {
-    background-color: #55a25a;
-    left: calc(100% - 18px);
-    background-color: #fff;
-  }
-
-  & button {
-    width: 50px;
-    height: 25px;
-    border-radius: 10px;
-    background-color: #000;
-  }
-`;
+import Button from '@components/button/Button';
+import Input from '@components/input/Input';
+import theme01 from '@assets/images/bg-theme01.svg';
+import theme02 from '@assets/images/bg-theme02.svg';
+import theme03 from '@assets/images/bg-theme03.svg';
+import theme04 from '@assets/images/bg-theme04.svg';
+import theme05 from '@assets/images/bg-theme05.svg';
+import {
+  ColorButton,
+  ColorPicker,
+  Description,
+  FileInput,
+  Main,
+  PageTitle,
+  Popover,
+  Section,
+  StyledDiv,
+  ThemeColor,
+  ThemeDesc,
+  ThemeInput,
+  ThemeLabel,
+  ThemePrice,
+  ThemePattern,
+} from '@pages/admin/UploadTheme.style';
+import { useState } from 'react';
+import { ChromePicker } from 'react-color';
+import { useForm } from 'react-hook-form';
 
 function UploadTheme() {
   const [isChecked, setIsChecked] = useState(true);
   const [isStartOpen, setIsStartOpen] = useState(false);
   const [isEndOpen, setIsEndOpen] = useState(false);
-  const [startColor, setStartColor] = useState();
-  const [endColor, setEndColor] = useState();
+  const [startColor, setStartColor] = useState('#4FEA7D');
+  const [endColor, setEndColor] = useState('#E4626F');
 
   const {
     register,
@@ -82,66 +45,195 @@ function UploadTheme() {
     setIsChecked(!isChecked);
   }
 
-  async function onSubmit(formData) {}
+  function handleStartButton() {
+    if (!isStartOpen) {
+      setIsStartOpen(true);
+      if (isEndOpen) setIsEndOpen(false);
+    } else {
+      setIsStartOpen(false);
+    }
+  }
+
+  function handleEndButton() {
+    if (!isEndOpen) {
+      setIsEndOpen(true);
+      if (isStartOpen) setIsStartOpen(false);
+    } else {
+      setIsEndOpen(false);
+    }
+  }
+
+  function handleChangeStartColor(color) {
+    setStartColor(color.hex);
+    setIsStartOpen(false);
+  }
+
+  function handleChangeEndColor(color) {
+    setEndColor(color.hex);
+    setIsEndOpen(false);
+  }
+
+  async function onSubmit(formData) {
+    try {
+      console.log(formData);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <Main>
-      <section>
-        <h3>테마 등록하기</h3>
+      <Section>
+        <PageTitle>테마 등록하기</PageTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label htmlFor="nameKor">테마 이름 (한글)</label>
+          <ThemeInput>
+            <ThemeLabel htmlFor="nameKor">테마 이름 (한글)</ThemeLabel>
             <Input
               id="nameKor"
               placeholder="테마의 한글 이름을 입력해 주세요."
+              {...register('nameKor', {
+                required: '테마 이름을 입력하세요.',
+                minLength: {
+                  value: 1,
+                  message: '테마 한글 이름을 1글자 이상 입력하세요.',
+                },
+              })}
             />
-          </div>
-          <div>
-            <label htmlFor="nameEng">테마 이름 (영문)</label>
+          </ThemeInput>
+          <ThemeInput>
+            <ThemeLabel htmlFor="nameEng">테마 이름 (영문)</ThemeLabel>
             <Input
               id="nameEng"
               placeholder="테마의 영문 이름을 입력해 주세요."
+              {...register('nameEng', {
+                required: '테마 영문 이름을 입력하세요.',
+                minLength: {
+                  value: 1,
+                  message: '테마 영문 이름을 1글자 이상 입력하세요.',
+                },
+              })}
             />
-          </div>
-          <div>
-            <label htmlFor="file">테마 파일</label>
-            <Input id="file" type="file" />
-            <p>테마에 쓰일 오디오 파일을 선택해 주세요.</p>
-          </div>
-          <div>
-            <p>유료 테마</p>
-            <input
-              className="toggleInput"
-              type="checkbox"
-              id="toggle"
-              checked={isChecked}
-              onChange={handleCheck}
+          </ThemeInput>
+          <ThemeInput>
+            <ThemeLabel htmlFor="file">테마 파일</ThemeLabel>
+            <FileInput
+              id="file"
+              type="file"
+              {...register('themeMusic', {
+                required: '배경 음악을 업로드 하세요.',
+              })}
             />
-            <label className="toggleLabel" htmlFor="toggle">
-              {' '}
-            </label>
-          </div>
-          <div>
-            <p>테마 배경 색상</p>
+            <Description>테마에 쓰일 오디오 파일을 선택해 주세요.</Description>
+          </ThemeInput>
+          <ThemePrice>
             <div>
-              <img src={iconDropper} alt="시작 색상 선택" />
-              <button
-                type="button"
-                onClick={() => setIsStartOpen(!isStartOpen)}
-              >
-                <i>색상 선택</i>
-              </button>
-              {isStartOpen && <SketchPicker />}
+              <ThemeDesc>유료 테마</ThemeDesc>
+              <input
+                className="toggleInput"
+                type="checkbox"
+                id="toggle"
+                checked={isChecked}
+                onChange={handleCheck}
+              />
+              <label className="toggleLabel" htmlFor="toggle">
+                {' '}
+              </label>
             </div>
-            <div>
-              <img src={iconDropper} alt="종료 색상 선택" />
-              <button type="button" onClick={() => setIsEndOpen(!isEndOpen)}>
-                <i>색상 선택</i>
-              </button>
-              {isEndOpen && <SketchPicker />}
-            </div>
-          </div>
+            <Input
+              placeholder="테마 가격을 입력해 주세요."
+              title="price"
+              {...register('price')}
+            />
+          </ThemePrice>
+
+          <ThemeColor>
+            <ThemeDesc>테마 배경 색상</ThemeDesc>
+            <ColorPicker>
+              <div>
+                <StyledDiv>
+                  <img src={iconDropper} alt="시작 색상 선택" />
+                  <ColorButton
+                    className="color"
+                    type="button"
+                    onClick={handleStartButton}
+                    $bgColor={startColor}
+                  >
+                    <i>색상 선택</i>
+                  </ColorButton>
+                  {isStartOpen && (
+                    <Popover>
+                      <ChromePicker
+                        width="50"
+                        color={startColor}
+                        onChangeComplete={handleChangeStartColor}
+                      />
+                    </Popover>
+                  )}
+                  <p>{startColor}</p>
+                </StyledDiv>
+              </div>
+              <div>
+                <StyledDiv $align="right">
+                  <img src={iconDropper} alt="종료 색상 선택" />
+                  <ColorButton
+                    className="color"
+                    type="button"
+                    onClick={handleEndButton}
+                    $bgColor={endColor}
+                  >
+                    <i>색상 선택</i>
+                  </ColorButton>
+                  {isEndOpen && (
+                    <Popover>
+                      <ChromePicker
+                        width="50"
+                        color={endColor}
+                        onChangeComplete={handleChangeEndColor}
+                      />
+                    </Popover>
+                  )}
+                  <p>{endColor}</p>
+                </StyledDiv>
+              </div>
+            </ColorPicker>
+          </ThemeColor>
+
+          <ThemePattern>
+            <ThemeDesc>테마 배경 패턴</ThemeDesc>
+            <ul>
+              <li>
+                <button type="button" onClick={() => {}}>
+                  <img src={theme01} />
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => {}}>
+                  <img src={theme02} />
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => {}}>
+                  <img src={theme03} />
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => {}}>
+                  <img src={theme04} />
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => {}}>
+                  <img src={theme05} />
+                </button>
+              </li>
+            </ul>
+          </ThemePattern>
+
+          <Button type="submit" size="full" bgColor="dark">
+            등록하기
+          </Button>
         </form>
-      </section>
+      </Section>
     </Main>
   );
 }
