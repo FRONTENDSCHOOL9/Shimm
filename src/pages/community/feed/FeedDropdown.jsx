@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import iconedit from '@assets/images/icon-edit.svg';
 import icondelete from '@assets/images/icon-delete-post.svg';
 import iconmore from '@assets/images/icon-more.svg';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
 const StyledDropDown = styled.div`
@@ -60,6 +60,7 @@ function FeedDropDown({ item }) {
   const [isOpen, setIsOpen] = useDetectClose(dropDownRef, false);
   const axios = useCustomAxios();
   const navigate = useNavigate();
+  const { _id } = useParams();
   useClickOutside(menuRef, () => {
     if (isOpen) {
       setIsOpen(false);
@@ -76,6 +77,8 @@ function FeedDropDown({ item }) {
     }
   }
 
+  // console.log(e.target.value);
+
   return (
     <StyledDropDown ref={menuRef}>
       <MoreButton onClick={() => setIsOpen(!isOpen)}>
@@ -88,7 +91,9 @@ function FeedDropDown({ item }) {
         <OpenMenu>
           <div>
             <img src={iconedit} alt="#" />
-            <StyledLink to="/community/edit">게시글 수정</StyledLink>
+            <StyledLink onClick={() => navigate(`/community/${_id}/edit`)}>
+              게시글 수정
+            </StyledLink>
           </div>
           <div>
             <img src={icondelete} alt="#" />

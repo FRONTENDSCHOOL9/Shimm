@@ -4,11 +4,13 @@ import {
   UploadFile,
   WriteTextarea,
 } from '@pages/community/feed/FeedNew';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import iconfile from '@assets/images/icon-file.svg';
 import { ImageArea } from '@pages/community/feed/FeedList';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const EditWrapper = styled.div`
   max-width: 740px;
@@ -49,28 +51,65 @@ const Edit = styled.div`
 
 function FeedEdit() {
   const axios = useCustomAxios();
-  const [data, setData] = useState();
-  async function fetchFeedEdit() {
-    const res = await axios.patch(`/posts/${_id}`);
-    setData(res.data);
-    console.log(setData);
+  const [item, setItem] = useState();
+  const { _id } = useParams();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  async function fetchEditDetail() {
+    const response = await axios.patch(`/posts/${_id}`);
+    setItem(response.data.item);
   }
+
+  useEffect(() => {
+    fetchEditDetail();
+  }, []);
+
+  useEffect(() => {
+    if (item)
+      reset({
+        content: item.content,
+      });
+  }, [item]);
+
+  async function onSubmit(formData) {
+    try {
+      await axios.patch(`/posts/${_id}`, formData);
+      alert('내용이 수정되었습니다.');
+      navigate(`/community/${_id}`);
+    } catch (err) {
+      console.error(err);
+      alert('할일 수정에 실패했습니다.');
+    }
+  }
+
   return (
     <EditWrapper>
       <Edit>
         <h1>수정하기</h1>
-        <UploadFile>
-          <img src={iconfile} alt="이미지 첨부하기" />
-          <span>이미지 첨부</span>
-        </UploadFile>
         <UploadCase>
           가로 500px, 세로 500px 이상의 이미지를 등록해 주세요.
         </UploadCase>
         <UploadedImg />
       </Edit>
-      <ImageArea />
-      <WriteTextarea></WriteTextarea>
-      <SubmitButton>수정하기</SubmitButton>
+      <div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <WriteTextarea
+            {...register('content', {
+              required: '내용을 입력하세요.',
+            })}
+          />
+          <button type="submit">수정하기</button>
+        </form>
+      </div>
+      <UploadFile>
+        <img src={iconfile} alt="이미지 첨부하기" />
+        <span>이미지 첨부</span>
+      </UploadFile>
     </EditWrapper>
   );
 }
