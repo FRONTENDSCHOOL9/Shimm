@@ -9,12 +9,14 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <GlobalStyle />
-      <Suspense fallback={<Loading />}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </QueryClientProvider>
+    </>
   );
 }
 

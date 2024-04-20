@@ -9,37 +9,15 @@ import NanumSquareNeo2 from '@assets/fonts/NanumSquareNeoTTF-cBd.woff2';
 const GlobalStyle = createGlobalStyle`
   
   // Reset
-  body {
+  body, p, ul {
     margin: unset;
     padding: unset;
   }
 
-  h1 {
+  h1, h2, h3, h4, h5, h6 {
     margin: unset;
     font-size: unset;
     font-weight: unset;
-  }
-
-  h2 {
-    margin: unset;
-    font-size: unset;
-    font-weight: unset;
-  }
-
-  h3 {
-    margin: unset;
-    font-size: unset;
-    font-weight: unset;
-  }
-
-  p {
-    margin: unset;
-    padding: unset;
-  }
-
-  ul {
-    margin: unset;
-    padding: unset;
   }
 
   li {
