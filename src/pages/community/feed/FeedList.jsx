@@ -1,129 +1,109 @@
-import styled from 'styled-components';
-import { UserInfo } from '@pages/community/user/UserInfo';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import iconbookmark from '@assets/images/icon-bookmark.svg';
-import icondefault from '@assets/images/icon-user-default.png';
+import { Post } from '@pages/community/feed/Feed.style';
+import iconBookMark from '@assets/images/icon-bookmark.svg';
+import iconBookMarkActive from '@assets/images/icon-bookmark-active.svg';
 import { useEffect, useState } from 'react';
-import ReplyList from '@pages/community/feed/ReplyList';
-import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate';
-import FeedDropDown from '@pages/community/feed/FeedDropdown';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import useUserStore from '@zustand/user.mjs';
-
-const replyer = [
-  {
-    id: 'i`m user2',
-    userId: 'replyer_01',
-    profileImgUrl: '#',
-  },
-];
-
-const FeedWrapper = styled.div`
-  max-width: 740px;
-  width: 100%;
-  color: black;
-  font-size: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  position: relative;
-
-  @media screen and (max-width: 740px) {
-    width: 320px;
-    transition: all 5s easi-in-out;
-  }
-`;
-
-const Post = styled.div`
-  margin-block: 20px;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-wrap: break-word;
-`;
-
-const StateWrapper = styled.div`
-  display: flex;
-  font-size: 1.8rem;
-  padding: 0.6rem 0;
-  justify-content: space-between;
-
-  & span {
-    color: #727272;
-    font-size: 1.6rem;
-  }
-
-  & img {
-    cursor: pointer;
-    width: 24px;
-  }
-
-  /* & img:isactive {
-    background-color: red;
-  } */
-`;
-
-const ImageArea = styled.div`
-  aspect-ratio: 16/9;
-  margin-bottom: 1rem;
-  background-color: #f0f5ed;
-  border-radius: 8px;
-`;
-
-const MoreComment = styled.div`
-  font-size: 1.6rem;
-  padding: 1rem 0;
-  color: #727272;
-  margin-bottom: 2rem;
-`;
+import ReplyNew from '@pages/community/feed/ReplyNew';
+import { Link } from 'react-router-dom';
+import useUserStore from '@zustand/user';
+import useCustomAxios from '@hooks/useCustomAxios';
 
 function FeedList({ item }) {
-  const [comments, setNewComment] = useState([]);
-  const { _id, name, profile, content, createdAt } = item;
-  const navigate = useNavigate();
-  const { id } = useParams();
+  const [isActive, setIsActive] = useState();
+  const { user } = useUserStore();
+  const { _id, user: writer, content, createdAt, repliesCount, extra } = item;
   const axios = useCustomAxios();
 
-  function handleFeedClick() {
-    navigate(`/community/${_id}`);
+  const currentDate = Date.now();
+  const createdDate = new Date(createdAt).getTime();
+  const seconds = (currentDate - createdDate) / 1000;
+  const minutes = Math.floor(seconds % 3600);
+  const hours = Math.floor(seconds / 3600);
+  const days = Math.floor(hours / 24);
+
+  let bookmarkId;
+
+  useEffect(() => {
+    fetchBookmark();
+  }, []);
+
+  async function fetchBookmark() {
+    try {
+      const res = await axios(`/users/${user._id}/bookmarks`);
+      const bookmarkList = res.data.item.post;
+      const bookmarkedPostList = res.data.item.post.map(item => item.target_id);
+
+      if (bookmarkedPostList.includes(_id)) {
+        const index = bookmarkedPostList.indexOf(_id);
+        bookmarkId = bookmarkList[index]._id;
+        setIsActive(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  function handleAddComment(newComment) {
-    setNewComment([...comments, newComment]);
+  function handleClick() {}
+
+  async function handleClick() {
+    try {
+      if (!isActive) {
+        const res = await axios.post(`/bookmarks/post/${_id}`);
+        console.log(res);
+        bookmarkId = res.data.item._id;
+        setIsActive(true);
+      } else {
+        console.log(bookmarkId);
+        const res = await axios.delete(`/bookmarks/${bookmarkId}`);
+        console.log(res);
+        setIsActive(false);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
-  // console.log(item.user);
+
   return (
-    <FeedWrapper>
-      <FeedDropDown item={item} />
-
-      <UserInfo profile={item.user.profile} userId={item.user.name} />
-
-      <div onClick={handleFeedClick}>
-        <Post>
-          <span>{content}</span>
-        </Post>
-        <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.extra?.image}`}
-        />
+    <Post>
+      <div>
+        <div>
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}${writer.profile}`}
+            alt={`작성자: ${writer.name}`}
+          />
+        </div>
+        <div>
+          <h4>{writer.name}</h4>
+          <p>
+            {days ? `${days}일` : hours > 0 ? `${hours}시간` : `${minutes}분`}{' '}
+            전
+          </p>
+        </div>
+        <div>
+          {isActive ? (
+            <button type="button" onClick={handleClick}>
+              <img src={iconBookMarkActive} alt="북마크 저장됨" />
+            </button>
+          ) : (
+            <button type="button" onClick={handleClick}>
+              <img src={iconBookMark} alt="북마크 저장하기" />
+            </button>
+          )}
+        </div>
       </div>
-      <StateWrapper>
-        <span>{createdAt}</span>
-        <img src={iconbookmark} alt="게시글 좋아요 버튼" />
-      </StateWrapper>
-      <UserInfo profile={profile} userId={name} comment={comments} />
 
-      <ReplyList feedId={item._id} />
-      {replyer &&
-        replyer.map(t => (
-          <Replyer key={t.id}>
-            <ReplyCreate feedId={item._id} onAddComment={handleAddComment} />
-            {/* <img src={iconsend} alt="댓글 등록 버튼" /> */}
-          </Replyer>
-        ))}
-      <MoreComment>
-        <Link to={`/community/${item._id}`}>댓글 더보기</Link>
-      </MoreComment>
-    </FeedWrapper>
+      <Link to={`/community/${_id}`}>
+        <p>{content}</p>
+        {extra?.image && (
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${extra.image}`}
+          />
+        )}
+      </Link>
+
+      {user && <ReplyNew user={user} id={_id} />}
+      <Link to={`/community/${_id}`}>{repliesCount}개의 댓글 보기</Link>
+    </Post>
   );
 }
 
-export { MoreComment, FeedList, FeedWrapper, ImageArea };
+export default FeedList;

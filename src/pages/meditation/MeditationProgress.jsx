@@ -19,6 +19,8 @@ function MeditationProgress() {
   const [isPlaying, setIsPlaying] = useState(true);
   const navigate = useNavigate();
 
+  console.log(selectedTheme);
+
   let time = 0;
   switch (selectedTime) {
     case '5분':
@@ -50,8 +52,7 @@ function MeditationProgress() {
     <StyledMain $bgColor={selectedTheme.background}>
       <Player>
         <ReactPlayer
-          url={`${import.meta.env.VITE_API_SERVER}${selectedTheme.music}`}
-          // url="https://soundcloud.com/marogobran/vivaldi?in=hanangobran/sets/classic&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+          url={selectedTheme.music}
           loop={true}
           playing={isPlaying}
         />

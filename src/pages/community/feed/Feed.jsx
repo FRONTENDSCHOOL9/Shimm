@@ -1,20 +1,10 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import useCustomAxios from '@hooks/useCustomAxios';
+import { StyledFeed } from '@pages/community/feed/Feed.style';
 import FeedCreate from '@pages/community/feed/FeedCreate';
-import { FeedList } from '@pages/community/feed/FeedList';
-
-const FeedTemplateWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow-y: hidden;
-  padding: 2px;
-  margin-top: 60px;
-`;
+import FeedList from '@pages/community/feed/FeedList';
+import { useEffect, useState } from 'react';
 
 function Feed() {
-  const [newComment, setNewComment] = useState();
   const [data, setData] = useState();
   const axios = useCustomAxios();
 
@@ -25,7 +15,6 @@ function Feed() {
   async function fetchList() {
     try {
       const res = await axios('/posts?type=community');
-      console.log(res);
       setData(res.data);
     } catch (err) {
       console.log(err);
@@ -36,18 +25,11 @@ function Feed() {
     <FeedList key={item._id} item={item} />
   ));
 
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   console.log(newComment);
-  //   if (newComment.trim() !== '') setNewComment([...newComment, setNewComment]);
-  //   setNewComment('');
-  // }
-
   return (
-    <FeedTemplateWrapper>
+    <StyledFeed>
       {feedList}
       <FeedCreate />
-    </FeedTemplateWrapper>
+    </StyledFeed>
   );
 }
 

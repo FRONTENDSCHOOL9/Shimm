@@ -77,11 +77,8 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #B5DE13 0%, #06B7AC 100%)',
-          music: {
-            path: `/files/02-Shimm/forest.mp3`,
-            name: 'forest.mp3',
-            originalname: 'forest.mp3',
-          },
+          music:
+            'https://soundcloud.com/1qza8k6e3opg/gihgcldr6xby?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
         },
       },
       {
@@ -107,11 +104,8 @@ export const initData = async nextSeq => {
         extra: {
           background: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
           // 변경 필요
-          music: {
-            path: `/files/02-Shimm/forest.mp3`,
-            name: 'forest.mp3',
-            originalname: 'forest.mp3',
-          },
+          music:
+            'https://soundcloud.com/1qza8k6e3opg/gihgcldr6xby?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
         },
       },
       {
@@ -136,11 +130,8 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #60E66D 0%, #F6815B 100%)',
-          music: {
-            path: `/files/02-Shimm/morning.mp3`,
-            name: 'morning.mp3',
-            originalname: 'morning.mp3',
-          },
+          music:
+            'https://soundcloud.com/1qza8k6e3opg/x4cfcirlsxtp?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
         },
       },
       {
@@ -165,11 +156,8 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #FF8541 0%, #F0B31A 100%)',
-          music: {
-            path: `/files/02-Shimm/sunset.mp3`,
-            name: 'sunset.mp3',
-            originalname: 'sunset.mp3',
-          },
+          music:
+            'https://soundcloud.com/1qza8k6e3opg/ql4zikqixman?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
         },
       },
       {
@@ -194,11 +182,8 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #9A17C8 0%, #4E81EB 100%)',
-          music: {
-            path: `/files/02-Shimm/nightsky.mp3`,
-            name: 'nightsky.mp3',
-            originalname: 'nightsky.mp3',
-          },
+          music:
+            'https://soundcloud.com/1qza8k6e3opg/umoti9kegdyo?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
         },
       },
     ],
@@ -279,7 +264,7 @@ export const initData = async nextSeq => {
         user: {
           _id: 1,
           name: '요가맨',
-          profile: 'yogaman.png',
+          profile: '/files/02-Shimm/yogaman.png',
         },
         replies: [
           {
@@ -287,7 +272,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 2,
               name: '요가걸',
-              profile: 'yogagirl.png',
+              profile: '/files/02-Shimm/yogagirl.png',
             },
             content: '요가 …짱!',
             createdAt: getTime(-2, -60 * 60 * 20),
@@ -298,7 +283,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 2,
               name: '요가걸',
-              profile: 'yogagirl.png',
+              profile: '/files/02-Shimm/yogagirl.png',
             },
             content: '요가좋툐',
             createdAt: getTime(-2, -60 * 60 * 10),
@@ -309,7 +294,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 2,
               name: '요가걸',
-              profile: 'yogagirl.png',
+              profile: '/files/02-Shimm/yogagirl.png',
             },
             content: '굿',
             createdAt: getTime(-2, -60 * 60 * 9),
@@ -328,7 +313,7 @@ export const initData = async nextSeq => {
         user: {
           _id: 1,
           name: '쓰러지다',
-          profile: 'yogagirl.png',
+          profile: '/files/02-Shimm/yogagirl.png',
         },
         replies: [
           {
@@ -336,7 +321,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 1,
               name: '요가맨',
-              profile: 'yogaman.png',
+              profile: '/files/02-Shimm/yogaman.png',
             },
             content: '힘내요!',
             createdAt: getTime(-2, -60 * 60 * 20),
@@ -347,7 +332,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 1,
               name: '요가맨',
-              profile: 'yogaman.png',
+              profile: '/files/02-Shimm/yogaman.png',
             },
             content: '화이토화이토',
             createdAt: getTime(-2, -60 * 60 * 10),
@@ -358,7 +343,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 2,
               name: '요가걸',
-              profile: 'yogagirl.png',
+              profile: '/files/02-Shimm/yogagirl.png',
             },
             content: '밥 잘 챙겨드셔요',
             createdAt: getTime(-2, -60 * 60 * 9),

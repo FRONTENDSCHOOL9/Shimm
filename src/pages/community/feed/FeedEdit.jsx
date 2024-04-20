@@ -7,7 +7,8 @@ import {
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import iconfile from '@assets/images/icon-file.svg';
-import { ImageArea } from '@pages/community/feed/FeedList';
+//진욱
+// import { ImageArea } from '@pages/community/feed/FeedList';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';

@@ -3,11 +3,12 @@ import { UserInfo } from '@pages/community/user/UserInfo';
 import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate';
 import ReplyList from '@pages/community/feed/ReplyList';
 import { useEffect, useState } from 'react';
-import { FeedWrapper, ImageArea } from '@pages/community/feed/FeedList';
+// import { FeedWrapper, ImageArea } from '@pages/community/feed/FeedList';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useParams } from 'react-router-dom';
 import useUserStore from '@zustand/user.mjs';
 import { useQuery } from '@tanstack/react-query';
+import { Post } from '@pages/community/feed/Feed.style';
 
 function FeedDetail() {
   const [comments, setComments] = useState([]);
@@ -39,7 +40,7 @@ function FeedDetail() {
   }
 
   return (
-    <FeedWrapper>
+    <Post>
       {data && (
         <>
           <UserInfo profile={item.user.profile} userId={item.user.name} />
@@ -56,8 +57,8 @@ function FeedDetail() {
           <ReplyCreate onAddComment={handleAddComment} item={item} />
         </>
       )}
-    </FeedWrapper>
+    </Post>
   );
 }
 
-export { FeedDetail, ImageArea };
+export default FeedDetail;
