@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         element: <FeedNew />,
       },
       {
-        path: 'community/edit',
+        path: 'community/:id/edit',
         element: <FeedEdit />,
       },
       {

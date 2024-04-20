@@ -14,7 +14,6 @@ function FeedDetail() {
   const axios = useCustomAxios();
   const { id } = useParams();
 
-  useEffect(() => {}, []);
   const [data, setData] = useState('');
 
   // const { data } = useQuery({
@@ -23,17 +22,17 @@ function FeedDetail() {
   //   select: response => response.data,
   // });
 
-  const fetchDetail = async () => {
-    const res = await axios.get(`/posts/${id}`);
-
-    setData(res.data);
-  };
-
   useEffect(() => {
     fetchDetail();
   }, []);
 
+  const fetchDetail = async () => {
+    const res = await axios.get(`/posts/${id}`);
+    setData(res.data);
+  };
+
   const item = data?.item;
+  console.log(item);
 
   function handleAddComment(newComment) {
     setComments([...comments, newComment]);
