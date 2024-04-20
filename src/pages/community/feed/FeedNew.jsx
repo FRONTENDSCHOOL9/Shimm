@@ -150,6 +150,7 @@ function FeedNew() {
         data.extra = {
           image: fileRes.data.item[0].name,
         };
+        delete data.image;
       } else {
         delete data.image;
       }

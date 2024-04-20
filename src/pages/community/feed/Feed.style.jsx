@@ -38,8 +38,8 @@ export const PostHeader = styled.div`
 export const ProfileImage = styled.div`
   width: 30px;
   height: 30px;
-  box-shadow: inset 0 0 2px red;
   border-radius: 50%;
+  aspect-ratio: 1/1;
 `;
 
 export const PostInfo = styled.div`
@@ -80,6 +80,7 @@ export const PostMain = styled(Link)`
   }
 
   & img {
+    width: 500px;
     aspect-ratio: 16/9;
   }
 
