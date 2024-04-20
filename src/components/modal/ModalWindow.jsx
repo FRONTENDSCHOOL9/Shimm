@@ -7,17 +7,22 @@ import {
   ModalClose,
   ModalOk,
   ButtonContainer,
-  ButtonClose
+  ButtonClose,
 } from '@components/modal/ModalWindow.style';
 
-function ModalWindow({ children, button, closeButton = true, handleClose, handleOk }) {
-  console.log(closeButton)
+function ModalWindow({
+  children,
+  button,
+  closeButton = true,
+  handleClose,
+  handleOk,
+}) {
   return (
     <Modal>
       <Inside>
         {closeButton && (
-          <ButtonClose type='button' onClick={handleClose}>
-            <img src={iconClose} alt='닫기 버튼' />
+          <ButtonClose type="button" onClick={handleClose}>
+            <img src={iconClose} alt="닫기 버튼" />
           </ButtonClose>
         )}
         <Message>{children}</Message>

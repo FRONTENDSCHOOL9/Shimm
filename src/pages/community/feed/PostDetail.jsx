@@ -10,19 +10,19 @@ import {
   PostInfo,
   PostMain,
   ProfileImage,
-  ReplyMore,
 } from '@pages/community/feed/Feed.style';
 import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
 import ReplyNew from '@pages/community/feed/ReplyNew';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
+import ReplyList from '@pages/community/feed/ReplyList';
 
-function FeedList({ item, handleDelete }) {
+function PostDetail({ item, handleDelete }) {
   const [isActive, setIsActive] = useState();
   const [isOpened, setIsOpened] = useState(false);
   const [bookmarkId, setBookmarkId] = useState();
   const { user } = useUserStore();
-  const { _id, user: writer, content, createdAt, repliesCount, extra } = item;
+  const { _id, user: writer, content, createdAt, replies, extra } = item;
   const axios = useCustomAxios();
 
   const currentDate = Date.now();
@@ -31,6 +31,8 @@ function FeedList({ item, handleDelete }) {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(seconds / 3600);
   const days = Math.floor(hours / 24);
+
+  console.log(item);
 
   useEffect(() => {
     if (user) {
@@ -138,17 +140,16 @@ function FeedList({ item, handleDelete }) {
         )}
       </PostMain>
 
+      <ReplyList item={replies} />
+
       {user && <ReplyNew user={user} id={_id} />}
-      <ReplyMore to={`/community/${_id}`}>
-        {repliesCount}개의 댓글 보기
-      </ReplyMore>
     </Post>
   );
 }
 
-FeedList.propTypes = {
+PostDetail.propTypes = {
   item: PropTypes.object.isRequired,
   handleDelete: PropTypes.func,
 };
 
-export default FeedList;
+export default PostDetail;

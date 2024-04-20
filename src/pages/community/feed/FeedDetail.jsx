@@ -1,63 +1,39 @@
-import styled from 'styled-components';
-import { UserInfo } from '@pages/community/user/UserInfo';
-import { ReplyCreate, Replyer } from '@pages/community/feed/ReplyCreate';
-import ReplyList from '@pages/community/feed/ReplyList';
 import { useEffect, useState } from 'react';
-// import { FeedWrapper, ImageArea } from '@pages/community/feed/FeedList';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useParams } from 'react-router-dom';
-import useUserStore from '@zustand/user.mjs';
-import { useQuery } from '@tanstack/react-query';
-import { Post } from '@pages/community/feed/Feed.style';
+import { useNavigate, useParams } from 'react-router-dom';
+import PostDetail from '@pages/community/feed/PostDetail';
+import { StyledFeed } from '@pages/community/feed/Feed.style';
 
 function FeedDetail() {
-  const [comments, setComments] = useState([]);
-  const axios = useCustomAxios();
-  const { id } = useParams();
-
   const [data, setData] = useState('');
-
-  // const { data } = useQuery({
-  //   queryKey: [`/posts/${id}`],
-  //   queryFn: () => axios.get(`/posts/${id}`),
-  //   select: response => response.data,
-  // });
+  const { id } = useParams();
+  const axios = useCustomAxios();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchDetail();
   }, []);
 
-  const fetchDetail = async () => {
+  async function fetchDetail() {
     const res = await axios.get(`/posts/${id}`);
     setData(res.data);
-  };
-
-  const item = data?.item;
-  console.log(item);
-
-  function handleAddComment(newComment) {
-    setComments([...comments, newComment]);
   }
 
+  async function handleDelete(id) {
+    try {
+      await axios.delete(`/posts/${id}`);
+      navigate('/community');
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const item = data?.item;
+
   return (
-    <Post>
-      {data && (
-        <>
-          <UserInfo profile={item.user.profile} userId={item.user.name} />
-          <div>{item.content}</div>
-
-          {item.extra?.image && (
-            <img
-              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.extra?.image}`}
-            />
-          )}
-
-          <Replyer />
-          <ReplyList feedId={id} />
-          <ReplyCreate onAddComment={handleAddComment} item={item} />
-        </>
-      )}
-    </Post>
+    <StyledFeed>
+      {item && <PostDetail item={item} handleDelete={handleDelete} />}
+    </StyledFeed>
   );
 }
 

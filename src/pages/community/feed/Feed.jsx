@@ -27,8 +27,7 @@ function Feed() {
 
   async function handleDelete(id) {
     try {
-      const res = await axios.delete(`/posts/${id}`);
-      console.log(res);
+      await axios.delete(`/posts/${id}`);
       fetchList();
     } catch (err) {
       console.error(err);
