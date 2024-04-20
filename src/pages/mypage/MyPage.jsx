@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import iconbase from '@assets/images/icon-login.svg';
+import iconuserbased from '@assets/images/icon-user-default.png';
 import iconright from '@assets/images/icon-down.svg';
 import Button from '@components/button/Button';
 import { ButtonContainer } from '@pages/purchase/Purchase.style';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
+
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useUserStore from '@zustand/user.mjs';
 
 const MyPageWrapper = styled.div`
   padding: 20px;
@@ -133,6 +142,11 @@ const ActiveLi = styled.li`
 
 function MyPage() {
   const navigate = useNavigate();
+  const { user } = useUserStore();
+
+  console.log(user);
+  console.log(user.name);
+  console.log(user.profile);
 
   function handleMoveArchive() {
     console.log('나의 기록화면으로 전환');
@@ -160,11 +174,18 @@ function MyPage() {
     <MyPageWrapper>
       <UserProfile>
         <h2>
-          <b>'닉네임'님,</b>
+          <span>'{user.name}'님,</span>
           <br />
           안녕하세요
         </h2>
-        <img src={iconbase} alt="기본프로필 사진" />
+        {user.profile ? (
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+            alt="유저의 프로필 사진"
+          />
+        ) : (
+          <img src={iconuserbased} alt="기본프로필 사진" />
+        )}
       </UserProfile>
       <Link to="/mypage/info">
         <ButtonContainer>
