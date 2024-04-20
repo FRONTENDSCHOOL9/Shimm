@@ -14,14 +14,13 @@ function FeedList({ item }) {
   const axios = useCustomAxios();
 
   const currentDate = Date.now();
-  console.log(currentDate);
   const createdDate = new Date(createdAt).getTime();
-  console.log(createdDate);
-  console.log(currentDate - createdDate);
   const seconds = (currentDate - createdDate) / 1000;
   const minutes = Math.floor(seconds % 3600);
   const hours = Math.floor(seconds / 3600);
   const days = Math.floor(hours / 24);
+
+  let bookmarkId;
 
   useEffect(() => {
     fetchBookmark();
@@ -30,7 +29,12 @@ function FeedList({ item }) {
   async function fetchBookmark() {
     try {
       const res = await axios(`/users/${user._id}/bookmarks`);
-      if (res.data.item.post.map(item => item._id).includes(_id)) {
+      const bookmarkList = res.data.item.post;
+      const bookmarkedPostList = res.data.item.post.map(item => item.target_id);
+
+      if (bookmarkedPostList.includes(_id)) {
+        const index = bookmarkedPostList.indexOf(_id);
+        bookmarkId = bookmarkList[index]._id;
         setIsActive(true);
       }
     } catch (err) {
@@ -40,21 +44,23 @@ function FeedList({ item }) {
 
   function handleClick() {}
 
-  // async function handleClick() {
-  //   try {
-  //     if (!isActive) {
-  //       const res = await axios.post(`/bookmarks/post/${_id}`);
-  //       bookmarkId = res.data.item._id;
-  //       setIsActive(true);
-  //     } else {
-  //       const res = await axios.post(`/bookmarks/post/${bookmarkId}`);
-  //       console.log(res);
-  //       setIsActive(false);
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
+  async function handleClick() {
+    try {
+      if (!isActive) {
+        const res = await axios.post(`/bookmarks/post/${_id}`);
+        console.log(res);
+        bookmarkId = res.data.item._id;
+        setIsActive(true);
+      } else {
+        console.log(bookmarkId);
+        const res = await axios.delete(`/bookmarks/${bookmarkId}`);
+        console.log(res);
+        setIsActive(false);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <Post>
