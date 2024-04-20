@@ -4,6 +4,7 @@ import Loading from '@components/loading/Loading';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
+import userImage from '@assets/images/icon-user-default.png';
 
 function SignUpTwoStep() {
   const axios = useCustomAxios();
@@ -19,6 +20,32 @@ function SignUpTwoStep() {
     },
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState({
+    imageFile: '',
+    previewURL: userImage,
+  });
+
+  function saveImage(e) {
+    e.preventDefault();
+    const fileReader = new FileReader();
+
+    if (e.target.files[0]) {
+      fileReader.readAsDataURL(e.target.files[0]);
+    }
+    fileReader.onload = () => {
+      setImage({
+        imageFile: e.target.files[0],
+        previewURL: fileReader.result,
+      });
+    };
+  }
+
+  function deleteImage() {
+    setImage({
+      imageFile: '',
+      previewURL: userImage,
+    });
+  }
 
   async function onSubmit(formData) {
     try {
@@ -34,16 +61,13 @@ function SignUpTwoStep() {
         const fileRes = await axios('/files', {
           method: 'post',
           headers: {
-            // 파일 업로드시 필요한 설정
             'Content-Type': 'multipart/form-data',
           },
           data: imageFormData,
         });
 
-        // 서버로부터 응답받은 이미지 이름을 회원 정보에 포함
         formData.profileImage = fileRes.data.item[0].name;
       } else {
-        // profileImage 속성을 제거
         delete formData.profileImage;
       }
 
@@ -67,21 +91,26 @@ function SignUpTwoStep() {
     }
   }
 
+  function handleBack() {
+    navigate(-1);
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <img
-            src="./assets/images/icon-user-default"
-            alt="기본 프로필 이미지"
-          />
-          <label htmlFor="profile_img">프로필 사진 추가하기</label>
+          <img src={image.previewURL} alt="프로필 이미지" />
+          <label htmlFor="profile-img">프로필 사진 추가하기</label>
           <input
             type="file"
             style={{ display: 'none' }}
-            name="profile_img"
+            id="profile-img"
+            name="profile-img"
             accept=".png, .jpeg, .jpg"
+            onChange={saveImage}
+            onClick={e => (e.target.value = null)}
           />
+          <button onClick={deleteImage}>프로필 이미지 삭제</button>
         </div>
         <div>
           <label htmlFor="name">닉네임</label>
@@ -103,6 +132,10 @@ function SignUpTwoStep() {
           회원가입 완료
         </Button>
       </form>
+
+      <Button size="medium" bgColor="dark" handleClick={handleBack}>
+        이전
+      </Button>
       {isLoading && <Loading />}
     </>
   );

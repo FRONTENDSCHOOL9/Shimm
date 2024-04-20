@@ -26,7 +26,7 @@ function SignUpOneStep() {
   }
 
   function handleBack() {
-    navigate('/');
+    navigate(-1);
   }
 
   return (
@@ -67,10 +67,10 @@ function SignUpOneStep() {
           {errors.password && <p>{errors.password.message}</p>}
         </div>
         <div>
-          <label htmlFor="password">비밀번호 확인</label>
+          <label htmlFor="password-confirm">비밀번호 확인</label>
           <input
             type="password"
-            id="password"
+            id="password-confirm"
             placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
             {...register('password', {
               required: '비밀번호를 입력하세요.',
@@ -81,9 +81,10 @@ function SignUpOneStep() {
         <div>
           <label htmlFor="birth">생년월일</label>
           <input
-            type="text"
+            type="date"
             id="birth"
             placeholder="생년월일을 입력하세요"
+            min="1940-01-01"
             {...register('birth', {
               required: '생년월일을 입력하세요.',
             })}
@@ -103,16 +104,6 @@ function SignUpOneStep() {
           />
           {errors.phone && <p>{errors.phone.message}</p>}
         </div>
-        <div>
-          <label htmlFor="profileImage">프로필 이미지</label>
-          <input
-            type="file"
-            accept="image/*"
-            id="profileImage"
-            placeholder="이미지를 선택하세요"
-            {...register('profileImage')}
-          />
-        </div>
 
         <Button
           type="submit"
@@ -123,9 +114,8 @@ function SignUpOneStep() {
           다음 단계
         </Button>
       </form>
-
       <Button size="medium" bgColor="dark" handleClick={handleBack}>
-        취소
+        이전
       </Button>
 
       {/* {isLoading && <Loading />} */}
