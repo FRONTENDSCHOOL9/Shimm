@@ -143,10 +143,33 @@ const ActiveLi = styled.li`
 function MyPage() {
   const navigate = useNavigate();
   const { user } = useUserStore();
+  const axios = useCustomAxios();
+  const [record, setRecord] = useState();
 
-  console.log(user);
-  console.log(user.name);
-  console.log(user.profile);
+  // console.log(user);
+  // console.log(user.name);
+  // console.log(user.profile);
+
+  async function fetchUserRecord() {
+    // if (user === user._id)
+    const res = await axios.get(`/posts?type=meditation`);
+
+    setRecord(res.data.item);
+    // setRecord(res.data);
+  }
+  console.log(record);
+
+  const recordList = record?.map(item => (
+    <RecordLi key={item._id} item={item} onClick={handleMoveArchive}>
+      <span>{item.createdAt.slice(0, 10)}</span>
+      <br />
+      <span>{item.extra?.time} 동안 명상했어요.</span>
+    </RecordLi>
+  ));
+
+  useEffect(() => {
+    fetchUserRecord();
+  }, []);
 
   function handleMoveArchive() {
     console.log('나의 기록화면으로 전환');
@@ -206,48 +229,7 @@ function MyPage() {
           <img src={iconright} alt="더보기 버튼" onClick={handleMoveArchive} />
         </ArchiveHeader>
         <ArchiveBox>
-          <MyArchive>
-            <RecordLi onClick={handleMoveArchive}>
-              <h4>2024/4/7</h4>
-              <span>
-                25분동안
-                <br />
-                명상했어요.
-              </span>
-            </RecordLi>
-            <RecordLi onClick={handleMoveArchive}>
-              <h4>2024/4/7</h4>
-              <span>
-                25분동안
-                <br />
-                명상했어요.
-              </span>
-            </RecordLi>
-            <RecordLi onClick={handleMoveArchive}>
-              <h4>2024/4/7</h4>
-              <span>
-                25분동안
-                <br />
-                명상했어요.
-              </span>
-            </RecordLi>
-            <RecordLi onClick={handleMoveArchive}>
-              <h4>2024/4/7</h4>
-              <span>
-                25분동안
-                <br />
-                명상했어요.
-              </span>
-            </RecordLi>
-            <RecordLi onClick={handleMoveArchive}>
-              <h4>2024/4/7</h4>
-              <span>
-                25분동안
-                <br />
-                명상했어요.
-              </span>
-            </RecordLi>
-          </MyArchive>
+          <MyArchive>{recordList}</MyArchive>
         </ArchiveBox>
         <ArchiveHeader>
           <h2>나의 활동</h2>
