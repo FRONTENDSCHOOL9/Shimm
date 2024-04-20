@@ -68,7 +68,6 @@ function FeedList({ item, handleDelete }) {
         fetchBookmark();
         setIsActive(true);
       } else {
-        console.log(bookmarkId);
         const res = await axios.delete(`/bookmarks/${bookmarkId}`);
         setIsActive(false);
       }
