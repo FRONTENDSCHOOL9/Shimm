@@ -1,20 +1,20 @@
-import Footer from '@components/layout/footer/Footer';
-import HomeCarousel from './HomeCarousel';
-import { useNavigate } from 'react-router-dom';
-import useUserStore from '@zustand/user';
-import useModalStore from '@zustand/modal.mjs';
-import {
-  StyledMain,
-  SectionLink,
-  LeftBox,
-  RightBox,
-  TextSection,
-  SectionUser,
-} from '@pages/home/Home.style';
 import Button from '@components/button/Button';
+import Footer from '@components/layout/footer/Footer';
 import GoogleLoginButton from '@components/socialLogin/SocialGoogle';
 import SocialKakao from '@components/socialLogin/SocialKakao';
 import SocialNaver from '@components/socialLogin/SocialNaver';
+import {
+  LeftBox,
+  RightBox,
+  SectionLink,
+  SectionUser,
+  StyledMain,
+  TextSection,
+} from '@pages/home/Home.style';
+import HomeCarousel from '@pages/home/HomeCarousel';
+import useModalStore from '@zustand/modal';
+import useUserStore from '@zustand/user';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const { user } = useUserStore();
