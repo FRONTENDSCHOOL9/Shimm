@@ -18,6 +18,8 @@ import MeditationRecord from '@pages/meditation/MeditationRecord';
 import Purchase from '@pages/purchase/Purchase';
 import Login from '@pages/users/Login';
 import SignUp from '@pages/users/SignUp';
+import SignUpOneStep from '@pages/users/SignUpOneStep';
+import SignUpTwoStep from '@pages/users/SignUpTwoStep';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -39,8 +41,22 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: 'users/signup',
+        path: 'signup',
         element: <SignUp />,
+        children: [
+          {
+            index: true,
+            element: <SignUpOneStep />,
+          },
+          {
+            path: 'onestep',
+            element: <SignUpOneStep />,
+          },
+          {
+            path: 'twostep',
+            element: <SignUpTwoStep />,
+          },
+        ],
       },
       {
         path: 'meditation',

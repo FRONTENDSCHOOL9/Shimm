@@ -57,7 +57,7 @@ function Login() {
   }
 
   function handleSignUp() {
-    navigate('/users/signup');
+    navigate('/signup');
   }
 
   return (

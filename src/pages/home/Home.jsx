@@ -54,7 +54,7 @@ function Home() {
   }
 
   function handleSignUp() {
-    navigate('/users/signup');
+    navigate('/signup');
   }
 
   function handleMeditation() {
