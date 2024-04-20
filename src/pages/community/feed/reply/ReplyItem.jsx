@@ -28,7 +28,6 @@ function ReplyItem({ item, postId, fetchReply }) {
   async function handleDelete() {
     try {
       const res = await axios.delete(`/posts/${postId}/replies/${_id}`);
-      console.log(res);
       fetchReply();
     } catch (err) {
       console.error(err);
