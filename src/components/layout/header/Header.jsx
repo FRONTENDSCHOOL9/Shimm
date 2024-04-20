@@ -38,10 +38,6 @@ function Header() {
     navigate('/users/login');
   }
 
-  function handleSignup() {
-    console.log('회원가입');
-  }
-
   return (
     <StyledHeader>
       <Logo to="/home">
@@ -54,24 +50,24 @@ function Header() {
         <HeaderLink to="/community" onClick={handleClick}>
           커뮤니티
         </HeaderLink>
-        {/* user 정보가 sessionStorage에 존재할 때만 보여주기 */}
+        {user?.type === 'seller' && (
+          <HeaderLink to="/admin/theme" onClick={handleClick}>
+            테마 등록하기
+          </HeaderLink>
+        )}
         {user && (
           <HeaderLink to="/mypage" onClick={handleClick}>
             마이페이지
           </HeaderLink>
         )}
-        {user && (
+        {user ? (
           <Button size="medium" bgColor="dark" handleClick={handleLogout}>
             로그아웃
           </Button>
-        )}
-        {!user && (
+        ) : (
           <LoginContainer>
             <Button size="medium" bgColor="dark" handleClick={handleLogin}>
               로그인
-            </Button>
-            <Button size="medium" bgColor="dark" handleClick={handleSignup}>
-              회원가입
             </Button>
           </LoginContainer>
         )}

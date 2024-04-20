@@ -1,9 +1,9 @@
-import FeedList from './feed/FeedList';
+import Feed from "@pages/community/feed/Feed";
 
 function Community() {
   return (
     <>
-      <FeedList />
+      <Feed />
     </>
   );
 }

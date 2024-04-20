@@ -1,25 +1,31 @@
+import { SpaRounded } from '@mui/icons-material';
 import React from 'react';
 import styled from 'styled-components';
 
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 10px;
 
   & img {
-    width: 3rem;
-    height: 3rem;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    box-shadow: inset 0 0 20px #335635;
+    margin-bottom: 10px;
   }
 `;
 
-function UserInfo({ profileImg, userId, comment }) {
+function UserInfo({ profile, userId, comment }) {
   return (
     <UserContainer>
-      <img src={profileImg} alt="#" />
-      <span>{userId}</span>
-      {comment && <span>{comment.text}</span>}
+      <img
+        src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${profile}`}
+        alt="#"
+      />
+      <div>
+        <p>{userId}</p>
+        {comment && <span>{comment.text}</span>}
+      </div>
     </UserContainer>
   );
 }

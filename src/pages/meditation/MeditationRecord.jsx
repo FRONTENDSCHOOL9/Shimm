@@ -1,38 +1,36 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
-import useCustomAxios from '@hooks/useCustomAxios';
-import useUserStore from '@zustand/user';
-import useCompleteTimeStore from '@zustand/timer';
-import { useSelectedTimeStore } from '@zustand/timeSelection';
-import { useSelectedThemeStore } from '@zustand/themeSelection';
-import Result from '@components/result/Result';
 import Button from '@components/button/Button';
-import ModalWindow from '@components/modal/ModalWindow';
+import Input from '@components/input/Input';
+import Result from '@components/result/Result';
+import useCustomAxios from '@hooks/useCustomAxios';
 import {
   Form,
-  StyledSection,
-  StyledMain,
   PageTitle,
-  StyledLabel,
-  StyledInput,
-  StyledError,
   SaveButtonContainer,
+  StyledError,
+  StyledLabel,
+  StyledMain,
+  StyledSection,
 } from '@pages/meditation/Meditation.style';
+import useModalStore from '@zustand/modal';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
+import { useSelectedTimeStore } from '@zustand/timeSelection';
+import useCompleteTimeStore from '@zustand/timer';
+import useUserStore from '@zustand/user';
+import { useForm } from 'react-hook-form';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function MeditationRecord() {
   const { selectedTime, selectedTimeSet } = useSelectedTimeStore();
   const { selectedTheme, selectedThemeSet } = useSelectedThemeStore();
   const { completeTime, completeTimeSet } = useCompleteTimeStore();
+  const { setShowModal, setModalData } = useModalStore();
   const { user } = useUserStore();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    setFocus,
   } = useForm();
-  const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const axios = useCustomAxios();
@@ -71,39 +69,70 @@ function MeditationRecord() {
       : `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초 동안 명상을 진행했어요.`;
 
   async function onSubmit(formData) {
-    setIsClicked(true);
-
     if (user) {
       try {
-        formData.order_id = 2;
-        formData.product_id = selectedTheme.id;
+        formData.type = 'meditation';
         formData.extra = {
           theme: selectedTheme.name,
           time: `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초`,
         };
 
-        const res = await axios.post('/replies', formData);
+        console.log(formData);
+
+        const res = await axios.post('/posts', formData);
         console.log(res);
+
         reset();
-        setIsClicked(false);
         selectedTimeSet(null);
         selectedThemeSet(null);
         completeTimeSet(0);
-        navigate('/mypage');
+
+        setShowModal(true);
+        setModalData({
+          children: <span>명상 기록이 저장되었습니다.</span>,
+          button: 1,
+          handleOk() {
+            setShowModal(false);
+            navigate('/mypage');
+          },
+        });
       } catch (err) {
-        console.error(err);
-        setFocus();
+        setShowModal(true);
+        setModalData({
+          children: (
+            <span>
+              이미 기록된 명상입니다.
+              <br />
+              다시 시도해 주세요.
+            </span>
+          ),
+          button: 1,
+          handleOk() {
+            setShowModal(false);
+            navigate('/meditation');
+          },
+        });
       }
+    } else {
+      setShowModal(true);
+      setModalData({
+        children: (
+          <span>
+            기록을 저장하려면 로그인해야 합니다.
+            <br />
+            로그인하시겠습니까?
+          </span>
+        ),
+        button: 2,
+        handleClose() {
+          setShowModal(false);
+        },
+        handleOk() {
+          setShowModal(false);
+          navigate('/users/login', { state: { from: location.pathname } });
+        },
+      });
     }
-  }
-
-  function handleClose() {
-    setIsClicked(false);
-  }
-
-  function handleOk() {
-    setIsClicked(false);
-    navigate('/users/login', { state: { from: location.pathname } });
   }
 
   return (
@@ -113,8 +142,7 @@ function MeditationRecord() {
         <Result width="wide" date={currentDate} message={message} />
         <Form onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel htmlFor="content">한 줄 기록 남기기</StyledLabel>
-          <StyledInput
-            type="text"
+          <Input
             id="content"
             placeholder="소감을 입력하세요..."
             {...register('content', {
@@ -125,20 +153,13 @@ function MeditationRecord() {
               },
             })}
           />
-          {errors && <StyledError>{errors.comment?.message}</StyledError>}
+          {errors && <StyledError>{errors.content?.message}</StyledError>}
           <SaveButtonContainer>
             <Button type="submit" bgColor="primary" size="full">
               저장하기
             </Button>
           </SaveButtonContainer>
         </Form>
-        {isClicked && !user && (
-          <ModalWindow handleClose={handleClose} handleOk={handleOk}>
-            기록을 저장하려면 로그인해야 합니다.
-            <br />
-            로그인하시겠습니까?
-          </ModalWindow>
-        )}
       </StyledSection>
     </StyledMain>
   );

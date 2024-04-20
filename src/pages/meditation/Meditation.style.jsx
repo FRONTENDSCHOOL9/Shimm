@@ -83,17 +83,6 @@ export const Form = styled.form`
   margin-top: 30px;
 `;
 
-export const StyledInput = styled.input`
-  display: block;
-  width: 100%;
-  border: 1px solid #545956;
-  border-radius: 5px;
-  font-size: 1.4rem;
-  line-height: 2rem;
-  padding: 10px;
-  box-sizing: border-box;
-`;
-
 export const StyledError = styled.div`
   font-size: 1.4rem;
   font-weight: 200;
@@ -104,4 +93,10 @@ export const StyledError = styled.div`
 export const SaveButtonContainer = styled.div`
   text-align: center;
   margin-top: 30px;
+`;
+
+export const Player = styled.div`
+  visibility: hidden;
+  width: 0;
+  height: 0;
 `;

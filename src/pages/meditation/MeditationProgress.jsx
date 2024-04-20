@@ -1,24 +1,30 @@
 import Button from '@components/button/Button';
-import Timer from '@components/timer/Timer';
-import { useNavigate } from 'react-router-dom';
-import { useSelectedTimeStore } from '@zustand/timeSelection';
-import { useSelectedThemeStore } from '@zustand/themeSelection';
 import {
   PageTitle,
-  StyledSection,
-  StyledMain,
+  Player,
   StyledDiv,
+  StyledMain,
+  StyledSection,
 } from '@pages/meditation/Meditation.style';
+import Timer from '@pages/meditation/timer/Timer';
+import { useSelectedThemeStore } from '@zustand/themeSelection';
+import { useSelectedTimeStore } from '@zustand/timeSelection';
+import { useState } from 'react';
+import ReactPlayer from 'react-player';
+import { useNavigate } from 'react-router-dom';
 
 function MeditationProgress() {
   const { selectedTime } = useSelectedTimeStore();
   const { selectedTheme } = useSelectedThemeStore();
+  const [isPlaying, setIsPlaying] = useState(true);
   const navigate = useNavigate();
+
+  console.log(selectedTheme);
 
   let time = 0;
   switch (selectedTime) {
     case '5분':
-      time = 5;
+      time = 5 * 60;
       break;
     case '10분':
       time = 10 * 60;
@@ -38,11 +44,22 @@ function MeditationProgress() {
     navigate('/meditation');
   }
 
+  function handleMusic(value) {
+    setIsPlaying(value);
+  }
+
   return (
     <StyledMain $bgColor={selectedTheme.background}>
+      <Player>
+        <ReactPlayer
+          url={selectedTheme.music}
+          loop={true}
+          playing={isPlaying}
+        />
+      </Player>
       <StyledSection>
         <PageTitle>명상하기</PageTitle>
-        <Timer selectedTime={time} />
+        <Timer selectedTime={time} handleMusic={handleMusic} />
         <StyledDiv>
           <Button size="full" handleClick={handleReset}>
             다시하기

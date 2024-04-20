@@ -9,37 +9,15 @@ import NanumSquareNeo2 from '@assets/fonts/NanumSquareNeoTTF-cBd.woff2';
 const GlobalStyle = createGlobalStyle`
   
   // Reset
-  body {
+  body, p, ul {
     margin: unset;
     padding: unset;
   }
 
-  h1 {
+  h1, h2, h3, h4, h5, h6 {
     margin: unset;
     font-size: unset;
     font-weight: unset;
-  }
-
-  h2 {
-    margin: unset;
-    font-size: unset;
-    font-weight: unset;
-  }
-
-  h3 {
-    margin: unset;
-    font-size: unset;
-    font-weight: unset;
-  }
-
-  p {
-    margin: unset;
-    padding: unset;
-  }
-
-  ul {
-    margin: unset;
-    padding: unset;
   }
 
   li {
@@ -63,7 +41,6 @@ const GlobalStyle = createGlobalStyle`
   }
   
   // Typography
-  
   @font-face {
     font-family: 'Pretendard';
     font-weight: 500;
@@ -88,6 +65,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     font-family: 'Pretendard', sans-serif;
     font-size: 10px;
+    font-weight: 300;
   }
 
   // Commons
@@ -99,6 +77,15 @@ const GlobalStyle = createGlobalStyle`
     margin: -1px;
     overflow: hidden;
   }
+
+  // Layout
+  :root {
+    padding-top: 50px;
+
+    @media (min-width: 740px) {
+      padding-top: 110px;
+      }
+    }
 `;
 
 export default GlobalStyle;

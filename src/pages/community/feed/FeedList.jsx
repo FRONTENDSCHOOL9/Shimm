@@ -1,97 +1,154 @@
+import iconBookMarkActive from '@assets/images/icon-bookmark-active.svg';
+import iconBookMark from '@assets/images/icon-bookmark.svg';
+import useCustomAxios from '@hooks/useCustomAxios';
+import PropTypes from 'prop-types';
+import {
+  Bookmark,
+  More,
+  Post,
+  PostHeader,
+  PostInfo,
+  PostMain,
+  ProfileImage,
+  ReplyMore,
+} from '@pages/community/feed/Feed.style';
+import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
+import ReplyNew from '@pages/community/feed/reply/ReplyNew';
+import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import FeedCreate from '@pages/community/feed/FeedCreate';
-import { Feed } from '@pages/community/feed/Feed';
 
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useParams } from 'react-router-dom';
-
-const feedList = [
-  {
-    id: 1,
-    userId: 'user_01',
-    profileImgUrl: '#',
-    post: 'ㅁㄴㅇㄹ',
-  },
-  {
-    id: 2,
-    userId: 'user_02',
-    profileImgUrl: '#',
-    post: '안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가',
-  },
-  {
-    id: 3,
-    userId: 'user_03',
-    profileImgUrl: '#',
-    post: 'abcdefddf',
-  },
-  {
-    id: 4,
-    userId: 'user_04',
-    profileImgUrl: '#',
-    post: '안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가',
-  },
-  {
-    id: 5,
-    userId: 'user_05',
-    profileImgUrl: '#',
-    post: 'hit the road',
-  },
-  {
-    id: 6,
-    userId: 'user_06',
-    profileImgUrl: '#',
-    post: 'cocococococococo',
-  },
-  {
-    id: 7,
-    userId: 'user_07',
-    profileImgUrl: '#',
-    post: 'v안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가세요안녕히가',
-  },
-];
-
-const FeedTemplateWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow-y: hidden;
-  padding: 2rem;
-`;
-
-function FeedList() {
-  const [newComment, setNewComment] = useState([]);
+function FeedList({ item, handleDelete }) {
+  const [isActive, setIsActive] = useState();
+  const [isOpened, setIsOpened] = useState(false);
+  const [bookmarkId, setBookmarkId] = useState();
+  const { user } = useUserStore();
+  const { _id, user: writer, content, createdAt, repliesCount, extra } = item;
   const axios = useCustomAxios();
-  const [data, setData] = useState();
+
+  const currentDate = Date.now();
+  const createdDate = new Date(createdAt).getTime();
+  const seconds = Math.floor((currentDate - createdDate) / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(seconds / 3600);
+  const days = Math.floor(hours / 24);
+
   useEffect(() => {
-    fetchList();
+    if (user) {
+      fetchBookmark();
+    }
   }, []);
 
-  async function fetchList() {
+  async function fetchBookmark() {
     try {
-      const res = await axios.get('/posts');
-      console.log(res.data);
-      setData(res.data);
+      const res = await axios(`/users/${user._id}/bookmarks`);
+
+      if (Object.keys(res.data.item).length > 0) {
+        const bookmarkList = res.data.item.post;
+        const bookmarkedPostList = res.data.item?.post.map(
+          item => item.target_id,
+        );
+
+        if (bookmarkedPostList.includes(_id)) {
+          const index = bookmarkedPostList.indexOf(_id);
+          setBookmarkId(bookmarkList[index]._id);
+          setIsActive(true);
+        }
+      }
     } catch (err) {
       console.log(err);
     }
   }
 
-  const item = data?.item;
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(newComment);
-    if (newComment.trim() !== '') setNewComment([...newComment, setNewComment]);
-    setNewComment('');
+  async function handleClick() {
+    try {
+      if (!isActive) {
+        const res = await axios.post(`/bookmarks/post/${_id}`);
+        fetchBookmark();
+        setIsActive(true);
+      } else {
+        const res = await axios.delete(`/bookmarks/${bookmarkId}`);
+        setIsActive(false);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function handleMore() {
+    setIsOpened(!isOpened);
   }
 
   return (
-    <FeedTemplateWrapper>
-      {item?.map(item => (
-        <Feed key={item._id} item={item} />
-      ))}
-      <FeedCreate />
-    </FeedTemplateWrapper>
+    <Post>
+      <PostHeader>
+        <ProfileImage>
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}${writer.profile}`}
+            alt={`작성자: ${writer.name}`}
+          />
+        </ProfileImage>
+        <PostInfo>
+          <h4>{writer.name}</h4>
+          <p>
+            {days > 0
+              ? `${days}일`
+              : hours > 0
+                ? `${hours}시간`
+                : minutes > 0
+                  ? `${minutes}분`
+                  : seconds > 0
+                    ? `${seconds}초`
+                    : '0초'}{' '}
+            전
+          </p>
+        </PostInfo>
+
+        {user && user._id !== writer._id && (
+          <>
+            <Bookmark>
+              {isActive ? (
+                <button type="button" onClick={handleClick}>
+                  <img src={iconBookMarkActive} alt="북마크 저장됨" />
+                </button>
+              ) : (
+                <button type="button" onClick={handleClick}>
+                  <img src={iconBookMark} alt="북마크 저장안됨" />
+                </button>
+              )}
+            </Bookmark>
+          </>
+        )}
+
+        {user && user._id === writer._id && (
+          <>
+            <More type="button" onClick={handleMore}>
+              •••
+            </More>
+            {isOpened && <FeedDropDown id={_id} handleDelete={handleDelete} />}
+          </>
+        )}
+      </PostHeader>
+
+      <PostMain to={`/community/${_id}`}>
+        <p>{content}</p>
+        {extra?.image && (
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${extra.image}`}
+          />
+        )}
+      </PostMain>
+
+      {user && <ReplyNew user={user} id={_id} />}
+      <ReplyMore to={`/community/${_id}`}>
+        {repliesCount}개의 댓글 보기
+      </ReplyMore>
+    </Post>
   );
 }
+
+FeedList.propTypes = {
+  item: PropTypes.object.isRequired,
+  handleDelete: PropTypes.func,
+};
+
 export default FeedList;
