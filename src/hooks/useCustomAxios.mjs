@@ -46,7 +46,7 @@ function useCustomAxios() {
         if (config.url === REFRESH_URL) {
           setShowModal(true);
           setModalData({
-            children: '로그인 후 이용 가능합니다. 로그인하시겠습니까?',
+            children: '다시 로그인하셔야 합니다. 로그인하시겠습니까?',
             button: 2,
             handleClose() {
               setShowModal(false);

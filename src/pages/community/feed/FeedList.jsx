@@ -13,7 +13,7 @@ import {
   ReplyMore,
 } from '@pages/community/feed/Feed.style';
 import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
-import ReplyNew from '@pages/community/feed/ReplyNew';
+import ReplyNew from '@pages/community/feed/reply/ReplyNew';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
 
