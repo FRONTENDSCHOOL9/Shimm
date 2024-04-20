@@ -1,20 +1,20 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const CircleButton = styled.button`
+export const CircleButton = styled.button`
   width: 60px;
   height: 60px;
   border-radius: 50%;
   background-color: #fafafa;
   position: fixed;
-  right: 4%;
-  bottom: 8%;
+  bottom: 10%;
+  right: 15%;
   transform: translate(-50%, 50%);
   font-size: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0.8;
+  transition: 0.3s ease-in-out;
 
   &:hover {
     background: #e9e9e9;
@@ -46,15 +46,3 @@ const CircleButton = styled.button`
     background-image: linear-gradient(to bottom right, #1e00ff, lime);
   }
 `;
-
-function FeedCreate() {
-  const navigate = useNavigate();
-
-  return (
-    <>
-      <CircleButton onClick={() => navigate('/community/new')} />
-    </>
-  );
-}
-
-export default FeedCreate;

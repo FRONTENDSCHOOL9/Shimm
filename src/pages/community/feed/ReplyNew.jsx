@@ -1,8 +1,13 @@
-import Input from '@components/input/Input';
-import { useForm } from 'react-hook-form';
 import iconSend from '@assets/images/icon-send.svg';
-import PropTypes from 'prop-types';
 import useCustomAxios from '@hooks/useCustomAxios';
+import {
+  ProfileImage,
+  Reply,
+  ReplyInput,
+  ReplyMain,
+} from '@pages/community/feed/Feed.style';
+import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 function ReplyNew({ user, id }) {
@@ -16,8 +21,8 @@ function ReplyNew({ user, id }) {
 
   async function onSubmit(formData) {
     try {
+      console.log(errors);
       console.log(formData);
-
       const res = await axios.post(`/posts/${id}/replies`, formData);
       console.log(res);
       navigate(`/community/${id}`);
@@ -26,14 +31,16 @@ function ReplyNew({ user, id }) {
     }
   }
   return (
-    <div>
-      <img
-        src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
-        alt="내 프로필 이미지"
-      />
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <Reply>
+      <ProfileImage>
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
+          alt="내 프로필 이미지"
+        />
+      </ProfileImage>
+      <ReplyMain onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <Input
+          <ReplyInput
             id="reply"
             title="reply"
             placeholder="댓글을 작성하세요."
@@ -47,8 +54,8 @@ function ReplyNew({ user, id }) {
           <i>댓글 달기</i>
           <img src={iconSend} alt="댓글 달기" />
         </button>
-      </form>
-    </div>
+      </ReplyMain>
+    </Reply>
   );
 }
 
