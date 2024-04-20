@@ -1,6 +1,5 @@
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
-import ModalWindow from '@components/modal/ModalWindow';
 import Result from '@components/result/Result';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
@@ -17,7 +16,6 @@ import { useSelectedThemeStore } from '@zustand/themeSelection';
 import { useSelectedTimeStore } from '@zustand/timeSelection';
 import useCompleteTimeStore from '@zustand/timer';
 import useUserStore from '@zustand/user';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -33,7 +31,6 @@ function MeditationRecord() {
     formState: { errors },
     reset,
   } = useForm();
-  const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const axios = useCustomAxios();
@@ -72,8 +69,6 @@ function MeditationRecord() {
       : `${Math.floor(completeTime / 60) ? Math.floor(completeTime / 60) + '분' : ''} ${completeTime % 60}초 동안 명상을 진행했어요.`;
 
   async function onSubmit(formData) {
-    setIsClicked(true);
-
     if (user) {
       try {
         formData.type = 'meditation';
@@ -83,7 +78,6 @@ function MeditationRecord() {
         const res = await axios.post('/posts', formData);
 
         reset();
-        setIsClicked(false);
         selectedTimeSet(null);
         selectedThemeSet(null);
         completeTimeSet(0);
