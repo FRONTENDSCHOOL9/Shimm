@@ -12,18 +12,19 @@ import {
   ProfileImage,
 } from '@pages/community/feed/Feed.style';
 import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
-import ReplyNew from '@pages/community/feed/ReplyNew';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
-import ReplyList from '@pages/community/feed/ReplyList';
+import ReplyList from '@pages/community/feed/reply/ReplyList';
+import { useParams } from 'react-router-dom';
 
 function PostDetail({ item, handleDelete }) {
   const [isActive, setIsActive] = useState();
   const [isOpened, setIsOpened] = useState(false);
   const [bookmarkId, setBookmarkId] = useState();
   const { user } = useUserStore();
-  const { _id, user: writer, content, createdAt, replies, extra } = item;
+  const { _id, user: writer, content, createdAt, extra } = item;
   const axios = useCustomAxios();
+  const { id: pid } = useParams();
 
   const currentDate = Date.now();
   const createdDate = new Date(createdAt).getTime();
@@ -31,8 +32,6 @@ function PostDetail({ item, handleDelete }) {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(seconds / 3600);
   const days = Math.floor(hours / 24);
-
-  console.log(item);
 
   useEffect(() => {
     if (user) {
@@ -140,9 +139,7 @@ function PostDetail({ item, handleDelete }) {
         )}
       </PostMain>
 
-      <ReplyList item={replies} />
-
-      {user && <ReplyNew user={user} id={_id} />}
+      <ReplyList id={_id} pid={Number(pid)} />
     </Post>
   );
 }

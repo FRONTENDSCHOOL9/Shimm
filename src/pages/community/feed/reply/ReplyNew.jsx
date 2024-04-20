@@ -10,22 +10,26 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-function ReplyNew({ user, id }) {
+function ReplyNew({ user, id, pid, handleNew }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const axios = useCustomAxios();
   const navigate = useNavigate();
 
   async function onSubmit(formData) {
     try {
-      console.log(errors);
-      console.log(formData);
       const res = await axios.post(`/posts/${id}/replies`, formData);
-      console.log(res);
-      navigate(`/community/${id}`);
+      if (pid) {
+        reset();
+        handleNew();
+      } else {
+        reset();
+        navigate(`/community/${id}`);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -62,6 +66,8 @@ function ReplyNew({ user, id }) {
 ReplyNew.propTypes = {
   user: PropTypes.object,
   id: PropTypes.number.isRequired,
+  pid: PropTypes.number,
+  handleNew: PropTypes.func,
 };
 
 export default ReplyNew;
