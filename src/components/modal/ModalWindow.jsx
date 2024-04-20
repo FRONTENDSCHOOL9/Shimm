@@ -1,29 +1,43 @@
 import PropTypes from 'prop-types';
+import iconClose from '@assets/images/icon-close.svg';
 import {
   Inside,
   Modal,
   Message,
   ModalClose,
   ModalOk,
+  ButtonContainer,
+  ButtonClose,
 } from '@components/modal/ModalWindow.style';
 
-function ModalWindow({ children, twoButton = true, handleClose, handleOk }) {
+function ModalWindow({
+  children,
+  button,
+  closeButton = true,
+  handleClose,
+  handleOk,
+}) {
   return (
     <Modal>
       <Inside>
-        <Message>{children}</Message>
-        {twoButton && (
-          <ModalClose
-            type="button"
-            onClick={handleClose}
-            $twoButton={twoButton}
-          >
-            취소
-          </ModalClose>
+        {closeButton && (
+          <ButtonClose type="button" onClick={handleClose}>
+            <img src={iconClose} alt="닫기 버튼" />
+          </ButtonClose>
         )}
-        <ModalOk type="button" onClick={handleOk} $twoButton={twoButton}>
-          확인
-        </ModalOk>
+        <Message>{children}</Message>
+        {button > 0 && (
+          <ButtonContainer>
+            {button > 1 && (
+              <ModalClose type="button" onClick={handleClose}>
+                취소
+              </ModalClose>
+            )}
+            <ModalOk type="button" onClick={handleOk}>
+              확인
+            </ModalOk>
+          </ButtonContainer>
+        )}
       </Inside>
     </Modal>
   );
@@ -31,7 +45,8 @@ function ModalWindow({ children, twoButton = true, handleClose, handleOk }) {
 
 ModalWindow.propTypes = {
   children: PropTypes.node.isRequired,
-  twoButton: PropTypes.bool,
+  button: PropTypes.number.isRequired,
+  closeButton: PropTypes.bool,
   handleClose: PropTypes.func,
   handleOk: PropTypes.func.isRequired,
 };

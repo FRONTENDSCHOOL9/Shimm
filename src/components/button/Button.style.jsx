@@ -19,6 +19,7 @@ const shadowColors = {
 
 const displays = {
   block: 'block',
+  'inline-block': 'inline-block',
 };
 
 const size = {

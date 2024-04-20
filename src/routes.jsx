@@ -1,22 +1,26 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
 import Layout from '@components/layout/layout/Layout';
 import ErrorPage from '@pages/ErrorPage';
+import UploadTheme from '@pages/admin/UploadTheme';
+import Community from '@pages/community/Community';
+import FeedDetail from '@pages/community/feed/FeedDetail';
+import FeedEdit from '@pages/community/feed/FeedEdit';
+import { FeedNew } from '@pages/community/feed/FeedNew';
+import EditProfile from '@pages/mypage/EditProfile';
+import { MyInfo } from '@pages/mypage/MyInfo';
+import MyInfoCheck from '@pages/mypage/MyInfoCheck';
+import MyPage from '@pages/mypage/MyPage';
+import MyRecord from '@pages/mypage/MyRecord';
 import Home from '@pages/home/Home';
-import Login from '@pages/users/Login';
 import Meditation from '@pages/meditation/Meditation';
 import MeditationMain from '@pages/meditation/MeditationMain';
 import MeditationProgress from '@pages/meditation/MeditationProgress';
 import MeditationRecord from '@pages/meditation/MeditationRecord';
 import Purchase from '@pages/purchase/Purchase';
-import Community from '@pages/community/Community';
-import { FeedDetail } from '@pages/community/feed/FeedDetail';
-import FeedEdit from '@pages/community/feed/FeedEdit';
-import { FeedNew } from '@pages/community/feed/FeedNew';
-import EditProfile from '@pages/community/mypage/EditProfile';
-import { MyInfo } from '@pages/community/mypage/MyInfo';
-import MyInfoCheck from '@pages/community/mypage/MyInfoCheck';
-import MyPage from '@pages/community/mypage/MyPage';
-import MyRecord from '@pages/community/mypage/MyRecord';
+import Login from '@pages/users/Login';
+import SignUp from '@pages/users/SignUp';
+import SignUpOneStep from '@pages/users/SignUpOneStep';
+import SignUpTwoStep from '@pages/users/SignUpTwoStep';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +39,24 @@ const router = createBrowserRouter([
       {
         path: 'users/login',
         element: <Login />,
+      },
+      {
+        path: 'signup',
+        element: <SignUp />,
+        children: [
+          {
+            index: true,
+            element: <SignUpOneStep />,
+          },
+          {
+            path: 'onestep',
+            element: <SignUpOneStep />,
+          },
+          {
+            path: 'twostep',
+            element: <SignUpTwoStep />,
+          },
+        ],
       },
       {
         path: 'meditation',
@@ -67,11 +89,11 @@ const router = createBrowserRouter([
         element: <FeedDetail />,
       },
       {
-        path: 'post',
+        path: 'community/new',
         element: <FeedNew />,
       },
       {
-        path: 'edit',
+        path: 'community/:id/edit',
         element: <FeedEdit />,
       },
       {
@@ -79,20 +101,24 @@ const router = createBrowserRouter([
         element: <MyPage />,
       },
       {
-        path: 'myinfo',
+        path: 'mypage/info',
         element: <MyInfo />,
       },
       {
-        path: 'checktoinfo',
+        path: 'mypage/checkpw',
         element: <MyInfoCheck />,
       },
       {
-        path: 'editprofile',
+        path: 'mypage/editprofile',
         element: <EditProfile />,
       },
       {
-        path: 'archive',
+        path: 'mypage/archive',
         element: <MyRecord />,
+      },
+      {
+        path: 'admin/theme',
+        element: <UploadTheme />,
       },
     ],
   },

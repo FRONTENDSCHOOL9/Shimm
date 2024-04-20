@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Modal = styled.div`
   background-color: rgb(0 0 0 /0.8);
+  font-weight: 500;
   position: fixed;
   inset: 0;
   padding: 0 45px;
@@ -17,6 +18,7 @@ export const Inside = styled.div`
   border-radius: 20px;
   overflow: hidden;
   font-size: 1.4rem;
+  position: relative;
 
   @media (min-width: 740px) {
     max-width: 450px;
@@ -29,19 +31,33 @@ export const Inside = styled.div`
   }
 `;
 
+export const ButtonClose = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+`
+
 export const Message = styled.div`
+  font-size: 1.2rem;
   background-color: #fff;
   padding: 40px;
+
+  @media (min-width: 740px) {
+    font-size: 1.6rem;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
 `;
 
 export const ModalClose = styled.button`
-  width: 50%;
+  flex-grow: 1;
   height: 50px;
   font-size: 1.6rem;
   background-color: rgba(107, 177, 112, 1);
   text-align: center;
   color: #fff;
-  display: ${props => (props.$twoButton ? '' : 'none')};
 
   @media (min-width: 740px) {
     height: 60px;
@@ -49,7 +65,7 @@ export const ModalClose = styled.button`
 `;
 
 export const ModalOk = styled.button`
-  width: ${props => (props.$twoButton ? '50%' : '100%')};
+  flex-grow: 1;
   height: 50px;
   font-size: 1.6rem;
   background-color: rgba(85, 162, 90, 1);

@@ -1,0 +1,16 @@
+meta {
+  name: 이미지 업로드
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/files
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  attach: @file(/Users/kiho/Desktop/testimg/yogaman.png)
+  attach: @file(/Users/kiho/Desktop/testimg/mid.png)
+}

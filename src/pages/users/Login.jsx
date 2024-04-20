@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
 import useUserStore from '@zustand/user';
-import { ReactCsspin } from 'react-csspin';
-import 'react-csspin/dist/style.css';
 import Button from '@components/button/Button';
+import Loading from '@components/loading/Loading';
+import GoogleLoginButton from '@components/socialLogin/SocialGoogle';
+import SocialKakao from '@components/socialLogin/SocialKakao';
+import SocialNaver from '@components/socialLogin/SocialNaver';
 
 function Login() {
   const { setUser } = useUserStore();
@@ -18,7 +20,12 @@ function Login() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm();
+  } = useForm({
+    values: {
+      email: 'kiho@test.com',
+      password: '11111111',
+    },
+  });
 
   async function onSubmit(formData) {
     try {
@@ -27,9 +34,13 @@ function Login() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
+        email: res.data.item.email,
+        type: res.data.item.type,
+        phone: res.data.item.phone,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
+
       navigate(location.state?.from ? location.state?.from : '/');
     } catch (err) {
       console.error(err);
@@ -43,6 +54,10 @@ function Login() {
     } finally {
       setIsLoading(false);
     }
+  }
+
+  function handleSignUp() {
+    navigate('/signup');
   }
 
   return (
@@ -79,12 +94,31 @@ function Login() {
           {errors.password && <p>{errors.password.message}</p>}
         </div>
 
-        <Button type="submit" size="full" bgColor="primary">
+        <Button type="submit" size="full" bgColor="dark">
           로그인
         </Button>
       </form>
 
-      {isLoading && <ReactCsspin />}
+      <div>
+        <p>또는</p>
+      </div>
+
+      <div>
+        {/* <SocialButtons bgColor='white' handleClick={GoogleLoginButton}>구글로 로그인 하기</SocialButtons> */}
+        <GoogleLoginButton />
+        <SocialKakao />
+        <SocialNaver />
+        <Button
+          size="full"
+          bgColor="dark"
+          display="block"
+          handleClick={handleSignUp}
+        >
+          회원가입
+        </Button>
+      </div>
+
+      {isLoading && <Loading />}
     </div>
   );
 }

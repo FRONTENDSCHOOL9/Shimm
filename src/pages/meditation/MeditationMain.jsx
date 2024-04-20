@@ -5,8 +5,8 @@ import { useIsTimeSelectedStore } from '@zustand/timeSelection';
 import { useSelectedThemeStore } from '@zustand/themeSelection';
 import { useIsThemeSelectedStore } from '@zustand/themeSelection';
 import Button from '@components/button/Button';
-import TimeSet from '@components/timeset/TimeSet';
-import ThemeSet from '@components/themeset/ThemeSet';
+import TimeSet from '@pages/meditation/timeset/TimeSet';
+import ThemeSet from '@pages/meditation/themeset/ThemeSet';
 import {
   StyledMain,
   Cover,
