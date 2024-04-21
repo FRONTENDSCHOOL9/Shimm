@@ -17,7 +17,7 @@ import ReplyNew from '@pages/community/feed/reply/ReplyNew';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
 
-function FeedList({ item, handleDelete }) {
+function FeedList({ item, handleDelete, handleBookmark }) {
   const [isActive, setIsActive] = useState();
   const [isOpened, setIsOpened] = useState(false);
   const [bookmarkId, setBookmarkId] = useState();
@@ -67,6 +67,7 @@ function FeedList({ item, handleDelete }) {
         setIsActive(true);
       } else {
         const res = await axios.delete(`/bookmarks/${bookmarkId}`);
+        handleBookmark();
         setIsActive(false);
       }
     } catch (err) {
@@ -149,6 +150,7 @@ function FeedList({ item, handleDelete }) {
 FeedList.propTypes = {
   item: PropTypes.object.isRequired,
   handleDelete: PropTypes.func,
+  handleBookmark: PropTypes.func,
 };
 
 export default FeedList;

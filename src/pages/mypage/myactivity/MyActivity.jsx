@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledMain = styled.main`
@@ -18,7 +18,7 @@ const StyledNav = styled.nav`
   align-items: center;
 `;
 
-const NavItem = styled(Link)`
+const NavItem = styled(NavLink)`
   text-align: center;
   flex-grow: 1;
   padding-top: 30px;
@@ -32,14 +32,18 @@ const NavItem = styled(Link)`
   &:hover {
     color: #000;
     border-bottom: 2px solid #000;
-    box-shadow: none;
+    box-shadow: unset;
   }
 
-  &:focus {
-    box-shadow: inset 0 0 0 1px #55a25a;
-    border-radius: 5px;
+  &.active {
     color: #000;
+    border-bottom: 2px solid #000;
+    box-shadow: unset;
   }
+`;
+
+const Post = styled.div`
+  padding: 30px 0;
 `;
 
 function MyActivity() {
@@ -48,10 +52,22 @@ function MyActivity() {
       <StyledMain>
         <StyledSection>
           <StyledNav>
-            <NavItem to="/mypage/activity/myposts">내가 쓴 글</NavItem>
-            <NavItem to="/mypage/activity/bookmarkedposts">북마크한 글</NavItem>
+            <NavItem
+              to="/mypage/activity/myposts"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              내가 쓴 글
+            </NavItem>
+            <NavItem
+              to="/mypage/activity/bookmarkedposts"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              북마크한 글
+            </NavItem>
           </StyledNav>
-          <Outlet />
+          <Post>
+            <Outlet />
+          </Post>
         </StyledSection>
       </StyledMain>
     </>
