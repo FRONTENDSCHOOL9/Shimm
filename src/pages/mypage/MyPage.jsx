@@ -100,13 +100,10 @@ const RecordLi = styled.li`
   width: 140px;
   height: 100px;
   padding: 20px 12px;
-  background-color: #f0f5ed;
+  background: ${props => (props.background ? props.background : '')};
   border-radius: 10px;
   box-sizing: border-box;
   cursor: pointer;
-  &:hover {
-    background-color: #ecf9e4;
-  }
 
   & h4 {
     font-size: 1.4rem;
@@ -146,26 +143,29 @@ function MyPage() {
   const axios = useCustomAxios();
   const [record, setRecord] = useState();
 
-  console.log(user);
-  // console.log(user.name);
-  // console.log(user.profile);
+  // console.log(user);
 
   async function fetchUserRecord() {
     // if (user === user._id)
     const res = await axios.get(`/posts?type=meditation`);
 
     setRecord(res.data.item);
-    // setRecord(res.data);
   }
-  console.log(record);
 
   const recordList = record?.map(item => (
-    <RecordLi key={item._id} item={item} onClick={handleMoveArchive}>
+    <RecordLi
+      key={item._id}
+      item={item}
+      onClick={handleMoveArchive}
+      background={item.extra?.background}
+    >
       <span>{item.createdAt.slice(0, 10)}</span>
       <br />
       <span>{item.extra?.time} 동안 명상했어요.</span>
     </RecordLi>
   ));
+
+  console.log(record);
 
   useEffect(() => {
     fetchUserRecord();
