@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import iconbase from '@assets/images/icon-login.svg';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import useUserStore from '@zustand/user.mjs';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
 const MyInfoWrapper = styled.div`
   padding: 20px;
-  max-width: 740px;
+  max-width: 450px;
   width: 100%;
   color: black;
   font-size: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   margin: 0 auto;
   position: relative;
   box-sizing: border-box;
@@ -19,6 +20,8 @@ const MyInfoWrapper = styled.div`
 
   & img {
     width: 80px;
+    height: 80px;
+    border-radius: 50%;
   }
 
   & span {
@@ -38,9 +41,16 @@ const MyInfoHeader = styled.ul`
   flex-direction: column;
   align-items: center;
   margin-block: 30px;
+  gap: 16px;
 
   & span {
     font-size: 1.8rem;
+  }
+
+  & img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
   }
 `;
 
@@ -87,25 +97,34 @@ const EditButton = styled.button`
 `;
 
 function MyInfo() {
+  const { user } = useUserStore();
+
+  console.log(user);
+
   return (
     <MyInfoWrapper>
       <MyInfoHeader>
-        <img src={iconbase} alt="기본프로필 사진" />
-        <span>닉네임</span>
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
+          alt="유저 프로필 사진"
+        />
+        <span>{user.name}</span>
       </MyInfoHeader>
       <MyInfoMain>
         <UserInfoStyled>
           <span>이메일</span>
-          <span>aaa@bbb.com</span>
+          <span>{user.email}</span>
         </UserInfoStyled>
         <UserInfoStyled>
           <span>전화번호</span>
-          <span>010-1234-5678</span>
+          <span>{user.phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}</span>
         </UserInfoStyled>
-        <UserInfoStyled>
-          <span>생년월일</span>
-          <span>1994년 5월 15일</span>
-        </UserInfoStyled>
+        {user.birth && (
+          <UserInfoStyled>
+            <span>생년월일</span>
+            <span>{user.birth}</span>
+          </UserInfoStyled>
+        )}
       </MyInfoMain>
       <ButtonLink to="/mypage/checkpw">
         <EditButton>프로필 수정</EditButton>

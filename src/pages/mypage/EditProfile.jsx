@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import iconbase from '@assets/images/icon-login.svg';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import useUserStore from '@zustand/user.mjs';
 
 const ButtonProfileImg = styled.button`
   margin: 0 auto;
@@ -25,6 +26,7 @@ const ButtonProfileImg = styled.button`
 const ProfileImageInput = styled.input`
   display: none;
 `;
+
 const EditForm = styled.form`
   width: 100%;
   display: flex;
@@ -122,6 +124,7 @@ function EditProfile() {
   const profileImageInput = useRef(null);
   const { nickName, password, passwordCheck, year, month, day } = userInput;
   const navigate = useNavigate();
+  const { user } = useUserStore();
   const {
     register,
     handleSubmit,
@@ -157,7 +160,10 @@ function EditProfile() {
 
   return (
     <MyInfoWrapper>
-      <img src={iconbase} lt="기본프로필 사진" />
+      <img
+        src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
+        lt="유저 프로필 사진"
+      />
       <ButtonLink>
         <ButtonProfileImg
           type="button"

@@ -16,7 +16,7 @@ import useUserStore from '@zustand/user.mjs';
 
 const MyPageWrapper = styled.div`
   padding: 20px;
-  max-width: 740px;
+  max-width: 450px;
   width: 100%;
   color: black;
   font-size: 2rem;
@@ -41,6 +41,7 @@ const UserProfile = styled.div`
 
   & img {
     width: 80px;
+    border-radius: 50%;
   }
 `;
 
@@ -145,7 +146,7 @@ function MyPage() {
   const axios = useCustomAxios();
   const [record, setRecord] = useState();
 
-  // console.log(user);
+  console.log(user);
   // console.log(user.name);
   // console.log(user.profile);
 
@@ -200,17 +201,10 @@ function MyPage() {
           <br />
           안녕하세요
         </h2>
-        {user.profile ? (
-          <img
-            src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
-            alt="유저의 프로필 사진"
-          />
-        ) : (
-          <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`}
-            alt="기본프로필 사진"
-          />
-        )}
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
+          alt="유저의 프로필 사진"
+        />
       </UserProfile>
       <Link to="/mypage/info">
         <ButtonContainer>
