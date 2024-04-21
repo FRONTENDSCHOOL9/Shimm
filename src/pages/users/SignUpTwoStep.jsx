@@ -4,7 +4,6 @@ import Loading from '@components/loading/Loading';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
-import userImage from '@assets/images/icon-user-default.png';
 
 function SignUpTwoStep() {
   const axios = useCustomAxios();
@@ -22,7 +21,7 @@ function SignUpTwoStep() {
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState({
     imageFile: '',
-    previewURL: userImage,
+    previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
   });
 
   function saveImage(e) {
@@ -43,7 +42,7 @@ function SignUpTwoStep() {
   function deleteImage() {
     setImage({
       imageFile: '',
-      previewURL: userImage,
+      previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
     });
   }
 
@@ -68,7 +67,7 @@ function SignUpTwoStep() {
 
         formData.profileImage = fileRes.data.item[0].name;
       } else {
-        delete formData.profileImage;
+        formData.profileImage = `/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`;
       }
 
       const res = await axios.post('/users', formData);

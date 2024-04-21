@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import iconuserbased from '@assets/images/icon-user-default.png';
 import iconright from '@assets/images/icon-down.svg';
 import Button from '@components/button/Button';
 import { ButtonContainer } from '@pages/purchase/Purchase.style';
@@ -203,11 +202,14 @@ function MyPage() {
         </h2>
         {user.profile ? (
           <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+            src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
             alt="유저의 프로필 사진"
           />
         ) : (
-          <img src={iconuserbased} alt="기본프로필 사진" />
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`}
+            alt="기본프로필 사진"
+          />
         )}
       </UserProfile>
       <Link to="/mypage/info">
