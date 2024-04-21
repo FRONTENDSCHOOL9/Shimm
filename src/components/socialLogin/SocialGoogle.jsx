@@ -2,11 +2,11 @@ import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const GoogleLoginButton = () => {
-  const clientId = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
+  const CLIENT_ID = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
 
   return (
     <>
-      <GoogleOAuthProvider clientId={clientId}>
+      <GoogleOAuthProvider clientId={CLIENT_ID}>
         <GoogleLogin
           onSuccess={credentialResponse => {
             console.log(credentialResponse);
