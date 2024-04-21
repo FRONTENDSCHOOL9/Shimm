@@ -19,7 +19,6 @@ function ReplyList({ id, pid }) {
     try {
       const res = await axios(`/posts/${id}/replies/?sort={"createdAt": -1}`);
       setData(res.data);
-      console.log(res.data);
     } catch (err) {
       console.error(err);
     }
