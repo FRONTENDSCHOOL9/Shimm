@@ -19,12 +19,13 @@ function ReplyList({ id, pid }) {
     try {
       const res = await axios(`/posts/${id}/replies/?sort={"createdAt": -1}`);
       setData(res.data);
+      console.log(res.data);
     } catch (err) {
       console.error(err);
     }
   }
-  const replyList = data?.item?.map(item => (
-    <ReplyItem key={item._id} item={item} fetchReply={fetchReply} postId={id} />
+  const replyList = data?.item?.map((item, index) => (
+    <ReplyItem key={index} item={item} fetchReply={fetchReply} postId={id} />
   ));
 
   return (
