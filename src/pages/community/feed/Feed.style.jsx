@@ -40,6 +40,10 @@ export const ProfileImage = styled.div`
   height: 30px;
   border-radius: 50%;
   aspect-ratio: 1/1;
+
+  & img {
+    border-radius: 50%;
+  }
 `;
 
 export const PostInfo = styled.div`
@@ -131,4 +135,41 @@ export const ReplyInput = styled(Input)`
 
 export const More = styled.button`
   position: relative;
+`;
+
+export const FeedWrite = styled.div`
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  flex-grow: 1;
+  padding: 30px;
+  box-sizing: border-box;
+
+  & h3 {
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  @media (min-width: 740px) {
+    & h3 {
+      font-size: 2.4rem;
+      margin-bottom: 30px;
+    }
+  }
+`;
+
+export const EditorProfileImage = styled.div`
+  width: 50px;
+  height: 50px;
+  margin-bottom: 30px;
+
+  & img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+  }
 `;

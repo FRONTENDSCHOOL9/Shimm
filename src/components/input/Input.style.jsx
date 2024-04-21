@@ -13,6 +13,10 @@ const size = {
     width: '100%',
     height: '50px',
   },
+  fullLow: {
+    width: '100%',
+    height: '30px',
+  },
 };
 
 export const CommonInput = styled.input`
