@@ -39,6 +39,10 @@ const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     vertical-align: top;
   }
+
+  textarea {
+    all: unset;
+  }
   
   // Typography
   @font-face {
