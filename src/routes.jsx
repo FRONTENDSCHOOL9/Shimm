@@ -4,7 +4,7 @@ import UploadTheme from '@pages/admin/UploadTheme';
 import Community from '@pages/community/Community';
 import FeedDetail from '@pages/community/feed/FeedDetail';
 import FeedEdit from '@pages/community/feed/FeedEdit';
-import { FeedNew } from '@pages/community/feed/FeedNew';
+import FeedNew from '@pages/community/feed/FeedNew';
 import EditProfile from '@pages/mypage/EditProfile';
 import { MyInfo } from '@pages/mypage/MyInfo';
 import MyInfoCheck from '@pages/mypage/MyInfoCheck';

@@ -71,7 +71,7 @@ function ReplyItem({ item, postId, fetchReply }) {
       </ReplyHeader>
       <ReplyMain>
         <p>{reply}</p>
-        {user._id === writer._id && (
+        {user && user._id === writer._id && (
           <ReplyDelete>
             <button type="button" onClick={handleClick}>
               <i>댓글 삭제</i>

@@ -1,9 +1,3 @@
-import {
-  SubmitButton,
-  UploadCase,
-  UploadFile,
-  WriteTextarea,
-} from '@pages/community/feed/FeedNew';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import iconfile from '@assets/images/icon-file.svg';
