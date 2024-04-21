@@ -1,28 +1,28 @@
-// import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Button from '@components/button/Button';
-// import Loading from '@components/loading/Loading';
-// import useDetectClose from '@hooks/useDetectClose.mjs';
+import useFormStore from '@zustand/form.mjs';
 
 function SignUpOneStep() {
   const navigate = useNavigate();
+  const { form, setForm } = useFormStore();
   const {
-    register,
     handleSubmit,
+    register,
     formState: { errors },
   } = useForm({
     values: {
       birth: '1999-02-25',
       phone: '01055556666',
     },
+    defaultValues: form,
+    mode: 'onSubmit',
   });
-  // const [isLoading, setIsLoading] = useState(false);
 
-  function onSubmit() {}
-
-  function handleNext() {
+  function saveData(data) {
+    setForm(data);
     navigate('/signup/twostep');
+    console.log(data);
   }
 
   function handleBack() {
@@ -36,7 +36,7 @@ function SignUpOneStep() {
         <li>기본 정보 입력</li>
         <li>프로필 설정</li>
       </ul>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(saveData)}>
         <div>
           <label htmlFor="email">이메일</label>
           <input
@@ -62,6 +62,11 @@ function SignUpOneStep() {
             placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
             {...register('password', {
               required: '비밀번호를 입력하세요.',
+              pattern: {
+                value:
+                  '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&]{8,}',
+                message: '비밀번호 형식에 맞게 입력해 주세요.',
+              },
             })}
           />
           {errors.password && <p>{errors.password.message}</p>}
@@ -105,20 +110,13 @@ function SignUpOneStep() {
           {errors.phone && <p>{errors.phone.message}</p>}
         </div>
 
-        <Button
-          type="submit"
-          size="medium"
-          bgColor="primary"
-          handleClick={handleNext}
-        >
+        <Button type="submit" size="medium" bgColor="primary">
           다음 단계
         </Button>
       </form>
       <Button size="medium" bgColor="dark" handleClick={handleBack}>
         이전
       </Button>
-
-      {/* {isLoading && <Loading />} */}
     </div>
   );
 }

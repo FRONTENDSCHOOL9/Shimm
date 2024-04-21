@@ -4,6 +4,7 @@ import Loading from '@components/loading/Loading';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
+import useFormStore from '@zustand/form.mjs';
 
 function SignUpTwoStep() {
   const axios = useCustomAxios();
@@ -23,6 +24,7 @@ function SignUpTwoStep() {
     imageFile: '',
     previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
   });
+  const { form } = useFormStore();
 
   function saveImage(e) {
     e.preventDefault();
@@ -50,6 +52,8 @@ function SignUpTwoStep() {
     try {
       setIsLoading(true);
       formData.type = 'user';
+      formData = { ...formData, ...form };
+      console.log(form);
 
       // 이미지 먼저 업로드
       if (formData.profileImage.length > 0) {
