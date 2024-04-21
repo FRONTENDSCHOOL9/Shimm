@@ -15,7 +15,7 @@ function useCustomAxios() {
 
   const instance = axios.create({
     baseURL: import.meta.env.VITE_API_SERVER,
-    timeout: 1000 * 10,
+    // timeout: 1000 * 10,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
