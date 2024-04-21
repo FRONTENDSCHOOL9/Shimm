@@ -19,8 +19,6 @@ function MeditationProgress() {
   const [isPlaying, setIsPlaying] = useState(true);
   const navigate = useNavigate();
 
-  console.log(selectedTheme);
-
   let time = 0;
   switch (selectedTime) {
     case '5분':
