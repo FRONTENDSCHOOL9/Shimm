@@ -142,13 +142,25 @@ function MyPage() {
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const [record, setRecord] = useState();
+  const [activity, setActivity] = useState();
+  const [getPosts, setGetPosts] = useState();
 
-  // console.log(user);
+  async function fetchGetPosts() {
+    const PostRes = await axios.get(`/posts?type=community`);
+    const currentUserId = user._id;
+    const userPosts = PostRes.data.item.filter(
+      post => post.user._id === currentUserId,
+    );
+    setGetPosts(userPosts.length);
+  }
+
+  async function fetchUserInfo() {
+    const UserRes = await axios.get(`/users/${user._id}`);
+    setActivity(UserRes.data.item);
+  }
 
   async function fetchUserRecord() {
-    // if (user === user._id)
     const res = await axios.get(`/posts?type=meditation`);
-
     setRecord(res.data.item);
   }
 
@@ -165,39 +177,39 @@ function MyPage() {
     </RecordLi>
   ));
 
-  console.log(record);
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
+  useEffect(() => {
+    fetchGetPosts();
+  }, []);
 
   useEffect(() => {
     fetchUserRecord();
   }, []);
 
   function handleMoveArchive() {
-    console.log('나의 기록화면으로 전환');
     navigate('/mypage/archive');
   }
 
   function handleMoveArchive() {
-    console.log('나의 기록화면으로 전환');
     navigate('/mypage/archive');
   }
 
   function handleMoveMyList() {
-    console.log('내가 작성한 글목록으로 전환');
-  }
-
-  function handleMoveMyReply() {
-    console.log('내가 댓글 단 목록으로 전환');
+    navigate('/mypage/activity/myposts');
   }
 
   function handleMoveMyBookmark() {
-    console.log('내가 북마크한 목록으로 전환');
+    navigate('/mypage/activity/bookmarkedposts');
   }
 
   return (
     <MyPageWrapper>
       <UserProfile>
         <h2>
-          <span>'{user.name}'님,</span>
+          <span>{activity?.name}님,</span>
           <br />
           안녕하세요
         </h2>
@@ -234,17 +246,12 @@ function MyPage() {
         <ArchiveBox>
           <MyArchive>
             <ActiveLi onClick={handleMoveMyList}>
-              <span>34</span>
+              <span>{getPosts}</span>
               <span>내가 쓴 글</span>
             </ActiveLi>
             <hr />
-            <ActiveLi onClick={handleMoveMyReply}>
-              <span>2</span>
-              <span>댓글 단 글</span>
-            </ActiveLi>
-            <hr />
             <ActiveLi onClick={handleMoveMyBookmark}>
-              <span>5</span>
+              <span>{activity?.bookmark.posts}</span>
               <span>북마크 한 글</span>
             </ActiveLi>
           </MyArchive>

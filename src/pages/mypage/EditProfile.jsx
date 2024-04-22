@@ -73,6 +73,19 @@ const InfoInput = styled.input`
   box-sizing: border-box;
 `;
 
+const PasswordWrapper = styled.div`
+  
+
+  
+   
+    height: 40px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    padding-inline: 6px;
+    box-sizing: border-box;
+  
+`;
+
 const SelectBox = styled.div`
   width: 100%;
   display: flex;
@@ -139,19 +152,20 @@ const LastNumber = styled.input`
 `;
 function EditProfile() {
   const [userInput, setUserInput] = useState({
-    nickName: '',
-    password: '',
-    passwordCheck: '',
+    name: '',
+    // password: '',
+    // passwordCheck: '',
     year: '',
     month: '',
     day: '',
   });
+  const [showPasswordInput, setShowPasswordInput] = useState(false);
 
   const [profileImage, setProfileImage] = useState('');
   const profileImageInput = useRef(null);
-  const { nickName, password, passwordCheck, year, month, day } = userInput;
+  const { name, password, passwordCheck, year, month, day } = userInput;
+
   const axios = useCustomAxios();
-  const { _id } = useParams();
   const navigate = useNavigate();
   const { user } = useUserStore();
   const {
@@ -159,8 +173,12 @@ function EditProfile() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm();
-  const [editData, setEditData] = useState();
+  } = useForm({
+    value: {
+      name: user.name,
+    },
+  });
+
   const YEAR = Array.from({ length: 100 }, (_, i) => 1923 + i);
   const MONTH = Array.from({ length: 12 }, (_, i) =>
     String(i + 1).padStart(2, '0'),
@@ -176,12 +194,15 @@ function EditProfile() {
       setProfileImage(file.name);
     }
   }
+  function handleShowPassword() {
+    setShowPasswordInput(!showPasswordInput);
+  }
 
   async function onSubmit(formData) {
     try {
-      const res = await axios.patch(`/users/${_id}`, formData);
+      formData.type = 'user';
+      const res = await axios.patch(`/users/${user._id}`, formData);
       console.log(res);
-      // setEditData(res);
       alert('프로필정보 변경이 완료되었습니다.');
       navigate('/mypage');
     } catch (err) {
@@ -216,32 +237,29 @@ function EditProfile() {
           ref={profileImageInput}
           onChange={handleImageChange}
         />
+        <Label htmlFor="nickname">닉네임</Label>
+        <InfoInput type="text" id="nickname" {...register('name')} />
 
-        <Label>닉네임</Label>
-        <InfoInput
-          type="nickname"
-          id="nickname"
-          {...register('nickName')}
-          defaultValue={user.name}
-        ></InfoInput>
+        {showPasswordInput && (
+          <PasswordWrapper>
+            <Label>비밀번호</Label>
+            <InfoInput
+              type="password"
+              id="password"
+              {...register('password')}
+              placeholder="소문자, 대문자, 특수문자를 조합하여 8자 이상 입력해 주세요."
+            ></InfoInput>
 
-        <Label>비밀번호</Label>
-        <InfoInput
-          type="password"
-          id="password"
-          {...register('password')}
-          placeholder="소문자, 대문자, 특수문자를 조합하여 8자 이상 입력해 주세요."
-        ></InfoInput>
-
-        <Label>비밀번호 확인</Label>
-        <InfoInput
-          type="password"
-          id="password"
-          {...register('password')}
-          placeholder="입력한 비밀번호 한번 더 입력해 주세요."
-        ></InfoInput>
-
-        <Label>생년월일</Label>
+            <Label>비밀번호 확인</Label>
+            <InfoInput
+              type="password"
+              id="password"
+              {...register('password')}
+              placeholder="입력한 비밀번호 한번 더 입력해 주세요."
+            ></InfoInput>
+          </PasswordWrapper>
+        )}
+        <Label htmlFor="select">생년월일</Label>
         <SelectBox>
           <select className="select" name="year" onChange={handleInput}>
             <option>생년월일</option>
@@ -262,7 +280,6 @@ function EditProfile() {
             })}
           </select>
         </SelectBox>
-
         <Label>전화번호</Label>
         <SelectBox>
           <SelectNumber>
@@ -279,8 +296,13 @@ function EditProfile() {
             defaultValue={user.phone.slice(7, 11)}
           />
         </SelectBox>
+        <ButtonProfileEdit type="submit">수정</ButtonProfileEdit>
         <ButtonLink>
-          <ButtonProfileEdit type="submit">수정</ButtonProfileEdit>
+          <ButtonProfileEdit type="button" onClick={
+            ()=>handleShowPassword
+            ()=>}</ButtonLink>>
+            비밀번호 변경
+          </ButtonProfileEdit>
         </ButtonLink>
       </EditForm>
     </FormWrapper>
