@@ -79,8 +79,6 @@ function FeedList({ item, handleDelete, handleBookmark }) {
     setIsOpened(!isOpened);
   }
 
-  console.log(`${import.meta.env.VITE_API_SERVER}${writer.profile}`);
-
   return (
     <Post>
       <PostHeader>
