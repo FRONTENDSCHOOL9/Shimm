@@ -1,25 +1,22 @@
-import { useSearchParams } from 'next/navigation'
-import {useEffect, useState} from "react"
-import axios from "@hooks/useCustomAxios.mjs"
-import Loading from '@components/loading/Loading'
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import axios from '@hooks/useCustomAxios.mjs';
+import Loading from '@components/loading/Loading';
 
 const Kakao = () => {
   const [kakaoAccessToken, setKakaoAccessToken] = useState('');
-  const {isLoading, setIsLoading} = useState(false);
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
 
-  // 카카오 로그인 : 토큰 발급
-  const fnGetKakaoOauthToken = async () => {
-    setIsLoading(true);
-    const makeFormData = (key) => {
-      const searchParams = new URLSearchParams()
+  const GetKakaoOauthToken = async () => {
+    const makeFormData = key => {
+      const searchParams = new URLSearchParams();
       Object.keys(params).forEach(key => {
-        searchParams.append(key, params[key])
-      })
+        searchParams.append(key, params[key]);
+      });
 
-      return searchParams
-    }
+      return searchParams;
+    };
 
     try {
       const res = await axios({
@@ -30,97 +27,74 @@ const Kakao = () => {
         url: 'https://kauth.kakao.com/oauth/token',
         data: makeFormData({
           grant_type: 'authorization_code',
-          client_id: import.meta.env.VITE_KAKAO_REST_API_KEY,
-          // redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_LOCAL_URI as string,
-          redirect_uri: import.meta.env.VITE_REDIRECT_URI + '/kakao';
-          code,
-        })
-      })
+          client_id: CLIENT_ID,
+          redirect_uri: REDIRECT_URI + '/kakao',
+          code, // 인가 코드
+        }),
+      });
 
-      Data.set('kakaoLogin', res.data.access_token)
-      setKakaoAccessToken(res.data.access_token)
+      Data.set('kakaoLogin', res.data.access_token);
     } catch (err) {
-      console.warn(err)
+      console.warn(err);
     }
-  }
+  };
 
-  // 카카오 로그인 : 사용자 정보 받기
-  const fnGetKakaoUserInfo = async () => {
+  const GetKakaoUserInfo = async () => {
     try {
       const res = await axios({
         method: 'GET',
         headers: {
-          "Authorization": `Bearer ${kakaoAccessToken}`
+          Authorization: `Bearer ${kakaoAccessToken}`,
         },
-        url: "https://kapi.kakao.com/v2/user/me",
-      })
+        url: 'https://kapi.kakao.com/v2/user/me',
+      });
 
-      Data.set('userInfo', res.data.kakao_account.profile.nickname)
-      fnUserInfoCheck(res.data.id.toString(), res.data.kakao_account.profile.nickname)
+      Data.set('userInfo', res.data.kakao_account.profile.nickname);
     } catch (e) {
-      console.log('e : ', e)
+      console.log('e : ', e);
     }
-  }
+  };
 
-  // 유저 조회
-  const fnUserInfoCheck = ($kakaoId, $nickname) => {
-    GetApiPath(apiList.userInfoCheck, $kakaoId).then($res => {
-      // 기존 유저일 경우 : 로그인
-      if ($res === true) {
-        fnUserLogin($kakaoId, true)
-      } else {
-        // 유저가 아닐 경우 : 유저 등록 -> 로그인
-        fnAddUserInfo($kakaoId, $nickname)
-      }
+  const UserLogin = async ($nickname, $existing) => {
+    const res = await axios({
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${kakaoAccessToken}`,
+        },
+        url: 'https://kapi.kakao.com/v2/user/me',
+        user: {
+
+        }
     })
-  }
-
-  // 유저 등록
-  const fnAddUserInfo = async ($kakaoId, $nickname) => {
-    await GetApi(apiList.userInfo, {
-      kakaoId: $kakaoId,
-      userNickname: $nickname
-    }).then(res => {
       if (res !== 'FAIL') {
-        fnUserLogin($kakaoId, false)
-      }
-    })
-  }
-
-  // 로그인 (토큰 획득)
-  const fnUserLogin = async ($nickname, $existing) => {
-    await GetApiPath(apiList.userLogin, $nickname).then(res => {
-      if (res !== 'FAIL') {
-        Data.set('login', res.accessToken)
+        Data.set('login', res.accessToken);
 
         // 쿠키 세팅 : 10시간
         setCookie('CRT', res.refreshTokenId, {
           expires: 36000000,
-          SameSite: 'Strict'
-        })
+          SameSite: 'Strict',
+        });
 
         sAlert({
           icon: 'success',
           html: `CINEMATE ${$existing ? '로그인' : '회원가입'}이<br>성공적으로 완료 되었습니다.`,
           didClose: () => {
-            router.replace('/')
-          }
-        })
+            router.replace('/');
+          },
+        });
       }
     })
-  }
+  };
 
   useEffect(() => {
-    if (code !== null) fnGetKakaoOauthToken()
-  },[code])
+    if (code !== null) fnGetKakaoOauthToken();
+  }, [code]);
 
   useEffect(() => {
-    if (kakaoAccessToken !== "") fnGetKakaoUserInfo()
-  },[kakaoAccessToken])
+    if (kakaoAccessToken !== '') fnGetKakaoUserInfo();
+  }, [kakaoAccessToken]);
 
-  return (
-    {isLoading && <Loading />}
-  )
-}
+  return;
+};
 
-export default Kakao
+export default Kakao;
