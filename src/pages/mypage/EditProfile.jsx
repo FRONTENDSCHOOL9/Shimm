@@ -1,9 +1,36 @@
 import { ButtonLink, MyInfoWrapper } from '@pages/mypage/MyInfo';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import iconbase from '@assets/images/icon-login.svg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import useUserStore from '@zustand/user.mjs';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+
+const FormWrapper = styled.div`
+  padding: 20px;
+  max-width: 450px;
+  width: 100%;
+  color: black;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+
+  & img {
+    width: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 740px) {
+    width: 320px;
+    transition: all 5s easi-in-out;
+  }
+`;
 
 const ButtonProfileImg = styled.button`
   margin: 0 auto;
@@ -25,6 +52,7 @@ const ButtonProfileImg = styled.button`
 const ProfileImageInput = styled.input`
   display: none;
 `;
+
 const EditForm = styled.form`
   width: 100%;
   display: flex;
@@ -37,7 +65,15 @@ const Label = styled.label`
   margin: 20px 0 8px;
 `;
 
-const NicknameInput = styled.input`
+const InfoInput = styled.input`
+  height: 40px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  padding-inline: 6px;
+  box-sizing: border-box;
+`;
+
+const PasswordWrapper = styled.div`
   height: 40px;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
@@ -111,23 +147,33 @@ const LastNumber = styled.input`
 `;
 function EditProfile() {
   const [userInput, setUserInput] = useState({
-    nickName: '',
-    password: '',
-    passwordCheck: '',
+    name: '',
+    // password: '',
+    // passwordCheck: '',
     year: '',
     month: '',
     day: '',
   });
+  const [showPasswordInput, setShowPasswordInput] = useState(false);
+
   const [profileImage, setProfileImage] = useState('');
   const profileImageInput = useRef(null);
-  const { nickName, password, passwordCheck, year, month, day } = userInput;
+  const { name, password, passwordCheck, year, month, day } = userInput;
+
+  const axios = useCustomAxios();
   const navigate = useNavigate();
+  const { user } = useUserStore();
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm();
+  } = useForm({
+    value: {
+      name: user.name,
+    },
+  });
+
   const YEAR = Array.from({ length: 100 }, (_, i) => 1923 + i);
   const MONTH = Array.from({ length: 12 }, (_, i) =>
     String(i + 1).padStart(2, '0'),
@@ -143,11 +189,20 @@ function EditProfile() {
       setProfileImage(file.name);
     }
   }
+  function handleShowPassword() {
+    setShowPasswordInput(!showPasswordInput);
+  }
 
-  function onSubmit() {
+  async function onSubmit(formData) {
     try {
+      formData.type = 'user';
+      const res = await axios.patch(`/users/${user._id}`, formData);
+      console.log(res);
       alert('프로필정보 변경이 완료되었습니다.');
-    } catch {}
+      navigate('/mypage');
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function handleInput(e) {
@@ -156,49 +211,50 @@ function EditProfile() {
   }
 
   return (
-    <MyInfoWrapper>
-      <img src={iconbase} lt="기본프로필 사진" />
-      <ButtonLink>
-        <ButtonProfileImg
-          type="button"
-          onClick={() => profileImageInput.current.click()}
-        >
-          프로필 사진 추가하기
-        </ButtonProfileImg>
-      </ButtonLink>
-      <ProfileImageInput
-        type="file"
-        id="profile-image"
-        accept="image/*"
-        ref={profileImageInput}
-        onChange={handleImageChange}
-      />
+    <FormWrapper>
       <EditForm onSubmit={handleSubmit(onSubmit)}>
-        <Label>닉네임</Label>
-        <NicknameInput
-          type="nickname"
-          id="nickname"
-          {...register('nickName')}
-          placeholder="닉네임을 입력해 주세요."
-        ></NicknameInput>
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+          alt="유저 프로필 사진"
+        />
+        <ButtonLink>
+          <ButtonProfileImg
+            type="button"
+            onClick={() => profileImageInput.current.click()}
+          >
+            프로필 사진 추가하기
+          </ButtonProfileImg>
+        </ButtonLink>
+        <ProfileImageInput
+          type="file"
+          id="profile-image"
+          accept="image/*"
+          ref={profileImageInput}
+          onChange={handleImageChange}
+        />
+        <Label htmlFor="nickname">닉네임</Label>
+        <InfoInput type="text" id="nickname" {...register('name')} />
 
-        <Label>비밀번호</Label>
-        <NicknameInput
-          type="password"
-          id="password"
-          {...register('password')}
-          placeholder="소문자, 대문자, 특수문자를 조합하여 8자 이상 입력해 주세요."
-        ></NicknameInput>
+        {showPasswordInput && (
+          <PasswordWrapper>
+            <Label>비밀번호</Label>
+            <InfoInput
+              type="password"
+              id="password"
+              {...register('password')}
+              placeholder="소문자, 대문자, 특수문자를 조합하여 8자 이상 입력해 주세요."
+            ></InfoInput>
 
-        <Label>비밀번호 확인</Label>
-        <NicknameInput
-          type="password"
-          id="password"
-          {...register('password')}
-          placeholder="입력한 비밀번호 한번 더 입력해 주세요."
-        ></NicknameInput>
-
-        <Label>생년월일</Label>
+            <Label>비밀번호 확인</Label>
+            <InfoInput
+              type="password"
+              id="password"
+              {...register('password')}
+              placeholder="입력한 비밀번호 한번 더 입력해 주세요."
+            ></InfoInput>
+          </PasswordWrapper>
+        )}
+        <Label htmlFor="select">생년월일</Label>
         <SelectBox>
           <select className="select" name="year" onChange={handleInput}>
             <option>생년월일</option>
@@ -219,20 +275,32 @@ function EditProfile() {
             })}
           </select>
         </SelectBox>
-
         <Label>전화번호</Label>
         <SelectBox>
           <SelectNumber>
             <option>010</option>
           </SelectNumber>
-          <MiddleNumber type="number" onChange={handleInput} />
-          <LastNumber type="number" onChange={handleInput} />
+          <MiddleNumber
+            type="number"
+            onChange={handleInput}
+            defaultValue={user.phone.slice(3, 7)}
+          />
+          <LastNumber
+            type="number"
+            onChange={handleInput}
+            defaultValue={user.phone.slice(7, 11)}
+          />
         </SelectBox>
+        <ButtonProfileEdit type="submit">수정</ButtonProfileEdit>
+
         <ButtonLink>
-          <ButtonProfileEdit type="submit">수정</ButtonProfileEdit>
+          <ButtonProfileEdit
+            type="button"
+            onClick={() => {}}
+          ></ButtonProfileEdit>
         </ButtonLink>
       </EditForm>
-    </MyInfoWrapper>
+    </FormWrapper>
   );
 }
 

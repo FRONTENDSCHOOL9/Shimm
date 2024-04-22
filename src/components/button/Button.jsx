@@ -7,7 +7,7 @@ function Button({
   size,
   bgColor = 'primary',
   color,
-  display = 'inline-block',
+  display = 'inline',
   handleClick,
 }) {
   return (
