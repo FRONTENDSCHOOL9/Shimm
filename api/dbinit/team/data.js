@@ -104,7 +104,7 @@ export const initData = async nextSeq => {
         extra: {
           background: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
           music:
-            'https://soundcloud.com/1qza8k6e3opg/qdasktrrrqjj?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+            'https://soundcloud.com/1qza8k6e3opg/gihgcldr6xby?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
         },
       },
       {
@@ -310,8 +310,8 @@ export const initData = async nextSeq => {
         content: '피곤하네여…',
         image: '/files/02-Shimm/yogagirl.png',
         user: {
-          _id: 1,
-          name: '쓰러지다',
+          _id: 2,
+          name: '요가걸',
           profile: '/files/02-Shimm/yogagirl.png',
         },
         replies: [
