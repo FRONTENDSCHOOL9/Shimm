@@ -4,7 +4,7 @@ import axios from "@hooks/useCustomAxios.mjs"
 import Loading from '@components/loading/Loading'
 
 const Kakao = () => {
-  const [kakaoAccessToken, setKakaoAccessToken] = useState<string>('');
+  const [kakaoAccessToken, setKakaoAccessToken] = useState('');
   const {isLoading, setIsLoading} = useState(false);
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
@@ -12,7 +12,7 @@ const Kakao = () => {
   // 카카오 로그인 : 토큰 발급
   const fnGetKakaoOauthToken = async () => {
     setIsLoading(true);
-    const makeFormData = (params: {[key: string]: string}) => {
+    const makeFormData = (key) => {
       const searchParams = new URLSearchParams()
       Object.keys(params).forEach(key => {
         searchParams.append(key, params[key])
@@ -30,10 +30,10 @@ const Kakao = () => {
         url: 'https://kauth.kakao.com/oauth/token',
         data: makeFormData({
           grant_type: 'authorization_code',
-          client_id: process.env.NEXT_PUBLIC_CLIENT_ID as string,
+          client_id: import.meta.env.VITE_KAKAO_REST_API_KEY,
           // redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_LOCAL_URI as string,
-          redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI as string,
-          code
+          redirect_uri: import.meta.env.VITE_REDIRECT_URI + '/kakao';
+          code,
         })
       })
 
@@ -63,7 +63,7 @@ const Kakao = () => {
   }
 
   // 유저 조회
-  const fnUserInfoCheck = ($kakaoId: string, $nickname: string) => {
+  const fnUserInfoCheck = ($kakaoId, $nickname) => {
     GetApiPath(apiList.userInfoCheck, $kakaoId).then($res => {
       // 기존 유저일 경우 : 로그인
       if ($res === true) {
@@ -76,7 +76,7 @@ const Kakao = () => {
   }
 
   // 유저 등록
-  const fnAddUserInfo = async ($kakaoId: string, $nickname: string) => {
+  const fnAddUserInfo = async ($kakaoId, $nickname) => {
     await GetApi(apiList.userInfo, {
       kakaoId: $kakaoId,
       userNickname: $nickname
@@ -88,7 +88,7 @@ const Kakao = () => {
   }
 
   // 로그인 (토큰 획득)
-  const fnUserLogin = async ($nickname: string, $existing: boolean) => {
+  const fnUserLogin = async ($nickname, $existing) => {
     await GetApiPath(apiList.userLogin, $nickname).then(res => {
       if (res !== 'FAIL') {
         Data.set('login', res.accessToken)
