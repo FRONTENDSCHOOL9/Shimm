@@ -48,8 +48,6 @@ function SignUpTwoStep() {
     });
   }
 
-  function handleNickname() {}
-
   async function onSubmit(formData) {
     try {
       setIsLoading(true);
@@ -82,7 +80,6 @@ function SignUpTwoStep() {
         res.data.item.name +
           '님 회원가입이 완료 되었습니다.\n로그인 후에 이용하세요.',
       );
-
       navigate('/users/login');
     } catch (err) {
       console.error(err);
@@ -135,9 +132,6 @@ function SignUpTwoStep() {
               },
             })}
           />
-          <Button bgColor="dark" size="small" handleClick={handleNickname}>
-            중복확인
-          </Button>
           {errors.name && <p>{errors.name.message}</p>}
         </div>
         <Button type="submit" size="medium" bgColor="dark">
