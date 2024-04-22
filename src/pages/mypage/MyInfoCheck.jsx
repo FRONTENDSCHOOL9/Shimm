@@ -81,7 +81,7 @@ function MyInfoCheck() {
       email: user.email,
     },
   });
-  console.log(user.email);
+
   const location = useLocation();
 
   async function onSubmit(formData) {
@@ -111,9 +111,6 @@ function MyInfoCheck() {
       setIsLoading(false);
     }
   }
-
-  const p = JSON.parse(sessionStorage.getItem('user'));
-  console.log(p.state.user.token.accessToken);
 
   return (
     <CheckWrapper>

@@ -99,8 +99,6 @@ const EditButton = styled.button`
 function MyInfo() {
   const { user } = useUserStore();
 
-  console.log(user);
-
   return (
     <MyInfoWrapper>
       <MyInfoHeader>
