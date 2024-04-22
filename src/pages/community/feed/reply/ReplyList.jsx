@@ -23,8 +23,8 @@ function ReplyList({ id, pid }) {
       console.error(err);
     }
   }
-  const replyList = data?.item?.map(item => (
-    <ReplyItem key={item._id} item={item} fetchReply={fetchReply} postId={id} />
+  const replyList = data?.item?.map((item, index) => (
+    <ReplyItem key={index} item={item} fetchReply={fetchReply} postId={id} />
   ));
 
   return (

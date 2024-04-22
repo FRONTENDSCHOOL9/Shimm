@@ -50,6 +50,7 @@ function FeedEditorEdit() {
   } = useForm({
     values: {
       content: `${data?.item?.content}`,
+      image: `${data?.item?.extra?.image}`,
     },
   });
 
@@ -73,6 +74,11 @@ function FeedEditorEdit() {
 
         delete formData.newImage;
       } else {
+        if (data?.item?.extra?.image && imgValue !== '선택한 파일 없음') {
+          formData.extra = {
+            image: `${data?.item?.extra?.image}`,
+          };
+        }
         delete formData.newImage;
       }
 
