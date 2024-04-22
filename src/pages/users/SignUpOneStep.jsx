@@ -15,8 +15,6 @@ function SignUpOneStep() {
       birth: '1999-02-25',
       phone: '01055556666',
     },
-    defaultValues: form,
-    mode: 'onSubmit',
   });
 
   function saveData(data) {
@@ -63,7 +61,7 @@ function SignUpOneStep() {
               required: '비밀번호를 입력하세요.',
               pattern: {
                 value:
-                  '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&]{8,}',
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&]{8,}$/,
                 message: '비밀번호 형식에 맞게 입력해 주세요.',
               },
             })}
@@ -76,11 +74,11 @@ function SignUpOneStep() {
             type="password"
             id="password-confirm"
             placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
-            {...register('password', {
+            {...register('passwordConfirm', {
               required: '비밀번호를 입력하세요.',
             })}
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
         </div>
         <div>
           <label htmlFor="birth">생년월일</label>
