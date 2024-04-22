@@ -126,7 +126,7 @@ function FeedEditorNew() {
               type="file"
               id="image"
               name="profile-img"
-              accept=".png, .jpeg, .jpg"
+              accept=".png, .jpeg, .jpg .gif"
               {...register('image', {
                 onChange: handleChange,
               })}
