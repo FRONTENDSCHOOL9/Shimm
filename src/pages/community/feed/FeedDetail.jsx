@@ -3,8 +3,10 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useNavigate, useParams } from 'react-router-dom';
 import PostDetail from '@pages/community/feed/PostDetail';
 import { StyledFeed } from '@pages/community/feed/Feed.style';
+import Loading from '@components/loading/Loading';
 
 function FeedDetail() {
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState('');
   const { id } = useParams();
   const axios = useCustomAxios();
@@ -15,8 +17,15 @@ function FeedDetail() {
   }, []);
 
   async function fetchDetail() {
-    const res = await axios.get(`/posts/${id}`);
-    setData(res.data);
+    try {
+      setIsLoading(true);
+      const res = await axios.get(`/posts/${id}`);
+      setData(res.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   async function handleDelete(id) {
@@ -32,7 +41,11 @@ function FeedDetail() {
 
   return (
     <StyledFeed>
-      {item && <PostDetail item={item} handleDelete={handleDelete} />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        item && <PostDetail item={item} handleDelete={handleDelete} />
+      )}
     </StyledFeed>
   );
 }

@@ -14,7 +14,7 @@ function FeedNew() {
       {user ? (
         <EditorProfileImage>
           <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}${user.profile}`}
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
           />
         </EditorProfileImage>
       ) : (
