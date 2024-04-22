@@ -13,7 +13,9 @@ function FeedNew() {
       <h3>새 글 쓰기</h3>
       {user ? (
         <EditorProfileImage>
-          <img src={`${import.meta.env.VITE_API_SERVER}${user.profile}`} />
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}${user.profile}`}
+          />
         </EditorProfileImage>
       ) : (
         <EditorProfileImage>

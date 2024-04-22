@@ -12,7 +12,7 @@ import {
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import useModalStore from '@zustand/modal.mjs';
 
-function ReplyItem({ item, postId, fetchReply }) {
+function ReplyItem({ item, handleDelete }) {
   const { user } = useUserStore();
   const { _id, user: writer, reply, createdAt } = item;
   const { setShowModal, setModalData } = useModalStore();
@@ -25,15 +25,6 @@ function ReplyItem({ item, postId, fetchReply }) {
   const hours = Math.floor(seconds / 3600);
   const days = Math.floor(hours / 24);
 
-  async function handleDelete() {
-    try {
-      const res = await axios.delete(`/posts/${postId}/replies/${_id}`);
-      fetchReply();
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
   function handleClick() {
     setShowModal(true);
     setModalData({
@@ -41,7 +32,7 @@ function ReplyItem({ item, postId, fetchReply }) {
       button: 2,
       handleOk() {
         setShowModal(false);
-        handleDelete();
+        handleDelete(item._id);
       },
       handleClose() {
         setShowModal(false);
@@ -88,8 +79,7 @@ function ReplyItem({ item, postId, fetchReply }) {
 
 ReplyItem.propTypes = {
   item: PropTypes.object.isRequired,
-  postId: PropTypes.number,
-  fetchReply: PropTypes.func,
+  handleDelete: PropTypes.func,
 };
 
 export default ReplyItem;

@@ -14,7 +14,9 @@ function FeedEdit() {
         <FeedWrite>
           <h3>수정하기</h3>
           <EditorProfileImage>
-            <img src={`${import.meta.env.VITE_API_SERVER}${user.profile}`} />
+            <img
+              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+            />
           </EditorProfileImage>
 
           <FeedEditorEdit />
