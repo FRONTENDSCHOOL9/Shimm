@@ -84,7 +84,6 @@ export const PostMain = styled(Link)`
   }
 
   & img {
-    width: 100%;
     aspect-ratio: 16/9;
     border-radius: 5px;
   }
