@@ -2,24 +2,108 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Button from '@components/button/Button';
 import useFormStore from '@zustand/form.mjs';
+import { useState } from 'react';
+import useModalStore from '@zustand/modal';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
 function SignUpOneStep() {
+  const axios = useCustomAxios();
   const navigate = useNavigate();
-  const { form, setForm } = useFormStore();
+  const { setShowModal, setModalData } = useModalStore();
+  const { setForm } = useFormStore();
   const {
     handleSubmit,
     register,
     formState: { errors },
+    trigger,
+    watch,
+    setError,
+    setFocus,
   } = useForm({
     values: {
       birth: '1999-02-25',
       phone: '01055556666',
     },
   });
+  const [emailChecked, setEmailChecked] = useState(false);
+  const email = watch('email');
+
+  async function handleEmail() {
+    const isValid = await trigger('email');
+    if (!isValid) {
+      setError(
+        'email',
+        { message: '올바른 이메일을 입력해 주세요.' },
+        { shouldFocus: true },
+      );
+      return;
+    }
+
+    try {
+      const resultCheck = await axios.get(`/users/email?email=${email}`);
+      if (resultCheck.data.ok) {
+        setEmailChecked(true);
+        setShowModal(true);
+        setModalData({
+          children: <span>사용 가능한 이메일입니다.</span>,
+          button: 1,
+          handleOk() {
+            setShowModal(false);
+            setFocus('email');
+          },
+          handleClose() {
+            setShowModal(false);
+            setFocus('email');
+          },
+        });
+      }
+    } catch (err) {
+      setEmailChecked(false);
+      if (err.response?.data.errors) {
+        err.response?.data.errors.forEach(error =>
+          setError(error.path, { message: error.msg }),
+        );
+      } else if (err.response?.data.message) {
+        setShowModal(true);
+        setModalData({
+          children: <span>이미 등록된 이메일입니다.</span>,
+          button: 1,
+          handleOk() {
+            setShowModal(false);
+            setFocus('email');
+          },
+          handleClose() {
+            setShowModal(false);
+            setFocus('email');
+          },
+        });
+      }
+    }
+  }
 
   function saveData(data) {
-    setForm(data);
-    navigate('/signup/twostep');
+    if (emailChecked) {
+      setForm(data);
+      navigate('/signup/twostep');
+    } else {
+      setShowModal(true);
+      setModalData({
+        children: (
+          <span>
+            이메일 중복 확인이 필요합니다. 이메일 중복 확인을 해 주세요.
+          </span>
+        ),
+        button: 1,
+        handleOk() {
+          setShowModal(false);
+          setFocus('email');
+        },
+        handleClose() {
+          setShowModal(false);
+          setFocus('email');
+        },
+      });
+    }
   }
 
   function handleBack() {
@@ -48,6 +132,9 @@ function SignUpOneStep() {
               },
             })}
           />
+          <Button bgColor="dark" size="small" handleClick={handleEmail}>
+            중복확인
+          </Button>
           {errors.email && <p>{errors.email.message}</p>}
         </div>
 
