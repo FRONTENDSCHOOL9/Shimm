@@ -135,6 +135,7 @@ function PostDetail({ item, handleDelete }) {
         {extra?.image && (
           <img
             src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${extra.image}`}
+            alt={`${extra.image}`}
           />
         )}
       </PostMain>

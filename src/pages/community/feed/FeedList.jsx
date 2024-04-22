@@ -79,6 +79,8 @@ function FeedList({ item, handleDelete, handleBookmark }) {
     setIsOpened(!isOpened);
   }
 
+  console.log(`${import.meta.env.VITE_API_SERVER}${writer.profile}`);
+
   return (
     <Post>
       <PostHeader>
@@ -135,6 +137,7 @@ function FeedList({ item, handleDelete, handleBookmark }) {
         {extra?.image && (
           <img
             src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${extra.image}`}
+            alt={`${extra.image}`}
           />
         )}
       </PostMain>
