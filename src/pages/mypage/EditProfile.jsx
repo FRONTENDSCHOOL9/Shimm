@@ -74,16 +74,11 @@ const InfoInput = styled.input`
 `;
 
 const PasswordWrapper = styled.div`
-  
-
-  
-   
-    height: 40px;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
-    padding-inline: 6px;
-    box-sizing: border-box;
-  
+  height: 40px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  padding-inline: 6px;
+  box-sizing: border-box;
 `;
 
 const SelectBox = styled.div`
@@ -297,12 +292,12 @@ function EditProfile() {
           />
         </SelectBox>
         <ButtonProfileEdit type="submit">수정</ButtonProfileEdit>
+
         <ButtonLink>
-          <ButtonProfileEdit type="button" onClick={
-            ()=>handleShowPassword
-            ()=>}</ButtonLink>>
-            비밀번호 변경
-          </ButtonProfileEdit>
+          <ButtonProfileEdit
+            type="button"
+            onClick={() => {}}
+          ></ButtonProfileEdit>
         </ButtonLink>
       </EditForm>
     </FormWrapper>
