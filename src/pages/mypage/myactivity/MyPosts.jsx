@@ -3,54 +3,86 @@ import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import FeedList from '@pages/community/feed/FeedList';
 import { NoPost } from '@pages/mypage/myactivity/MyActivity.style';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import useUserStore from '@zustand/user';
-import { useEffect, useState } from 'react';
+import { produce } from 'immer';
+import _ from 'lodash';
+import InfiniteScroll from 'react-infinite-scroller';
 import { useNavigate } from 'react-router-dom';
 
 function MyPosts() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState();
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    fetchPost();
-  }, []);
+  const { data, fetchNextPage, isFetching, isLoading } = useInfiniteQuery({
+    queryKey: ['myposts'],
+    queryFn: ({ pageParam = 1 }) =>
+      axios.get(`/posts/users/${user._id}?type=community`, {
+        params: {
+          page: pageParam,
+          limit: 3,
+          sort: JSON.stringify({ _id: -1 }),
+        },
+      }),
+    select: response => {
+      response = {
+        items: response.pages.map(page => page.data.item.item),
+        totalPages: response.pages.at(-1).data.item.pagination.totalPages,
+        page: response.pages.at(-1).data.item.pagination.page,
+      };
+      return response;
+    },
 
-  async function fetchPost() {
-    try {
-      setIsLoading(true);
-      const res = await axios(`/posts/users/${user._id}?type=community`);
-      setData(res.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
+    getNextPageParam: lastPage => {
+      const pagination = lastPage.data.item.pagination;
+      let nextPage =
+        pagination.page < pagination.totalPages ? pagination.page + 1 : false;
+
+      return nextPage;
+    },
+  });
+
+  let list = [];
+  let hasNext = false;
+
+  if (data) {
+    list = _.flatten(data.items).map(item => {
+      return (
+        <FeedList key={item._id} item={item} handleDelete={handleDelete} />
+      );
+    });
+
+    hasNext = data.page < data.totalPages;
   }
 
+  console.log(data);
   async function handleDelete(id) {
     try {
-      setIsLoading(true);
       await axios.delete(`/posts/${id}`);
-      fetchPost();
+
+      const newPagesArray =
+        produce(data.items, draft =>
+          draft.forEach(item => {
+            _.remove(item.item, item => item._id === id);
+          }),
+        ) || [];
+
+      queryClient.setQueryData(['myposts'], data => ({
+        pages: newPagesArray,
+        pageParams: data.pageParams,
+      }));
     } catch (err) {
       console.error(err);
-    } finally {
-      setIsLoading(false);
     }
   }
-
-  const myPostList = data?.item?.item?.map(item => (
-    <FeedList key={item._id} item={item} handleDelete={handleDelete} />
-  ));
 
   return (
     <>
       {isLoading ? (
         <Loading />
-      ) : data?.item?.item.length === 0 ? (
+      ) : data.items[0].length === 0 ? (
         <NoPost>
           <p>작성한 글이 없습니다.</p>
           <Button
@@ -62,7 +94,15 @@ function MyPosts() {
           </Button>
         </NoPost>
       ) : (
-        myPostList
+        <InfiniteScroll
+          key={0}
+          pageStart={1}
+          loadMore={fetchNextPage}
+          hasMore={!isFetching && hasNext}
+          loader={<Loading key={0} />}
+        >
+          {list}
+        </InfiniteScroll>
       )}
     </>
   );

@@ -40,13 +40,17 @@ function FeedDetail() {
   const item = data?.item;
 
   return (
-    <StyledFeed>
+    <>
       {isLoading ? (
         <Loading />
       ) : (
-        item && <PostDetail item={item} handleDelete={handleDelete} />
+        item && (
+          <StyledFeed>
+            <PostDetail item={item} handleDelete={handleDelete} />
+          </StyledFeed>
+        )
       )}
-    </StyledFeed>
+    </>
   );
 }
 

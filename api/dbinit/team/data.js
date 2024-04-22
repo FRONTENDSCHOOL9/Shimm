@@ -38,7 +38,7 @@ export const initData = async nextSeq => {
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         birthday: '1995-04-14',
-        profileImage: `yogaman.png`,
+        profileImage: `yogagirl.png`,
       },
       {
         _id: await nextSeq('user'),

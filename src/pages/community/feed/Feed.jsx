@@ -47,6 +47,7 @@ function Feed() {
     hasNext = data.page < data.totalPages;
   }
 
+  console.log(data);
   async function handleDelete(id) {
     try {
       await axios.delete(`/posts/${id}`);

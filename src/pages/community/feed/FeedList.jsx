@@ -125,7 +125,9 @@ function FeedList({ item, handleDelete, handleBookmark }) {
             <More type="button" onClick={handleMore}>
               •••
             </More>
-            {isOpened && <FeedDropDown id={_id} handleDelete={handleDelete} />}
+            {isOpened && (
+              <FeedDropDown id={_id} handleDelete={() => handleDelete(_id)} />
+            )}
           </>
         )}
       </PostHeader>
