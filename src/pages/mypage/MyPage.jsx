@@ -202,7 +202,7 @@ function MyPage() {
           안녕하세요
         </h2>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
           alt="유저의 프로필 사진"
         />
       </UserProfile>

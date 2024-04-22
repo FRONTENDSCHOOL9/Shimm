@@ -71,11 +71,12 @@ function SignUpTwoStep() {
           data: imageFormData,
         });
 
+        console.log(fileRes);
         formData.profileImage = fileRes.data.item[0].name;
       } else {
         formData.profileImage = `icon-user-default.png`;
       }
-      console.log(formData);
+
       const res = await axios.post('/users', formData);
       alert(
         res.data.item.name +

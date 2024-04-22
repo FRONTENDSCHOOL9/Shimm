@@ -53,7 +53,9 @@ function ReplyItem({ item, postId, fetchReply }) {
     <ReplyContainer>
       <ReplyHeader>
         <ProfileImage>
-          <img src={`${import.meta.env.VITE_API_SERVER}${writer.profile}`} />
+          <img
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${writer.profile}`}
+          />
         </ProfileImage>
         <p>{writer.name}</p>
         <ReplyTime>

@@ -198,8 +198,8 @@ function EditProfile() {
     <FormWrapper>
       <EditForm onSubmit={handleSubmit(onSubmit)}>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
-          lt="유저 프로필 사진"
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+          alt="유저 프로필 사진"
         />
         <ButtonLink>
           <ButtonProfileImg

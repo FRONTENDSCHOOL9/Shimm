@@ -38,7 +38,7 @@ function ReplyNew({ user, id, pid, handleNew }) {
     <Reply>
       <ProfileImage>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
           alt="내 프로필 이미지"
         />
       </ProfileImage>

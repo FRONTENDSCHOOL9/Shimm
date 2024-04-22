@@ -84,7 +84,7 @@ function PostDetail({ item, handleDelete }) {
       <PostHeader>
         <ProfileImage>
           <img
-            src={`${import.meta.env.VITE_API_SERVER}${writer.profile}`}
+            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${writer.profile}`}
             alt={`작성자: ${writer.name}`}
           />
         </ProfileImage>
