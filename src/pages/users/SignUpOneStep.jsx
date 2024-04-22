@@ -22,7 +22,6 @@ function SignUpOneStep() {
   function saveData(data) {
     setForm(data);
     navigate('/signup/twostep');
-    console.log(data);
   }
 
   function handleBack() {

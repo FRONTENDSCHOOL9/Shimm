@@ -53,7 +53,6 @@ function SignUpTwoStep() {
       setIsLoading(true);
       formData.type = 'user';
       formData = { ...formData, ...form };
-      console.log(form);
 
       // 이미지 먼저 업로드
       if (formData.profileImage.length > 0) {
@@ -82,11 +81,13 @@ function SignUpTwoStep() {
 
       navigate('/users/login');
     } catch (err) {
+      console.error(err);
       if (err.response?.data.errors) {
         err.response?.data.errors.forEach(error =>
           setError(error.path, { message: error.msg }),
         );
       } else if (err.response?.data.message) {
+        console.error(err);
         alert(err.response?.data.message);
       }
     } finally {
@@ -112,6 +113,7 @@ function SignUpTwoStep() {
             accept=".png, .jpeg, .jpg"
             onChange={saveImage}
             onClick={e => (e.target.value = null)}
+            {...register('profileImage')}
           />
           <button onClick={deleteImage}>프로필 이미지 삭제</button>
         </div>
