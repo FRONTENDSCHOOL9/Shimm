@@ -5,10 +5,10 @@ const SocialNaver = () => {
   const STATE = 'false';
   const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI; //Redirect URI
   // oauth 요청 URL
-  const naverURL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}
+  const NAVER_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}
     `;
   const handleLogin = () => {
-    window.location.href = naverURL;
+    window.location.href = NAVER_URL;
   };
 
   // const code = new URL(window.location.href).searchParams.get("code");

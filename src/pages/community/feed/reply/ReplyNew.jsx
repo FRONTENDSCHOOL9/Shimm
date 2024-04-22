@@ -6,11 +6,12 @@ import {
   ReplyInput,
   ReplyMain,
 } from '@pages/community/feed/Feed.style';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-function ReplyNew({ user, id, pid, handleNew }) {
+function ReplyNew({ user, id, pid }) {
   const {
     register,
     handleSubmit,
@@ -20,25 +21,27 @@ function ReplyNew({ user, id, pid, handleNew }) {
   const axios = useCustomAxios();
   const navigate = useNavigate();
 
-  async function onSubmit(formData) {
-    try {
-      const res = await axios.post(`/posts/${id}/replies`, formData);
-      if (pid) {
-        reset();
-        handleNew();
-      } else {
-        reset();
-        navigate(`/community/${id}`);
-      }
-    } catch (err) {
-      console.log(err);
+  const queryClient = useQueryClient();
+  const addReply = useMutation({
+    mutationFn: formData => axios.post(`/posts/${id}/replies`, formData),
+    onSuccess() {
+      queryClient.invalidateQueries(['replies']);
+      reset();
+    },
+  });
+
+  function onSubmit(formData) {
+    addReply.mutate(formData);
+    if (!pid) {
+      navigate(`/community/${id}`);
     }
   }
+
   return (
     <Reply>
       <ProfileImage>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}${user.profile}`}
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
           alt="내 프로필 이미지"
         />
       </ProfileImage>
@@ -67,7 +70,6 @@ ReplyNew.propTypes = {
   user: PropTypes.object,
   id: PropTypes.number.isRequired,
   pid: PropTypes.number,
-  handleNew: PropTypes.func,
 };
 
 export default ReplyNew;

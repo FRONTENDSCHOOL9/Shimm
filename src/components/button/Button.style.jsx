@@ -5,27 +5,37 @@ const bgColors = {
   light: 'rgba(107, 177, 112, 1)',
   dark: 'rgba(51, 86, 53, 1)',
   secondary: 'rgba(238, 176, 86, 1)',
+  grey: '#858a85',
+  black: '#000',
 };
 
 const hoverColors = {
   primary: 'rgba(51, 86, 53, 1)',
   dark: 'rgba(85, 162, 90, 1)',
+  grey: '#505350',
+  black: '#858a85',
 };
 
 const shadowColors = {
   primary: 'rgba(51, 86, 53, 1)',
   secondary: 'rgba(85, 162, 90, 1)',
+  grey: '#fff',
+  black: '#505350',
 };
 
 const displays = {
   block: 'block',
-  'inline-block': 'inline-block',
+  inline: 'inline-block',
 };
 
 const size = {
   small: {
     width: '80px',
     height: '30px',
+  },
+  mediumLow: {
+    width: '90px',
+    height: '25px',
   },
   medium: {
     width: '100px',

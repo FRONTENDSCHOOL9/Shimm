@@ -1,12 +1,12 @@
 import SocialButtons from '@components/socialButton/SocialButton';
 
 const SocialKakao = () => {
-  const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
-  const redirect_uri = import.meta.env.VITE_REDIRECT_URI; //Redirect URI
+  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
+  const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI; //Redirect URI
   // oauth 요청 URL
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+  const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const handleLogin = () => {
-    window.location.href = kakaoURL;
+    window.location.href = KAKAO_URL;
   };
 
   // const code = new URL(window.location.href).searchParams.get("code");

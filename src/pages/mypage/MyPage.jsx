@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import iconuserbased from '@assets/images/icon-user-default.png';
 import iconright from '@assets/images/icon-down.svg';
 import Button from '@components/button/Button';
 import { ButtonContainer } from '@pages/purchase/Purchase.style';
@@ -17,7 +16,7 @@ import useUserStore from '@zustand/user.mjs';
 
 const MyPageWrapper = styled.div`
   padding: 20px;
-  max-width: 740px;
+  max-width: 450px;
   width: 100%;
   color: black;
   font-size: 2rem;
@@ -42,6 +41,7 @@ const UserProfile = styled.div`
 
   & img {
     width: 80px;
+    border-radius: 50%;
   }
 `;
 
@@ -100,13 +100,10 @@ const RecordLi = styled.li`
   width: 140px;
   height: 100px;
   padding: 20px 12px;
-  background-color: #f0f5ed;
+  background: ${props => (props.background ? props.background : '')};
   border-radius: 10px;
   box-sizing: border-box;
   cursor: pointer;
-  &:hover {
-    background-color: #ecf9e4;
-  }
 
   & h4 {
     font-size: 1.4rem;
@@ -145,22 +142,35 @@ function MyPage() {
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const [record, setRecord] = useState();
+  const [activity, setActivity] = useState();
+  const [getPosts, setGetPosts] = useState();
 
-  // console.log(user);
-  // console.log(user.name);
-  // console.log(user.profile);
+  async function fetchGetPosts() {
+    const PostRes = await axios.get(`/posts?type=community`);
+    const currentUserId = user._id;
+    const userPosts = PostRes.data.item.filter(
+      post => post.user._id === currentUserId,
+    );
+    setGetPosts(userPosts.length);
+  }
+
+  async function fetchUserInfo() {
+    const UserRes = await axios.get(`/users/${user._id}`);
+    setActivity(UserRes.data.item);
+  }
 
   async function fetchUserRecord() {
-    // if (user === user._id)
     const res = await axios.get(`/posts?type=meditation`);
-
     setRecord(res.data.item);
-    // setRecord(res.data);
   }
-  console.log(record);
 
   const recordList = record?.map(item => (
-    <RecordLi key={item._id} item={item} onClick={handleMoveArchive}>
+    <RecordLi
+      key={item._id}
+      item={item}
+      onClick={handleMoveArchive}
+      background={item.extra?.background}
+    >
       <span>{item.createdAt.slice(0, 10)}</span>
       <br />
       <span>{item.extra?.time} 동안 명상했어요.</span>
@@ -168,47 +178,45 @@ function MyPage() {
   ));
 
   useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
+  useEffect(() => {
+    fetchGetPosts();
+  }, []);
+
+  useEffect(() => {
     fetchUserRecord();
   }, []);
 
   function handleMoveArchive() {
-    console.log('나의 기록화면으로 전환');
     navigate('/mypage/archive');
   }
 
   function handleMoveArchive() {
-    console.log('나의 기록화면으로 전환');
     navigate('/mypage/archive');
   }
 
   function handleMoveMyList() {
-    console.log('내가 작성한 글목록으로 전환');
-  }
-
-  function handleMoveMyReply() {
-    console.log('내가 댓글 단 목록으로 전환');
+    navigate('/mypage/activity/myposts');
   }
 
   function handleMoveMyBookmark() {
-    console.log('내가 북마크한 목록으로 전환');
+    navigate('/mypage/activity/bookmarkedposts');
   }
 
   return (
     <MyPageWrapper>
       <UserProfile>
         <h2>
-          <span>'{user.name}'님,</span>
+          <span>{activity?.name}님,</span>
           <br />
           안녕하세요
         </h2>
-        {user.profile ? (
-          <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
-            alt="유저의 프로필 사진"
-          />
-        ) : (
-          <img src={iconuserbased} alt="기본프로필 사진" />
-        )}
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+          alt="유저의 프로필 사진"
+        />
       </UserProfile>
       <Link to="/mypage/info">
         <ButtonContainer>
@@ -238,17 +246,12 @@ function MyPage() {
         <ArchiveBox>
           <MyArchive>
             <ActiveLi onClick={handleMoveMyList}>
-              <span>34</span>
+              <span>{getPosts}</span>
               <span>내가 쓴 글</span>
             </ActiveLi>
             <hr />
-            <ActiveLi onClick={handleMoveMyReply}>
-              <span>2</span>
-              <span>댓글 단 글</span>
-            </ActiveLi>
-            <hr />
             <ActiveLi onClick={handleMoveMyBookmark}>
-              <span>5</span>
+              <span>{activity?.bookmark.posts}</span>
               <span>북마크 한 글</span>
             </ActiveLi>
           </MyArchive>

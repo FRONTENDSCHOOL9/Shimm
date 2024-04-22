@@ -1,0 +1,15 @@
+meta {
+  name: 사용자가 작성한 게시글 목록
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{url}}/posts/users?type=community
+  body: none
+  auth: none
+}
+
+query {
+  type: community
+}

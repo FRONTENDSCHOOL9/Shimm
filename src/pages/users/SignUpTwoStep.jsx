@@ -4,7 +4,7 @@ import Loading from '@components/loading/Loading';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
-import userImage from '@assets/images/icon-user-default.png';
+import useFormStore from '@zustand/form.mjs';
 
 function SignUpTwoStep() {
   const axios = useCustomAxios();
@@ -22,8 +22,9 @@ function SignUpTwoStep() {
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState({
     imageFile: '',
-    previewURL: userImage,
+    previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
   });
+  const { form } = useFormStore();
 
   function saveImage(e) {
     e.preventDefault();
@@ -43,7 +44,7 @@ function SignUpTwoStep() {
   function deleteImage() {
     setImage({
       imageFile: '',
-      previewURL: userImage,
+      previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
     });
   }
 
@@ -51,6 +52,8 @@ function SignUpTwoStep() {
     try {
       setIsLoading(true);
       formData.type = 'user';
+      formData.loginType = 'email';
+      formData = { ...formData, ...form };
 
       // 이미지 먼저 업로드
       if (formData.profileImage.length > 0) {
@@ -66,9 +69,10 @@ function SignUpTwoStep() {
           data: imageFormData,
         });
 
+        console.log(fileRes);
         formData.profileImage = fileRes.data.item[0].name;
       } else {
-        delete formData.profileImage;
+        formData.profileImage = `icon-user-default.png`;
       }
 
       const res = await axios.post('/users', formData);
@@ -76,14 +80,15 @@ function SignUpTwoStep() {
         res.data.item.name +
           '님 회원가입이 완료 되었습니다.\n로그인 후에 이용하세요.',
       );
-
       navigate('/users/login');
     } catch (err) {
+      console.error(err);
       if (err.response?.data.errors) {
         err.response?.data.errors.forEach(error =>
           setError(error.path, { message: error.msg }),
         );
       } else if (err.response?.data.message) {
+        console.error(err);
         alert(err.response?.data.message);
       }
     } finally {
@@ -109,6 +114,7 @@ function SignUpTwoStep() {
             accept=".png, .jpeg, .jpg"
             onChange={saveImage}
             onClick={e => (e.target.value = null)}
+            {...register('profileImage')}
           />
           <button onClick={deleteImage}>프로필 이미지 삭제</button>
         </div>
