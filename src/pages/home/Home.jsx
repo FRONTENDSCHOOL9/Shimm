@@ -38,7 +38,7 @@ function Home() {
           <p>또는</p>
           <div>
             <Button size="full" bgColor="dark" handleClick={handleSignUp}>
-              회원가입
+              이메일로 회원가입
             </Button>
           </div>
         </section>

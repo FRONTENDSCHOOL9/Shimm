@@ -8,6 +8,7 @@ import Loading from '@components/loading/Loading';
 import GoogleLoginButton from '@components/socialLogin/SocialGoogle';
 import SocialKakao from '@components/socialLogin/SocialKakao';
 import SocialNaver from '@components/socialLogin/SocialNaver';
+import Input from '@components/input/Input';
 
 function Login() {
   const { setUser } = useUserStore();
@@ -66,7 +67,7 @@ function Login() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="email">이메일</label>
-          <input
+          <Input
             type="email"
             id="email"
             placeholder="이메일을 입력하세요"
@@ -83,7 +84,7 @@ function Login() {
 
         <div>
           <label htmlFor="password">비밀번호</label>
-          <input
+          <Input
             type="password"
             id="password"
             placeholder="비밀번호를 입력하세요"
