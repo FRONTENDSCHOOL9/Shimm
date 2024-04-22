@@ -48,10 +48,13 @@ function SignUpTwoStep() {
     });
   }
 
+  function handleNickname() {}
+
   async function onSubmit(formData) {
     try {
       setIsLoading(true);
       formData.type = 'user';
+      formData.loginType = 'email';
       formData = { ...formData, ...form };
 
       // 이미지 먼저 업로드
@@ -70,9 +73,9 @@ function SignUpTwoStep() {
 
         formData.profileImage = fileRes.data.item[0].name;
       } else {
-        formData.profileImage = `/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`;
+        formData.profileImage = `icon-user-default.png`;
       }
-
+      console.log(formData);
       const res = await axios.post('/users', formData);
       alert(
         res.data.item.name +
@@ -131,6 +134,9 @@ function SignUpTwoStep() {
               },
             })}
           />
+          <Button bgColor="dark" size="small" handleClick={handleNickname}>
+            중복확인
+          </Button>
           {errors.name && <p>{errors.name.message}</p>}
         </div>
         <Button type="submit" size="medium" bgColor="dark">
