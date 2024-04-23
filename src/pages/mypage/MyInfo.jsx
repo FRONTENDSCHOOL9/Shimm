@@ -98,29 +98,42 @@ const EditButton = styled.button`
 
 function MyInfo() {
   const { user } = useUserStore();
+  const axios = useCustomAxios();
+  const [userInfo, setUserInfo] = useState();
+  async function fetchUserInfo() {
+    const UserRes = await axios.get(`/users/${user._id}`);
+    setUserInfo(UserRes.data.item);
+    console.log(userInfo);
+  }
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
 
   return (
     <MyInfoWrapper>
       <MyInfoHeader>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userInfo?.profileImage}`}
           alt="유저 프로필 사진"
         />
-        <span>{user.name}</span>
+        <span>{userInfo?.name}</span>
       </MyInfoHeader>
       <MyInfoMain>
         <UserInfoStyled>
           <span>이메일</span>
-          <span>{user.email}</span>
+          <span>{userInfo?.email}</span>
         </UserInfoStyled>
         <UserInfoStyled>
           <span>전화번호</span>
-          <span>{user.phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}</span>
+          <span>
+            {userInfo?.phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
+          </span>
         </UserInfoStyled>
-        {user.birth && (
+        {userInfo?.birth && (
           <UserInfoStyled>
             <span>생년월일</span>
-            <span>{user.birth}</span>
+            <span>{userInfo.birth}</span>
           </UserInfoStyled>
         )}
       </MyInfoMain>

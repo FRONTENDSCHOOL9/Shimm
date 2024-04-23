@@ -13,6 +13,8 @@ import {
 
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import useUserStore from '@zustand/user.mjs';
+import { ConstructionOutlined } from '@mui/icons-material';
+import { MyInfo } from '@pages/mypage/MyInfo';
 
 const MyPageWrapper = styled.div`
   padding: 20px;
@@ -159,7 +161,8 @@ function MyPage() {
 
   async function fetchUserInfo() {
     const UserRes = await axios.get(`/users/${user._id}`);
-    setActivity(UserRes.data.item);
+
+    setActivity(UserRes.data);
   }
 
   async function fetchUserRecord() {
@@ -206,17 +209,18 @@ function MyPage() {
   function handleMoveMyBookmark() {
     navigate('/mypage/activity/bookmarkedposts');
   }
+  console.log(activity);
 
   return (
     <MyPageWrapper>
       <UserProfile>
         <h2>
-          <span>{activity?.name}님,</span>
+          <span>{activity?.item.name}님,</span>
           <br />
           안녕하세요
         </h2>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${activity?.item.profileImage}`}
           alt="유저의 프로필 사진"
         />
       </UserProfile>
@@ -253,7 +257,7 @@ function MyPage() {
             </ActiveLi>
             <hr />
             <ActiveLi onClick={handleMoveMyBookmark}>
-              <span>{activity?.bookmark.posts}</span>
+              <span>{activity?.item.bookmark.posts}</span>
               <span>북마크 한 글</span>
             </ActiveLi>
           </MyArchive>
