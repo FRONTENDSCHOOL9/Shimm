@@ -23,6 +23,8 @@ const FormWrapper = styled.div`
   margin-bottom: 40px;
   position: relative;
   transition: all 5s ease-in-out;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: 740px) {
     font-size: 1.6rem;
@@ -43,40 +45,59 @@ const ProfileImage = styled.div`
     aspect-ratio: 1/1;
     object-fit: cover;
   }
-
   & div {
     display: flex;
-    gap: 10px;
+    gap: 2px;
     height: 40px;
+    margin-left: 34px;
+    border-radius: 20px;
+
+    & img {
+      margin-top: 12px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
 
     & input {
       display: none;
     }
+  }
 
-    & label {
-      cursor: pointer;
-      background-color: #55a25a;
-      border-radius: 20px;
-      padding: 0 20px;
-      box-sizing: border-box;
-      font-size: 1.4rem;
-      line-height: 4rem;
-      font-weight: 300;
-      color: #fff;
-    }
+  & label {
+    cursor: pointer;
+    background-color: #55a25a;
+    border-radius: 20px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-size: 1.4rem;
+    line-height: 4rem;
+    font-weight: 300;
+    color: #fff;
+  }
 
-    & label:hover {
-      background-color: #335635;
-    }
+  & label:hover {
+    background-color: #335635;
   }
 `;
 
-const Password = styled.div``;
+const StyledNickName = styled.div`
+  font-size: 1.4rem;
+  font-weight: 500;
+`;
+
+const Password = styled.div`
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  font-weight: 500;
+`;
 
 const ChangePassword = styled.p`
   font-size: 1.4rem;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-block: 6px;
 `;
 
 const Toggle = styled.div`
@@ -93,6 +114,7 @@ const Toggle = styled.div`
     border-radius: 10px;
     position: relative;
     transition: 0.5s ease-out;
+    margin-bottom: 2px;
   }
 
   & input:checked + label {
@@ -120,9 +142,25 @@ const Toggle = styled.div`
 `;
 
 const PasswordInputs = styled.div`
+  font-size: 1.4rem;
+  font-weight: 500;
+
   & div {
     display: block;
+    margin-bottom: 10px;
   }
+`;
+
+const StyledBirth = styled.div`
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+`;
+
+const StyledPhoneNumber = styled.div`
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 20px;
 `;
 
 function EditProfile() {
@@ -155,7 +193,7 @@ function EditProfile() {
     getValues,
   } = useForm({
     values: {
-      name: data?.item?.name,
+      name: data?.item?.name || '',
       birth: data?.item?.birth,
       phone: data?.item?.phone,
       profileImage: user.profile,
@@ -288,7 +326,7 @@ function EditProfile() {
               </div>
             </ProfileImage>
 
-            <div>
+            <StyledNickName>
               <label htmlFor="name">닉네임</label>
               <Input
                 type="text"
@@ -304,7 +342,7 @@ function EditProfile() {
                 })}
               />
               {errors.name && <p>{errors.name.message}</p>}
-            </div>
+            </StyledNickName>
             {user.loginType === 'email' && (
               <Password>
                 <ChangePassword>비밀번호 변경</ChangePassword>
@@ -323,7 +361,7 @@ function EditProfile() {
                 {isActive && (
                   <PasswordInputs>
                     <div>
-                      <label htmlFor="name">비밀번호</label>
+                      <label htmlFor="password">비밀번호</label>
                       <Input
                         type="password"
                         id="password"
@@ -364,7 +402,7 @@ function EditProfile() {
                 )}
               </Password>
             )}
-            <div>
+            <StyledBirth>
               <label htmlFor="birth">생년월일</label>
               <Input
                 type="date"
@@ -374,9 +412,9 @@ function EditProfile() {
                 {...register('birth')}
               />
               {errors.birth && <p>{errors.birth.message}</p>}
-            </div>
+            </StyledBirth>
 
-            <div>
+            <StyledPhoneNumber>
               <label htmlFor="phone">전화번호</label>
               <Input
                 type="text"
@@ -385,7 +423,7 @@ function EditProfile() {
                 {...register('phone')}
               />
               {errors.phone && <p>{errors.phone.message}</p>}
-            </div>
+            </StyledPhoneNumber>
 
             <div>
               <Button type="submit" bgColor="primary" size="full">

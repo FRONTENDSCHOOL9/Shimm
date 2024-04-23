@@ -156,8 +156,8 @@ function MyPage() {
   }
 
   async function fetchUserRecord() {
-    const res = await axios.get(`/posts?type=meditation`);
-    // setRecord(res.data.item);
+    const res = await axios.get(`/posts/users/${user._id}?type=meditation`);
+    setRecord(res.data.item.item);
   }
 
   const recordList = record?.map(item => (
