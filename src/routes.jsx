@@ -27,6 +27,7 @@ import SignUp from '@pages/users/SignUp';
 import SignUpOneStep from '@pages/users/SignUpOneStep';
 import SignUpTwoStep from '@pages/users/SignUpTwoStep';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
+import Kakao from '@pages/auth/kakao';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: 'users/login',
         element: <Login />,
+      },
+      {
+        path: 'auth',
+        element: <Kakao />,
       },
       {
         path: 'signup',

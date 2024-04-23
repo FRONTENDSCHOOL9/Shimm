@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
 import useFormStore from '@zustand/form.mjs';
+import Input from '@components/input/Input';
 
 function SignUpTwoStep() {
   const axios = useCustomAxios();
@@ -120,7 +121,7 @@ function SignUpTwoStep() {
         </div>
         <div>
           <label htmlFor="name">닉네임</label>
-          <input
+          <Input
             type="text"
             id="name"
             placeholder="닉네임을 입력해 주세요."

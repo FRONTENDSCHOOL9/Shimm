@@ -5,6 +5,7 @@ import useFormStore from '@zustand/form.mjs';
 import { useState } from 'react';
 import useModalStore from '@zustand/modal';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import Input from '@components/input/Input';
 
 function SignUpOneStep() {
   const axios = useCustomAxios();
@@ -120,7 +121,7 @@ function SignUpOneStep() {
       <form onSubmit={handleSubmit(saveData)}>
         <div>
           <label htmlFor="email">이메일</label>
-          <input
+          <Input
             type="email"
             id="email"
             placeholder="sample@bb.com 형식으로 입력해 주세요.이메일을 입력하세요"
@@ -140,7 +141,7 @@ function SignUpOneStep() {
 
         <div>
           <label htmlFor="password">비밀번호</label>
-          <input
+          <Input
             type="password"
             id="password"
             placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
@@ -157,7 +158,7 @@ function SignUpOneStep() {
         </div>
         <div>
           <label htmlFor="password-confirm">비밀번호 확인</label>
-          <input
+          <Input
             type="password"
             id="password-confirm"
             placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
@@ -169,7 +170,7 @@ function SignUpOneStep() {
         </div>
         <div>
           <label htmlFor="birth">생년월일</label>
-          <input
+          <Input
             type="date"
             id="birth"
             placeholder="생년월일을 입력하세요"
@@ -183,7 +184,7 @@ function SignUpOneStep() {
 
         <div>
           <label htmlFor="phone">전화번호</label>
-          <input
+          <Input
             type="text"
             id="phone"
             placeholder="휴대폰 번호를 입력하세요"
