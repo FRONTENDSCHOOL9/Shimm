@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
 import useFormStore from '@zustand/form.mjs';
+import iconDelete from '@assets/images/icon-delete-post.svg';
 import Input from '@components/input/Input';
 import {
   SignUpWrapper,
@@ -16,6 +17,11 @@ import {
   CurrentStep,
   Step,
   ProfileImage,
+  AddImageButton,
+  ProfileImageWrapper,
+  DeleteIcon,
+  DeleteButton,
+  MarginBottom,
 } from '@pages/users/SignUp.style';
 
 function SignUpTwoStep() {
@@ -26,11 +32,7 @@ function SignUpTwoStep() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm({
-    values: {
-      name: '닉네임을 입력해 주세요.',
-    },
-  });
+  } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState({
     imageFile: '',
@@ -50,6 +52,8 @@ function SignUpTwoStep() {
         imageFile: e.target.files[0],
         previewURL: fileReader.result,
       });
+      console.log(image.imageFile);
+      console.log(image.previewURL);
     };
   }
 
@@ -81,7 +85,6 @@ function SignUpTwoStep() {
           data: imageFormData,
         });
 
-        console.log(fileRes);
         formData.profileImage = fileRes.data.item[0].name;
       } else {
         formData.profileImage = `icon-user-default.png`;
@@ -121,28 +124,36 @@ function SignUpTwoStep() {
       </Stepper>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <ProfileImage src={image.previewURL} alt="프로필 이미지" />
-          <InputLabel htmlFor="profile-img">프로필 사진 추가하기</InputLabel>
-          <input
-            type="file"
-            style={{ display: 'none' }}
-            id="profile-img"
-            name="profile-img"
-            accept=".png, .jpeg, .jpg"
-            onChange={saveImage}
-            onClick={e => (e.target.value = null)}
-            {...register('profileImage')}
-          />
-          <button onClick={deleteImage}>프로필 이미지 삭제</button>
+          <ProfileImageWrapper>
+            <ProfileImage src={image.previewURL} alt="프로필 이미지" />
+          </ProfileImageWrapper>
+          <FlexContent>
+            <AddImageButton htmlFor="profileImage">
+              프로필 사진 추가하기
+            </AddImageButton>
+            <input
+              type="file"
+              {...register('profileImage')}
+              style={{ display: 'none' }}
+              id="profileImage"
+              name="profileImage"
+              accept=".png, .jpeg, .jpg"
+              onChange={saveImage}
+              onClick={e => (e.target.value = null)}
+            />
+            <DeleteButton onClick={deleteImage}>
+              <DeleteIcon src={iconDelete} alt="프로필 이미지 삭제하기" />
+            </DeleteButton>
+          </FlexContent>
         </div>
-        <div>
+        <MarginBottom>
           <InputLabel htmlFor="name">닉네임</InputLabel>
           <Input
             type="text"
             id="name"
             placeholder="닉네임을 입력해 주세요."
             {...register('name', {
-              required: '닉네임을 입력하세요.',
+              required: '닉네임을 입력해 주세요.',
               minLength: {
                 value: 2,
                 message: '닉네임을 2글자 이상 입력하세요.',
@@ -150,7 +161,7 @@ function SignUpTwoStep() {
             })}
           />
           {errors.name && <ErrorMessge>{errors.name.message}</ErrorMessge>}
-        </div>
+        </MarginBottom>
         <Button type="submit" size="full" bgColor="dark">
           회원가입 완료
         </Button>

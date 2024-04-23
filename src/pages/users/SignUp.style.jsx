@@ -6,7 +6,7 @@ export const SignUpWrapper = styled.div`
   padding: 0 2.8em;
   margin-bottom: 30px;
 
-  & button {
+  > button {
     margin: 10px 0;
     font-size: 1.5rem;
     width: 100%;
@@ -89,16 +89,13 @@ export const InputLabel = styled.label`
 
 export const FlexContent = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 10px;
+`;
 
-  & button {
-    height: 50px;
-    box-sizing: border-box;
-    margin: 0;
-    width: 35%;
-    flex-shrink: 0;
-    max-width: 120px;
-  }
+export const DeleteButton = styled.button`
+  width: 10%;
 `;
 
 export const ErrorMessge = styled.p`
@@ -138,8 +135,39 @@ export const MarginBottom = styled.div`
   margin-bottom: 30px;
 `;
 
+export const AddImageButton = styled(InputLabel)`
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: rgba(51, 86, 53, 1);
+  color: #fff;
+  border-radius: 25px;
+  font-weight: 300;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  flex-grow: 1;
+
+  &:hover {
+    background-color: rgba(85, 162, 90, 1);
+  }
+`;
+
+export const ProfileImageWrapper = styled.div`
+  width: 150px;
+  height: 150px;
+  margin: 10px auto;
+`;
+
 export const ProfileImage = styled.img`
   width: 100%;
+  height: 150px;
   border-radius: 50%;
   overflow: hidden;
+  object-fit: cover;
+`;
+
+export const DeleteIcon = styled.img`
+  width: auto;
+  height: 50px;
 `;
