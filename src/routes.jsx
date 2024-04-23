@@ -1,11 +1,9 @@
-import { lazy } from 'react';
 import Layout from '@components/layout/layout/Layout';
-import ErrorPage from '@pages/ErrorPage';
 import UploadTheme from '@pages/admin/UploadTheme';
-const Community = lazy(() => import('@pages/community/Community'));
-const FeedDetail = lazy(() => import('@pages/community/feed/FeedDetail'));
+import Kakao from '@pages/auth/Kakao';
 import FeedEdit from '@pages/community/feed/FeedEdit';
 import FeedNew from '@pages/community/feed/FeedNew';
+import ErrorPage from '@pages/error/ErrorPage';
 import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
 import MeditationMain from '@pages/meditation/MeditationMain';
@@ -24,8 +22,10 @@ import Login from '@pages/users/Login';
 import SignUp from '@pages/users/SignUp';
 import SignUpOneStep from '@pages/users/SignUpOneStep';
 import SignUpTwoStep from '@pages/users/SignUpTwoStep';
+import { lazy } from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import Kakao from '@pages/auth/Kakao';
+const Community = lazy(() => import('@pages/community/Community'));
+const FeedDetail = lazy(() => import('@pages/community/feed/FeedDetail'));
 
 const router = createBrowserRouter([
   {
