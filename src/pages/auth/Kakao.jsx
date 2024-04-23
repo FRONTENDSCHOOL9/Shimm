@@ -1,81 +1,52 @@
 import Loading from '@components/loading/Loading';
-import axios from 'axios';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import useCustomAxios from '@hooks/useCustomAxios';
+import useModalStore from '@zustand/modal';
+import useUserStore from '@zustand/user';
+import { useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function Kakao() {
-  const [kakaoAccessToken, setKakaoAccessToken] = useState();
   const [searchParams] = useSearchParams();
+  const { setUser } = useUserStore();
+  const { setShowModal, setModalData } = useModalStore();
   const code = searchParams.get('code');
-  const myAxios = useCustomAxios();
-
-  console.log(code);
+  const axios = useCustomAxios();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (code !== null) handleLogin(code);
   }, [code]);
 
-  // useEffect(() => {
-  //   if (kakaoAccessToken !== '') getUserInfo();
-  // }, [kakaoAccessToken]);
-
-  // async function getKakaoToken() {
-  //   try {
-  //     const res = await axios({
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-  //       },
-  //       url: 'https://kauth.kakao.com/oauth/token',
-  //       data: {
-  //         grant_type: 'authorization_code',
-  //         client_id: `${import.meta.env.VITE_KAKAO_REST_API_KEY}`,
-  //         redirect_uri: `${import.meta.env.VITE_REDIRECT_URI}`,
-  //         code,
-  //       },
-  //     });
-
-  //     setKakaoAccessToken(res.data.access_token);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // async function getUserInfo() {
-  //   try {
-  //     const res = await axios({
-  //       method: 'GET',
-  //       headers: {
-  //         Authorization: `Bearer ${kakaoAccessToken}`, // 카카오 토큰 api로 얻은 accesstoken 보내기
-  //       },
-  //       url: 'https://kapi.kakao.com/v2/user/me',
-  //     });
-
-  //     handleLogin(res.data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // 이미 가입한 유저인지 확인
   async function handleLogin(code) {
     try {
-      // const user = {
-      //   name: data.kakao_account.profile.nickname,
-      //   email: data.kakao_account.email,
-      //   profileImage: data.kakao_account.profile.is_default_image
-      //     ? 'icon-user-default.png'
-      //     : data.kakao_account.profile.profile_image_url,
-      // };
-
-      // console.log(user);
-
-      const res = await myAxios.post('users/login/kakao', {
+      const res = await axios.post('users/login/kakao', {
         code,
+        redirect_uri: `${window.location.origin}/auth/kakao`,
       });
 
-      console.log(res);
+      setUser({
+        _id: res.data.item._id,
+        name: res.data.item.name,
+        loginType: res.data.item.loginType,
+        type: res.data.item.type,
+        profile: res.data.item.profileImage,
+        token: res.data.item.token,
+      });
+
+      setShowModal(true);
+      setModalData({
+        children: (
+          <span>
+            로그인이 완료되었습니다. <br />
+            메인화면으로 이동합니다.
+          </span>
+        ),
+        button: 1,
+        handleOk() {
+          navigate('/');
+          setShowModal(false);
+        },
+      });
     } catch (err) {
       console.log(err);
     }
@@ -84,7 +55,6 @@ function Kakao() {
   return (
     <>
       <Loading />
-      <h2>로그인 중입니다.</h2>
     </>
   );
 }

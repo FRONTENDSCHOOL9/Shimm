@@ -40,12 +40,18 @@ function ReplyItem({ item, handleDelete }) {
     });
   }
 
+  console.log(item);
+
   return (
     <ReplyContainer>
       <ReplyHeader>
         <ProfileImage>
           <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${writer.profile}`}
+            src={
+              item?.user.profile.startsWith('http://')
+                ? item?.user.profile
+                : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item?.user.profile}`
+            }
           />
         </ProfileImage>
         <p>{writer.name}</p>

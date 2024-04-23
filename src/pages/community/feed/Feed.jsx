@@ -23,7 +23,6 @@ function Feed() {
         },
       }),
     select: response => {
-      console.log(response);
       response.items = response.pages.map(page => page.data.item);
       response.totalPages = response.pages.at(-1).data.pagination.totalPages;
       response.page = response.pages.at(-1).data.pagination.page;
@@ -48,7 +47,6 @@ function Feed() {
     hasNext = data.page < data.totalPages;
   }
 
-  console.log(data);
   async function handleDelete(id) {
     try {
       await axios.delete(`/posts/${id}`);
