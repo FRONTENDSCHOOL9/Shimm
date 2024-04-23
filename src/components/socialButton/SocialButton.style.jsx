@@ -41,7 +41,6 @@ const borders = {
 
 export const SocialButton = styled.button`
   width: 100%;
-  max-width: 320px;
   height: 50px;
   background-color: ${props => bgColors[props.$bg]};
   border-radius: 25px;
@@ -66,5 +65,9 @@ export const SocialButton = styled.button`
 
   &:hover {
     background-color: ${props => hoverColors[props.$bg]};
+  }
+
+  @media (min-width: 740px) {
+    max-width: 450px;
   }
 `;
