@@ -74,6 +74,11 @@ const InfoInput = styled.input`
 `;
 
 const PasswordWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const PasswordInput = styled.input`
   height: 40px;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
@@ -148,8 +153,8 @@ const LastNumber = styled.input`
 function EditProfile() {
   const [userInput, setUserInput] = useState({
     name: '',
-    // password: '',
-    // passwordCheck: '',
+    password: '',
+    passwordCheck: '',
     year: '',
     month: '',
     day: '',
@@ -189,7 +194,7 @@ function EditProfile() {
       setProfileImage(file.name);
     }
   }
-  function handleShowPassword() {
+  function togglePasswordInput() {
     setShowPasswordInput(!showPasswordInput);
   }
 
@@ -238,20 +243,20 @@ function EditProfile() {
         {showPasswordInput && (
           <PasswordWrapper>
             <Label>비밀번호</Label>
-            <InfoInput
+            <PasswordInput
               type="password"
               id="password"
               {...register('password')}
               placeholder="소문자, 대문자, 특수문자를 조합하여 8자 이상 입력해 주세요."
-            ></InfoInput>
+            ></PasswordInput>
 
             <Label>비밀번호 확인</Label>
-            <InfoInput
+            <PasswordInput
               type="password"
-              id="password"
-              {...register('password')}
+              id="passwordCheck"
+              {...register('passwordCheck')}
               placeholder="입력한 비밀번호 한번 더 입력해 주세요."
-            ></InfoInput>
+            ></PasswordInput>
           </PasswordWrapper>
         )}
         <Label htmlFor="select">생년월일</Label>
@@ -294,10 +299,9 @@ function EditProfile() {
         <ButtonProfileEdit type="submit">수정</ButtonProfileEdit>
 
         <ButtonLink>
-          <ButtonProfileEdit
-            type="button"
-            onClick={() => {}}
-          ></ButtonProfileEdit>
+          <ButtonProfileEdit type="button" onClick={togglePasswordInput}>
+            {showPasswordInput ? '비밀번호 변경 취소' : '비밀번호 변경'}
+          </ButtonProfileEdit>
         </ButtonLink>
       </EditForm>
     </FormWrapper>

@@ -85,7 +85,7 @@ const MyArchive = styled.ul`
   gap: 15px;
   overflow-y: hidden;
   line-height: 0.8;
-
+  justify-content: space-between;
   & hr {
     width: 1px;
     height: 35px;
@@ -96,6 +96,9 @@ const MyArchive = styled.ul`
 `;
 
 const RecordLi = styled.li`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   flex-shrink: 0;
   width: 140px;
   height: 100px;
@@ -104,16 +107,16 @@ const RecordLi = styled.li`
   border-radius: 10px;
   box-sizing: border-box;
   cursor: pointer;
-
-  & h4 {
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin: 0 0 12px 0;
-  }
+  color: white;
 
   & span {
     font-size: 1.4rem;
     font-weight: 500;
+  }
+
+  & span:last-child {
+    font-weight: 300;
+    margin-top: 10px;
   }
 `;
 
@@ -122,7 +125,7 @@ const ActiveLi = styled.li`
   flex-direction: column;
   padding: 6px;
   align-items: center;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   cursor: pointer;
 
   & span:first-child {
@@ -172,8 +175,7 @@ function MyPage() {
       background={item.extra?.background}
     >
       <span>{item.createdAt.slice(0, 10)}</span>
-      <br />
-      <span>{item.extra?.time} 동안 명상했어요.</span>
+      <span>{item.content}</span>
     </RecordLi>
   ));
 
