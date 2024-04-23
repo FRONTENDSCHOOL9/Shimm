@@ -1,8 +1,6 @@
 import Button from '@components/button/Button';
 import Footer from '@components/layout/footer/Footer';
-import GoogleLoginButton from '@components/socialLogin/SocialGoogle';
 import SocialKakao from '@components/socialLogin/SocialKakao';
-import SocialNaver from '@components/socialLogin/SocialNaver';
 import {
   LeftBox,
   RightBox,
@@ -31,9 +29,7 @@ function Home() {
       children: (
         <section>
           <div>
-            <GoogleLoginButton />
             <SocialKakao />
-            <SocialNaver />
           </div>
           <p>또는</p>
           <div>

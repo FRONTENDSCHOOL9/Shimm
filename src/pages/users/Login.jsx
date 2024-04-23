@@ -5,10 +5,9 @@ import useCustomAxios from '@hooks/useCustomAxios';
 import useUserStore from '@zustand/user';
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
-import GoogleLoginButton from '@components/socialLogin/SocialGoogle';
 import SocialKakao from '@components/socialLogin/SocialKakao';
-import SocialNaver from '@components/socialLogin/SocialNaver';
 import Input from '@components/input/Input';
+import { LoginWrapper } from '@pages/users/Login.style';
 
 function Login() {
   const { setUser } = useUserStore();
@@ -62,7 +61,7 @@ function Login() {
   }
 
   return (
-    <div>
+    <LoginWrapper>
       <h3>로그인</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
@@ -105,10 +104,7 @@ function Login() {
       </div>
 
       <div>
-        {/* <SocialButtons bgColor='white' handleClick={GoogleLoginButton}>구글로 로그인 하기</SocialButtons> */}
-        <GoogleLoginButton />
         <SocialKakao />
-        <SocialNaver />
         <Button
           size="full"
           bgColor="dark"
@@ -120,7 +116,7 @@ function Login() {
       </div>
 
       {isLoading && <Loading />}
-    </div>
+    </LoginWrapper>
   );
 }
 
