@@ -24,6 +24,7 @@ const FormWrapper = styled.div`
 
   & img {
     width: 80px;
+    height: 80px;
     border-radius: 50%;
     margin: 0 auto;
   }
@@ -35,16 +36,18 @@ const FormWrapper = styled.div`
 `;
 
 const ImageLabel = styled.label`
-  margin: 0 auto;
+  margin: 14px auto 0;
   width: 150px;
   height: 40px;
   background-color: #55a25a;
   border-radius: 25px;
   text-align: center;
+  line-height: 4rem;
   color: white;
   font-size: 1.4rem;
   font-weight: 200;
   transition: 0.3s ease-in-out;
+  box-sizing: border-box;
 
   &:hover {
     background-color: #335633;
@@ -237,6 +240,7 @@ function EditProfile() {
   async function onSubmit(formData) {
     try {
       const res = await axios.patch(`/users/${user._id}`, formData);
+      console.log(res);
       setIsLoading(true);
       formData.type = 'user';
       formData.loginType = 'email';
