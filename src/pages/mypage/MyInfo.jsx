@@ -100,10 +100,10 @@ function MyInfo() {
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const [userInfo, setUserInfo] = useState();
+
   async function fetchUserInfo() {
     const UserRes = await axios.get(`/users/${user._id}`);
     setUserInfo(UserRes.data.item);
-    console.log(userInfo);
   }
 
   useEffect(() => {
@@ -114,8 +114,12 @@ function MyInfo() {
     <MyInfoWrapper>
       <MyInfoHeader>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userInfo?.profileImage}`}
-          alt="유저 프로필 사진"
+          src={
+            userInfo?.profileImage.startsWith('http://')
+              ? userInfo?.profileImage
+              : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userInfo?.profileImage}`
+          }
+          alt="내 프로필 이미지"
         />
         <span>{userInfo?.name}</span>
       </MyInfoHeader>
