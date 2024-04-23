@@ -3,9 +3,7 @@ import Layout from '@components/layout/layout/Layout';
 import ErrorPage from '@pages/ErrorPage';
 import UploadTheme from '@pages/admin/UploadTheme';
 const Community = lazy(() => import('@pages/community/Community'));
-// import Community from '@pages/community/Community';
 const FeedDetail = lazy(() => import('@pages/community/feed/FeedDetail'));
-// import FeedDetail from '@pages/community/feed/FeedDetail';
 import FeedEdit from '@pages/community/feed/FeedEdit';
 import FeedNew from '@pages/community/feed/FeedNew';
 import Home from '@pages/home/Home';
@@ -27,7 +25,7 @@ import SignUp from '@pages/users/SignUp';
 import SignUpOneStep from '@pages/users/SignUpOneStep';
 import SignUpTwoStep from '@pages/users/SignUpTwoStep';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import Kakao from '@pages/auth/kakao';
+import Kakao from '@pages/auth/Kakao';
 
 const router = createBrowserRouter([
   {
@@ -48,7 +46,7 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: 'auth',
+        path: 'auth/kakao',
         element: <Kakao />,
       },
       {
