@@ -9,6 +9,7 @@ import {
   StyledMain,
   TextSection,
 } from '@pages/home/Home.style';
+import { Line } from '@pages/users/SignUp.style';
 import HomeCarousel from '@pages/home/HomeCarousel';
 import useModalStore from '@zustand/modal';
 import useUserStore from '@zustand/user';
@@ -31,7 +32,7 @@ function Home() {
           <div>
             <SocialKakao />
           </div>
-          <p>또는</p>
+          <Line>또는</Line>
           <div>
             <Button size="full" bgColor="dark" handleClick={handleSignUp}>
               이메일로 회원가입
