@@ -161,13 +161,14 @@ function MyPage() {
 
   async function fetchUserInfo() {
     const UserRes = await axios.get(`/users/${user._id}`);
-
+    console.log(UserRes);
     setActivity(UserRes.data);
   }
 
   async function fetchUserRecord() {
     const res = await axios.get(`/posts?type=meditation`);
-    setRecord(res.data.item);
+    console.log(res);
+    // setRecord(res.data.item);
   }
 
   const recordList = record?.map(item => (
@@ -220,19 +221,17 @@ function MyPage() {
           안녕하세요
         </h2>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${activity?.item.profileImage}`}
-          alt="유저의 프로필 사진"
+          src={
+            activity?.item.profileImage.startsWith('http://')
+              ? activity?.item.profileImage
+              : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${activity?.item.profileImage}`
+          }
+          alt="내 프로필 이미지"
         />
       </UserProfile>
       <Link to="/mypage/info">
         <ButtonContainer>
-          <Button
-            type="button"
-            size="full"
-            bgColor="primary"
-            color="white"
-            display="inline-block"
-          >
+          <Button size="full" bgColor="primary">
             내정보 보기
           </Button>
         </ButtonContainer>

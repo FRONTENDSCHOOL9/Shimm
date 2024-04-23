@@ -1,3 +1,5 @@
+import Button from '@components/button/Button';
+import Input from '@components/input/Input';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import useUserStore from '@zustand/user.mjs';
 import React, { useState } from 'react';
@@ -27,6 +29,18 @@ const Check = styled.div`
     font-weight: 500;
     line-height: 1.6;
   }
+
+  & #password {
+    height: 40px;
+    margin-bottom: 40px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+  }
+
+  & p {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -34,18 +48,11 @@ const StyledLabel = styled.label`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-
-  & span {
-    font-size: 1.4rem;
-    font-weight: 200;
-    margin-bottom: 14px;
-  }
+  font-size: 1.4rem;
+  font-weight: 200;
+  margin-bottom: 14px;
 
   & input {
-    height: 40px;
-    margin-bottom: 64px;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
   }
 `;
 
@@ -76,27 +83,17 @@ function MyInfoCheck() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm({
-    values: {
-      email: user.email,
-    },
-  });
+  } = useForm({});
 
   const location = useLocation();
 
   async function onSubmit(formData) {
     try {
       setIsLoading(true);
+      formData.email = user.email;
+      console.log(formData);
       const res = await axios.post('/users/login', formData);
-      setUser({
-        _id: res.data.item._id,
-        name: res.data.item.name,
-        email: res.data.item.email,
-        type: res.data.item.type,
-        phone: res.data.item.phone,
-        profile: res.data.item.profileImage,
-        token: res.data.item.token,
-      });
+      console.log(res);
       navigate('/mypage/editprofile');
     } catch (err) {
       console.error(err);
@@ -105,6 +102,7 @@ function MyInfoCheck() {
           setError(error.path, { message: error.msg }),
         );
       } else if (err.response?.data.message) {
+        // 모달로 변경
         alert('비밀번호가 일치하지 않습니다.');
       }
     } finally {
@@ -120,28 +118,26 @@ function MyInfoCheck() {
           <br />
           비밀번호를 입력해 주세요.
         </span>
-        <StyledLabel htmlFor="password">
-          <span>비밀번호 입력</span>
-          <input
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <StyledLabel htmlFor="password">비밀번호 입력</StyledLabel>
+          <Input
             type="password"
             id="password"
+            placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
             {...register('password', {
-              required: (
-                <span className="required">
-                  '정확한 비밀번호를 입력하세요.'
-                </span>
-              ),
-              minLength: {
-                value: 8,
-                message: '비밀번호는 8글자 이상입니다.',
+              required: '비밀번호를 입력하세요.',
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message: '비밀번호 형식에 맞게 입력해 주세요.',
               },
             })}
           />
-        </StyledLabel>
-        {errors.checkpassword && <p>{errors.checkpassword.message}</p>}
-        <NextButton type="submit" onClick={handleSubmit(onSubmit)}>
-          다음 단계
-        </NextButton>
+          {errors.password && <p>{errors.password.message}</p>}
+          <Button type="submit" size="full">
+            다음 단계
+          </Button>
+        </form>
       </Check>
     </CheckWrapper>
   );
