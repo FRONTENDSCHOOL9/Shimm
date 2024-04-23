@@ -145,7 +145,7 @@ function SignUpOneStep() {
                 },
               })}
             />
-            <Button bgColor="dark" size="small" handleClick={handleEmail}>
+            <Button bgColor="dark" size="full" handleClick={handleEmail}>
               중복확인
             </Button>
           </FlexContent>
