@@ -17,12 +17,14 @@ import {
   CurrentStep,
   Step,
 } from '@pages/users/SignUp.style';
+import Loading from '@components/loading/Loading';
 
 function SignUpOneStep() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { setShowModal, setModalData } = useModalStore();
   const { setForm } = useFormStore();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     handleSubmit,
     register,
@@ -31,16 +33,21 @@ function SignUpOneStep() {
     watch,
     setError,
     setFocus,
+    getValues,
   } = useForm({
     values: {
       birth: '1999-02-25',
       phone: '01055556666',
     },
+    shouldFocusError: true,
+    mode: 'onChange',
   });
   const [emailChecked, setEmailChecked] = useState(false);
   const email = watch('email');
 
   async function handleEmail() {
+    setIsLoading(true);
+
     const isValid = await trigger('email');
     if (!isValid) {
       setError(
@@ -90,6 +97,8 @@ function SignUpOneStep() {
           },
         });
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -124,6 +133,8 @@ function SignUpOneStep() {
 
   return (
     <SignUpWrapper>
+      {isLoading && <Loading />}
+
       <SignUpTitle>회원가입</SignUpTitle>
       <Stepper>
         <CurrentStep>기본 정보 입력</CurrentStep>
@@ -179,7 +190,14 @@ function SignUpOneStep() {
             id="password-confirm"
             placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
             {...register('passwordConfirm', {
-              required: '비밀번호를 입력하세요.',
+              required: '비밀번호를 한번 더 입력해 주세요.',
+              validate: {
+                check: val => {
+                  if (getValues('password') !== val) {
+                    return '입력하신 비밀번호가 일치하지 않습니다.';
+                  }
+                },
+              },
             })}
           />
           {errors.passwordConfirm && (

@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
 import useFormStore from '@zustand/form.mjs';
+import useModalStore from '@zustand/modal';
 import iconDelete from '@assets/images/icon-delete-post.svg';
 import Input from '@components/input/Input';
 import {
@@ -26,13 +27,18 @@ import {
 
 function SignUpTwoStep() {
   const axios = useCustomAxios();
+  const { setShowModal, setModalData } = useModalStore();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm();
+    reset,
+  } = useForm({
+    shouldFocusError: true,
+    mode: 'onChange',
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState({
     imageFile: '',
@@ -52,8 +58,6 @@ function SignUpTwoStep() {
         imageFile: e.target.files[0],
         previewURL: fileReader.result,
       });
-      console.log(image.imageFile);
-      console.log(image.previewURL);
     };
   }
 
@@ -70,6 +74,7 @@ function SignUpTwoStep() {
       formData.type = 'user';
       formData.loginType = 'email';
       formData = { ...formData, ...form };
+      delete formData.passwordConfirm;
 
       // 이미지 먼저 업로드
       if (formData.profileImage.length > 0) {
@@ -91,11 +96,33 @@ function SignUpTwoStep() {
       }
 
       const res = await axios.post('/users', formData);
-      alert(
-        res.data.item.name +
-          '님 회원가입이 완료 되었습니다.\n로그인 후에 이용하세요.',
-      );
-      navigate('/users/login');
+
+      reset();
+
+      setShowModal(true);
+      setModalData({
+        children: (
+          <>
+            <span>
+              환영합니다, {res.data.item.name} 님.
+              <br />
+              가입이 완료되었습니다.
+            </span>
+            <br />
+            <br />
+            <p>로그인 후 서비스를 자유롭게 이용해 보세요!</p>
+          </>
+        ),
+        button: 1,
+        handleOk() {
+          setShowModal(false);
+          navigate('/users/login');
+        },
+        handleClose() {
+          setShowModal(false);
+          navigate('/users/login');
+        },
+      });
     } catch (err) {
       console.error(err);
       if (err.response?.data.errors) {
@@ -117,6 +144,8 @@ function SignUpTwoStep() {
 
   return (
     <SignUpWrapper>
+      {isLoading && <Loading />}
+
       <SignUpTitle>회원가입</SignUpTitle>
       <Stepper>
         <Step>기본 정보 입력</Step>
@@ -170,8 +199,6 @@ function SignUpTwoStep() {
       <Button size="full" bgColor="primary" handleClick={handleBack}>
         이전
       </Button>
-
-      {isLoading && <Loading />}
     </SignUpWrapper>
   );
 }
