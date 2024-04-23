@@ -31,11 +31,14 @@ function SignUpOneStep() {
     watch,
     setError,
     setFocus,
+    getValues,
   } = useForm({
     values: {
       birth: '1999-02-25',
       phone: '01055556666',
     },
+    shouldFocusError: true,
+    mode: 'onChange',
   });
   const [emailChecked, setEmailChecked] = useState(false);
   const email = watch('email');
@@ -179,7 +182,14 @@ function SignUpOneStep() {
             id="password-confirm"
             placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
             {...register('passwordConfirm', {
-              required: '비밀번호를 입력하세요.',
+              required: '비밀번호를 한번 더 입력해 주세요.',
+              validate: {
+                check: val => {
+                  if (getValues('password') !== val) {
+                    return '입력하신 비밀번호가 일치하지 않습니다.';
+                  }
+                },
+              },
             })}
           />
           {errors.passwordConfirm && (
