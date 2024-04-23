@@ -65,7 +65,7 @@ function Home() {
   return (
     <>
       <StyledMain>
-        <HomeCarousel></HomeCarousel>
+        <HomeCarousel />
         <SectionLink>
           <RightBox>
             <TextSection>

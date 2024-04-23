@@ -90,6 +90,30 @@ const GlobalStyle = createGlobalStyle`
       padding-top: 110px;
       }
     }
+
+    // Swiper
+.swiper-pagination-bullet { 
+    width: 10px; 
+    height: 10px; 
+    background-color: rgb(255, 255, 255);
+}
+.swiper-pagination {
+    bottom: 20px !important;
+}
+.swiper-pagination-bullet-active { 
+    width: 30px; 
+    transition: width .5s; 
+    border-radius: 10px; 
+    background-color: #ffffff79;
+    }
+.swiper-pagination-bullet-active::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+}
 `;
 
 export default GlobalStyle;
