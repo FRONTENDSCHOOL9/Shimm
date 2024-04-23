@@ -28,8 +28,8 @@ function Login() {
     setError,
   } = useForm({
     values: {
-      email: 'kiho@test.com',
-      password: '11111111',
+      email: 'test@naver.com',
+      password: 'Test123!',
     },
   });
 
@@ -37,11 +37,13 @@ function Login() {
     try {
       setIsLoading(true);
       const res = await axios.post('/users/login', formData);
+      console.log(res.data);
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
         email: res.data.item.email,
         type: res.data.item.type,
+        loginType: res.data.item.loginType,
         phone: res.data.item.phone,
         profile: res.data.item.profileImage,
         token: res.data.item.token,

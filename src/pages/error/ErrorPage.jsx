@@ -1,4 +1,12 @@
 import Button from '@components/button/Button';
+import {
+  ErrorDescription,
+  ErrorTitle,
+  ErrorWrapper,
+  ImageError,
+  ImgError,
+  TextError,
+} from '@pages/error/ErrorPage.style';
 import { useNavigate } from 'react-router-dom';
 
 function ErrorPage() {

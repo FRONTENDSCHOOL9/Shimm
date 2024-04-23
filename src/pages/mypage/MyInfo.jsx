@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import iconbase from '@assets/images/icon-login.svg';
-import { Link, useParams } from 'react-router-dom';
-import useUserStore from '@zustand/user.mjs';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useUserStore from '@zustand/user.mjs';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const MyInfoWrapper = styled.div`
   padding: 20px;
@@ -123,29 +122,38 @@ function MyInfo() {
         />
         <span>{userInfo?.name}</span>
       </MyInfoHeader>
-      <MyInfoMain>
-        <UserInfoStyled>
-          <span>이메일</span>
-          <span>{userInfo?.email}</span>
-        </UserInfoStyled>
-        <UserInfoStyled>
-          <span>전화번호</span>
-          <span>
-            {userInfo?.phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
-          </span>
-        </UserInfoStyled>
-        {userInfo?.birth && (
+      {user.loginType === 'email' && (
+        <MyInfoMain>
           <UserInfoStyled>
-            <span>생년월일</span>
-            <span>{userInfo.birth}</span>
+            <span>이메일</span>
+            <span>{userInfo?.email}</span>
           </UserInfoStyled>
-        )}
-      </MyInfoMain>
-      <ButtonLink to="/mypage/checkpw">
-        <EditButton>프로필 수정</EditButton>
-      </ButtonLink>
+          <UserInfoStyled>
+            <span>전화번호</span>
+            <span>
+              {userInfo?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
+            </span>
+          </UserInfoStyled>
+          {userInfo?.birth && (
+            <UserInfoStyled>
+              <span>생년월일</span>
+              <span>{userInfo.birth}</span>
+            </UserInfoStyled>
+          )}
+        </MyInfoMain>
+      )}
+
+      {user.loginType === 'email' ? (
+        <ButtonLink to="/mypage/checkpw">
+          <EditButton>프로필 수정</EditButton>
+        </ButtonLink>
+      ) : (
+        <ButtonLink to="/mypage/editprofile">
+          <EditButton>프로필 수정</EditButton>
+        </ButtonLink>
+      )}
     </MyInfoWrapper>
   );
 }
 
-export { MyInfoWrapper, MyInfo, ButtonLink };
+export { ButtonLink, MyInfo, MyInfoWrapper };
