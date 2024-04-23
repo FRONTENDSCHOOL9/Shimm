@@ -7,7 +7,13 @@ import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
 import SocialKakao from '@components/socialLogin/SocialKakao';
 import Input from '@components/input/Input';
-import { LoginWrapper } from '@pages/users/Login.style';
+import {
+  LoginWrapper,
+  LoginTitle,
+  InputLabel,
+  ErrorMessge,
+  Line,
+} from '@pages/users/Login.style';
 
 function Login() {
   const { setUser } = useUserStore();
@@ -62,36 +68,38 @@ function Login() {
 
   return (
     <LoginWrapper>
-      <h3>로그인</h3>
+      <LoginTitle>로그인</LoginTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="email">이메일</label>
+          <InputLabel htmlFor="email">이메일</InputLabel>
           <Input
             type="email"
             id="email"
-            placeholder="이메일을 입력하세요"
+            placeholder="이메일을 입력해 주세요."
             {...register('email', {
-              required: '이메일을 입력하세요.',
+              required: '이메일을 입력해 주세요.',
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 message: '이메일 형식이 아닙니다.',
               },
             })}
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <ErrorMessge>{errors.email.message}</ErrorMessge>}
         </div>
 
         <div>
-          <label htmlFor="password">비밀번호</label>
+          <InputLabel htmlFor="password">비밀번호</InputLabel>
           <Input
             type="password"
             id="password"
-            placeholder="비밀번호를 입력하세요"
+            placeholder="비밀번호를 입력해 주세요."
             {...register('password', {
-              required: '비밀번호를 입력하세요.',
+              required: '비밀번호를 입력해 주세요.',
             })}
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <ErrorMessge>{errors.password.message}</ErrorMessge>
+          )}
         </div>
 
         <Button type="submit" size="full" bgColor="dark">
@@ -99,9 +107,9 @@ function Login() {
         </Button>
       </form>
 
-      <div>
+      <Line>
         <p>또는</p>
-      </div>
+      </Line>
 
       <div>
         <SocialKakao />
@@ -111,7 +119,7 @@ function Login() {
           display="block"
           handleClick={handleSignUp}
         >
-          회원가입
+          이메일로 회원가입
         </Button>
       </div>
 

@@ -6,6 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios';
 import useFormStore from '@zustand/form.mjs';
 import Input from '@components/input/Input';
+import {
+  SignUpWrapper,
+  SignUpTitle,
+  InputLabel,
+  ErrorMessge,
+  FlexContent,
+  Stepper,
+  CurrentStep,
+  Step,
+  ProfileImage,
+} from '@pages/users/SignUp.style';
 
 function SignUpTwoStep() {
   const axios = useCustomAxios();
@@ -102,11 +113,16 @@ function SignUpTwoStep() {
   }
 
   return (
-    <>
+    <SignUpWrapper>
+      <SignUpTitle>회원가입</SignUpTitle>
+      <Stepper>
+        <Step>기본 정보 입력</Step>
+        <CurrentStep>프로필 설정</CurrentStep>
+      </Stepper>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <img src={image.previewURL} alt="프로필 이미지" />
-          <label htmlFor="profile-img">프로필 사진 추가하기</label>
+          <ProfileImage src={image.previewURL} alt="프로필 이미지" />
+          <InputLabel htmlFor="profile-img">프로필 사진 추가하기</InputLabel>
           <input
             type="file"
             style={{ display: 'none' }}
@@ -120,7 +136,7 @@ function SignUpTwoStep() {
           <button onClick={deleteImage}>프로필 이미지 삭제</button>
         </div>
         <div>
-          <label htmlFor="name">닉네임</label>
+          <InputLabel htmlFor="name">닉네임</InputLabel>
           <Input
             type="text"
             id="name"
@@ -133,18 +149,19 @@ function SignUpTwoStep() {
               },
             })}
           />
-          {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && <ErrorMessge>{errors.name.message}</ErrorMessge>}
         </div>
-        <Button type="submit" size="medium" bgColor="dark">
+        <Button type="submit" size="full" bgColor="dark">
           회원가입 완료
         </Button>
       </form>
 
-      <Button size="medium" bgColor="dark" handleClick={handleBack}>
+      <Button size="full" bgColor="primary" handleClick={handleBack}>
         이전
       </Button>
+
       {isLoading && <Loading />}
-    </>
+    </SignUpWrapper>
   );
 }
 

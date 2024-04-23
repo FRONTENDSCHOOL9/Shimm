@@ -6,6 +6,17 @@ import { useState } from 'react';
 import useModalStore from '@zustand/modal';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import Input from '@components/input/Input';
+import {
+  SignUpWrapper,
+  SignUpTitle,
+  InputLabel,
+  ErrorMessge,
+  FlexContent,
+  MarginBottom,
+  Stepper,
+  CurrentStep,
+  Step,
+} from '@pages/users/SignUp.style';
 
 function SignUpOneStep() {
   const axios = useCustomAxios();
@@ -112,35 +123,38 @@ function SignUpOneStep() {
   }
 
   return (
-    <div>
-      <h3>회원가입</h3>
-      <ul>
-        <li>기본 정보 입력</li>
-        <li>프로필 설정</li>
-      </ul>
+    <SignUpWrapper>
+      <SignUpTitle>회원가입</SignUpTitle>
+      <Stepper>
+        <CurrentStep>기본 정보 입력</CurrentStep>
+        <Step>프로필 설정</Step>
+      </Stepper>
       <form onSubmit={handleSubmit(saveData)}>
         <div>
-          <label htmlFor="email">이메일</label>
-          <Input
-            type="email"
-            id="email"
-            placeholder="sample@bb.com 형식으로 입력해 주세요.이메일을 입력하세요"
-            {...register('email', {
-              required: '이메일을 입력하세요.',
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: '올바른 이메일 형식이 아닙니다.',
-              },
-            })}
-          />
-          <Button bgColor="dark" size="small" handleClick={handleEmail}>
-            중복확인
-          </Button>
-          {errors.email && <p>{errors.email.message}</p>}
+          <InputLabel htmlFor="email">이메일</InputLabel>
+          <FlexContent>
+            <Input
+              type="email"
+              id="email"
+              placeholder="sample@bb.com 형식으로 입력해 주세요."
+              {...register('email', {
+                required: '이메일을 입력하세요.',
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: '올바른 이메일 형식이 아닙니다.',
+                },
+              })}
+            />
+            <Button bgColor="dark" size="small" handleClick={handleEmail}>
+              중복확인
+            </Button>
+          </FlexContent>
+
+          {errors.email && <ErrorMessge>{errors.email.message}</ErrorMessge>}
         </div>
 
         <div>
-          <label htmlFor="password">비밀번호</label>
+          <InputLabel htmlFor="password">비밀번호</InputLabel>
           <Input
             type="password"
             id="password"
@@ -154,10 +168,12 @@ function SignUpOneStep() {
               },
             })}
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <ErrorMessge>{errors.password.message}</ErrorMessge>
+          )}
         </div>
         <div>
-          <label htmlFor="password-confirm">비밀번호 확인</label>
+          <InputLabel htmlFor="password-confirm">비밀번호 확인</InputLabel>
           <Input
             type="password"
             id="password-confirm"
@@ -166,10 +182,12 @@ function SignUpOneStep() {
               required: '비밀번호를 입력하세요.',
             })}
           />
-          {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
+          {errors.passwordConfirm && (
+            <ErrorMessge>{errors.passwordConfirm.message}</ErrorMessge>
+          )}
         </div>
         <div>
-          <label htmlFor="birth">생년월일</label>
+          <InputLabel htmlFor="birth">생년월일</InputLabel>
           <Input
             type="date"
             id="birth"
@@ -179,11 +197,11 @@ function SignUpOneStep() {
               required: '생년월일을 입력하세요.',
             })}
           />
-          {errors.birth && <p>{errors.birth.message}</p>}
+          {errors.birth && <ErrorMessge>{errors.birth.message}</ErrorMessge>}
         </div>
 
-        <div>
-          <label htmlFor="phone">전화번호</label>
+        <MarginBottom>
+          <InputLabel htmlFor="phone">전화번호</InputLabel>
           <Input
             type="text"
             id="phone"
@@ -192,17 +210,17 @@ function SignUpOneStep() {
               required: '휴대폰 번호를 입력하세요.',
             })}
           />
-          {errors.phone && <p>{errors.phone.message}</p>}
-        </div>
+          {errors.phone && <ErrorMessge>{errors.phone.message}</ErrorMessge>}
+        </MarginBottom>
 
-        <Button type="submit" size="medium" bgColor="primary">
+        <Button type="submit" size="full" bgColor="primary">
           다음 단계
         </Button>
       </form>
-      <Button size="medium" bgColor="dark" handleClick={handleBack}>
+      <Button size="full" bgColor="dark" handleClick={handleBack}>
         이전
       </Button>
-    </div>
+    </SignUpWrapper>
   );
 }
 
