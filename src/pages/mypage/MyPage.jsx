@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import iconright from '@assets/images/icon-down.svg';
 import Button from '@components/button/Button';
 import { ButtonContainer } from '@pages/purchase/Purchase.style';
-import {
-  Link,
-  Outlet,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
-
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import useUserStore from '@zustand/user.mjs';
-import { ConstructionOutlined } from '@mui/icons-material';
-import { MyInfo } from '@pages/mypage/MyInfo';
+import { useEffect, useState } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import useCustomAxios from '@hooks/useCustomAxios';
+import useUserStore from '@zustand/user';
+import styled from 'styled-components';
 
 const MyPageWrapper = styled.div`
   padding: 20px;
@@ -161,13 +152,11 @@ function MyPage() {
 
   async function fetchUserInfo() {
     const UserRes = await axios.get(`/users/${user._id}`);
-    console.log(UserRes);
     setActivity(UserRes.data);
   }
 
   async function fetchUserRecord() {
     const res = await axios.get(`/posts?type=meditation`);
-    console.log(res);
     // setRecord(res.data.item);
   }
 
@@ -210,7 +199,6 @@ function MyPage() {
   function handleMoveMyBookmark() {
     navigate('/mypage/activity/bookmarkedposts');
   }
-  console.log(activity);
 
   return (
     <MyPageWrapper>

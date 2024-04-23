@@ -91,9 +91,7 @@ function MyInfoCheck() {
     try {
       setIsLoading(true);
       formData.email = user.email;
-      console.log(formData);
       const res = await axios.post('/users/login', formData);
-      console.log(res);
       navigate('/mypage/editprofile');
     } catch (err) {
       console.error(err);
