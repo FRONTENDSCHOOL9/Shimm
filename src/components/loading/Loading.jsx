@@ -2,12 +2,16 @@ import Lottie from 'react-lottie';
 import animationData from './loading.json';
 import styled from 'styled-components';
 
-const StyledDiv = styled.div`
+const LoadingWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  /* background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px); */
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
 `;
+
+const Inside = styled.div``;
 
 const LoadingText = styled.p`
   font-size: 1.4rem;
@@ -28,10 +32,12 @@ function Loading() {
   };
 
   return (
-    <StyledDiv>
-      <LoadingText>로딩중입니다 🏃🏻‍♀️</LoadingText>
-      <Lottie options={defaultOptions} width={150} height={150} />
-    </StyledDiv>
+    <LoadingWrapper>
+      <Inside>
+        <LoadingText>로딩중입니다 🏃🏻‍♀️</LoadingText>
+        <Lottie options={defaultOptions} width={130} height={130} />
+      </Inside>
+    </LoadingWrapper>
   );
 }
 

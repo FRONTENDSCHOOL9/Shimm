@@ -144,6 +144,8 @@ function SignUpTwoStep() {
 
   return (
     <SignUpWrapper>
+      {isLoading && <Loading />}
+
       <SignUpTitle>회원가입</SignUpTitle>
       <Stepper>
         <Step>기본 정보 입력</Step>
@@ -197,8 +199,6 @@ function SignUpTwoStep() {
       <Button size="full" bgColor="primary" handleClick={handleBack}>
         이전
       </Button>
-
-      {isLoading && <Loading />}
     </SignUpWrapper>
   );
 }

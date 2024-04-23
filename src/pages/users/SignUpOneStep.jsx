@@ -17,12 +17,14 @@ import {
   CurrentStep,
   Step,
 } from '@pages/users/SignUp.style';
+import Loading from '@components/loading/Loading';
 
 function SignUpOneStep() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { setShowModal, setModalData } = useModalStore();
   const { setForm } = useFormStore();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     handleSubmit,
     register,
@@ -44,6 +46,8 @@ function SignUpOneStep() {
   const email = watch('email');
 
   async function handleEmail() {
+    setIsLoading(true);
+
     const isValid = await trigger('email');
     if (!isValid) {
       setError(
@@ -93,6 +97,8 @@ function SignUpOneStep() {
           },
         });
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -127,6 +133,8 @@ function SignUpOneStep() {
 
   return (
     <SignUpWrapper>
+      {isLoading && <Loading />}
+
       <SignUpTitle>회원가입</SignUpTitle>
       <Stepper>
         <CurrentStep>기본 정보 입력</CurrentStep>

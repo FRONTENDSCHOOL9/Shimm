@@ -68,6 +68,8 @@ function Login() {
 
   return (
     <LoginWrapper>
+      {isLoading && <Loading />}
+
       <LoginTitle>로그인</LoginTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
@@ -122,8 +124,6 @@ function Login() {
           이메일로 회원가입
         </Button>
       </div>
-
-      {isLoading && <Loading />}
     </LoginWrapper>
   );
 }
