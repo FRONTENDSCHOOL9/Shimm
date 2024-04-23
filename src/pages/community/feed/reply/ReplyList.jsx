@@ -22,7 +22,7 @@ function ReplyList({ id, pid }) {
         params: {
           page: pageParam,
           limit: 5,
-          sort: JSON.stringify({ _id: -1 }),
+          sort: JSON.stringify({ createdAt: -1 }),
         },
       }),
     select: response => {
