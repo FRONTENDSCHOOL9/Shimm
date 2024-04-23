@@ -149,7 +149,7 @@ function FeedEditorEdit() {
               type="file"
               id="image"
               title="image"
-              accept=".png, .jpeg, .jpg .gif"
+              accept="image/png, image/gif, image/jpeg, image/jpg"
               {...register('newImage', {
                 onChange: handleChange,
               })}

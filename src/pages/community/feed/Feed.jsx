@@ -18,11 +18,12 @@ function Feed() {
       axios.get('/posts?type=community', {
         params: {
           page: pageParam,
-          limit: 3,
+          limit: 2,
           sort: JSON.stringify({ _id: -1 }),
         },
       }),
     select: response => {
+      console.log(response);
       response.items = response.pages.map(page => page.data.item);
       response.totalPages = response.pages.at(-1).data.pagination.totalPages;
       response.page = response.pages.at(-1).data.pagination.page;

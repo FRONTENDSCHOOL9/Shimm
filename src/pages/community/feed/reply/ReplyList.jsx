@@ -61,7 +61,6 @@ function ReplyList({ id, pid }) {
         }),
       ) || [];
 
-    // 지정한 queryKey의 캐시된 값을 수정
     queryClient.setQueryData(['replies'], data => ({
       pages: newPagesArray,
       pageParams: data.pageParams,
@@ -70,19 +69,15 @@ function ReplyList({ id, pid }) {
 
   return (
     <ReplySection>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <InfiniteScroll
-          key={0}
-          pageStart={1}
-          loadMore={fetchNextPage}
-          hasMore={!isFetching && hasNext}
-          loader={<Loading key={0} />}
-        >
-          {list}
-        </InfiniteScroll>
-      )}
+      <InfiniteScroll
+        key={0}
+        pageStart={1}
+        loadMore={fetchNextPage}
+        hasMore={!isFetching && hasNext}
+        loader={<Loading key={0} />}
+      >
+        {list}
+      </InfiniteScroll>
       {user && <ReplyNew user={user} id={id} />}
     </ReplySection>
   );

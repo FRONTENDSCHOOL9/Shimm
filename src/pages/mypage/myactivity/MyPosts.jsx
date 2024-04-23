@@ -22,24 +22,27 @@ function MyPosts() {
       axios.get(`/posts/users/${user._id}?type=community`, {
         params: {
           page: pageParam,
-          limit: 3,
+          limit: 1,
           sort: JSON.stringify({ _id: -1 }),
         },
       }),
     select: response => {
+      console.log(response);
       response = {
         items: response.pages.map(page => page.data.item.item),
-        totalPages: response.pages.at(-1).data.item.pagination.totalPages,
         page: response.pages.at(-1).data.item.pagination.page,
+        totalPages: response.pages.at(-1).data.item.pagination.totalPages,
+        pageParams: response.pageParams,
+        pages: response.pages,
       };
       return response;
     },
 
     getNextPageParam: lastPage => {
+      console.log(lastPage);
       const pagination = lastPage.data.item.pagination;
       let nextPage =
         pagination.page < pagination.totalPages ? pagination.page + 1 : false;
-
       return nextPage;
     },
   });
@@ -63,9 +66,9 @@ function MyPosts() {
       await axios.delete(`/posts/${id}`);
 
       const newPagesArray =
-        produce(data.items, draft =>
-          draft.forEach(item => {
-            _.remove(item.item, item => item._id === id);
+        produce(data.pages, draft =>
+          draft.forEach(page => {
+            _.remove(page.data.item.item, item => item._id === id);
           }),
         ) || [];
 
