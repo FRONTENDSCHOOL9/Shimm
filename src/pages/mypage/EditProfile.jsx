@@ -6,6 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useUserStore from '@zustand/user.mjs';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useFormStore from '@zustand/form.mjs';
+import { ErrorSharp } from '@mui/icons-material';
 
 const FormWrapper = styled.div`
   padding: 20px;
@@ -32,7 +34,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const ButtonProfileImg = styled.button`
+const ImageLabel = styled.label`
   margin: 0 auto;
   width: 150px;
   height: 40px;
@@ -57,6 +59,9 @@ const EditForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  & img {
+  }
 `;
 
 const Label = styled.label`
@@ -153,21 +158,19 @@ const LastNumber = styled.input`
 function EditProfile() {
   const [userInput, setUserInput] = useState({
     name: '',
-    password: '',
-    passwordCheck: '',
     year: '',
     month: '',
     day: '',
   });
   const [showPasswordInput, setShowPasswordInput] = useState(false);
 
-  const [profileImage, setProfileImage] = useState('');
-  const profileImageInput = useRef(null);
+  // const [profileImage, setProfileImage] = useState('');
+  // const profileImageInput = useRef(null);
   const { name, password, passwordCheck, year, month, day } = userInput;
-
+  const [userInfo, setUserInfo] = useState();
   const axios = useCustomAxios();
   const navigate = useNavigate();
-  const { user } = useUserStore();
+  const { user, setUser } = useUserStore();
   const {
     register,
     handleSubmit,
@@ -179,6 +182,14 @@ function EditProfile() {
     },
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState({
+    imageFile: '',
+    previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
+  });
+
+  const { form } = useFormStore();
+
   const YEAR = Array.from({ length: 100 }, (_, i) => 1923 + i);
   const MONTH = Array.from({ length: 12 }, (_, i) =>
     String(i + 1).padStart(2, '0'),
@@ -187,26 +198,89 @@ function EditProfile() {
     String(i + 1).padStart(2, '0'),
   );
 
-  function handleImageChange(e) {
-    e.stopPropagation();
-    const file = e.target.files[0];
-    if (file) {
-      setProfileImage(file.name);
-    }
-  }
+  // function handleImageChange(e) {
+  //   e.stopPropagation();
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     setProfileImage(file.name);
+  //   }
+  // }
+
   function togglePasswordInput() {
     setShowPasswordInput(!showPasswordInput);
   }
 
+  async function fetchUserInfo() {
+    const UserRes = await axios(`/users/${user._id}`);
+    console.log(UserRes);
+  }
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
+  function saveImage(e) {
+    e.preventDefault();
+    const fileReader = new FileReader();
+
+    if (e.target.files[0]) {
+      fileReader.readAsDataURL(e.target.files[0]);
+    }
+    fileReader.onload = () => {
+      setImage({
+        imageFile: e.target.files[0],
+        previewURL: fileReader.result,
+      });
+    };
+  }
+
   async function onSubmit(formData) {
     try {
-      formData.type = 'user';
       const res = await axios.patch(`/users/${user._id}`, formData);
-      console.log(res);
+      setIsLoading(true);
+      formData.type = 'user';
+      formData.loginType = 'email';
+      formData = { ...formData, ...form };
+      if (formData.profileImage) {
+        if (formData.profileImage.length > 0) {
+          const imageFormData = new FormData();
+          imageFormData.append('attach', formData.profileImage[0]);
+
+          const fileRes = await axios('/files', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            data: imageFormData,
+          });
+
+          formData.profileImage = fileRes.data.item[0].name;
+        }
+      }
+
       alert('프로필정보 변경이 완료되었습니다.');
       navigate('/mypage');
+      setUser({
+        _id: user._id,
+        name: res.data.updated.name,
+        email: user.email,
+        type: user.type,
+        phone: res.data.updated.phone,
+        profileImg: res.data.updated.profileImg,
+        token: user.token,
+      });
     } catch (err) {
       console.error(err);
+      if (err.response?.data.errors) {
+        err.response?.data.errors.forEach(error =>
+          setError(error.path, { message: error.msg }),
+        );
+      } else if (err.response?.data.message) {
+        console.error(err);
+        alert(err.response?.data.message);
+      }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -222,25 +296,34 @@ function EditProfile() {
           src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
           alt="유저 프로필 사진"
         />
-        <ButtonLink>
-          <ButtonProfileImg
-            type="button"
-            onClick={() => profileImageInput.current.click()}
-          >
-            프로필 사진 추가하기
-          </ButtonProfileImg>
-        </ButtonLink>
+
+        <ImageLabel htmlFor="profile-img" alt="프로필 이미지">
+          프로필 사진 변경하기
+        </ImageLabel>
         <ProfileImageInput
           type="file"
-          id="profile-image"
+          id="profile-img"
           accept="image/*"
-          ref={profileImageInput}
-          onChange={handleImageChange}
+          // ref={profileImageInput}
+          onChange={saveImage}
+          onClick={e => (e.target.value = null)}
+          {...register('profileImage')}
         />
         <Label htmlFor="nickname">닉네임</Label>
-        <InfoInput type="text" id="nickname" {...register('name')} />
+        <InfoInput
+          type="text"
+          id="nickname"
+          {...register('name', {
+            required: '닉네임을 입력하세요',
+            minLength: {
+              value: 2,
+              message: '닉네임을 2글자 이상 입력하세요.',
+            },
+          })}
+        />
+        {errors.name && <p>{Errors.name.message}</p>}
 
-        {showPasswordInput && (
+        {/* {showPasswordInput && (
           <PasswordWrapper>
             <Label>비밀번호</Label>
             <PasswordInput
@@ -258,7 +341,7 @@ function EditProfile() {
               placeholder="입력한 비밀번호 한번 더 입력해 주세요."
             ></PasswordInput>
           </PasswordWrapper>
-        )}
+        )} */}
         <Label htmlFor="select">생년월일</Label>
         <SelectBox>
           <select className="select" name="year" onChange={handleInput}>
@@ -288,12 +371,12 @@ function EditProfile() {
           <MiddleNumber
             type="number"
             onChange={handleInput}
-            defaultValue={user.phone.slice(3, 7)}
+            defaultValue={user.phone?.slice(3, 7)}
           />
           <LastNumber
             type="number"
             onChange={handleInput}
-            defaultValue={user.phone.slice(7, 11)}
+            defaultValue={user.phone?.slice(7, 11)}
           />
         </SelectBox>
         <ButtonProfileEdit type="submit">수정</ButtonProfileEdit>
