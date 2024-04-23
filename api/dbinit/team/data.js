@@ -320,7 +320,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 1,
               name: '요가맨',
-              profile: '/files/02-Shimm/yogaman.png',
+              profile: 'yogaman.png',
             },
             content: '힘내요!',
             createdAt: getTime(-2, -60 * 60 * 20),
