@@ -73,14 +73,6 @@ function SignUpTwoStep() {
     });
   }
 
-  function deleteImage() {
-    setValue('profileImage', null);
-    setImage({
-      imageFile: '',
-      previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
-    });
-  }
-
   async function onSubmit(formData) {
     try {
       setIsLoading(true);
@@ -177,7 +169,8 @@ function SignUpTwoStep() {
                   accept=".png, .jpeg, .jpg"
                   onClick={e => (e.target.value = null)}
                 />
-                <DeleteButton onClick={deleteImage}>
+                <DeleteButton type="button" onClick={deleteImage}>
+                  <i>이미지 제거</i>
                   <DeleteIcon src={iconDelete} alt="프로필 이미지 삭제하기" />
                 </DeleteButton>
               </FlexContent>

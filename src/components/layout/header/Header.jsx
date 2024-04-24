@@ -41,11 +41,13 @@ function Header() {
   }
 
   function handleLogout() {
+    setIsClicked(!isClicked);
     setUser(null);
     navigate('/');
   }
 
   function handleLogin() {
+    setIsClicked(!isClicked);
     navigate('/users/login');
   }
 
