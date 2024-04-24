@@ -15,15 +15,14 @@ export const StyledMain = styled.main`
 
 export const CarouselWrapper = styled.div`
   position: relative;
-  overflow: hidden;
-  max-height: 400px;
 
-  &:before {
+  /* &:before {
     content: '';
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.3);
-  }
+    z-index: 2;
+  } */
 `;
 
 export const CarouselText = styled.div`
@@ -41,7 +40,9 @@ export const CarouselText = styled.div`
 
 export const CarouselImage = styled.img`
   width: 100%;
+  height: auto;
   object-fit: cover;
+  overflow: hidden;
 `;
 
 export const CaraouselTitle = styled.h3`
