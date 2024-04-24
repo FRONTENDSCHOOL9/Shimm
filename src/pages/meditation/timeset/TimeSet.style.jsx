@@ -24,24 +24,22 @@ export const SelectButton = styled.button`
   border-radius: 8px;
 
   position: relative;
+
   &:focus {
     border-color: rgba(51, 86, 53, 1);
   }
+`;
 
-  &:after {
-    content: ' ';
-    width: 24px;
-    height: 24px;
-    background-image: url(${iconDown});
-    background-size: cover;
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: ${props =>
-      props.$active === true
-        ? 'translateY(-50%)'
-        : 'translateY(-50%) rotate(180deg)'};
-  }
+export const DropIcon = styled.img`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: ${props =>
+    props.$rotation === '180'
+      ? 'translateY(-50%) rotate(180deg)'
+      : 'translateY(-50%)'};
 `;
 
 export const StyledUl = styled.ul`

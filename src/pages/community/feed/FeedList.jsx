@@ -130,6 +130,21 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
               •••
             </More>
             {isOpened && (
+              <FeedDropDown
+                id={_id}
+                handleDelete={() => handleDelete(_id)}
+                type={user.type}
+              />
+            )}
+          </>
+        )}
+
+        {user && user.type === 'seller' && (
+          <>
+            <More type="button" onClick={handleMore}>
+              •••
+            </More>
+            {isOpened && (
               <FeedDropDown id={_id} handleDelete={() => handleDelete(_id)} />
             )}
           </>

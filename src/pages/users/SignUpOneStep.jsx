@@ -1,6 +1,8 @@
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
 import Loading from '@components/loading/Loading';
+import iconCurrentStep from '@assets/images/icon-breadcrumb-active.svg';
+import iconStep from '@assets/images/icon-breadcrumb.svg';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import {
   CurrentStep,
@@ -111,7 +113,9 @@ function SignUpOneStep() {
       setModalData({
         children: (
           <span>
-            이메일 중복 확인이 필요합니다. 이메일 중복 확인을 해 주세요.
+            이메일 중복 확인이 필요합니다.
+            <br />
+            이메일 중복 확인을 해 주세요.
           </span>
         ),
         button: 1,
@@ -139,8 +143,14 @@ function SignUpOneStep() {
         <SignUpWrapper>
           <SignUpTitle>회원가입</SignUpTitle>
           <Stepper>
-            <CurrentStep>기본 정보 입력</CurrentStep>
-            <Step>프로필 설정</Step>
+            <CurrentStep>
+              <img src={iconCurrentStep} />
+              <span>기본 정보 입력</span>
+            </CurrentStep>
+            <Step>
+              <img src={iconStep} />
+              <span>프로필 설정</span>
+            </Step>
           </Stepper>
           <form onSubmit={handleSubmit(saveData)}>
             <div>
@@ -230,8 +240,13 @@ function SignUpOneStep() {
                 type="text"
                 id="phone"
                 placeholder="휴대폰 번호를 입력하세요"
+                maxlength="11"
                 {...register('phone', {
                   required: '휴대폰 번호를 입력하세요.',
+                  pattern: {
+                    value: /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/,
+                    message: '번호를 정확히 입력해 주세요.',
+                  },
                 })}
               />
               {errors.phone && (

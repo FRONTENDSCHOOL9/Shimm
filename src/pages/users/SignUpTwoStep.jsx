@@ -2,6 +2,8 @@ import iconDelete from '@assets/images/icon-delete-post.svg';
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
 import Loading from '@components/loading/Loading';
+import iconCurrentStep from '@assets/images/icon-breadcrumb-active.svg';
+import iconStep from '@assets/images/icon-breadcrumb.svg';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   AddImageButton,
@@ -63,14 +65,6 @@ function SignUpTwoStep() {
         previewURL: fileReader.result,
       });
     };
-  }
-
-  function deleteImage() {
-    setValue('profileImage', null);
-    setImage({
-      imageFile: '',
-      previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
-    });
   }
 
   function deleteImage() {
@@ -157,8 +151,14 @@ function SignUpTwoStep() {
         <SignUpWrapper>
           <SignUpTitle>회원가입</SignUpTitle>
           <Stepper>
-            <Step>기본 정보 입력</Step>
-            <CurrentStep>프로필 설정</CurrentStep>
+            <Step>
+              <img src={iconStep} />
+              <span>기본 정보 입력</span>
+            </Step>
+            <CurrentStep>
+              <img src={iconCurrentStep} />
+              <span>프로필 설정</span>
+            </CurrentStep>
           </Stepper>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
@@ -177,7 +177,8 @@ function SignUpTwoStep() {
                   accept=".png, .jpeg, .jpg"
                   onClick={e => (e.target.value = null)}
                 />
-                <DeleteButton onClick={deleteImage}>
+                <DeleteButton type="button" onClick={deleteImage}>
+                  <i>이미지 제거</i>
                   <DeleteIcon src={iconDelete} alt="프로필 이미지 삭제하기" />
                 </DeleteButton>
               </FlexContent>
