@@ -13,7 +13,9 @@ function FeedNew() {
   const axios = useCustomAxios();
 
   useEffect(() => {
-    fetchUser();
+    if (user) {
+      fetchUser();
+    }
   }, []);
 
   async function fetchUser() {

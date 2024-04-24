@@ -40,8 +40,6 @@ function ReplyItem({ item, handleDelete }) {
     });
   }
 
-  console.log(item);
-
   return (
     <ReplyContainer>
       <ReplyHeader>

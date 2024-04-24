@@ -70,6 +70,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Pretendard', sans-serif;
     font-size: 10px;
     font-weight: 300;
+    color: #0a0a0a;
   }
 
   // Commons
@@ -91,29 +92,32 @@ const GlobalStyle = createGlobalStyle`
       }
     }
 
-    // Swiper
-.swiper-pagination-bullet { 
+  // Swiper
+  .swiper-pagination-bullet { 
     width: 10px; 
     height: 10px; 
     background-color: rgb(255, 255, 255);
-}
-.swiper-pagination {
+  }
+
+  .swiper-pagination {
     bottom: 20px !important;
-}
-.swiper-pagination-bullet-active { 
+  }
+
+  .swiper-pagination-bullet-active { 
     width: 30px; 
     transition: width .5s; 
     border-radius: 10px; 
     background-color: #ffffff79;
-    }
-.swiper-pagination-bullet-active::after {
+  }
+
+  .swiper-pagination-bullet-active::after {
     content: '';
     display: block;
     width: 10px;
     height: 10px;
     background-color: #fff;
     border-radius: 50%;
-}
+  }
 `;
 
 export default GlobalStyle;

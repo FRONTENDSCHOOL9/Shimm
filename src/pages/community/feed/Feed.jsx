@@ -69,19 +69,15 @@ function Feed() {
 
   return (
     <StyledFeed>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <InfiniteScroll
-          key={0}
-          pageStart={1}
-          loadMore={fetchNextPage}
-          hasMore={!isFetching && hasNext}
-          loader={<Loading key={0} />}
-        >
-          {list}
-        </InfiniteScroll>
-      )}
+      <InfiniteScroll
+        key={0}
+        pageStart={1}
+        loadMore={fetchNextPage}
+        hasMore={!isFetching && hasNext}
+      >
+        {list}
+      </InfiniteScroll>
+
       <FeedCreate />
     </StyledFeed>
   );

@@ -37,7 +37,6 @@ function Login() {
     try {
       setIsLoading(true);
       const res = await axios.post('/users/login', formData);
-      console.log(res.data);
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
