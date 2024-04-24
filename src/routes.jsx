@@ -10,7 +10,7 @@ import MeditationMain from '@pages/meditation/MeditationMain';
 import MeditationProgress from '@pages/meditation/MeditationProgress';
 import MeditationRecord from '@pages/meditation/MeditationRecord';
 import EditProfile from '@pages/mypage/EditProfile';
-import { MyInfo } from '@pages/mypage/MyInfo';
+import MyInfo from '@pages/mypage/MyInfo';
 import MyInfoCheck from '@pages/mypage/MyInfoCheck';
 import MyPage from '@pages/mypage/MyPage';
 import MyRecord from '@pages/mypage/MyRecord';
