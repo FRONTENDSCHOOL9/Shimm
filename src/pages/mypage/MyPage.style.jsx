@@ -141,6 +141,7 @@ export const ActiveLi = styled.li`
   flex-direction: column;
   gap: 20px;
   font-weight: 500;
+  cursor: pointer;
 
   & h3 {
     font-size: 3.6rem;
