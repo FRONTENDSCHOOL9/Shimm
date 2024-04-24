@@ -1,9 +1,7 @@
-import styled from 'styled-components';
+import iconArrow from '@assets/images/icon-arrow-black.svg';
 import iconOvals from '@assets/images/icon-ovals.svg';
 import iconShapes from '@assets/images/icon-shapes.svg';
-import iconArrow from '@assets/images/icon-arrow-black.svg';
-// import iconLogin from '@assets/images/icon-login.svg'
-// import iconSignup from '@assets/images/icon-signup.svg'
+import styled from 'styled-components';
 
 export const StyledMain = styled.main`
   margin-top: -100px;
@@ -165,24 +163,3 @@ export const SectionUser = styled.section`
     }
   }
 `;
-
-// export const IconLogin = styled.div`
-//     background-image: url(${iconLogin});
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     width: 200px;
-//     height:200px;
-//     flex-grow: 1;
-
-//     @media (min-width: 740px) {
-//         display: block;
-
-//     }
-// `
-// export const IconSignup = styled.div`
-//     background-image: url(${iconSignup});
-
-//     @media (min-width: 740px) {
-//         display: block;
-//     }
-// `

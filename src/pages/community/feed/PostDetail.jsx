@@ -1,7 +1,6 @@
 import iconBookMarkActive from '@assets/images/icon-bookmark-active.svg';
 import iconBookMark from '@assets/images/icon-bookmark.svg';
 import useCustomAxios from '@hooks/useCustomAxios';
-import PropTypes from 'prop-types';
 import {
   Bookmark,
   More,
@@ -12,9 +11,10 @@ import {
   ProfileImage,
 } from '@pages/community/feed/Feed.style';
 import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
-import useUserStore from '@zustand/user';
-import { useEffect, useState } from 'react';
 import ReplyList from '@pages/community/feed/reply/ReplyList';
+import useUserStore from '@zustand/user';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function PostDetail({ item, handleDelete }) {

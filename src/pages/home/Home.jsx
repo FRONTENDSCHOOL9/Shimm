@@ -9,8 +9,8 @@ import {
   StyledMain,
   TextSection,
 } from '@pages/home/Home.style';
-import { Line } from '@pages/users/SignUp.style';
 import HomeCarousel from '@pages/home/HomeCarousel';
+import { Line } from '@pages/users/SignUp.style';
 import useModalStore from '@zustand/modal';
 import useUserStore from '@zustand/user';
 import { useNavigate } from 'react-router-dom';

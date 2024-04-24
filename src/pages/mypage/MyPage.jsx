@@ -1,143 +1,23 @@
 import iconright from '@assets/images/icon-down.svg';
 import Button from '@components/button/Button';
-import { ButtonContainer } from '@pages/purchase/Purchase.style';
+import useCustomAxios from '@hooks/useCustomAxios';
+import {
+  ActiveLi,
+  ArchiveBox,
+  ArchiveContainer,
+  ArchiveHeader,
+  LinkContainer,
+  MyArchive,
+  MyPageSection,
+  MyPageWrapper,
+  PostArchive,
+  RecordDate,
+  RecordLi,
+  UserProfile,
+} from '@pages/mypage/MyPage.style';
+import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import useCustomAxios from '@hooks/useCustomAxios';
-import useUserStore from '@zustand/user';
-import styled from 'styled-components';
-
-const MyPageWrapper = styled.div`
-  padding: 20px;
-  max-width: 450px;
-  width: 100%;
-  color: black;
-  font-size: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 0 auto;
-  position: relative;
-  box-sizing: border-box;
-
-  @media screen and (max-width: 740px) {
-    width: 320px;
-    transition: all 5s easi-in-out;
-  }
-`;
-
-const UserProfile = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 40px;
-
-  & img {
-    width: 80px;
-    border-radius: 50%;
-  }
-`;
-
-const ArchiveContainer = styled.div`
-  width: 100%;
-`;
-
-const ArchiveHeader = styled.div`
-  display: flex;
-  padding: 40px 0 10px;
-  align-items: center;
-  justify-content: space-between;
-
-  & h2 {
-    font-size: 2rem;
-    flex-shrink: 0;
-    margin-right: 170px;
-  }
-
-  & img {
-    width: 30px;
-    cursor: pointer;
-    transform: rotate(90deg);
-    transition:
-      transform 0.2s ease-in-out,
-      scale 0.2s ease-in-out;
-
-    &:hover {
-      transform: rotate(90deg) scale(1.2);
-    }
-  }
-`;
-
-export const NicknameBold = styled.span`
-  font-weight: 500;
-  display: block;
-`;
-
-const ArchiveBox = styled.div`
-  width: 100%;
-  margin-top: 10px;
-`;
-
-const MyArchive = styled.ul`
-  display: flex;
-  height: 130px;
-  gap: 15px;
-  overflow-y: hidden;
-  line-height: 0.8;
-  justify-content: space-between;
-  & hr {
-    width: 1px;
-    height: 35px;
-    margin-top: 26px;
-    border: none;
-    border-left: 1px solid #d9d9d9;
-  }
-`;
-
-const RecordLi = styled.li`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-shrink: 0;
-  width: 140px;
-  height: 100px;
-  padding: 20px 12px;
-  background: ${props => (props.background ? props.background : '')};
-  border-radius: 10px;
-  box-sizing: border-box;
-  cursor: pointer;
-  color: white;
-
-  & span {
-    font-size: 1.4rem;
-    font-weight: 500;
-  }
-
-  & span:last-child {
-    font-weight: 300;
-    margin-top: 10px;
-  }
-`;
-
-const ActiveLi = styled.li`
-  display: flex;
-  flex-direction: column;
-  padding: 6px;
-  align-items: center;
-  /* flex-grow: 1; */
-  cursor: pointer;
-
-  & span:first-child {
-    font-size: 3.6rem;
-    font-weight: 500;
-    line-height: 2;
-  }
-
-  & span:last-child {
-    font-size: 1.4rem;
-    font-weight: 500;
-  }
-`;
 
 function MyPage() {
   const navigate = useNavigate();
@@ -171,10 +51,10 @@ function MyPage() {
       key={item._id}
       item={item}
       onClick={handleMoveArchive}
-      background={item.extra?.background}
+      $background={item.extra?.background}
     >
-      <span>{item.createdAt.slice(0, 10)}</span>
-      <span>{item.content}</span>
+      <RecordDate>{item.createdAt.slice(0, 10)}</RecordDate>
+      <p>{item.content}</p>
     </RecordLi>
   ));
 
@@ -207,56 +87,65 @@ function MyPage() {
   }
 
   return (
-    <MyPageWrapper>
-      <UserProfile>
-        <h2>
-          <NicknameBold>{activity?.item.name}님,</NicknameBold>
-          <small>안녕하세요.</small>
-        </h2>
-        <img
-          src={
-            activity?.item.profileImage.startsWith('http://')
-              ? activity?.item.profileImage
-              : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${activity?.item.profileImage}`
-          }
-          alt="내 프로필 이미지"
-        />
-      </UserProfile>
-      <Link to="/mypage/info">
-        <ButtonContainer>
-          <Button size="full" bgColor="primary">
-            내정보 보기
-          </Button>
-        </ButtonContainer>
-      </Link>
-      <ArchiveContainer>
-        <ArchiveHeader>
-          <h2>나의 기록</h2>
-          <img src={iconright} alt="더보기 버튼" onClick={handleMoveArchive} />
-        </ArchiveHeader>
-        <ArchiveBox>
-          <MyArchive>{recordList}</MyArchive>
-        </ArchiveBox>
-        <ArchiveHeader>
-          <h2>나의 활동</h2>
-          <img src={iconright} alt="더보기 버튼" onClick={handleMoveMyList} />
-        </ArchiveHeader>
-        <ArchiveBox>
-          <MyArchive>
-            <ActiveLi onClick={handleMoveMyList}>
-              <span>{getPosts}</span>
-              <span>내가 쓴 글</span>
-            </ActiveLi>
-            <hr />
-            <ActiveLi onClick={handleMoveMyBookmark}>
-              <span>{activity?.item.bookmark.posts}</span>
-              <span>북마크 한 글</span>
-            </ActiveLi>
-          </MyArchive>
-        </ArchiveBox>
-      </ArchiveContainer>
-      <Outlet />
-    </MyPageWrapper>
+    <MyPageSection>
+      <MyPageWrapper>
+        <UserProfile>
+          <h2>
+            <span>{activity?.item.name}님,</span>
+            <br />
+            안녕하세요
+          </h2>
+          <img
+            src={
+              activity?.item.profileImage.startsWith('http://')
+                ? activity?.item.profileImage
+                : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${activity?.item.profileImage}`
+            }
+            alt="내 프로필 이미지"
+          />
+        </UserProfile>
+        <LinkContainer>
+          <Link to="/mypage/info">
+            <div>
+              <Button size="mediumHigh" bgColor="primary">
+                내 정보 보기
+              </Button>
+            </div>
+          </Link>
+        </LinkContainer>
+        <ArchiveContainer>
+          <ArchiveHeader>
+            <h2>나의 기록</h2>
+            <img
+              src={iconright}
+              alt="더보기 버튼"
+              onClick={handleMoveArchive}
+            />
+          </ArchiveHeader>
+          <ArchiveBox>
+            <MyArchive>{recordList}</MyArchive>
+          </ArchiveBox>
+          <ArchiveHeader>
+            <h2>나의 활동</h2>
+            <img src={iconright} alt="더보기 버튼" onClick={handleMoveMyList} />
+          </ArchiveHeader>
+          <ArchiveBox>
+            <PostArchive>
+              <ActiveLi onClick={handleMoveMyList}>
+                <h3>{getPosts}</h3>
+                <p>내가 쓴 글</p>
+              </ActiveLi>
+              <hr />
+              <ActiveLi onClick={handleMoveMyBookmark}>
+                <h3>{activity?.item.bookmark.posts}</h3>
+                <p>북마크 한 글</p>
+              </ActiveLi>
+            </PostArchive>
+          </ArchiveBox>
+        </ArchiveContainer>
+        <Outlet />
+      </MyPageWrapper>
+    </MyPageSection>
   );
 }
 

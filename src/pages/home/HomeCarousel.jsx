@@ -1,18 +1,18 @@
-import SwiperCore from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import {
-  CaraouselTitle,
-  CarouselAuthor,
-  CarouselText,
-  CarouselImage,
-} from '@pages/home/Home.style';
 import carouselImage01 from '@assets/images/carousel-image01.png';
 import carouselImage02 from '@assets/images/carousel-image02.png';
 import carouselImage03 from '@assets/images/carousel-image03.png';
 import carouselImage04 from '@assets/images/carousel-image04.png';
+import {
+  CaraouselTitle,
+  CarouselAuthor,
+  CarouselImage,
+  CarouselText
+} from '@pages/home/Home.style';
+import SwiperCore from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 function HomeCarousel() {
   SwiperCore.use([Autoplay]);

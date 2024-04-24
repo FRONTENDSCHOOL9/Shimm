@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useWindowWide from '@hooks/useWindowWide';
-import useUserStore from '@zustand/user';
 import iconClose from '@assets/images/icon-close.svg';
 import iconMenu from '@assets/images/icon-menu.svg';
 import Button from '@components/button/Button';
 import {
-  StyledHeader,
-  Logo,
-  Img,
-  StyledNav,
   HeaderLink,
-  NavButton,
+  Img,
   LoginContainer,
+  Logo,
+  NavButton,
+  StyledHeader,
+  StyledNav,
 } from '@components/layout/header/Header.style';
+import useWindowWide from '@hooks/useWindowWide';
+import useUserStore from '@zustand/user';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const wide = useWindowWide(740);

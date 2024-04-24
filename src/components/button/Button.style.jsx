@@ -41,6 +41,10 @@ const size = {
     width: '100px',
     height: '30px',
   },
+  mediumHigh: {
+    width: '120px',
+    height: '40px',
+  },
   full: {
     width: '100%',
     height: '50px',
