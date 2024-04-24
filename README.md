@@ -11,7 +11,7 @@
 
 ## 쉼 배포 링크 및 테스트 계정 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-<a href='/'>Shimm</a> <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+<a href='https://shimm.netlify.app/home'>Shimm</a> <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 ```
 ID: user@test.com
@@ -34,7 +34,23 @@ PW: 11111111
 | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/0f19575c-b85b-4740-99ab-4590f5140c0d" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/ead528a9-969f-4468-a8bb-a25e4a9ac624" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/df681754-1e22-434a-894d-6154aa964509" width="200" height="200"> |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | 정진욱 TEAM LEADER                                                                                                                  | 민다인                                                                                                                              | 정기호                                                                                                                              |
-| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄                                                                               | 커뮤니티 마이페이지                                                                                                                 |
+| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄                                                                               | 커뮤니티, 마이페이지                                                                                                                 |
+
+---
+
+## 상세 담당 업무 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+
+## 진욱
+
+- 명상서비스, 커뮤니티, 마이페이지
+
+## 다인
+
+- 전체 디자인, 기획, 소셜로그인, 회원가입
+
+## 기호
+
+- 커뮤니티 피드, 마이페이지, 마이페이지 정보 수정
 
 ---
 
@@ -674,21 +690,6 @@ project
 
 ---
 
-## 상세 담당 업무 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
-
-## 진욱
-
-- 명상서비스, 커뮤니티, 마이페이지
-
-## 다인
-
-- 전체 디자인, 기획, 소셜로그인, 회원가입
-
-## 기호
-
-- 커뮤니티 피드, 마이페이지, 마이페이지 저보수저
-
----
 
 ## 핵심 코드 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
