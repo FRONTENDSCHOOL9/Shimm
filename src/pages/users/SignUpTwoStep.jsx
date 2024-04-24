@@ -2,6 +2,8 @@ import iconDelete from '@assets/images/icon-delete-post.svg';
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
 import Loading from '@components/loading/Loading';
+import iconCurrentStep from '@assets/images/icon-breadcrumb-active.svg';
+import iconStep from '@assets/images/icon-breadcrumb.svg';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   AddImageButton,
@@ -149,8 +151,14 @@ function SignUpTwoStep() {
         <SignUpWrapper>
           <SignUpTitle>회원가입</SignUpTitle>
           <Stepper>
-            <Step>기본 정보 입력</Step>
-            <CurrentStep>프로필 설정</CurrentStep>
+            <Step>
+              <img src={iconStep} />
+              <span>기본 정보 입력</span>
+            </Step>
+            <CurrentStep>
+              <img src={iconCurrentStep} />
+              <span>프로필 설정</span>
+            </CurrentStep>
           </Stepper>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>

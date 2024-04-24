@@ -9,6 +9,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
 
   @media (min-width: 740px) {
-    padding-top: 110px;
+    padding-top: 80px;
   }
 `;

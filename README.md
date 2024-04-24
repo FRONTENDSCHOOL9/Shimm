@@ -2,7 +2,6 @@
 
 ![shimm-logo](https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/5542dd3b-c300-4cfb-9e78-e10157827a45)
 
-
 <br />
 <h1 align=center> 쉼 - 고단했던 하루에 고요함을 선물해보세요. </h1>
 <br />
@@ -10,7 +9,7 @@
 
 ---
 
- ## 쉼 배포 링크 및 테스트 계정  <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+## 쉼 배포 링크 및 테스트 계정 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 <a href='/'>Shimm</a> <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
@@ -25,7 +24,7 @@ PW: aA12345!
 ## 서비스 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 <span>고단했던 하루에 고요함을 선물해보세요.</span><br />
-<span>마음을 가다듬고 위해 자기만의 시간에 집중해 보세요.</span>
+<span>마음을 가다듬기 위한 자기만의 시간에 집중해 보세요.</span>
 
 ---
 
@@ -33,10 +32,10 @@ PW: aA12345!
 
 멋쟁이 사자처럼 프엔9기 2팀 < 2thetop >
 
-|<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/0f19575c-b85b-4740-99ab-4590f5140c0d" width="200" height="200">| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/ead528a9-969f-4468-a8bb-a25e4a9ac624" width="200" height="200">|<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/df681754-1e22-434a-894d-6154aa964509" width="200" height="200">|
-|---|---|---|
-| 정진욱 TEAM LEADER | 민다인  | 정기호 |
-| 명상 서비스 구현 및 총괄 | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄 | 커뮤니티 마이페이지  
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/0f19575c-b85b-4740-99ab-4590f5140c0d" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/ead528a9-969f-4468-a8bb-a25e4a9ac624" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/df681754-1e22-434a-894d-6154aa964509" width="200" height="200"> |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 정진욱 TEAM LEADER                                                                                                                  | 민다인                                                                                                                              | 정기호                                                                                                                              |
+| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄                                                                               | 커뮤니티 마이페이지                                                                                                                 |
 
 ---
 
@@ -48,27 +47,30 @@ PW: aA12345!
 - 코드 컨벤션 , 스타일 가이드 설정 ( 2024.04.05 - 2024.04.05 )
 - 컴포넌트 분리 ( 2024.04.05 - 2024.04.07 )
 - 개발 ( 2024.04.08 - 2024.04.19 )
-- 코드 보완 및 에러 수정, 프로젝트 발표 준비  ( 2024.04.20 - 2024.04.24 )
-- 
-<img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
-
+- 코드 보완 및 에러 수정, 프로젝트 발표 준비 ( 2024.04.20 - 2024.04.24 )
+  <img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
 
 ---
 
 ## 개발 환경 및 기술 스택 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+
 ### Tools <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
-| Git | Github | Discord | Notion |
-| :---: | :---: | :---: | :---: |
-| <img alt="git logo" src="https://git-scm.com/images/logos/logomark-orange@2x.png" width="65" height="65" > | <img alt="github logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="65" height="65"> | <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <div style="display: flex; align-items: flex-start;"><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/15b94d68-61bd-48d5-8931-2180b62fb9a6" alt="icon" width="65" height="65" /></div>
+
+|                                                    Git                                                     |                                                             Github                                                             |                                                                                       Discord                                                                                        |                                                                                                          Notion                                                                                                           |
+| :--------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img alt="git logo" src="https://git-scm.com/images/logos/logomark-orange@2x.png" width="65" height="65" > | <img alt="github logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="65" height="65"> | <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <div style="display: flex; align-items: flex-start;"><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/15b94d68-61bd-48d5-8931-2180b62fb9a6" alt="icon" width="65" height="65" /></div> |
+
 ### Front-end <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
-| Html | CSS | JavaScript| React | React-<br>Router | Styled-<br>Components | esLint | Prettier | React-<br>Query |
-| :---:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > |<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="70" height="70"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="80" height="80" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |
+
+|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                                      React-<br>Router                                                                       |                                                                                    Styled-<br>Components                                                                                    |                                                                              esLint                                                                               |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="70" height="70"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="80" height="80" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |
 
 ---
-## 요구사항 정의서 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
-<img width="1212" alt="스크린샷 2024-04-24 오후 2 55 49" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/13796afd-c4cf-4343-9554-a999dff43158">
 
+## 요구사항 정의서 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+
+<img width="1212" alt="스크린샷 2024-04-24 오후 2 55 49" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/13796afd-c4cf-4343-9554-a999dff43158">
 
 ## 컨벤션 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
@@ -99,21 +101,21 @@ PW: aA12345!
            superLongParam="bar"
            anotherSuperLongParam="baz"
          />
-         
+
          <Foo
            superLongParam="bar"
            anotherSuperLongParam="baz"
          >
            <Quux />
          </Foo>
-         
+
          // 조건
          {showButton && (
            <Button />
          )}
-         
+
          {showButton && <Button />}
-         
+
          {someReallyLongConditional
            && anotherLongConditional
            && (
@@ -123,7 +125,7 @@ PW: aA12345!
              />
            )
          }
-         
+
          {someConditional ? (
            <Foo />
          ) : (
@@ -135,33 +137,33 @@ PW: aA12345!
 
          ```
 
-         
+
      5. **작은따옴표**
      6. Spacing
          1. prop은 붙이고 객체는 중괄호 앞/뒤 띄어쓰기
-             
+
        ```html
              <Foo bar={baz} />
              <Hello name={{ firstname: 'John', lastname: 'Doe' }} />;
-     
+
              ```
      7. Props
          1. prop이 불린형일 때는 값을 생략하면 default=true
-             
+
        ```html
              <Foo hidden />
        ```
-             
+
          2. 이미지의 alt 속성은 반드시 작성
-             
+
        ```html
              <img src="hello.jpg" alt="" />
         ```
-             
+
      8. propType 위치
          1. 컴포넌트 아래, export 위
          2. defaultProps
-             
+
             ```html
              // bad
              function SFC({ foo, bar, children }) {
@@ -172,7 +174,7 @@ PW: aA12345!
                bar: PropTypes.string,
                children: PropTypes.node,
              };
-             
+
              // good
              function SFC({ foo, bar, children }) {
                return <div>{foo}{bar}{children}</div>;
@@ -192,7 +194,7 @@ PW: aA12345!
          3. prop-type 설정
 
             ```html
-            
+
              MyComponent.propTypes = {
                // 특정 JS 타입임을 선언(해당 속성이 전달되지 않아도 됨)
                optionalArray: PropTypes.array,
@@ -202,54 +204,54 @@ PW: aA12345!
                optionalObject: PropTypes.object,
                optionalString: PropTypes.string,
                optionalSymbol: PropTypes.symbol,
-             
+
                // 모든 종류의 자식 요소(리액트 엘리먼트, 문자, 숫자, 배열, 불린, null, undefined 등)
                optionalNode: PropTypes.node,
-             
+
                // React 엘리먼트
                optionalElement: PropTypes.element,
-             
+
                // React 동적으로 로딩된 엘리먼트
                optionalElementType: PropTypes.elementType,
-             
+
                // 특정 클래스의 인스턴스
                // 이 경우 JavaScript의 instanceof 연산자를 사용
                optionalMessage: PropTypes.instanceOf(Message),
-             
+
                // 열거형(enum)으로 처리하여 prop가 특정 값들로 제한되도록 할 수 있음
                optionalEnum: PropTypes.oneOf(['News', 'Photos']),
-             
+
                // 여러 종류중 하나
                optionalUnion: PropTypes.oneOfType([
                  PropTypes.string,
                  PropTypes.number,
                  PropTypes.instanceOf(Message)
                ]),
-             
+
                // 특정 타입의 배열
                optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
-             
+
                // 특정 타입의 프로퍼티 값들을 갖는 객체
                optionalObjectOf: PropTypes.objectOf(PropTypes.number),
-             
+
                // 지정된 타입의 속성을 가지고 있는 객체(다른 속성이 있어도 됨)
                optionalObjectWithShape: PropTypes.shape({
                  color: PropTypes.string,
                  fontSize: PropTypes.number
                }),
-             
+
                // 지정된 타입의 속성만 가지고 있는 객체(다른 속성이 있으면 안됨)
                optionalObjectWithStrictShape: PropTypes.exact({
                  name: PropTypes.string,
                  quantity: PropTypes.number
                }),
-             
+
                // 위에 있는 모든 구문에 'isRequired'를 연결하면 해당 속성이 필수임을 나타냄
                requiredFunc: PropTypes.func.isRequired,
-             
+
                // 모든 데이터 타입이 가능한 필수값
                requiredAny: PropTypes.any.isRequired,
-             
+
                // 사용자 정의 유효성 검사기를 지정
                // 검사 실패 시에는 에러(Error) 객체를 반환해야 함
                customProp: function(props, propName, componentName) {
@@ -259,11 +261,11 @@ PW: aA12345!
                    );
                  }
                },
-             
+
                // 'arrayOf' 와 'objectOf'에 사용자 정의 유효성 검사기 지정
                // 검사 실패 시에는 에러(Error) 객체를 반환해야 함
                // 유효성 검사기는 배열(array) 혹은 객체의 각 키(key)에 대하여 호출됨
-             
+
                // propValue: 현재 검사 중인 prop의 값(배열이나 객체)
                // key: 현재 검사 중인 prop의 키
                // componentName: 현재 검사 중인 컴포넌트의 이름
@@ -287,7 +289,7 @@ PW: aA12345!
          1. 두 줄 이상은 반드시 괄호, 한 줄일 때만 괄호 없이
 
              ```html
-             
+
              // good
              render() {
                return (
@@ -296,19 +298,19 @@ PW: aA12345!
                  </MyComponent>
                );
              }
-             
+
              // good, when single line
              render() {
                const body = <div>hello</div>;
                return <MyComponent>{body}</MyComponent>;
              }
-             
+
              ```
      11. 태그
          1. 안에 children 없으면 self-closing tag
      12. 메서드
          1. 괄호 열고 엔터 쳤으면 엔터 후 하나 앞에 tab에서 닫아주기
-             
+
              ```jsx
              {props.items.map((item, index) => (
                <Item
@@ -317,7 +319,7 @@ PW: aA12345!
                />
              ))}
              ```
-             
+
      13. 훅
          1. 훅을 맨 위에
          2. 그 밑에 변수
@@ -325,10 +327,9 @@ PW: aA12345!
 
      -자바스크립트 코드 컨벤션
          - 무조건 const, 바꿀 경우가 있으면 let
- 
+
 </div>
 </details>
-
 
 <details>
 <summary>커밋 컨벤션 보기</summary>
@@ -365,50 +366,59 @@ PW: aA12345!
 ## 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 ### 홈 (캐러셀)
-| 홈화면 | 
-| :--: | 
-| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320">       
-* Swiper를 이용한 carosel
-  
+
+| 홈화면 |
+| :----: |
+
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320">
+
+- Swiper를 이용한 carousel
+
 ### 로그인
 
-| 로그인 | 소셜로그인 |
-| :----: | :----: |
-| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320">        
-* 카카오 API 를 받아와 소셜로그인 구현
+|                                                         로그인                                                         |                                                       소셜로그인                                                       |
+| :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> |
+
+- 카카오 API 를 받아와 소셜로그인 구현
 
 ### 회원가입
 
-| 회원가입 | Step 1 | Step 2 |
-| :------: | :------: | :------: |
-| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320">         
-* react-hook-form 을 사용한 회원가입
-* Step 1과 Step 2로 나눠 사용자에게 좋은경험을 할 수 있는 UI 제공 
+|                                                        회원가입                                                        |                                                         Step 1                                                         |                                                         Step 2                                                         |
+| :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> |
+
+- react-hook-form 을 사용한 회원가입
+- Step 1과 Step 2로 나눠 사용자에게 좋은경험을 할 수 있는 UI 제공
 
 ### 명상하기
-| 명상시간과 테마고르기 | 애니메이션, 음악재생 | 명상기록 저장 |
-| :------: | :------: | :------: |
-| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320">         
-* 사용자가 원하는 시간을 설정하고 각 테마마다 어울리는 음악을 제공하여 편안한 명상을 도움.
-* 명상 종료 후 명상시간과 한줄 소감을 남겨 저장 후 나의 기록에서 확인 가능. 
+
+|                                                 명상시간과 테마고르기                                                  |                                                  애니메이션, 음악재생                                                  |                                                     명상기록 저장                                                      |
+| :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> |
+
+- 사용자가 원하는 시간을 설정하고 각 테마마다 어울리는 음악을 제공하여 편안한 명상을 도움.
+- 명상 종료 후 명상시간과 한줄 소감을 남겨 저장 후 나의 기록에서 확인 가능.
 
 ### 커뮤니티
 
-| 피드(무한스크롤) | 글쓰기, 수정, 삭제 | 북마크, 댓글 |
-| :--: | :--: | :--------: |
-| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320">
-* 피드를 편하게 볼 수 있도록 무한스크롤 제공
-* 글과 사진을 게시할 수 있고 언제든 수정과 삭제 가능
-* 다른 사람의 글에 댓글을 달아 소통할 수 있고 북마크를 설정하여 나의 활동에서 확인 가능 
+|                                                    피드(무한스크롤)                                                    |                                                   글쓰기, 수정, 삭제                                                   |                                                      북마크, 댓글                                                      |
+| :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> |
+
+- 피드를 편하게 볼 수 있도록 무한스크롤 제공
+- 글과 사진을 게시할 수 있고 언제든 수정과 삭제 가능
+- 다른 사람의 글에 댓글을 달아 소통할 수 있고 북마크를 설정하여 나의 활동에서 확인 가능
 
 ### 마이 페이지
 
-| 개인정보 수정 | 나의 기록, 나의 활동 | 달력에서 나의 명상 기록 확인 |
-| :--: | :--: | :----------: |
-| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320">
-* 나의 정보 중 원하는 정보만 눌러 수정 할 수 있음
-* 나의 기록에서 명상했던 기록들을 캘린더로 확인 가능
-* 나의 활동에서 게시한 글과 북마크한 글을 확인 가능
+|                                                     개인정보 수정                                                      |                                                  나의 기록, 나의 활동                                                  |                                              달력에서 나의 명상 기록 확인                                              |
+| :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> |
+
+- 나의 정보 중 원하는 정보만 눌러 수정 할 수 있음
+- 나의 기록에서 명상했던 기록들을 캘린더로 확인 가능
+- 나의 활동에서 게시한 글과 북마크한 글을 확인 가능
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -418,12 +428,7 @@ PW: aA12345!
 | :———: |
 | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> |
 
-
-
-
-
-
-회원가입 ( 2스텝 ) 
+회원가입 ( 2스텝 )
 
 소셜 로그인 ( 카카오 로그인 기능 )
 
@@ -442,9 +447,13 @@ PW: aA12345!
 ## 상세 담당 업무 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 ## 진욱
-* 명상서비스, 커뮤니티, 마이페이지
+
+- 명상서비스, 커뮤니티, 마이페이지
+
 ## 다인
-* 전체 디자인, 기획, 소셜로그인, 회원가입
+
+- 전체 디자인, 기획, 소셜로그인, 회원가입
+
 ## 기호
 
 ---
@@ -452,34 +461,20 @@ PW: aA12345!
 ## 핵심 코드 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 - 코드기능
-    
-    코드설명
-    
+  코드설명
 - 코드기능2
-    
-    코드설명
-    
+  코드설명
 - 코드기능3
-    
-    코드설명
-    
+  코드설명
 - 코드기능4
-    
-    코드설명
-    
+  코드설명
 - 코드기능5
-    
-    코드설명
-    
-- 
-- 
-
----
+  코드설명
+-
+- ***
 
 ## 프로젝트를 마치며 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 …즐거운 경험이였다
 
 ---
-
-

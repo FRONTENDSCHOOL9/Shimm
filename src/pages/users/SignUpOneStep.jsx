@@ -1,6 +1,8 @@
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
 import Loading from '@components/loading/Loading';
+import iconCurrentStep from '@assets/images/icon-breadcrumb-active.svg';
+import iconStep from '@assets/images/icon-breadcrumb.svg';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import {
   CurrentStep,
@@ -141,8 +143,14 @@ function SignUpOneStep() {
         <SignUpWrapper>
           <SignUpTitle>회원가입</SignUpTitle>
           <Stepper>
-            <CurrentStep>기본 정보 입력</CurrentStep>
-            <Step>프로필 설정</Step>
+            <CurrentStep>
+              <img src={iconCurrentStep} />
+              <span>기본 정보 입력</span>
+            </CurrentStep>
+            <Step>
+              <img src={iconStep} />
+              <span>프로필 설정</span>
+            </Step>
           </Stepper>
           <form onSubmit={handleSubmit(saveData)}>
             <div>

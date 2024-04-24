@@ -1,5 +1,5 @@
-import iconClose from '@assets/images/icon-close.svg';
-import iconMenu from '@assets/images/icon-menu.svg';
+// import iconClose from '@assets/images/icon-close.svg';
+// import iconMenu from '@assets/images/icon-menu.svg';
 import Button from '@components/button/Button';
 import {
   HeaderLink,
@@ -52,7 +52,7 @@ function Header() {
   }
 
   return (
-    <StyledHeader ref={headerRef}>
+    <StyledHeader ref={headerRef} $clicked={isClicked}>
       <Logo to="/home">
         <Img src="/logo.png" alt="쉼" />
       </Logo>
@@ -85,12 +85,7 @@ function Header() {
           </LoginContainer>
         )}
       </StyledNav>
-      <NavButton
-        onClick={handleClick}
-        $clicked={isClicked}
-        $iconClose={iconClose}
-        $iconMenu={iconMenu}
-      >
+      <NavButton onClick={handleClick} $isClicked={isClicked}>
         <i>버튼</i>
       </NavButton>
     </StyledHeader>
