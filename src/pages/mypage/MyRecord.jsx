@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { MyInfoWrapper } from '@pages/mypage/MyInfo';
 import Calendar from '@components/calendar/Calendar';
+import MyCalendar from '@components/calendar/Calendar';
+import { CalendarWrapper } from '@components/calendar/Calendar.style';
 
 const TitleSpan = styled.span`
   font-size: 2rem;
@@ -9,10 +11,10 @@ const TitleSpan = styled.span`
 
 function MyRecord() {
   return (
-    <MyInfoWrapper>
+    <CalendarWrapper>
       <TitleSpan>나의 기록</TitleSpan>
-      <Calendar />
-    </MyInfoWrapper>
+      <MyCalendar />
+    </CalendarWrapper>
   );
 }
 
