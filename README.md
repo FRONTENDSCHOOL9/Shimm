@@ -11,10 +11,17 @@
 
 ## 쉼 배포 링크 및 테스트 계정 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-<a href='/'>Shimm</a> <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+<a href='https://shimm.netlify.app/home'>Shimm</a> <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 ```
+일반 유저
 ID: user@test.com
+PW: 11111111
+```
+
+```
+관리자 계정
+ID: admin@test.com
 PW: 11111111
 ```
 
@@ -23,7 +30,7 @@ PW: 11111111
 ## 서비스 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 <span>고단했던 하루에 고요함을 선물해보세요.</span><br />
-<span>마음을 가다듬고 위해 자기만의 시간에 집중해 보세요.</span>
+<span>마음을 가다듬고 내면의 평화와 깊은 휴식을 찾아가는 여정을 지원합니다</span>
 
 ---
 
@@ -34,7 +41,8 @@ PW: 11111111
 | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/0f19575c-b85b-4740-99ab-4590f5140c0d" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/ead528a9-969f-4468-a8bb-a25e4a9ac624" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/df681754-1e22-434a-894d-6154aa964509" width="200" height="200"> |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | 정진욱 TEAM LEADER                                                                                                                  | 민다인                                                                                                                              | 정기호                                                                                                                              |
-| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄                                                                               | 커뮤니티 마이페이지                                                                                                                 |
+| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄                                                                               | 커뮤니티, 마이페이지                                                                                                                 |
+
 
 ---
 
@@ -47,7 +55,8 @@ PW: 11111111
 - 컴포넌트 분리 ( 2024.04.05 - 2024.04.07 )
 - 개발 ( 2024.04.08 - 2024.04.19 )
 - 코드 보완 및 에러 수정, 프로젝트 발표 준비 ( 2024.04.20 - 2024.04.24 )
-  <br/>
+  <br />
+  <br />
   <img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
 
 ---
@@ -62,9 +71,9 @@ PW: 11111111
 
 ### Front-end <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                                      React-<br>Router                                                                       |                                                                                    Styled-<br>Components                                                                                    |                                                                              esLint                                                                               |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="70" height="70"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="80" height="80" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |
+|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                                      React-<br>Router                                                                       |                                                                                    Styled-<br>Components                                                                                    |                                                                              esLint                                                                               |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |                  KaKaoLogin                    |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="55" height="55"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="55" height="55" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/aab37584-dedf-44f3-aa3c-12288e1951c4" width="65" height="30">
 
 ---
 
@@ -327,6 +336,7 @@ render() {
 
 <details>
 <summary>Commit Convention</summary>
+  <br />
 - 새로운 기능 추가 할때
 
 ```
@@ -433,62 +443,17 @@ render() {
 
 ## Project Tree
 
+<details>
+
+  
+<summary>Project Tree</summary>
+
 ```plaintext
+
 project
 📦src
  ┣ 📂assets
- ┃ ┣ 📂fonts
- ┃ ┃ ┣ 📜NanumSquareNeoTTF-cBd.woff
- ┃ ┃ ┣ 📜NanumSquareNeoTTF-cBd.woff2
- ┃ ┃ ┣ 📜Pretendard-Light.subset.woff
- ┃ ┃ ┣ 📜Pretendard-Light.subset.woff2
- ┃ ┃ ┣ 📜Pretendard-Medium.subset.woff
- ┃ ┃ ┗ 📜Pretendard-Medium.subset.woff2
- ┃ ┗ 📂images
- ┃ ┃ ┣ 📜bg-theme01.svg
- ┃ ┃ ┣ 📜bg-theme02.svg
- ┃ ┃ ┣ 📜bg-theme03.svg
- ┃ ┃ ┣ 📜bg-theme04.svg
- ┃ ┃ ┣ 📜bg-theme05.svg
- ┃ ┃ ┣ 📜carousel-image01.png
- ┃ ┃ ┣ 📜carousel-image02.png
- ┃ ┃ ┣ 📜carousel-image03.png
- ┃ ┃ ┣ 📜carousel-image04.png
- ┃ ┃ ┣ 📜icon-arrow-black.svg
- ┃ ┃ ┣ 📜icon-bookmark-active.svg
- ┃ ┃ ┣ 📜icon-bookmark.svg
- ┃ ┃ ┣ 📜icon-breadcrumb-active.svg
- ┃ ┃ ┣ 📜icon-breadcrumb.svg
- ┃ ┃ ┣ 📜icon-buy.svg
- ┃ ┃ ┣ 📜icon-check.svg
- ┃ ┃ ┣ 📜icon-close.svg
- ┃ ┃ ┣ 📜icon-darkmode.svg
- ┃ ┃ ┣ 📜icon-delete-post.svg
- ┃ ┃ ┣ 📜icon-down.svg
- ┃ ┃ ┣ 📜icon-dropper.svg
- ┃ ┃ ┣ 📜icon-edit.svg
- ┃ ┃ ┣ 📜icon-file.svg
- ┃ ┃ ┣ 📜icon-github.svg
- ┃ ┃ ┣ 📜icon-good.svg
- ┃ ┃ ┣ 📜icon-google.png
- ┃ ┃ ┣ 📜icon-hide.png
- ┃ ┃ ┣ 📜icon-kakao.png
- ┃ ┃ ┣ 📜icon-lightmode.svg
- ┃ ┃ ┣ 📜icon-lock.svg
- ┃ ┃ ┣ 📜icon-login.svg
- ┃ ┃ ┣ 📜icon-menu.svg
- ┃ ┃ ┣ 📜icon-more.svg
- ┃ ┃ ┣ 📜icon-music.svg
- ┃ ┃ ┣ 📜icon-naver.png
- ┃ ┃ ┣ 📜icon-ovals.svg
- ┃ ┃ ┣ 📜icon-pause.svg
- ┃ ┃ ┣ 📜icon-play.svg
- ┃ ┃ ┣ 📜icon-search.svg
- ┃ ┃ ┣ 📜icon-send.svg
- ┃ ┃ ┣ 📜icon-shapes.svg
- ┃ ┃ ┣ 📜icon-show.png
- ┃ ┃ ┣ 📜icon-signup.svg
- ┃ ┃ ┗ 📜image-error.png
+ ┃ ...
  ┣ 📂components
  ┃ ┣ 📂animation
  ┃ ┃ ┣ 📜Animation.jsx
@@ -632,8 +597,95 @@ project
  ┣ 📜index.css
  ┣ 📜main.jsx
  ┗ 📜routes.jsx
+
 ```
+
+</details>
+
+---
+
+## 상세 담당 업무 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+
+## 진욱
+```
+- 역할
+깃 관리
+배포
+QA & 테스트
+
+UI 구현
+[ 공통 ]
+버튼 컴포넌트
+모달 윈도우
+
+[ 회원 ]
+명상 설정 페이지
+명상 메인 페이지
+명상 기록 페이지
+명상 테마 구매 페이지
+
+커뮤니티 메인 페이지
+커뮤니티 게시글 등록 페이지
+커뮤니티 게시글 상세 페이지
+
+마이페이지 나의 활동 페이지
+
+[ 관리자 ]
+명상 테마 등록 페이지
+
+기능 구현
+[ 공통 ]
+헤더 및 명상 시간 선택 드롭다운 메뉴에서 컴포넌트 외부를 클릭하면 비활성화 하는 useClickOutside 훅 설계
+
+[ 로그인 및 회원가입 ]
+회원가입 시, 프로필 이미지 등록 및 등록된 이미지 삭제
+카카오 로그인(소셜 로그인)
+카카오 로그인 API를 이용해 인가 코드를 받아 api 서버에 전달
+
+[ 명상 ]
+명상 시간, 테마를 설정한 후 zustand를 이용해 상태관리
+명상 이후 명상 완료 시간까지 저장
+세션에 저장하여 새로고침 시 설정이 초기화 되는 것을 방지
+명상 기록을 저장한 이후 세션에서 데이터 삭제
+useRef와 setInterval 함수를 이용해 정해진 시간만큼 동작하는 Timer 컴포넌트 개발
+React Player를 이용, SoundCloud에 저장된 명상 음악 재생
+명상 시간 동안 반복 재생
+테마 구매 전 1분 미리듣기
+명상 기록 저장
+명상 유료/무료, 구매 여부에 따라 테마 업데이트
+포트원 결제 API를 이용한 유료 테마 결제
+
+[ 커뮤니티 ]
+커뮤니티 피드 게시글 작성/삭제/수정/북마크 등록
+커뮤니티 댓글 작성 및 삭제
+react query를 이용해 커뮤니티 피드 및 게시글 상세 - 댓글 무한스크롤
+
+[ 마이페이지 ]
+내가 작성한 글, 내가 북마크 한 글 렌더링
+내 정보 수정 - 프로필 사진 변경/삭제
+```
+
+## 다인
+
+- 전체 디자인, 기획, 소셜로그인, 회원가입
+
+## 기호
+
+- 커뮤니티 피드, 마이페이지, 마이페이지 정보 수정
+
+  ---
+
+
+## 핵심 코드 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+
+- 명상하기 페이지에서 시간과 테마를 선택한 후 명상 시작을 누르면 테마에 맞는 음악이 재생되고 설정한 타이머가 동작.
+
+- 카카오 계정으로 로그인시 별도의 회원가입 없이 서비스 이용이 가능.
+
+- 무료테마 이외에 사용자가 원하는 유료테마를 구매하는 결제 API 기능을 구현하여 좀 더 편안한 애니메이션과 안정을 주는 음악을 들으며 명상할 수 있도록 함.
+
  ---
+
  
 ## 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
@@ -692,53 +744,13 @@ project
 - 나의 기록에서 명상했던 기록들을 캘린더로 확인 가능
 - 나의 활동에서 게시한 글과 북마크한 글을 확인 가능
 
-/////////////////////////////////////////////////////////////////////////////////
 
 ### 기타
 
-| 404 에러 |
-| :———: |
-| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> |
+| 404 에러 |  
+|:-----:|
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2"> |
 
-<!-- 회원가입 ( 2스텝 )
-
-소셜 로그인 ( 카카오 로그인 기능 )
-
-명상 서비스 ( 명상 테마와 시간 선택 기능, 유료테마 구매 기능, 명상 종료시 한줄 기록 캘린더에 저장 )
-
-피드 ( 인피니티 스크롤, 게시글 북마크 기능 )
-
-피드 ( 글쓰기, 수정, 삭제 기능 )
-
-마이페이지 ( 나의 정보 확인, 수정 기능 )
-
-마이페이지 ( 나의 기록에서 달력으로 명상 한줄평 확인, 나의 활동에서 작성한글, 북마크한 글 확인 ) -->
-
----
-
-## 상세 담당 업무 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
-
-## 진욱
-
-- 명상서비스, 커뮤니티, 마이페이지
-
-## 다인
-
-- 전체 디자인, 기획, 소셜로그인, 회원가입
-
-## 기호
-
-- 커뮤니티 피드, 마이페이지, 마이페이지 저보수저
-
----
-
-## 핵심 코드 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
-
-- 명상하기 페이지에서 시간과 테마를 선택한 후 명상 시작을 누르면 테마에 맞는 음악이 재생되고 설정한 타이머가 동작.
-
-- 카카오 계정으로 로그인시 별도의 회원가입 없이 서비스 이용이 가능.
-
-- 무료테마 이외에 사용자가 원하는 유료테마를 구매하는 결제 API 기능을 구현하여 좀 더 편안한 애니메이션과 안정을 주는 음악을 들으며 명상할 수 있도록 함.
 
 ---
 
