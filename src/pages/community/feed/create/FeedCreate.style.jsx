@@ -7,8 +7,8 @@ export const CircleButton = styled.button`
   background-color: #e6e6e6;
   position: fixed;
   bottom: 5%;
-  right: 35%;
-  transform: translate(-50%);
+  right: 40%;
+  transform: translate(-50%, 50%);
   font-size: 4rem;
   display: flex;
   align-items: center;
