@@ -433,62 +433,17 @@ render() {
 
 ## Project Tree
 
+<details>
+
+  
+<summary>Project Tree</summary>
+
 ```plaintext
+
 project
 📦src
  ┣ 📂assets
- ┃ ┣ 📂fonts
- ┃ ┃ ┣ 📜NanumSquareNeoTTF-cBd.woff
- ┃ ┃ ┣ 📜NanumSquareNeoTTF-cBd.woff2
- ┃ ┃ ┣ 📜Pretendard-Light.subset.woff
- ┃ ┃ ┣ 📜Pretendard-Light.subset.woff2
- ┃ ┃ ┣ 📜Pretendard-Medium.subset.woff
- ┃ ┃ ┗ 📜Pretendard-Medium.subset.woff2
- ┃ ┗ 📂images
- ┃ ┃ ┣ 📜bg-theme01.svg
- ┃ ┃ ┣ 📜bg-theme02.svg
- ┃ ┃ ┣ 📜bg-theme03.svg
- ┃ ┃ ┣ 📜bg-theme04.svg
- ┃ ┃ ┣ 📜bg-theme05.svg
- ┃ ┃ ┣ 📜carousel-image01.png
- ┃ ┃ ┣ 📜carousel-image02.png
- ┃ ┃ ┣ 📜carousel-image03.png
- ┃ ┃ ┣ 📜carousel-image04.png
- ┃ ┃ ┣ 📜icon-arrow-black.svg
- ┃ ┃ ┣ 📜icon-bookmark-active.svg
- ┃ ┃ ┣ 📜icon-bookmark.svg
- ┃ ┃ ┣ 📜icon-breadcrumb-active.svg
- ┃ ┃ ┣ 📜icon-breadcrumb.svg
- ┃ ┃ ┣ 📜icon-buy.svg
- ┃ ┃ ┣ 📜icon-check.svg
- ┃ ┃ ┣ 📜icon-close.svg
- ┃ ┃ ┣ 📜icon-darkmode.svg
- ┃ ┃ ┣ 📜icon-delete-post.svg
- ┃ ┃ ┣ 📜icon-down.svg
- ┃ ┃ ┣ 📜icon-dropper.svg
- ┃ ┃ ┣ 📜icon-edit.svg
- ┃ ┃ ┣ 📜icon-file.svg
- ┃ ┃ ┣ 📜icon-github.svg
- ┃ ┃ ┣ 📜icon-good.svg
- ┃ ┃ ┣ 📜icon-google.png
- ┃ ┃ ┣ 📜icon-hide.png
- ┃ ┃ ┣ 📜icon-kakao.png
- ┃ ┃ ┣ 📜icon-lightmode.svg
- ┃ ┃ ┣ 📜icon-lock.svg
- ┃ ┃ ┣ 📜icon-login.svg
- ┃ ┃ ┣ 📜icon-menu.svg
- ┃ ┃ ┣ 📜icon-more.svg
- ┃ ┃ ┣ 📜icon-music.svg
- ┃ ┃ ┣ 📜icon-naver.png
- ┃ ┃ ┣ 📜icon-ovals.svg
- ┃ ┃ ┣ 📜icon-pause.svg
- ┃ ┃ ┣ 📜icon-play.svg
- ┃ ┃ ┣ 📜icon-search.svg
- ┃ ┃ ┣ 📜icon-send.svg
- ┃ ┃ ┣ 📜icon-shapes.svg
- ┃ ┃ ┣ 📜icon-show.png
- ┃ ┃ ┣ 📜icon-signup.svg
- ┃ ┃ ┗ 📜image-error.png
+ ┃ ...
  ┣ 📂components
  ┃ ┣ 📂animation
  ┃ ┃ ┣ 📜Animation.jsx
@@ -632,7 +587,11 @@ project
  ┣ 📜index.css
  ┣ 📜main.jsx
  ┗ 📜routes.jsx
+
 ```
+
+</details>
+  
  ---
  
 ## 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
@@ -692,13 +651,12 @@ project
 - 나의 기록에서 명상했던 기록들을 캘린더로 확인 가능
 - 나의 활동에서 게시한 글과 북마크한 글을 확인 가능
 
-/////////////////////////////////////////////////////////////////////////////////
 
 ### 기타
 
-| 404 에러 |
-| :———: |
-| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2" width="320"> |
+| 404 에러 |  
+|:-----:|
+| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2"> |
 
 <!-- 회원가입 ( 2스텝 )
 
