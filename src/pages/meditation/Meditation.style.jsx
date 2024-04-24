@@ -34,7 +34,6 @@ export const StyledSection = styled.section`
   max-width: 600px;
   padding: 30px 20px;
   box-sizing: border-box;
-  color: #fff;
 
   @media (min-width: 740px) {
     padding: 80px 60px;
