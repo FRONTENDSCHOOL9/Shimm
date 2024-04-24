@@ -111,7 +111,9 @@ function SignUpOneStep() {
       setModalData({
         children: (
           <span>
-            이메일 중복 확인이 필요합니다. 이메일 중복 확인을 해 주세요.
+            이메일 중복 확인이 필요합니다.
+            <br />
+            이메일 중복 확인을 해 주세요.
           </span>
         ),
         button: 1,
