@@ -1,4 +1,3 @@
-import iconArrow from '@assets/images/icon-arrow-black.svg';
 import iconOvals from '@assets/images/icon-ovals.svg';
 import iconShapes from '@assets/images/icon-shapes.svg';
 import styled from 'styled-components';
@@ -140,26 +139,11 @@ export const SectionUser = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 5px;
+    transition: all 0.3s ease-in;
   }
 
-  > button {
-    &:after {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 20px;
-      background-image: url(${iconArrow});
-      background-repeat: no-repeat;
-      margin-left: 10px;
-      transition: all 0.3s ease-out;
-    }
-  }
-
-  > button {
-    &:hover {
-      &:after {
-        margin-left: 20px;
-      }
-    }
+  :hover {
+    gap: 10px;
   }
 `;
