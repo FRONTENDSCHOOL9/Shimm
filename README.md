@@ -8,6 +8,7 @@
 <br />
 <br />
 <h1 align=center> 쉼 - 고단했던 하루에 고요함을 선물해보세요. </h1>
+<img width="1502" alt="스크린샷 2024-04-24 오후 3 17 54" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/7e571531-bcd6-4bd4-9040-d6426134e331">
 
 ---
 
