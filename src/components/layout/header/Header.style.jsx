@@ -13,19 +13,20 @@ export const StyledHeader = styled.header`
   gap: 20px;
   flex-wrap: wrap;
   z-index: 999;
-  padding-bottom: 20px;
+  height: 50px;
+  padding-top: ${props => (props.$clicked === true ? '20px' : '0')};
 
   @media (min-width: 740px) {
     flex-wrap: nowrap;
-    padding: 20px;
+    height: 80px;
   }
 `;
 
 export const Logo = styled(Link)`
   width: 70px;
   height: 16px;
+  margin-left: 20px;
   order: 1;
-  padding: 20px 20px 0 20px;
 
   &:focus {
     box-shadow: 0 0 0 2px #55a25a;
@@ -101,23 +102,32 @@ export const HeaderLink = styled(Link)`
 export const NavButton = styled.button`
   order: 2;
   width: 20px;
-  margin: 20px 20px 0 auto;
+  margin-left: auto;
+  margin-right: 20px;
 
   &:before {
     content: '';
     display: block;
     width: 16px;
-    height: 12px;
-    background-image: ${props =>
-      props.$isClicked
-        ? `url(${props.$iconClose})`
-        : `url(${props.$iconMenu})`};
-    background-repeat: no-repeat;
-    background-size: contain;
+    height: 2px;
+    background-color: rgba(85, 162, 90, 1);
+    transform: ${props => (props.$isClicked === true ? 'rotate(-45deg)' : '')};
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 2px;
+    background-color: rgba(85, 162, 90, 1);
+    transform: ${props => (props.$isClicked === true ? 'rotate(45deg)' : '')};
+    margin-top: ${props => (props.$isClicked === true ? '-2px' : '5px')};
+    transition: all 0.3s ease-in-out;
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px rgba(115, 146, 125, 1);
+    /* box-shadow: 0 0 0 2px rgba(115, 146, 125, 1); */
     border-radius: 4px;
   }
 
