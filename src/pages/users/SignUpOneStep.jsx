@@ -240,8 +240,13 @@ function SignUpOneStep() {
                 type="text"
                 id="phone"
                 placeholder="휴대폰 번호를 입력하세요"
+                maxlength="11"
                 {...register('phone', {
                   required: '휴대폰 번호를 입력하세요.',
+                  pattern: {
+                    value: /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/,
+                    message: '번호를 정확히 입력해 주세요.',
+                  },
                 })}
               />
               {errors.phone && (
