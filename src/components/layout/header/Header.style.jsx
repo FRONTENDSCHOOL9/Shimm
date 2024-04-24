@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   background-color: ${props =>
-    props.$clicked === true ? '#fff' : 'rgba(255, 255, 255, 0.2)'};
-  backdrop-filter: blur(20px);
+    props.$clicked === true ? '#fff' : 'rgba(255, 255, 255, 0.4)'};
+  backdrop-filter: blur(25px);
   position: fixed;
   top: 0;
   left: 0;
