@@ -4,6 +4,7 @@ import {
   EditButton,
   MyInfoHeader,
   MyInfoMain,
+  MyInfoSection,
   MyInfoWrapper,
   UserInfoStyled,
 } from '@pages/mypage/myinfo/MyInfo.style';
@@ -25,49 +26,51 @@ function MyInfo() {
   }, []);
 
   return (
-    <MyInfoWrapper>
-      <MyInfoHeader>
-        <img
-          src={
-            userInfo?.profileImage.startsWith('http://')
-              ? userInfo?.profileImage
-              : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userInfo?.profileImage}`
-          }
-          alt="내 프로필 이미지"
-        />
-        <span>{userInfo?.name}</span>
-      </MyInfoHeader>
-      {user.loginType === 'email' && (
-        <MyInfoMain>
-          <UserInfoStyled>
-            <span>이메일</span>
-            <span>{userInfo?.email}</span>
-          </UserInfoStyled>
-          <UserInfoStyled>
-            <span>전화번호</span>
-            <span>
-              {userInfo?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
-            </span>
-          </UserInfoStyled>
-          {userInfo?.birth && (
+    <MyInfoSection>
+      <MyInfoWrapper>
+        <MyInfoHeader>
+          <img
+            src={
+              userInfo?.profileImage.startsWith('http://')
+                ? userInfo?.profileImage
+                : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userInfo?.profileImage}`
+            }
+            alt="내 프로필 이미지"
+          />
+          <h3>{userInfo?.name}</h3>
+        </MyInfoHeader>
+        {user.loginType === 'email' && (
+          <MyInfoMain>
             <UserInfoStyled>
-              <span>생년월일</span>
-              <span>{userInfo.birth}</span>
+              <p>이메일</p>
+              <p>{userInfo?.email}</p>
             </UserInfoStyled>
-          )}
-        </MyInfoMain>
-      )}
+            <UserInfoStyled>
+              <p>전화번호</p>
+              <p>
+                {userInfo?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
+              </p>
+            </UserInfoStyled>
+            {userInfo?.birth && (
+              <UserInfoStyled>
+                <p>생년월일</p>
+                <p>{userInfo.birth}</p>
+              </UserInfoStyled>
+            )}
+          </MyInfoMain>
+        )}
 
-      {user.loginType === 'email' ? (
-        <ButtonLink to="/mypage/checkpw">
-          <EditButton>프로필 수정</EditButton>
-        </ButtonLink>
-      ) : (
-        <ButtonLink to="/mypage/editprofile">
-          <EditButton>프로필 수정</EditButton>
-        </ButtonLink>
-      )}
-    </MyInfoWrapper>
+        {user.loginType === 'email' ? (
+          <ButtonLink to="/mypage/checkpw">
+            <EditButton>프로필 수정</EditButton>
+          </ButtonLink>
+        ) : (
+          <ButtonLink to="/mypage/editprofile">
+            <EditButton>프로필 수정</EditButton>
+          </ButtonLink>
+        )}
+      </MyInfoWrapper>
+    </MyInfoSection>
   );
 }
 

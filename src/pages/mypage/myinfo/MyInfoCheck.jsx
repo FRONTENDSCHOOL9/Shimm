@@ -1,11 +1,10 @@
 import Button from '@components/button/Button';
-import Input from '@components/input/Input';
 import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
-  Check,
+  CheckSection,
   CheckWrapper,
-  StyledLabel,
+  StyledInput,
 } from '@pages/mypage/myinfo/MyInfo.style';
 import useModalStore from '@zustand/modal';
 import useUserStore from '@zustand/user';
@@ -22,6 +21,7 @@ function MyInfoCheck() {
     handleSubmit,
     formState: { errors },
     setError,
+    reset,
   } = useForm({});
   const axios = useCustomAxios();
   const navigate = useNavigate();
@@ -59,35 +59,37 @@ function MyInfoCheck() {
       {isLoading ? (
         <Loading />
       ) : (
-        <CheckWrapper>
-          <Check>
-            <span>
+        <CheckSection>
+          <CheckWrapper>
+            <h3>
               본인 인증을 위해 비밀번호 확인이 필요합니다.
               <br />
               비밀번호를 입력해 주세요.
-            </span>
+            </h3>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <StyledLabel htmlFor="password">비밀번호 입력</StyledLabel>
-              <Input
-                type="password"
-                id="password"
-                placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
-                {...register('password', {
-                  required: '비밀번호를 입력하세요.',
-                  pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message: '비밀번호 형식에 맞게 입력해 주세요.',
-                  },
-                })}
-              />
-              {errors.password && <p>{errors.password.message}</p>}
+              <div>
+                <label htmlFor="password">비밀번호 입력</label>
+                <StyledInput
+                  type="password"
+                  id="password"
+                  placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
+                  {...register('password', {
+                    required: '비밀번호를 입력하세요.',
+                    pattern: {
+                      value:
+                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                      message: '비밀번호 형식에 맞게 입력해 주세요.',
+                    },
+                  })}
+                />
+                {errors.password && <p>{errors.password.message}</p>}
+              </div>
               <Button type="submit" size="full">
                 다음 단계
               </Button>
             </form>
-          </Check>
-        </CheckWrapper>
+          </CheckWrapper>
+        </CheckSection>
       )}
     </>
   );

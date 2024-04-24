@@ -18,7 +18,7 @@ function Feed() {
       axios.get('/posts?type=community', {
         params: {
           page: pageParam,
-          limit: 3,
+          limit: 2,
           sort: JSON.stringify({ _id: -1 }),
         },
       }),

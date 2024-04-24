@@ -51,7 +51,7 @@ function Login() {
       });
       setShowModal(true);
       setModalData({
-        children: <span>로그인 완료!</span>,
+        children: <span>로그인되었습니다!</span>,
         button: 1,
         handleOk() {
           setShowModal(false);

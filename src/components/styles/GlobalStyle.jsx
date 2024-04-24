@@ -43,6 +43,10 @@ const GlobalStyle = createGlobalStyle`
   textarea {
     all: unset;
   }
+
+  hr {
+    all: unset;
+  }
   
   // Typography
   @font-face {
@@ -84,13 +88,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   // Layout
-  :root {
-    padding-top: 50px;
-
-    @media (min-width: 740px) {
-      padding-top: 110px;
-      }
-    }
+  #root {
+    height: 100vh;
+  }
 
   // Swiper
   .swiper-pagination-bullet { 

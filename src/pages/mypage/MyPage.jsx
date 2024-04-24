@@ -6,8 +6,12 @@ import {
   ArchiveBox,
   ArchiveContainer,
   ArchiveHeader,
+  LinkContainer,
   MyArchive,
+  MyPageSection,
   MyPageWrapper,
+  PostArchive,
+  RecordDate,
   RecordLi,
   UserProfile,
 } from '@pages/mypage/MyPage.style';
@@ -47,10 +51,10 @@ function MyPage() {
       key={item._id}
       item={item}
       onClick={handleMoveArchive}
-      background={item.extra?.background}
+      $background={item.extra?.background}
     >
-      <span>{item.createdAt.slice(0, 10)}</span>
-      <span>{item.content}</span>
+      <RecordDate>{item.createdAt.slice(0, 10)}</RecordDate>
+      <p>{item.content}</p>
     </RecordLi>
   ));
 
@@ -83,57 +87,65 @@ function MyPage() {
   }
 
   return (
-    <MyPageWrapper>
-      <UserProfile>
-        <h2>
-          <span>{activity?.item.name}님,</span>
-          <br />
-          안녕하세요
-        </h2>
-        <img
-          src={
-            activity?.item.profileImage.startsWith('http://')
-              ? activity?.item.profileImage
-              : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${activity?.item.profileImage}`
-          }
-          alt="내 프로필 이미지"
-        />
-      </UserProfile>
-      <Link to="/mypage/info">
-        <div>
-          <Button size="full" bgColor="primary">
-            내정보 보기
-          </Button>
-        </div>
-      </Link>
-      <ArchiveContainer>
-        <ArchiveHeader>
-          <h2>나의 기록</h2>
-          <img src={iconright} alt="더보기 버튼" onClick={handleMoveArchive} />
-        </ArchiveHeader>
-        <ArchiveBox>
-          <MyArchive>{recordList}</MyArchive>
-        </ArchiveBox>
-        <ArchiveHeader>
-          <h2>나의 활동</h2>
-          <img src={iconright} alt="더보기 버튼" onClick={handleMoveMyList} />
-        </ArchiveHeader>
-        <ArchiveBox>
-          <MyArchive>
-            <ActiveLi onClick={handleMoveMyList}>
-              <span>{getPosts}</span>
-              <span>내가 쓴 글</span>
-            </ActiveLi>
-            <hr />
-            <ActiveLi onClick={handleMoveMyBookmark}>
-              <span>{activity?.item.bookmark.posts}</span>
-              <span>북마크 한 글</span>
-            </ActiveLi>
-          </MyArchive>
-        </ArchiveBox>
-      </ArchiveContainer>
-      <Outlet />
-    </MyPageWrapper>
+    <MyPageSection>
+      <MyPageWrapper>
+        <UserProfile>
+          <h2>
+            <span>{activity?.item.name}님,</span>
+            <br />
+            안녕하세요
+          </h2>
+          <img
+            src={
+              activity?.item.profileImage.startsWith('http://')
+                ? activity?.item.profileImage
+                : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${activity?.item.profileImage}`
+            }
+            alt="내 프로필 이미지"
+          />
+        </UserProfile>
+        <LinkContainer>
+          <Link to="/mypage/info">
+            <div>
+              <Button size="mediumHigh" bgColor="primary">
+                내 정보 보기
+              </Button>
+            </div>
+          </Link>
+        </LinkContainer>
+        <ArchiveContainer>
+          <ArchiveHeader>
+            <h2>나의 기록</h2>
+            <img
+              src={iconright}
+              alt="더보기 버튼"
+              onClick={handleMoveArchive}
+            />
+          </ArchiveHeader>
+          <ArchiveBox>
+            <MyArchive>{recordList}</MyArchive>
+          </ArchiveBox>
+          <ArchiveHeader>
+            <h2>나의 활동</h2>
+            <img src={iconright} alt="더보기 버튼" onClick={handleMoveMyList} />
+          </ArchiveHeader>
+          <ArchiveBox>
+            <PostArchive>
+              <ActiveLi onClick={handleMoveMyList}>
+                <h3>{getPosts}</h3>
+                <p>내가 쓴 글</p>
+              </ActiveLi>
+              <hr />
+              <ActiveLi onClick={handleMoveMyBookmark}>
+                <h3>{activity?.item.bookmark.posts}</h3>
+                <p>북마크 한 글</p>
+              </ActiveLi>
+            </PostArchive>
+          </ArchiveBox>
+        </ArchiveContainer>
+        <Outlet />
+      </MyPageWrapper>
+    </MyPageSection>
   );
 }
 

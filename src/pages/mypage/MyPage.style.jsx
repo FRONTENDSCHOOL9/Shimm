@@ -1,21 +1,20 @@
 import styled from 'styled-components';
 
-export const MyPageWrapper = styled.div`
-  padding: 20px;
-  max-width: 450px;
-  width: 100%;
-  color: black;
-  font-size: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 0 auto;
+export const MyPageSection = styled.section`
+  flex-grow: 1;
   position: relative;
+  padding: 30px;
   box-sizing: border-box;
+`;
 
-  @media screen and (max-width: 740px) {
-    width: 320px;
-    transition: all 5s easi-in-out;
+export const MyPageWrapper = styled.div`
+  font-size: 1.4rem;
+  margin: 0 auto;
+  transition: all 5s ease-in-out;
+
+  @media (min-width: 740px) {
+    font-size: 1.6rem;
+    max-width: 500px;
   }
 `;
 
@@ -23,30 +22,52 @@ export const UserProfile = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-bottom: 20px;
+
+  & h2 {
+    font-size: 1.8rem;
+    line-height: 3.4rem;
+    font-weight: 200;
+    & span {
+      font-weight: 500;
+    }
+  }
 
   & img {
     width: 80px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     border-radius: 50%;
+  }
+
+  @media (min-width: 740px) {
+    margin-bottom: 30px;
   }
 `;
 
-export const ArchiveContainer = styled.div`
-  width: 100%;
+export const LinkContainer = styled.div`
+  text-align: center;
+  margin-bottom: 20px;
+
+  @media (min-width: 740px) {
+    margin-bottom: 30px;
+  }
 `;
+
+export const ArchiveContainer = styled.div``;
 
 export const ArchiveHeader = styled.div`
   display: flex;
-  padding: 40px 0 10px;
   align-items: center;
+  margin-bottom: 10px;
 
   & h2 {
+    font-weight: 500;
     font-size: 2rem;
-    flex-shrink: 0;
-    margin-right: 170px;
   }
 
   & img {
+    margin-left: auto;
     width: 30px;
     cursor: pointer;
     transform: rotate(90deg);
@@ -61,67 +82,71 @@ export const ArchiveHeader = styled.div`
 `;
 
 export const ArchiveBox = styled.div`
-  width: 100%;
-  margin-top: 10px;
+  margin-bottom: 20px;
+
+  @media (min-width: 740px) {
+    margin-bottom: 30px;
+  }
 `;
 
 export const MyArchive = styled.ul`
+  overflow-x: scroll;
   display: flex;
-  height: 130px;
   gap: 15px;
-  overflow-y: hidden;
-  line-height: 0.8;
-  justify-content: space-between;
-  & hr {
-    width: 1px;
-    height: 35px;
-    margin-top: 26px;
-    border: none;
-    border-left: 1px solid #d9d9d9;
-  }
 `;
 
 export const RecordLi = styled.li`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
   flex-shrink: 0;
+  word-break: keep-all;
+  margin-bottom: 20px;
   width: 140px;
   height: 100px;
   padding: 20px 12px;
-  background: ${props => (props.background ? props.background : '')};
+  background: ${props => (props.$background ? props.$background : '')};
   border-radius: 10px;
   box-sizing: border-box;
   cursor: pointer;
+  font-size: 1.4rem;
   color: white;
+`;
 
-  & span {
-    font-size: 1.4rem;
-    font-weight: 500;
+export const RecordDate = styled.p`
+  font-weight: 500;
+  margin-bottom: 10px;
+`;
+
+export const PostArchive = styled.div`
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  & hr {
+    width: 1px;
+    height: 35px;
+    border: none;
+    border-left: 1px solid #d9d9d9;
   }
 
-  & span:last-child {
-    font-weight: 300;
-    margin-top: 10px;
+  @media (min-width: 740px) {
+    margin-top: 30px;
+    gap: 50px;
   }
 `;
 
 export const ActiveLi = styled.li`
+  text-align: center;
   display: flex;
   flex-direction: column;
-  padding: 6px;
-  align-items: center;
-  /* flex-grow: 1; */
-  cursor: pointer;
+  gap: 20px;
+  font-weight: 500;
 
-  & span:first-child {
+  & h3 {
     font-size: 3.6rem;
-    font-weight: 500;
-    line-height: 2;
   }
 
-  & span:last-child {
+  & p {
     font-size: 1.4rem;
-    font-weight: 500;
   }
 `;

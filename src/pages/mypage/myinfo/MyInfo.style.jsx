@@ -1,34 +1,22 @@
+import Input from '@components/input/Input';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const MyInfoWrapper = styled.div`
-  padding: 20px;
-  max-width: 450px;
-  width: 100%;
-  color: black;
-  font-size: 2rem;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
+export const MyInfoSection = styled.section`
+  flex-grow: 1;
   position: relative;
+  padding: 30px;
   box-sizing: border-box;
-  align-items: center;
+`;
 
-  & img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-  }
+export const MyInfoWrapper = styled.div`
+  font-size: 1.4rem;
+  margin: 0 auto;
+  transition: all 5s ease-in-out;
 
-  & span {
-    font-size: 1.8rem;
-    font-weight: 500;
-    line-height: 2.1;
-  }
-
-  @media screen and (max-width: 740px) {
-    width: 320px;
-    transition: all 5s easi-in-out;
+  @media (min-width: 740px) {
+    font-size: 1.6rem;
+    max-width: 500px;
   }
 `;
 
@@ -36,49 +24,54 @@ export const MyInfoHeader = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-block: 30px;
-  gap: 16px;
-
-  & span {
-    font-size: 1.8rem;
-  }
+  margin-bottom: 30px;
+  gap: 15px;
 
   & img {
     width: 80px;
     height: 80px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     border-radius: 50%;
   }
-`;
 
-export const MyInfoMain = styled.div`
-  width: 100%;
-`;
-
-export const UserInfoStyled = styled.ul`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 28px;
-
-  & span:first-child {
+  & h3 {
     font-size: 1.8rem;
     font-weight: 500;
   }
 
-  & span:last-child {
-    color: #727272;
-    font-size: 1.8rem;
-    font-weight: 300;
+  @media (min-width: 740px) {
+    margin-bottom: 50px;
+  }
+`;
+
+export const MyInfoMain = styled.div``;
+
+export const UserInfoStyled = styled.div`
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+
+  & p:first-child {
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  & p:last-child {
+    color: #6d746e;
   }
 `;
 
 export const ButtonLink = styled(Link)`
-  width: 100%;
-  display: flex;
+  margin-bottom: 30px;
+
+  @media (min-width: 740px) {
+    margin-bottom: 50px;
+  }
 `;
 
 export const EditButton = styled.button`
   width: 100%;
-  height: 50px;
+  height: 40px;
   background-color: #55a25a;
   border-radius: 25px;
   text-align: center;
@@ -92,40 +85,60 @@ export const EditButton = styled.button`
   }
 `;
 
-export const CheckWrapper = styled.div`
-  padding: 20px;
-  max-width: 450px;
-  width: 100%;
-  color: black;
-  display: flex;
-  flex-direction: column;
+export const CheckSection = styled.section`
+  flex-grow: 1;
+  position: relative;
+  padding: 30px;
   box-sizing: border-box;
-  align-items: center;
-  margin: 0 auto;
+
+  display: flex;
 `;
 
-export const Check = styled.div`
-  margin-top: 192px;
+export const CheckWrapper = styled.div`
+  font-size: 1.4rem;
+  margin: 0 auto;
+  transition: all 5s ease-in-out;
+  width: 100%;
+  max-width: 500px;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
-  & span {
-    font-size: 1.8rem;
-    font-weight: 500;
-    line-height: 1.6;
+  & div {
+    margin-bottom: 40px;
   }
 
-  & #password {
-    height: 40px;
-    margin-bottom: 40px;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
+  & h3 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 60px;
+  }
+
+  & label {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 200;
+    margin-bottom: 13px;
   }
 
   & p {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #f00;
   }
+
+  @media (min-width: 740px) {
+    font-size: 1.6rem;
+
+    & h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+  }
+`;
+
+export const StyledInput = styled(Input)`
+  margin-bottom: 10px;
 `;
 
 export const StyledLabel = styled.label`
@@ -136,7 +149,4 @@ export const StyledLabel = styled.label`
   font-size: 1.4rem;
   font-weight: 200;
   margin-bottom: 14px;
-
-  & input {
-  }
 `;
