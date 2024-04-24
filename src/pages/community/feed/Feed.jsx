@@ -78,6 +78,7 @@ function Feed() {
             pageStart={1}
             loadMore={fetchNextPage}
             hasMore={!isFetching && hasNext}
+            loader={<Loading key={0} />}
           >
             {list}
           </InfiniteScroll>
