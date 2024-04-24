@@ -49,8 +49,8 @@ PW: aA12345!
 - 컴포넌트 분리 ( 2024.04.05 - 2024.04.07 )
 - 개발 ( 2024.04.08 - 2024.04.19 )
 - 코드 보완 및 에러 수정, 프로젝트 발표 준비  ( 2024.04.20 - 2024.04.24 )
-
-<img width="1115" alt="스크린샷 2024-04-24 오후 3 02 29" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/085f9ed6-b4cb-4b38-afb9-888380190c57">
+- 
+<img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
 
 
 ---
@@ -79,7 +79,7 @@ PW: aA12345!
  <aside>
         🚨 웹 표준, 시맨틱 마크업 준수하기, 웹 접근성 고려하기**
  </aside>
-        
+ 
      1. Naming
          1. 파일명
              1. 컴포넌트 : Component.jsx (파스칼케이스)
@@ -93,8 +93,8 @@ PW: aA12345!
      3. 선언
          1. export : (혹시나) 여러 개를 export 해야 할 경우 맨 밑에서 객체 형태로 한 번에
      4. 정렬
-         
-     
+
+         ```html
          <Foo
            superLongParam="bar"
            anotherSuperLongParam="baz"
@@ -133,33 +133,36 @@ PW: aA12345!
            />
          )}
 
+         ```
+
+         
      5. **작은따옴표**
      6. Spacing
          1. prop은 붙이고 객체는 중괄호 앞/뒤 띄어쓰기
              
-       
+       ```html
              <Foo bar={baz} />
              <Hello name={{ firstname: 'John', lastname: 'Doe' }} />;
      
-             
+             ```
      7. Props
          1. prop이 불린형일 때는 값을 생략하면 default=true
              
-
+       ```html
              <Foo hidden />
-
+       ```
              
          2. 이미지의 alt 속성은 반드시 작성
              
-
+       ```html
              <img src="hello.jpg" alt="" />
-
+        ```
              
      8. propType 위치
          1. 컴포넌트 아래, export 위
          2. defaultProps
              
-
+            ```html
              // bad
              function SFC({ foo, bar, children }) {
                return <div>{foo}{bar}{children}</div>;
@@ -184,7 +187,11 @@ PW: aA12345!
                children: null,
              };
 
+              ```
+
          3. prop-type 설정
+
+            ```html
             
              MyComponent.propTypes = {
                // 특정 JS 타입임을 선언(해당 속성이 전달되지 않아도 됨)
@@ -271,13 +278,16 @@ PW: aA12345!
                  }
                })
              };
-             
+
+              ```
      9. 함수 사용
          1. 최대한 함수 선언문
          2. 콜백 등 필요한 경우는 화살표 함수 사용
      10. 괄호
          1. 두 줄 이상은 반드시 괄호, 한 줄일 때만 괄호 없이
 
+             ```html
+             
              // good
              render() {
                return (
@@ -293,6 +303,7 @@ PW: aA12345!
                return <MyComponent>{body}</MyComponent>;
              }
              
+             ```
      11. 태그
          1. 안에 children 없으면 self-closing tag
      12. 메서드
@@ -305,22 +316,26 @@ PW: aA12345!
                  onClick={(event) => { doSomethingWith(event, item.name, index); }}
                />
              ))}
+             ```
              
      13. 훅
          1. 훅을 맨 위에
          2. 그 밑에 변수
          3. useEffect 같은 경우는 상황에 맞게
- 
- - 자바스크립트 코드 컨벤션
-     - 무조건 const, 바꿀 경우가 있으면 let
 
+     -자바스크립트 코드 컨벤션
+         - 무조건 const, 바꿀 경우가 있으면 let
+ 
 </div>
 </details>
+
+
 <details>
 <summary>커밋 컨벤션 보기</summary>
-<div markdown="2">
+<div markdown="1">
   <aside>
-    새로운 기능 추가할 때 - ✨ feat: XXXX 기능 추가
+   
+    html새로운 기능 추가할 때 - ✨ feat: XXXX 기능 추가
     기능 수정 중 - 🚧 cont: XXXX 기능 수정 중
     기능 수정 완료 - ✅ update: XXXX 기능 수정 완료
     버그 수정 - 🐛 fix: XXXX 버그 수정
@@ -333,7 +348,8 @@ PW: aA12345!
     asset 업데이트 - 🍱 asset: asset 폴더 업데이트
     오타 수정 - ✏️ typos: 오타 수정
     merge - 🔀 merge: from XXXX to XXXX
-    배포 - 🚀 deploy: XXXX 업데이트 후 배포**
+    배포 - 🚀 deploy: XXXX 업데이트 후 배포
+    
   </aside>
 </div>
 </details>
