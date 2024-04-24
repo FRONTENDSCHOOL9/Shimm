@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: ${props =>
+    props.$clicked === true ? '#fff' : 'rgba(255, 255, 255, 0.2)'};
   backdrop-filter: blur(20px);
   position: fixed;
   top: 0;
@@ -127,8 +128,10 @@ export const NavButton = styled.button`
   }
 
   &:focus {
-    /* box-shadow: 0 0 0 2px rgba(115, 146, 125, 1); */
+    box-shadow: 0 0 0 2px rgba(115, 146, 125, 1);
     border-radius: 4px;
+    padding: 10px 2px;
+    box-sizing: border-box;
   }
 
   @media (min-width: 740px) {
