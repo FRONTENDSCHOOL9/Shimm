@@ -3,6 +3,7 @@ import {
   FooterContents,
   FooterHeader,
   StyledFooter,
+  StyledLink,
 } from '@components/layout/footer/Footer.style';
 import iconGithub from '@assets/images/icon-github.svg';
 
@@ -16,8 +17,8 @@ function Footer() {
       </FooterHeader>
       <FooterContents>
         <div>
-          <Link>개인정보처리방침</Link>
-          <Link>이용약관</Link>
+          <StyledLink>개인정보처리방침</StyledLink>
+          <StyledLink>이용약관</StyledLink>
         </div>
         <p>&copy; Shimm All rights reserved.</p>
       </FooterContents>

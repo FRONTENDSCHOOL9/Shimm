@@ -1,20 +1,16 @@
 import styled from 'styled-components';
 
-export const StyledForm = styled.div`
+export const FormSection = styled.section`
   flex-grow: 1;
   position: relative;
   padding: 30px;
+  box-sizing: border-box;
 `;
 
 export const FormWrapper = styled.div`
-  flex-grow: 1;
   font-size: 1.4rem;
   margin: 0 auto;
-  margin-bottom: 40px;
-  position: relative;
   transition: all 5s ease-in-out;
-  display: flex;
-  flex-direction: column;
 
   @media (min-width: 740px) {
     font-size: 1.6rem;
@@ -26,68 +22,80 @@ export const ProfileImage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  margin-bottom: 30px;
 
   & img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    margin-bottom: 20px;
     aspect-ratio: 1/1;
     object-fit: cover;
   }
+
   & div {
     display: flex;
+    align-items: center;
     gap: 2px;
     height: 40px;
-    margin-left: 34px;
     border-radius: 20px;
-
-    & img {
-      margin-top: 12px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-    }
+    margin-top: 20px;
 
     & input {
       display: none;
     }
-  }
 
-  & label {
-    cursor: pointer;
-    background-color: #55a25a;
-    border-radius: 20px;
-    padding: 0 20px;
-    box-sizing: border-box;
-    font-size: 1.4rem;
-    line-height: 4rem;
-    font-weight: 300;
-    color: #fff;
-  }
+    & label {
+      cursor: pointer;
+      background-color: #55a25a;
+      border-radius: 20px;
+      padding: 0 20px;
+      box-sizing: border-box;
+      font-size: 1.4rem;
+      line-height: 4rem;
+      font-weight: 300;
+      color: #fff;
+    }
 
-  & label:hover {
-    background-color: #335635;
+    & label:hover {
+      background-color: #335635;
+    }
+  }
+`;
+
+export const DeleteButton = styled.button`
+  width: 30px;
+  height: 30px;
+
+  & img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
   }
 `;
 
 export const StyledNickName = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
+  margin-bottom: 20px;
+
+  & label {
+    display: block;
+    margin-bottom: 8px;
+  }
 `;
 
-export const Password = styled.div`
-  margin-bottom: 10px;
-  font-size: 1.4rem;
-  font-weight: 500;
-`;
+export const Password = styled.div``;
 
-export const ChangePassword = styled.p`
-  font-size: 1.4rem;
-  font-weight: 500;
-  margin-block: 6px;
+export const PasswordOption = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  & p {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
 `;
 
 export const Toggle = styled.div`
@@ -134,21 +142,32 @@ export const Toggle = styled.div`
 export const PasswordInputs = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
+  margin-bottom: 20px;
 
-  & div {
+  & label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 `;
 
 export const StyledBirth = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+
+  & label {
+    display: block;
+    margin-bottom: 8px;
+  }
 `;
 
 export const StyledPhoneNumber = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+
+  & label {
+    display: block;
+    margin-bottom: 8px;
+  }
 `;

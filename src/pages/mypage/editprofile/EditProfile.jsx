@@ -4,16 +4,17 @@ import Input from '@components/input/Input';
 import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
-  ChangePassword,
   FormWrapper,
   Password,
   PasswordInputs,
   StyledBirth,
-  StyledForm,
   StyledNickName,
   StyledPhoneNumber,
   Toggle,
   ProfileImage,
+  FormSection,
+  DeleteButton,
+  PasswordOption,
 } from '@pages/mypage/editprofile/EditProfile.style';
 import useModalStore from '@zustand/modal';
 import useUserStore from '@zustand/user';
@@ -114,8 +115,6 @@ function EditProfile() {
         delete formData.password;
       }
 
-      console.log(formData);
-
       const res = await axios.patch(`/users/${user._id}`, formData);
 
       setUser({
@@ -159,139 +158,142 @@ function EditProfile() {
   }
 
   return (
-    <StyledForm>
+    <>
       {isLoading ? (
         <Loading />
       ) : (
-        <FormWrapper>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <ProfileImage>
-              <img src={image.previewURL} alt="변경할 프로필 이미지" />
-              <div>
-                <input
-                  type="file"
-                  {...register('profileImage', { onChange: saveImage })}
-                  id="profileImage"
-                  accept=".png, .jpeg, .jpg"
-                  onClick={e => (e.target.value = null)}
-                />
-                <label htmlFor="profileImage">프로필 사진 변경하기</label>
-
-                <button type="button" onClick={deleteImage}>
-                  <i>이미지 제거</i>
-                  <img src={iconDelete} alt="프로필 이미지 삭제하기" />
-                </button>
-              </div>
-            </ProfileImage>
-
-            <StyledNickName>
-              <label htmlFor="name">닉네임</label>
-              <Input
-                type="text"
-                id="name"
-                display="block"
-                placeholder="닉네임을 입력해 주세요."
-                {...register('name', {
-                  required: '닉네임을 입력해 주세요.',
-                  minLength: {
-                    value: 2,
-                    message: '닉네임을 2글자 이상 입력하세요.',
-                  },
-                })}
-              />
-              {errors.name && <p>{errors.name.message}</p>}
-            </StyledNickName>
-            {user.loginType === 'email' && (
-              <Password>
-                <ChangePassword>비밀번호 변경</ChangePassword>
-                <Toggle>
+        <FormSection>
+          <FormWrapper>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <ProfileImage>
+                <img src={image.previewURL} alt="변경할 프로필 이미지" />
+                <div>
                   <input
-                    className="toggleInput"
-                    type="checkbox"
-                    id="toggle"
-                    checked={isActive}
-                    onChange={handleActive}
+                    type="file"
+                    {...register('profileImage', { onChange: saveImage })}
+                    id="profileImage"
+                    accept=".png, .jpeg, .jpg"
+                    onClick={e => (e.target.value = null)}
                   />
-                  <label className="toggleLabel" htmlFor="toggle">
-                    {' '}
-                  </label>
-                </Toggle>
-                {isActive && (
-                  <PasswordInputs>
-                    <div>
-                      <label htmlFor="password">비밀번호</label>
-                      <Input
-                        type="password"
-                        id="password"
-                        placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
-                        {...register('password', {
-                          required: '비밀번호를 입력하세요.',
-                          pattern: {
-                            value:
-                              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                            message: '비밀번호 형식에 맞게 입력해 주세요.',
-                          },
-                        })}
+                  <label htmlFor="profileImage">프로필 사진 변경하기</label>
+                  <DeleteButton type="button" onClick={deleteImage}>
+                    <i>이미지 제거</i>
+                    <img src={iconDelete} alt="프로필 이미지 삭제하기" />
+                  </DeleteButton>
+                </div>
+              </ProfileImage>
+
+              <StyledNickName>
+                <label htmlFor="name">닉네임</label>
+                <Input
+                  type="text"
+                  id="name"
+                  display="block"
+                  placeholder="닉네임을 입력해 주세요."
+                  {...register('name', {
+                    required: '닉네임을 입력해 주세요.',
+                    minLength: {
+                      value: 2,
+                      message: '닉네임을 2글자 이상 입력하세요.',
+                    },
+                  })}
+                />
+                {errors.name && <p>{errors.name.message}</p>}
+              </StyledNickName>
+              {user.loginType === 'email' && (
+                <Password>
+                  <PasswordOption>
+                    <p>비밀번호 변경</p>
+                    <Toggle>
+                      <input
+                        className="toggleInput"
+                        type="checkbox"
+                        id="toggle"
+                        checked={isActive}
+                        onChange={handleActive}
                       />
-                      {errors.password && <p>{errors.password.message}</p>}
-                    </div>
-                    <div>
-                      <label htmlFor="password-confirm">비밀번호 확인</label>
-                      <Input
-                        type="password"
-                        id="password-confirm"
-                        placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
-                        {...register('passwordConfirm', {
-                          required: '비밀번호를 한번 더 입력해 주세요.',
-                          validate: {
-                            check: val => {
-                              if (getValues('password') !== val) {
-                                return '입력하신 비밀번호가 일치하지 않습니다.';
-                              }
+                      <label className="toggleLabel" htmlFor="toggle">
+                        {' '}
+                      </label>
+                    </Toggle>
+                  </PasswordOption>
+                  {isActive && (
+                    <>
+                      <PasswordInputs>
+                        <label htmlFor="password">비밀번호</label>
+                        <Input
+                          type="password"
+                          id="password"
+                          placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
+                          {...register('password', {
+                            required: '비밀번호를 입력하세요.',
+                            pattern: {
+                              value:
+                                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                              message: '비밀번호 형식에 맞게 입력해 주세요.',
                             },
-                          },
-                        })}
-                      />
-                      {errors.passwordConfirm && (
-                        <p>{errors.passwordConfirm.message}</p>
-                      )}
-                    </div>
-                  </PasswordInputs>
-                )}
-              </Password>
-            )}
-            <StyledBirth>
-              <label htmlFor="birth">생년월일</label>
-              <Input
-                type="date"
-                id="birth"
-                placeholder="생년월일을 입력하세요"
-                min="1940-01-01"
-                {...register('birth')}
-              />
-              {errors.birth && <p>{errors.birth.message}</p>}
-            </StyledBirth>
+                          })}
+                        />
+                        {errors.password && <p>{errors.password.message}</p>}
+                      </PasswordInputs>
+                      <PasswordInputs>
+                        <label htmlFor="password-confirm">비밀번호 확인</label>
+                        <Input
+                          type="password"
+                          id="password-confirm"
+                          placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
+                          {...register('passwordConfirm', {
+                            required: '비밀번호를 한번 더 입력해 주세요.',
+                            validate: {
+                              check: val => {
+                                if (getValues('password') !== val) {
+                                  return '입력하신 비밀번호가 일치하지 않습니다.';
+                                }
+                              },
+                            },
+                          })}
+                        />
+                        {errors.passwordConfirm && (
+                          <p>{errors.passwordConfirm.message}</p>
+                        )}
+                      </PasswordInputs>
+                    </>
+                  )}
+                </Password>
+              )}
+              <StyledBirth>
+                <label htmlFor="birth">생년월일</label>
+                <Input
+                  type="date"
+                  id="birth"
+                  placeholder="생년월일을 입력하세요"
+                  min="1940-01-01"
+                  {...register('birth')}
+                />
+                {errors.birth && <p>{errors.birth.message}</p>}
+              </StyledBirth>
 
-            <StyledPhoneNumber>
-              <label htmlFor="phone">전화번호</label>
-              <Input
-                type="text"
-                id="phone"
-                placeholder="휴대폰 번호를 입력하세요"
-                {...register('phone')}
-              />
-              {errors.phone && <p>{errors.phone.message}</p>}
-            </StyledPhoneNumber>
+              <StyledPhoneNumber>
+                <label htmlFor="phone">전화번호</label>
+                <Input
+                  type="text"
+                  id="phone"
+                  placeholder="휴대폰 번호를 입력하세요"
+                  {...register('phone')}
+                />
+                {errors.phone && <p>{errors.phone.message}</p>}
+              </StyledPhoneNumber>
 
-            <div>
-              <Button type="submit" bgColor="primary" size="full">
-                수정하기
-              </Button>
-            </div>
-          </form>
-        </FormWrapper>
+              <div>
+                <Button type="submit" bgColor="primary" size="full">
+                  수정하기
+                </Button>
+              </div>
+            </form>
+          </FormWrapper>
+        </FormSection>
       )}
-    </StyledForm>
+    </>
   );
 }
 
