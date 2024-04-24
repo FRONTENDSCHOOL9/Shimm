@@ -240,7 +240,7 @@ function SignUpOneStep() {
                 type="text"
                 id="phone"
                 placeholder="휴대폰 번호를 입력하세요"
-                maxlength="11"
+                maxLength="11"
                 {...register('phone', {
                   required: '휴대폰 번호를 입력하세요.',
                   pattern: {
