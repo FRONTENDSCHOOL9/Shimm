@@ -39,26 +39,27 @@ function MyInfo() {
           />
           <h3>{userInfo?.name}</h3>
         </MyInfoHeader>
-        {user.loginType === 'email' && (
-          <MyInfoMain>
+
+        <MyInfoMain>
+          {user.loginType === 'email' && (
             <UserInfoStyled>
               <p>이메일</p>
               <p>{userInfo?.email}</p>
             </UserInfoStyled>
+          )}
+          <UserInfoStyled>
+            <p>전화번호</p>
+            <p>
+              {userInfo?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
+            </p>
+          </UserInfoStyled>
+          {userInfo?.birth && (
             <UserInfoStyled>
-              <p>전화번호</p>
-              <p>
-                {userInfo?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
-              </p>
+              <p>생년월일</p>
+              <p>{userInfo.birth}</p>
             </UserInfoStyled>
-            {userInfo?.birth && (
-              <UserInfoStyled>
-                <p>생년월일</p>
-                <p>{userInfo.birth}</p>
-              </UserInfoStyled>
-            )}
-          </MyInfoMain>
-        )}
+          )}
+        </MyInfoMain>
 
         {user.loginType === 'email' ? (
           <ButtonLink to="/mypage/checkpw">
