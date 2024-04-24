@@ -266,6 +266,7 @@ function EditProfile() {
                 <Input
                   type="date"
                   id="birth"
+                  size="full"
                   placeholder="생년월일을 입력하세요"
                   min="1940-01-01"
                   {...register('birth')}

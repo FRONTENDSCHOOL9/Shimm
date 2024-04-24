@@ -10,9 +10,10 @@ import {
   StyledHeader,
   StyledNav,
 } from '@components/layout/header/Header.style';
+import useClickOutside from '@hooks/useClickOutside';
 import useWindowWide from '@hooks/useWindowWide';
 import useUserStore from '@zustand/user';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
@@ -20,6 +21,16 @@ function Header() {
   const [isClicked, setIsClicked] = useState(false);
   const { user, setUser } = useUserStore();
   const navigate = useNavigate();
+  const headerRef = useRef(null);
+
+  useClickOutside(headerRef, () => {
+    if (!isClicked) {
+      setIsClicked(false);
+    } else {
+      setIsClicked(true);
+    }
+    setIsClicked(false);
+  });
 
   useEffect(() => {
     setIsClicked(false);
@@ -39,7 +50,7 @@ function Header() {
   }
 
   return (
-    <StyledHeader>
+    <StyledHeader ref={headerRef}>
       <Logo to="/home">
         <Img src="/logo.png" alt="쉼" />
       </Logo>

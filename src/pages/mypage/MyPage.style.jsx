@@ -90,7 +90,7 @@ export const ArchiveBox = styled.div`
 `;
 
 export const MyArchive = styled.ul`
-  overflow-x: scroll;
+  overflow-x: auto;
   display: flex;
   gap: 15px;
 `;
