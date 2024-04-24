@@ -1,5 +1,5 @@
 import Lottie from 'react-lottie';
-import animationData from './meditation-animation01.json';
+import animation from './meditation-animation01.json';
 import styled from 'styled-components';
 
 const AnimationWrapper = styled.div`
@@ -16,7 +16,7 @@ function Animation() {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animationData,
+    animationData: animation,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
@@ -24,7 +24,7 @@ function Animation() {
 
   return (
     <AnimationWrapper>
-      <Lottie options={defaultOptions} speed={0.2} />
+      <Lottie options={defaultOptions} speed={0.5} />
     </AnimationWrapper>
   );
 }

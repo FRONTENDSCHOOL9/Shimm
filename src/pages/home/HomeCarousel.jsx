@@ -4,7 +4,6 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import {
-  CarouselWrapper,
   CaraouselTitle,
   CarouselAuthor,
   CarouselText,
@@ -19,7 +18,7 @@ function HomeCarousel() {
   SwiperCore.use([Autoplay]);
   return (
     <>
-      <CarouselWrapper>
+      <div>
         <Swiper
           modules={[Pagination, Autoplay]}
           slidesPerView={1}
@@ -77,7 +76,7 @@ function HomeCarousel() {
             </CarouselText>
           </SwiperSlide>
         </Swiper>
-      </CarouselWrapper>
+      </div>
     </>
   );
 }

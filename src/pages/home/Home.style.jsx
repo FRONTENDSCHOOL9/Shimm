@@ -13,18 +13,6 @@ export const StyledMain = styled.main`
   }
 `;
 
-export const CarouselWrapper = styled.div`
-  position: relative;
-
-  /* &:before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 2;
-  } */
-`;
-
 export const CarouselText = styled.div`
   position: absolute;
   top: 50%;
