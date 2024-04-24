@@ -1,7 +1,7 @@
 <br />
-
-<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c65ec746-1170-4ed3-80a6-2d0221934be5"/>
-
+<div align="center">
+<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c65ec746-1170-4ed3-80a6-2d0221934be5" width="400" height="80">
+</div>
 <br />
 <h1 align=center> 쉼 - 고단했던 하루에 고요함을 선물해보세요. </h1>
 <br />
@@ -29,19 +29,27 @@ PW: 11111111
 
 ## 서비스 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
+<br />
 <span>고단했던 하루에 고요함을 선물해보세요.</span><br />
+<br />
 <span>마음을 가다듬고 내면의 평화와 깊은 휴식을 찾아가는 여정을 지원합니다</span>
 
 ---
 
 ## 쉼 팀원 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
-
-멋쟁이 사자처럼 프엔9기 2팀 < 2thetop >
+<br />
+<div align="center"><img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/8c5ee870-9cea-428e-9c3d-e3608bc4b182" alt="팀로고 사진" />
+<br />
+<br />
+  멋쟁이 사자처럼 프엔9기 2팀 < 2thetop >
+<br />
+<br />
+</div>
 
 | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/0f19575c-b85b-4740-99ab-4590f5140c0d" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/ead528a9-969f-4468-a8bb-a25e4a9ac624" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/df681754-1e22-434a-894d-6154aa964509" width="200" height="200"> |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| 정진욱 TEAM LEADER                                                                                                                  | 민다인                                                                                                                              | 정기호                                                                                                                              |
-| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄                                                                               | 커뮤니티, 마이페이지                                                                                                                 |
+| <a href="https://github.com/JWJung-99" >정진욱 TEAM LEADER</a>                                                                                                                  | <a href="https://github.com/danggin">민다인</a>                                                                                                                             | <a href="https://github.com/kihonoluluhawaii">정기호</a>                                                                                                                              |
+| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄                                                                               | 커뮤니티, 마이페이지, 캘린더                                                                                                                 |
 
 
 ---
@@ -71,9 +79,9 @@ PW: 11111111
 
 ### Front-end <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                                      React-<br>Router                                                                       |                                                                                    Styled-<br>Components                                                                                    |                                                                              esLint                                                                               |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |                  KaKaoLogin                    |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="55" height="55"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="55" height="55" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/aab37584-dedf-44f3-aa3c-12288e1951c4" width="65" height="30">
+|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                                      React-<br>Router                                                                       |                                                                                    Styled-<br>Components                                                                                    |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |                  KaKaoLogin                    |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="55" height="55"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="55" height="55" /></div>| <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/aab37584-dedf-44f3-aa3c-12288e1951c4" width="65" height="30">
 
 ---
 
@@ -337,6 +345,8 @@ render() {
 <details>
 <summary>Commit Convention</summary>
   <br />
+  <br />
+  
 - 새로운 기능 추가 할때
 
 ```
@@ -608,12 +618,12 @@ project
 
 ## 진욱
 
-### 역할 <br />
+### 역할 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="10" height="18"><br />
   깃 관리 <br />
   배포 <br />
   QA & 테스트 <br />
 
-### UI 구현 <br />
+### UI 구현 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="10" height="18"><br />
 - [ 공통 ] <br />
   버튼 컴포넌트 <br />
   모달 윈도우 <br />
@@ -634,7 +644,7 @@ project
 - [ 관리자 ] <br />
   명상 테마 등록 페이지 <br />
 
-### 기능 구현 <br />
+### 기능 구현 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="10" height="18"><br />
 - [ 공통 ] <br />
   헤더 및 명상 시간 선택 드롭다운 메뉴에서 컴포넌트 외부를 클릭하면 비활성화 하는 useClickOutside 훅 설계 <br />
 
@@ -672,21 +682,21 @@ project
 
 ## 기호
 
-### 역할<br />
+### 역할<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="10" height="18"><br />
   커뮤니티
   마이페이지
   캘린더
 
-### UI 구현 <br />
+### UI 구현 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="10" height="18"><br />
 - [ 회원 ] <br />
   커뮤니티 메인 페이지 <br />
   커뮤니티 게시글 등록 페이지 <br />
   커뮤니티 게시글 상세 페이지 <br />
   회원정보확인 페이지 <br />
   회원정보수정 페이지 <br />
-  나의 명상 기록 페이지 <br />
+  캘린더 페이지 <br />
 
-### 기능 구현 <br />
+### 기능 구현<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="10" height="18"><br />
 - [ 커뮤니티 ] <br />
   커뮤니티 피드 게시글 등록 <br />
   커뮤니티 댓글 작성  <br />
@@ -695,23 +705,140 @@ project
   마이페이지 비밀번호 확인 후 일치하면 회원정보 수정 페이지로 이동 <br />
   회원정보 수정 <br />
   나의 명상 기록 페이지에 명상 기록 저장 후 <br />
-  캘린더페이지에서 날짜별로 명상 기록 확인 <br />
+  캘린더 페이지에 날짜별로 명상 기록 확인 <br />
 
   ---
 
 
 ## 핵심 코드 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-- 명상하기 페이지에서 시간과 테마를 선택한 후 명상 시작을 누르면 테마에 맞는 음악이 재생되고 설정한 타이머가 동작.
+- 모바일 화면에서 드롭 다운 형식으로 작동하는 반응형 헤더와 명상 시간을 설정하는 드롭다운 메뉴에서,<br /> 해당 컴포넌트 이외의 영역을 클릭하거나 터치하면 드롭다운 메뉴를 접는 기능을 구현 <br />
 
-- 카카오 계정으로 로그인시 별도의 회원가입 없이 서비스 이용이 가능.
+```jsx
 
-- 무료테마 이외에 사용자가 원하는 유료테마를 구매하는 결제 API 기능을 구현하여 좀 더 편안한 애니메이션과 안정을 주는 음악을 들으며 명상할 수 있도록 함.
+useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        onClickOutside();
+      }
+    }
 
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref, onClickOutside]);
+
+```
+
+- 카카오 API를 이용해 카카오에서 사용자의 인가 코드를 받아온 후, api 서버에 발급받은 인가코드와 Redirect URI를 전달하여<br /> 카카오 로그인 및 회원가입을 구현 => 카카오에서 인가코드를 받아 params로 받아오는 것이 핵심<br />
+
+```jsx
+
+const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+const handleLogin = () => {
+    window.location.href = KAKAO_URL;
+};
+
+const [searchParams] = useSearchParams();
+const code = searchParams.get('code');
+
+const res = await axios.post('users/login/kakao', 
+    code,
+    redirect_uri: `${window.location.origin}/auth/kakao`,
+});
+```
+
+- setInterval 함수를 이용해 사용자가 설정한 시간부터 1초 간격으로 time을 변경 후 렌더링하며 동작하는 타이머를 구현
+
+```jsx
+
+(function handleStart() {
+    if (!isStarted) {
+      formatTime();
+      timerRef.current = setInterval(() => {
+        setTime(prevTime => prevTime - 1);
+      }, 1000);
+      setIsStarted(true);
+    }
+  })();
+
+```
+-  React Player 라이브러리를 이용하여, Sound Cloud에 저장되어 있는 쉼의 자체 제작 명상 음악을 재생,<br /> Sound Cloud 플레이어는 반복 재생 기능을 제공하지 않아 음악이 종료될 시점에 다시 처음으로 이동하며<br /> 명상 시간 동안 반복 재생할 수 있도록 구현<br />
+
+```jsx
+
+function handleProgress(state) {
+    const { playedSeconds } = state;
+    const remainingTime = duration - playedSeconds;
+    const threshold = 3;
+
+    if (remainingTime <= threshold) {
+      setIsPlaying(false);
+      playerRef.current.seekTo(0);
+      setIsPlaying(true);
+    }
+}
+
+function handleReady() {
+    const trackDuration = playerRef.current.getDuration();
+    setDuration(trackDuration);
+    setIsPlaying(true);
+}
+
+
+<ReactPlayer
+    ref={playerRef}
+    url={selectedTheme.music}
+    loop={false}
+    playing={isPlaying}
+    controls={false}
+    onReady={handleReady}
+    onProgress={handleProgress}
+/>
+```
+
+- JavaScript CDN으로 포트원 결제 API를 연동하여 KCP 결제 서비스를 통해 유료 테마를 구매할 수 있는 기능 구현,<br /> 테스트 결제가 가능하고, 결제 완료 시 사용자의 테마 목록에서 구매 여부를 렌더링<br />
+
+```jsx
+
+const { IMP } = window;
+    IMP.init(import.meta.env.VITE_MERCHANT_CODE);
+    IMP.request_pay(
+      {
+        pg: 'kcp',
+        pay_method: 'card',
+        merchant_uid:
+          new Date().getTime() + Math.floor(Math.random() * 1000000),
+        name: '테마 결제',
+        amount: 1000,
+        buyer_name: user.name,
+        buyer_tel: user.phone,
+        buyer_email: user.email,
+      },
+      async res => {
+        try {
+          if (res.success) {
+            await axios.post('/orders', {
+              products: [
+                {
+                  _id: JSON.parse(sessionStorage.getItem('theme')).state
+                    .selectedTheme.id,
+                  quantity: 1,
+                  extra: { ...res },
+                },
+              ],
+            });
+
+
+… 중략
+```
  ---
 
- 
-## 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+
+### 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 ### 홈 (캐러셀)
 
