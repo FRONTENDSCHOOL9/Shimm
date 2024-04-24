@@ -3,8 +3,6 @@ import iconShapes from '@assets/images/icon-shapes.svg';
 import styled from 'styled-components';
 
 export const StyledMain = styled.main`
-  margin-top: -100px;
-
   > section {
     margin-top: 30px;
   }
