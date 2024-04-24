@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { MyInfoWrapper } from '@pages/mypage/MyInfo';
-import Calendar from '@components/calendar/Calendar';
 import MyCalendar from '@components/calendar/Calendar';
 import { CalendarWrapper } from '@components/calendar/Calendar.style';
 
