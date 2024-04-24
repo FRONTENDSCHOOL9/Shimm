@@ -1,14 +1,12 @@
 <br />
 
 ![shimm-logo](https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/5542dd3b-c300-4cfb-9e78-e10157827a45)
-# 
 
-<br />
 
-<br />
 <br />
 <h1 align=center> 쉼 - 고단했던 하루에 고요함을 선물해보세요. </h1>
-<img width="1502" alt="스크린샷 2024-04-24 오후 3 17 54" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/7e571531-bcd6-4bd4-9040-d6426134e331">
+<br />
+<img width="1493" alt="스크린샷 2024-04-24 오후 3 38 11" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/0a7f8127-4f7d-4085-a676-0510ffb6c52f">
 
 ---
 
@@ -35,17 +33,10 @@ PW: aA12345!
 
 멋쟁이 사자처럼 프엔9기 2팀 < 2thetop >
 
----
-
-[제목 없는 데이터베이스](https://www.notion.so/f9434ba437ab43119b0f2dba1e1b1fc3?pvs=21)
-
----
-
-## 역할 분담
-
+|<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/1e0b45c3-d72d-4aba-bf54-7b0f7f3923c4" width="400" height="400"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d3515591-d3ec-44a4-844b-23d73f1d57ea" width="400" height="400">| <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/f64f8026-ba06-4db5-9e72-621c713d3b21" width="400" height="400">|
+|---|---|---|
 | 정진욱 TEAM LEADER | 민다인  | 정기호 |
-| --- | --- | --- |
-| 명상 서비스 구현 및 총괄 | 로그인, 소셜로그인, 회원가입 구현 및 디자인 총괄 | 커뮤니티 마이페이지  |
+| 명상 서비스 구현 및 총괄 | 로그인, 소셜로그인, 회원가입 구현 및 디자인 총괄 | 커뮤니티 마이페이지  
 
 ---
 
@@ -71,13 +62,14 @@ PW: aA12345!
 <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
 <img src="https://img.shields.io/badge/Zustand-F1124?style=for-the-badge&logo=Zustand&logoColor=white"> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=white"> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white"> <img src="https://img.shields.io/badge/swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white">
 
-| 개발 환경 | React, react-query, Axios, Zustand, styled-components |
+## 개발 환경 및 기술 스택
+
+| 개발 환경 | React, styled-components, react-query, Axios, Zustand |
 | --- | --- |
 | 컨벤션 | prettier, eslint |
 | 프로젝트 관리 | Github Pull requests |
 | 커뮤니케이션 | Notion / Discord |
 | 배포 | Netlify |
-
 ---
 ## 요구사항 정의서 
 <img width="1212" alt="스크린샷 2024-04-24 오후 2 55 49" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/13796afd-c4cf-4343-9554-a999dff43158">
@@ -85,13 +77,13 @@ PW: aA12345!
 
 ## ⌨️  컨벤션
 
-- 코드 컨벤션 보기
-    - 코드컨벤션
-        
-        <aside>
-        🚨 **웹 표준, 시맨틱 마크업 준수하기, 웹 접근성 고려하기**
-        
-        </aside>
+<details>
+<summary>코드 컨벤션 보기</summary>
+<div markdown="1">
+
+ <aside>
+        🚨 웹 표준, 시맨틱 마크업 준수하기, 웹 접근성 고려하기**
+ </aside>
         
         1. Naming
             1. 파일명
@@ -333,10 +325,15 @@ PW: aA12345!
     
     - 자바스크립트 코드 컨벤션
         - 무조건 const, 바꿀 경우가 있으면 let
-- 커밋 컨벤션 보기
-    
+
+</div>
+</details>
+<details>
+<summary>커밋 컨벤션 보기</summary>
+<div markdown="1">
+ 
     ```jsx
-    **새로운 기능 추가할 때 - ✨ feat: XXXX 기능 추가
+    새로운 기능 추가할 때 - ✨ feat: XXXX 기능 추가
     기능 수정 중 - 🚧 cont: XXXX 기능 수정 중
     기능 수정 완료 - ✅ update: XXXX 기능 수정 완료
     버그 수정 - 🐛 fix: XXXX 버그 수정
@@ -351,13 +348,15 @@ PW: aA12345!
     merge - 🔀 merge: from XXXX to XXXX
     배포 - 🚀 deploy: XXXX 업데이트 후 배포**
     ```
-    
+ <aside>
+</div>
+</details>
 
 ---
 
 ## 🧸 플로우 차트
 
-![shimm-flowchart.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/08a14ef7-598b-4904-8533-b435864de081/bbc62e6a-ebf8-4b0a-9606-efbe5a735dc2/shimm-flowchart.png)
+<img width="931" alt="shimm-flowchart" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/f3f089a2-ecdc-4ea7-9244-db68f8f8e1d3">
 
 ---
 
