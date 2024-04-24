@@ -46,6 +46,7 @@ const ArchiveHeader = styled.div`
   display: flex;
   padding: 40px 0 10px;
   align-items: center;
+  justify-content: space-between;
 
   & h2 {
     font-size: 2rem;
@@ -65,6 +66,11 @@ const ArchiveHeader = styled.div`
       transform: rotate(90deg) scale(1.2);
     }
   }
+`;
+
+export const NicknameBold = styled.span`
+  font-weight: 500;
+  display: block;
 `;
 
 const ArchiveBox = styled.div`
@@ -204,9 +210,8 @@ function MyPage() {
     <MyPageWrapper>
       <UserProfile>
         <h2>
-          <span>{activity?.item.name}님,</span>
-          <br />
-          안녕하세요
+          <NicknameBold>{activity?.item.name}님,</NicknameBold>
+          <small>안녕하세요.</small>
         </h2>
         <img
           src={

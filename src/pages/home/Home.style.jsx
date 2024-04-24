@@ -32,10 +32,6 @@ export const CarouselText = styled.div`
   transform: translate(-50%);
   text-align: center;
   color: #fff;
-
-  @media (max-width: 740px) {
-    top: 60%;
-  }
 `;
 
 export const CarouselImage = styled.img`
@@ -79,7 +75,7 @@ export const SectionLink = styled.section`
   box-sizing: border-box;
 
   > div {
-    width: 100vw;
+    width: 100%;
     max-width: 400px;
     margin: 0 auto 10px;
     height: 150px;
@@ -149,7 +145,7 @@ export const SectionUser = styled.section`
   font-size: 1.4rem;
 
   > button {
-    width: 100vw;
+    width: 100%;
     max-width: 400px;
     height: 40px;
     margin: 0 auto 10px;
