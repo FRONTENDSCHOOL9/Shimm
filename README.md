@@ -433,6 +433,8 @@ render() {
 
 ## Project Tree
 
+```plaintext
+project
 📦src
  ┣ 📂assets
  ┃ ┣ 📂fonts
@@ -630,7 +632,7 @@ render() {
  ┣ 📜index.css
  ┣ 📜main.jsx
  ┗ 📜routes.jsx
-
+```
  ---
  
 ## 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
