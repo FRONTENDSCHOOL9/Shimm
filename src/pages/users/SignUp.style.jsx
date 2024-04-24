@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import iconCurrentStep from '@assets/images/icon-breadcrumb-active.svg';
-import iconStep from '@assets/images/icon-breadcrumb.svg';
 
 export const SignUpWrapper = styled.div`
   padding: 0 2.8em;
@@ -36,6 +34,10 @@ export const Stepper = styled.ul`
 
   & li {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
   & li:first-child {
@@ -57,9 +59,6 @@ export const Stepper = styled.ul`
 `;
 
 export const Step = styled.li`
-  background-image: url(${iconStep});
-  background-repeat: no-repeat;
-  background-position: left center;
   text-align: right;
   padding-left: 10px;
   width: fit-content;
@@ -75,9 +74,6 @@ export const CurrentStep = styled(Step)`
   text-align: center;
   padding-left: 10px;
   box-sizing: border-box;
-  background-image: url(${iconCurrentStep});
-  background-repeat: no-repeat;
-  background-position: 15px center;
 `;
 
 export const InputLabel = styled.label`

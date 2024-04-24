@@ -14,6 +14,7 @@ import {
   RecordDate,
   RecordLi,
   UserProfile,
+  NoRecord,
 } from '@pages/mypage/MyPage.style';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
@@ -123,7 +124,20 @@ function MyPage() {
             />
           </ArchiveHeader>
           <ArchiveBox>
-            <MyArchive>{recordList}</MyArchive>
+            {record?.length !== 0 ? (
+              <MyArchive>{recordList}</MyArchive>
+            ) : (
+              <NoRecord>
+                <p>명상 기록이 없습니다.</p>
+                <Button
+                  size="full"
+                  bgColor="dark"
+                  handleClick={() => navigate('/meditation')}
+                >
+                  명상하기
+                </Button>
+              </NoRecord>
+            )}
           </ArchiveBox>
           <ArchiveHeader>
             <h2>나의 활동</h2>

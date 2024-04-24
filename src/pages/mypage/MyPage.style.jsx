@@ -90,7 +90,7 @@ export const ArchiveBox = styled.div`
 `;
 
 export const MyArchive = styled.ul`
-  overflow-x: scroll;
+  overflow-x: auto;
   display: flex;
   gap: 15px;
 `;
@@ -148,5 +148,16 @@ export const ActiveLi = styled.li`
 
   & p {
     font-size: 1.4rem;
+  }
+`;
+
+export const NoRecord = styled.div`
+  padding: 10px 0;
+
+  & p {
+    margin: 60px auto;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: center;
   }
 `;

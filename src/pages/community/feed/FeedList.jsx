@@ -130,6 +130,21 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
               •••
             </More>
             {isOpened && (
+              <FeedDropDown
+                id={_id}
+                handleDelete={() => handleDelete(_id)}
+                type={user.type}
+              />
+            )}
+          </>
+        )}
+
+        {user && user.type === 'seller' && (
+          <>
+            <More type="button" onClick={handleMore}>
+              •••
+            </More>
+            {isOpened && (
               <FeedDropDown id={_id} handleDelete={() => handleDelete(_id)} />
             )}
           </>
@@ -148,7 +163,7 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
 
       {user && <ReplyNew user={user} id={_id} />}
       <ReplyMore to={`/community/${_id}`}>
-        {repliesCount}개의 댓글 보기
+        {repliesCount ? `${repliesCount}개의 댓글 보기` : ''}
       </ReplyMore>
     </Post>
   );

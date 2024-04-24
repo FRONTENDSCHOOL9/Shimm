@@ -1,4 +1,3 @@
-import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
 import { Menu, StyledUl } from '@pages/meditation/themeset/ThemeSet.style';
 import ThemeItem from '@pages/meditation/themeset/themeitem/ThemeItem';

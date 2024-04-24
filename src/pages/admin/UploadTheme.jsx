@@ -129,8 +129,10 @@ function UploadTheme() {
   }
 
   function handlePattern(e) {
-    const temp = e.target.src?.split('/');
-    setBgImage(temp[temp.length - 1]);
+    const temp = e.target?.src?.split('/');
+    if (temp) {
+      setBgImage(temp[temp.length - 1]);
+    }
   }
 
   return (
