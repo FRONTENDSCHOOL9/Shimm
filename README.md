@@ -14,7 +14,14 @@
 <a href='https://shimm.netlify.app/home'>Shimm</a> <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 ```
+일반 유저
 ID: user@test.com
+PW: 11111111
+```
+
+```
+관리자 계정
+ID: admin@test.com
 PW: 11111111
 ```
 
@@ -63,7 +70,8 @@ PW: 11111111
 - 컴포넌트 분리 ( 2024.04.05 - 2024.04.07 )
 - 개발 ( 2024.04.08 - 2024.04.19 )
 - 코드 보완 및 에러 수정, 프로젝트 발표 준비 ( 2024.04.20 - 2024.04.24 )
-  <br/>
+  <br />
+  <br />
   <img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
 
 ---
@@ -78,9 +86,9 @@ PW: 11111111
 
 ### Front-end <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                                      React-<br>Router                                                                       |                                                                                    Styled-<br>Components                                                                                    |                                                                              esLint                                                                               |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="70" height="70"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="80" height="80" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |
+|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                                      React-<br>Router                                                                       |                                                                                    Styled-<br>Components                                                                                    |                                                                              esLint                                                                               |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |                  KaKaoLogin                    |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="70" height="70"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="80" height="80" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/aab37584-dedf-44f3-aa3c-12288e1951c4" width="65" height="30">
 
 ---
 
@@ -686,19 +694,6 @@ project
 |:-----:|
 | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c84138a5-2667-4d89-b85c-d92bf937b6d2"> |
 
-<!-- 회원가입 ( 2스텝 )
-
-소셜 로그인 ( 카카오 로그인 기능 )
-
-명상 서비스 ( 명상 테마와 시간 선택 기능, 유료테마 구매 기능, 명상 종료시 한줄 기록 캘린더에 저장 )
-
-피드 ( 인피니티 스크롤, 게시글 북마크 기능 )
-
-피드 ( 글쓰기, 수정, 삭제 기능 )
-
-마이페이지 ( 나의 정보 확인, 수정 기능 )
-
-마이페이지 ( 나의 기록에서 달력으로 명상 한줄평 확인, 나의 활동에서 작성한글, 북마크한 글 확인 ) -->
 
 ---
 
