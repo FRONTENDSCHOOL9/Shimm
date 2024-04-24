@@ -1,3 +1,4 @@
+import Animation from '@components/animation/Animation';
 import Button from '@components/button/Button';
 import {
   PageTitle,
@@ -48,6 +49,7 @@ function MeditationProgress() {
 
   return (
     <StyledMain $bgColor={selectedTheme.background}>
+      <Animation />
       <Player>
         <ReactPlayer
           url={selectedTheme.music}

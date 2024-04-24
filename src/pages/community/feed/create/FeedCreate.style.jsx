@@ -4,10 +4,10 @@ export const CircleButton = styled.button`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #fafafa;
+  background-color: #e6e6e6;
   position: fixed;
   bottom: 10%;
-  right: 15%;
+  right: 10%;
   transform: translate(-50%, 50%);
   font-size: 4rem;
   display: flex;
@@ -17,7 +17,7 @@ export const CircleButton = styled.button`
   transition: 0.3s ease-in-out;
 
   &:hover {
-    background: #e9e9e9;
+    background: #cbcbcb;
     transition: 0.14s all ease-in;
     transform: translate(-50%, 50%) rotate(90deg);
   }

@@ -6,8 +6,7 @@ import {
   CaraouselTitle,
   CarouselAuthor,
   CarouselImage,
-  CarouselText,
-  CarouselWrapper,
+  CarouselText
 } from '@pages/home/Home.style';
 import SwiperCore from 'swiper';
 import 'swiper/css';
@@ -19,7 +18,7 @@ function HomeCarousel() {
   SwiperCore.use([Autoplay]);
   return (
     <>
-      <CarouselWrapper>
+      <div>
         <Swiper
           modules={[Pagination, Autoplay]}
           slidesPerView={1}
@@ -77,7 +76,7 @@ function HomeCarousel() {
             </CarouselText>
           </SwiperSlide>
         </Swiper>
-      </CarouselWrapper>
+      </div>
     </>
   );
 }
