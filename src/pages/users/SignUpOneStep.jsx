@@ -1,9 +1,9 @@
+import iconCurrentStep from '@assets/images/icon-breadcrumb-active.svg';
+import iconStep from '@assets/images/icon-breadcrumb.svg';
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
 import Loading from '@components/loading/Loading';
-import iconCurrentStep from '@assets/images/icon-breadcrumb-active.svg';
-import iconStep from '@assets/images/icon-breadcrumb.svg';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useCustomAxios from '@hooks/useCustomAxios';
 import {
   CurrentStep,
   ErrorMessge,
