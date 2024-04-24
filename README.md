@@ -1,6 +1,6 @@
 <br />
 
-![shimm-logo](~https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/5542dd3b-c300-4cfb-9e78-e10157827a45~)
+<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c65ec746-1170-4ed3-80a6-2d0221934be5"/>
 
 <br />
 <h1 align=center> 쉼 - 고단했던 하루에 고요함을 선물해보세요. </h1>
@@ -14,9 +14,8 @@
 <a href='/'>Shimm</a> <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 ```
-ID: test@shimm.com
-PW: aA12345!
-
+ID: user@test.com
+PW: 11111111
 ```
 
 ---
@@ -48,7 +47,8 @@ PW: aA12345!
 - 컴포넌트 분리 ( 2024.04.05 - 2024.04.07 )
 - 개발 ( 2024.04.08 - 2024.04.19 )
 - 코드 보완 및 에러 수정, 프로젝트 발표 준비 ( 2024.04.20 - 2024.04.24 )
-- <img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
+  <br/>
+  <img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
 
 ---
 
@@ -538,7 +538,7 @@ render() {
 
 ---
 
-## 아쉬웠던 점 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+## 프로젝트를 마치며 아쉬웠던 점 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 - 처음 기획에는 카카오 외에도 구글과 네이버 로그인까지 총 3개의 소셜 로그인을 구현하여 사용자의 편이성을 고려했지만 구현하지 못하여 아쉬움.
 
@@ -546,16 +546,8 @@ render() {
 
 - CSS Variable을 사용하고 싶었으나 styled component와 친해지는게 먼저였기 때문에 신경을 쓰지 못했음.
 
-- 다크모드
+- 다크모드를 구현하지 못해 아쉬움
 
----
-
-## 프로젝트를 마치며 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
-
-## 진욱
-
-## 다인
-
-## 기호
+- 성능 최적화 테스트를 충분히 하지 못한 것
 
 ---
