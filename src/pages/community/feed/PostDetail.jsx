@@ -131,6 +131,21 @@ function PostDetail({ item, handleDelete }) {
             {isOpened && <FeedDropDown id={_id} handleDelete={handleDelete} />}
           </>
         )}
+
+        {user && user.type === 'seller' && (
+          <>
+            <More type="button" onClick={handleMore}>
+              •••
+            </More>
+            {isOpened && (
+              <FeedDropDown
+                id={_id}
+                handleDelete={handleDelete}
+                type={user.type}
+              />
+            )}
+          </>
+        )}
       </PostHeader>
 
       <PostMain to={`/community/${_id}`}>

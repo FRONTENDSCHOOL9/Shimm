@@ -89,7 +89,7 @@ export const PostMain = styled(Link)`
   & img {
     width: 100%;
     aspect-ratio: 16/9;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 5px;
   }
 

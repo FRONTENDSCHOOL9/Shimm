@@ -1,4 +1,4 @@
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useCustomAxios from '@hooks/useCustomAxios';
 import {
   ButtonLink,
   EditButton,
@@ -8,7 +8,7 @@ import {
   MyInfoWrapper,
   UserInfoStyled,
 } from '@pages/mypage/myinfo/MyInfo.style';
-import useUserStore from '@zustand/user.mjs';
+import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
 
 function MyInfo() {

@@ -17,7 +17,7 @@ function Loading() {
     <LoadingWrapper>
       <Inside>
         <LoadingText>로딩중입니다 🏃🏻‍♀️</LoadingText>
-        <Lottie options={defaultOptions} width={130} height={130} />
+        <Lottie options={defaultOptions} width={80} height={80} />
       </Inside>
     </LoadingWrapper>
   );

@@ -15,7 +15,7 @@ function ReplyList({ id, pid }) {
   const { user } = useUserStore();
   const queryClient = useQueryClient();
 
-  const { data, fetchNextPage, isFetching } = useInfiniteQuery({
+  const { data, fetchNextPage, isFetching, isLoading } = useInfiniteQuery({
     queryKey: ['replies'],
     queryFn: ({ pageParam = 1 }) =>
       axios.get(`/posts/${pid}/replies`, {
@@ -71,6 +71,7 @@ function ReplyList({ id, pid }) {
         pageStart={1}
         loadMore={fetchNextPage}
         hasMore={!isFetching && hasNext}
+        loader={<Loading key={0} />}
       >
         {list}
       </InfiniteScroll>
