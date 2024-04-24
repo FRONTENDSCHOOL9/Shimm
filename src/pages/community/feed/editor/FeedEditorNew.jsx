@@ -10,11 +10,12 @@ import {
 } from '@pages/community/feed/editor/FeedEditor.style';
 import useModalStore from '@zustand/modal';
 import useUserStore from '@zustand/user';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-function FeedEditorNew() {
+function FeedEditorNew({ setLoading }) {
   const {
     register,
     handleSubmit,
@@ -50,6 +51,7 @@ function FeedEditorNew() {
           },
         });
       } else {
+        setLoading(true);
         formData.type = 'community';
         if (formData.image.length > 0) {
           const imageFormData = new FormData();
@@ -87,6 +89,8 @@ function FeedEditorNew() {
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -126,7 +130,7 @@ function FeedEditorNew() {
               type="file"
               id="image"
               name="profile-img"
-              accept=".png, .jpeg, .jpg .gif"
+              accept="image/png, image/gif, image/jpeg, image/jpg"
               {...register('image', {
                 onChange: handleChange,
               })}
@@ -150,5 +154,9 @@ function FeedEditorNew() {
     </FeedForm>
   );
 }
+
+FeedEditorNew.propTypes = {
+  setLoading: PropTypes.func,
+};
 
 export default FeedEditorNew;

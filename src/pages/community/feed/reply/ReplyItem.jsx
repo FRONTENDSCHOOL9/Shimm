@@ -1,22 +1,20 @@
-import PropTypes from 'prop-types';
 import iconDelete from '@assets/images/icon-delete-post.svg';
-import useUserStore from '@zustand/user';
 import { ProfileImage } from '@pages/community/feed/Feed.style';
 import {
   ReplyContainer,
   ReplyDelete,
   ReplyHeader,
-  ReplyTime,
   ReplyMain,
+  ReplyTime,
 } from '@pages/community/feed/reply/Reply.style';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import useModalStore from '@zustand/modal.mjs';
+import useModalStore from '@zustand/modal';
+import useUserStore from '@zustand/user';
+import PropTypes from 'prop-types';
 
 function ReplyItem({ item, handleDelete }) {
   const { user } = useUserStore();
-  const { _id, user: writer, reply, createdAt } = item;
+  const { user: writer, reply, createdAt } = item;
   const { setShowModal, setModalData } = useModalStore();
-  const axios = useCustomAxios();
 
   const currentDate = Date.now();
   const createdDate = new Date(createdAt).getTime();
@@ -45,7 +43,11 @@ function ReplyItem({ item, handleDelete }) {
       <ReplyHeader>
         <ProfileImage>
           <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${writer.profile}`}
+            src={
+              writer.profile.startsWith('http://')
+                ? writer.profile
+                : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${writer.profile}`
+            }
           />
         </ProfileImage>
         <p>{writer.name}</p>

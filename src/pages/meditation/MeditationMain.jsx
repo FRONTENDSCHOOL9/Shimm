@@ -1,20 +1,24 @@
+import Button from '@components/button/Button';
+import {
+  Cover,
+  Description,
+  PageTitle,
+  StyledDiv,
+  StyledMain,
+  StyledSection,
+} from '@pages/meditation/Meditation.style';
+import ThemeSet from '@pages/meditation/themeset/ThemeSet';
+import TimeSet from '@pages/meditation/timeset/TimeSet';
+import {
+  useIsThemeSelectedStore,
+  useSelectedThemeStore,
+} from '@zustand/themeSelection';
+import {
+  useIsTimeSelectedStore,
+  useSelectedTimeStore,
+} from '@zustand/timeSelection';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelectedTimeStore } from '@zustand/timeSelection';
-import { useIsTimeSelectedStore } from '@zustand/timeSelection';
-import { useSelectedThemeStore } from '@zustand/themeSelection';
-import { useIsThemeSelectedStore } from '@zustand/themeSelection';
-import Button from '@components/button/Button';
-import TimeSet from '@pages/meditation/timeset/TimeSet';
-import ThemeSet from '@pages/meditation/themeset/ThemeSet';
-import {
-  StyledMain,
-  Cover,
-  StyledSection,
-  PageTitle,
-  Description,
-  StyledDiv,
-} from '@pages/meditation/Meditation.style';
 
 function MeditationMain() {
   const { selectedTimeSet } = useSelectedTimeStore();

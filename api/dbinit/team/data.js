@@ -38,7 +38,7 @@ export const initData = async nextSeq => {
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         birthday: '1995-04-14',
-        profileImage: `yogaman.png`,
+        profileImage: `yogagirl.png`,
       },
       {
         _id: await nextSeq('user'),
@@ -105,7 +105,7 @@ export const initData = async nextSeq => {
         extra: {
           background: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
           music:
-            'https://soundcloud.com/1qza8k6e3opg/gihgcldr6xby?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+            'https://soundcloud.com/1qza8k6e3opg/qdasktrrrqjj?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
         },
       },
       {
@@ -320,7 +320,7 @@ export const initData = async nextSeq => {
             user: {
               _id: 1,
               name: '요가맨',
-              profile: '/files/02-Shimm/yogaman.png',
+              profile: 'yogaman.png',
             },
             content: '힘내요!',
             createdAt: getTime(-2, -60 * 60 * 20),

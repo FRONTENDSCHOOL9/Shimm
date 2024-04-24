@@ -1,17 +1,25 @@
+import Button from '@components/button/Button';
+import Input from '@components/input/Input';
+import Loading from '@components/loading/Loading';
+import SocialKakao from '@components/socialLogin/SocialKakao';
+import useCustomAxios from '@hooks/useCustomAxios';
+import {
+  ErrorMessge,
+  InputLabel,
+  Line,
+  LoginTitle,
+  LoginWrapper,
+} from '@pages/users/Login.style';
+import useModalStore from '@zustand/modal.mjs';
+import useUserStore from '@zustand/user';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useCustomAxios from '@hooks/useCustomAxios';
-import useUserStore from '@zustand/user';
-import Button from '@components/button/Button';
-import Loading from '@components/loading/Loading';
-import GoogleLoginButton from '@components/socialLogin/SocialGoogle';
-import SocialKakao from '@components/socialLogin/SocialKakao';
-import SocialNaver from '@components/socialLogin/SocialNaver';
 
 function Login() {
   const { setUser } = useUserStore();
   const [isLoading, setIsLoading] = useState(false);
+  const { setShowModal, setModalData } = useModalStore();
   const location = useLocation();
   const axios = useCustomAxios();
   const navigate = useNavigate();
@@ -22,8 +30,8 @@ function Login() {
     setError,
   } = useForm({
     values: {
-      email: 'kiho@test.com',
-      password: '11111111',
+      email: 'test@naver.com',
+      password: 'Test123!',
     },
   });
 
@@ -36,12 +44,20 @@ function Login() {
         name: res.data.item.name,
         email: res.data.item.email,
         type: res.data.item.type,
+        loginType: res.data.item.loginType,
         phone: res.data.item.phone,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
-
-      navigate(location.state?.from ? location.state?.from : '/');
+      setShowModal(true);
+      setModalData({
+        children: <span>로그인되었습니다!</span>,
+        button: 1,
+        handleOk() {
+          setShowModal(false);
+          navigate(location.state?.from ? location.state?.from : '/');
+        },
+      });
     } catch (err) {
       console.error(err);
       if (err.response?.data.errors) {
@@ -61,65 +77,70 @@ function Login() {
   }
 
   return (
-    <div>
-      <h3>로그인</h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="email">이메일</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="이메일을 입력하세요"
-            {...register('email', {
-              required: '이메일을 입력하세요.',
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: '이메일 형식이 아닙니다.',
-              },
-            })}
-          />
-          {errors.email && <p>{errors.email.message}</p>}
-        </div>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <LoginWrapper>
+          <LoginTitle>로그인</LoginTitle>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <InputLabel htmlFor="email">이메일</InputLabel>
+              <Input
+                type="email"
+                id="email"
+                placeholder="이메일을 입력해 주세요."
+                {...register('email', {
+                  required: '이메일을 입력해 주세요.',
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: '이메일 형식이 아닙니다.',
+                  },
+                })}
+              />
+              {errors.email && (
+                <ErrorMessge>{errors.email.message}</ErrorMessge>
+              )}
+            </div>
 
-        <div>
-          <label htmlFor="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="비밀번호를 입력하세요"
-            {...register('password', {
-              required: '비밀번호를 입력하세요.',
-            })}
-          />
-          {errors.password && <p>{errors.password.message}</p>}
-        </div>
+            <div>
+              <InputLabel htmlFor="password">비밀번호</InputLabel>
+              <Input
+                type="password"
+                id="password"
+                placeholder="비밀번호를 입력해 주세요."
+                {...register('password', {
+                  required: '비밀번호를 입력해 주세요.',
+                })}
+              />
+              {errors.password && (
+                <ErrorMessge>{errors.password.message}</ErrorMessge>
+              )}
+            </div>
 
-        <Button type="submit" size="full" bgColor="dark">
-          로그인
-        </Button>
-      </form>
+            <Button type="submit" size="full" bgColor="dark">
+              로그인
+            </Button>
+          </form>
 
-      <div>
-        <p>또는</p>
-      </div>
+          <Line>
+            <p>또는</p>
+          </Line>
 
-      <div>
-        {/* <SocialButtons bgColor='white' handleClick={GoogleLoginButton}>구글로 로그인 하기</SocialButtons> */}
-        <GoogleLoginButton />
-        <SocialKakao />
-        <SocialNaver />
-        <Button
-          size="full"
-          bgColor="dark"
-          display="block"
-          handleClick={handleSignUp}
-        >
-          회원가입
-        </Button>
-      </div>
-
-      {isLoading && <Loading />}
-    </div>
+          <div>
+            <SocialKakao />
+            <Button
+              size="full"
+              bgColor="dark"
+              display="block"
+              handleClick={handleSignUp}
+            >
+              이메일로 회원가입
+            </Button>
+          </div>
+        </LoginWrapper>
+      )}
+    </>
   );
 }
 

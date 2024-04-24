@@ -1,36 +1,55 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import iconGithub from '@assets/images/icon-github.svg'
-
 
 export const StyledFooter = styled.footer`
-    text-align: center; 
-    font-size: 1.2rem;
-    background: 
-    linear-gradient(329deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%), 
-    linear-gradient(9deg, rgba(255, 206, 31, 0.6), rgba(0, 0, 0, 0) 60%), 
-    linear-gradient(355deg, rgba(169, 241, 145, 0.9), rgba(0, 0, 0, 0) 70%);
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    min-height: 100px;
-`
+  text-align: center;
+  font-size: 1.2rem;
+  background: linear-gradient(329deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%),
+    linear-gradient(6deg, rgba(255, 206, 31, 0.6), rgba(0, 0, 0, 0) 60%),
+    linear-gradient(358deg, rgba(169, 241, 145, 0.9), rgba(0, 0, 0, 0) 70%);
+
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  padding: 30px;
+  box-sizing: border-box;
+`;
 
 export const FooterHeader = styled.header`
-    background-image: url(${iconGithub});
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 40px;
-    padding-top: 90px;
+  height: 40px;
+  margin-top: 60px;
+  margin-bottom: 50px;
 
-`
+  & a {
+    width: 40px;
+    height: 40px;
+
+    & img {
+      width: 40px;
+      height: 40px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+
+    &:focus img {
+      box-shadow: inset 0 0 0 2px #55a25a;
+      border-radius: 4px;
+    }
+  }
+`;
 
 export const FooterContents = styled.div`
-    width: 100%;
-    padding: 2rem 0;
+  & div {
     display: flex;
     justify-content: center;
-    gap: 4rem;
+    gap: 40px;
+    margin-bottom: 30px;
+    text-decoration: underline;
+  }
+`;
 
-    & {
-        text-decoration: underline;
-    }
-    `
+export const StyledLink = styled(Link)`
+  &:focus {
+    box-shadow: 0 0 0 2px #55a25a;
+    border-radius: 4px;
+  }
+`;

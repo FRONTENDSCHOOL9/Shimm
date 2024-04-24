@@ -1,23 +1,19 @@
-import { lazy } from 'react';
 import Layout from '@components/layout/layout/Layout';
-import ErrorPage from '@pages/ErrorPage';
 import UploadTheme from '@pages/admin/UploadTheme';
-const Community = lazy(() => import('@pages/community/Community'));
-// import Community from '@pages/community/Community';
-const FeedDetail = lazy(() => import('@pages/community/feed/FeedDetail'));
-// import FeedDetail from '@pages/community/feed/FeedDetail';
+import Kakao from '@pages/auth/Kakao';
 import FeedEdit from '@pages/community/feed/FeedEdit';
 import FeedNew from '@pages/community/feed/FeedNew';
+import ErrorPage from '@pages/error/ErrorPage';
 import Home from '@pages/home/Home';
 import Meditation from '@pages/meditation/Meditation';
 import MeditationMain from '@pages/meditation/MeditationMain';
 import MeditationProgress from '@pages/meditation/MeditationProgress';
 import MeditationRecord from '@pages/meditation/MeditationRecord';
-import EditProfile from '@pages/mypage/EditProfile';
-import { MyInfo } from '@pages/mypage/MyInfo';
-import MyInfoCheck from '@pages/mypage/MyInfoCheck';
+import EditProfile from '@pages/mypage/editprofile/EditProfile';
+import MyInfo from '@pages/mypage/myinfo/MyInfo';
+import MyInfoCheck from '@pages/mypage/myinfo/MyInfoCheck';
 import MyPage from '@pages/mypage/MyPage';
-import MyRecord from '@pages/mypage/MyRecord';
+import MyRecord from '@pages/mypage/myrecord/MyRecord';
 import BookmarkedPosts from '@pages/mypage/myactivity/BookmarkedPosts';
 import MyActivity from '@pages/mypage/myactivity/MyActivity';
 import MyPosts from '@pages/mypage/myactivity/MyPosts';
@@ -26,7 +22,10 @@ import Login from '@pages/users/Login';
 import SignUp from '@pages/users/SignUp';
 import SignUpOneStep from '@pages/users/SignUpOneStep';
 import SignUpTwoStep from '@pages/users/SignUpTwoStep';
+import { lazy } from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
+const Community = lazy(() => import('@pages/community/Community'));
+const FeedDetail = lazy(() => import('@pages/community/feed/FeedDetail'));
 
 const router = createBrowserRouter([
   {
@@ -45,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'users/login',
         element: <Login />,
+      },
+      {
+        path: 'auth/kakao',
+        element: <Kakao />,
       },
       {
         path: 'signup',
