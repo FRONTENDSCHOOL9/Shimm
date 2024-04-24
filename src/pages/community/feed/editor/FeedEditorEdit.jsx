@@ -3,19 +3,20 @@ import Button from '@components/button/Button';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   ButtonContent,
+  DeleteButton,
   FeedForm,
   FileContent,
   FileMain,
   TextContent,
-  DeleteButton,
   Title,
 } from '@pages/community/feed/editor/FeedEditor.style';
 import useModalStore from '@zustand/modal';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function FeedEditorEdit() {
+function FeedEditorEdit({ setLoading }) {
   const [data, setData] = useState();
   const { setShowModal, setModalData } = useModalStore();
   const { id } = useParams();
@@ -30,6 +31,7 @@ function FeedEditorEdit() {
   async function fetchPost() {
     try {
       const res = await axios(`/posts/${id}`);
+
       setData(res.data);
 
       if (res.data.item.extra?.image) {
@@ -38,7 +40,7 @@ function FeedEditorEdit() {
         setImgValue('선택한 파일 없음');
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 
@@ -56,6 +58,7 @@ function FeedEditorEdit() {
 
   async function onSubmit(formData) {
     try {
+      setLoading(true);
       if (formData.newImage.length > 0) {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.newImage[0]);
@@ -96,6 +99,8 @@ function FeedEditorEdit() {
       });
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -149,7 +154,7 @@ function FeedEditorEdit() {
               type="file"
               id="image"
               title="image"
-              accept=".png, .jpeg, .jpg .gif"
+              accept="image/png, image/gif, image/jpeg, image/jpg"
               {...register('newImage', {
                 onChange: handleChange,
               })}
@@ -169,5 +174,9 @@ function FeedEditorEdit() {
     </FeedForm>
   );
 }
+
+FeedEditorEdit.propTypes = {
+  setLoading: PropTypes.func,
+};
 
 export default FeedEditorEdit;

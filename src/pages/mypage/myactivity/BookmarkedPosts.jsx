@@ -1,22 +1,14 @@
 import Button from '@components/button/Button';
+import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
 import FeedList from '@pages/community/feed/FeedList';
+import { NoPost } from '@pages/mypage/myactivity/MyActivity.style';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styled from 'styled-components';
-
-const NoPost = styled.div`
-  & p {
-    margin: 60px auto;
-    font-size: 1.4rem;
-    font-weight: 500;
-    text-align: center;
-  }
-`;
-
 function BookmarkedPosts() {
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
   const { user } = useUserStore();
   const axios = useCustomAxios();
@@ -28,6 +20,7 @@ function BookmarkedPosts() {
 
   async function fetchPost() {
     try {
+      setIsLoading(true);
       const res = await axios(`/users/${user._id}/bookmarks`);
 
       if (Object.keys(res.data.item).length > 0) {
@@ -47,6 +40,8 @@ function BookmarkedPosts() {
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -55,11 +50,18 @@ function BookmarkedPosts() {
   }
 
   const bookmarkedPostList = data?.map(item => (
-    <FeedList key={item._id} item={item} handleBookmark={handleBookmark} />
+    <FeedList
+      key={item._id}
+      item={item}
+      mypage={true}
+      handleBookmark={handleBookmark}
+    />
   ));
   return (
     <>
-      {data ? (
+      {isLoading ? (
+        <Loading />
+      ) : data ? (
         bookmarkedPostList
       ) : (
         <NoPost>

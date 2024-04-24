@@ -1,7 +1,6 @@
 import iconBookMarkActive from '@assets/images/icon-bookmark-active.svg';
 import iconBookMark from '@assets/images/icon-bookmark.svg';
 import useCustomAxios from '@hooks/useCustomAxios';
-import PropTypes from 'prop-types';
 import {
   Bookmark,
   More,
@@ -12,9 +11,10 @@ import {
   ProfileImage,
 } from '@pages/community/feed/Feed.style';
 import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
-import useUserStore from '@zustand/user';
-import { useEffect, useState } from 'react';
 import ReplyList from '@pages/community/feed/reply/ReplyList';
+import useUserStore from '@zustand/user';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function PostDetail({ item, handleDelete }) {
@@ -84,8 +84,11 @@ function PostDetail({ item, handleDelete }) {
       <PostHeader>
         <ProfileImage>
           <img
-            src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${writer.profile}`}
-            alt={`작성자: ${writer.name}`}
+            src={
+              writer.profile.startsWith('http://')
+                ? writer.profile
+                : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${writer.profile}`
+            }
           />
         </ProfileImage>
         <PostInfo>

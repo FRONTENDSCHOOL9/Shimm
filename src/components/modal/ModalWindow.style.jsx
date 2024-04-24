@@ -35,7 +35,7 @@ export const ButtonClose = styled.button`
   position: absolute;
   top: 15px;
   right: 15px;
-`
+`;
 
 export const Message = styled.div`
   font-size: 1.2rem;

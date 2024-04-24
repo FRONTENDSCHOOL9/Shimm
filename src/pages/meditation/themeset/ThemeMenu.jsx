@@ -133,12 +133,7 @@ function ThemeMenu() {
     />
   ));
 
-  return (
-    <Menu>
-      {isLoading && <Loading />}
-      {themeData?.item && <StyledUl>{themeList}</StyledUl>}
-    </Menu>
-  );
+  return <Menu>{themeData?.item && <StyledUl>{themeList}</StyledUl>}</Menu>;
 }
 
 export default ThemeMenu;

@@ -12,7 +12,7 @@ export const Post = styled.div`
   flex-grow: 1;
   font-size: 1.4rem;
   margin: 0 auto;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   position: relative;
   transition: all 5s ease-in-out;
 
@@ -39,10 +39,13 @@ export const ProfileImage = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  aspect-ratio: 1/1;
 
   & img {
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
   }
 `;
 
@@ -84,7 +87,9 @@ export const PostMain = styled(Link)`
   }
 
   & img {
+    width: 100%;
     aspect-ratio: 16/9;
+    object-fit: contain;
     border-radius: 5px;
   }
 

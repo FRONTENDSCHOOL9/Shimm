@@ -1,16 +1,30 @@
+import Button from '@components/button/Button';
+import Input from '@components/input/Input';
+import Loading from '@components/loading/Loading';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import {
+  CurrentStep,
+  ErrorMessge,
+  FlexContent,
+  InputLabel,
+  MarginBottom,
+  SignUpTitle,
+  SignUpWrapper,
+  Step,
+  Stepper,
+} from '@pages/users/SignUp.style';
+import useFormStore from '@zustand/form';
+import useModalStore from '@zustand/modal';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import Button from '@components/button/Button';
-import useFormStore from '@zustand/form.mjs';
-import { useState } from 'react';
-import useModalStore from '@zustand/modal';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
 function SignUpOneStep() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { setShowModal, setModalData } = useModalStore();
   const { setForm } = useFormStore();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     handleSubmit,
     register,
@@ -19,16 +33,21 @@ function SignUpOneStep() {
     watch,
     setError,
     setFocus,
+    getValues,
   } = useForm({
     values: {
       birth: '1999-02-25',
       phone: '01055556666',
     },
+    shouldFocusError: true,
+    mode: 'onChange',
   });
   const [emailChecked, setEmailChecked] = useState(false);
   const email = watch('email');
 
   async function handleEmail() {
+    setIsLoading(true);
+
     const isValid = await trigger('email');
     if (!isValid) {
       setError(
@@ -78,6 +97,8 @@ function SignUpOneStep() {
           },
         });
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -111,97 +132,123 @@ function SignUpOneStep() {
   }
 
   return (
-    <div>
-      <h3>회원가입</h3>
-      <ul>
-        <li>기본 정보 입력</li>
-        <li>프로필 설정</li>
-      </ul>
-      <form onSubmit={handleSubmit(saveData)}>
-        <div>
-          <label htmlFor="email">이메일</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="sample@bb.com 형식으로 입력해 주세요.이메일을 입력하세요"
-            {...register('email', {
-              required: '이메일을 입력하세요.',
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: '올바른 이메일 형식이 아닙니다.',
-              },
-            })}
-          />
-          <Button bgColor="dark" size="small" handleClick={handleEmail}>
-            중복확인
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <SignUpWrapper>
+          <SignUpTitle>회원가입</SignUpTitle>
+          <Stepper>
+            <CurrentStep>기본 정보 입력</CurrentStep>
+            <Step>프로필 설정</Step>
+          </Stepper>
+          <form onSubmit={handleSubmit(saveData)}>
+            <div>
+              <InputLabel htmlFor="email">이메일</InputLabel>
+              <FlexContent>
+                <Input
+                  type="email"
+                  id="email"
+                  placeholder="sample@bb.com 형식으로 입력해 주세요."
+                  {...register('email', {
+                    required: '이메일을 입력하세요.',
+                    pattern: {
+                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                      message: '올바른 이메일 형식이 아닙니다.',
+                    },
+                  })}
+                />
+                <Button bgColor="dark" size="full" handleClick={handleEmail}>
+                  중복확인
+                </Button>
+              </FlexContent>
+
+              {errors.email && (
+                <ErrorMessge>{errors.email.message}</ErrorMessge>
+              )}
+            </div>
+
+            <div>
+              <InputLabel htmlFor="password">비밀번호</InputLabel>
+              <Input
+                type="password"
+                id="password"
+                placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
+                {...register('password', {
+                  required: '비밀번호를 입력하세요.',
+                  pattern: {
+                    value:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    message: '비밀번호 형식에 맞게 입력해 주세요.',
+                  },
+                })}
+              />
+              {errors.password && (
+                <ErrorMessge>{errors.password.message}</ErrorMessge>
+              )}
+            </div>
+            <div>
+              <InputLabel htmlFor="password-confirm">비밀번호 확인</InputLabel>
+              <Input
+                type="password"
+                id="password-confirm"
+                placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
+                {...register('passwordConfirm', {
+                  required: '비밀번호를 한번 더 입력해 주세요.',
+                  validate: {
+                    check: val => {
+                      if (getValues('password') !== val) {
+                        return '입력하신 비밀번호가 일치하지 않습니다.';
+                      }
+                    },
+                  },
+                })}
+              />
+              {errors.passwordConfirm && (
+                <ErrorMessge>{errors.passwordConfirm.message}</ErrorMessge>
+              )}
+            </div>
+            <div>
+              <InputLabel htmlFor="birth">생년월일</InputLabel>
+              <Input
+                type="date"
+                id="birth"
+                placeholder="생년월일을 입력하세요"
+                min="1940-01-01"
+                {...register('birth', {
+                  required: '생년월일을 입력하세요.',
+                })}
+              />
+              {errors.birth && (
+                <ErrorMessge>{errors.birth.message}</ErrorMessge>
+              )}
+            </div>
+
+            <MarginBottom>
+              <InputLabel htmlFor="phone">전화번호</InputLabel>
+              <Input
+                type="text"
+                id="phone"
+                placeholder="휴대폰 번호를 입력하세요"
+                {...register('phone', {
+                  required: '휴대폰 번호를 입력하세요.',
+                })}
+              />
+              {errors.phone && (
+                <ErrorMessge>{errors.phone.message}</ErrorMessge>
+              )}
+            </MarginBottom>
+
+            <Button type="submit" size="full" bgColor="primary">
+              다음 단계
+            </Button>
+          </form>
+          <Button size="full" bgColor="dark" handleClick={handleBack}>
+            이전
           </Button>
-          {errors.email && <p>{errors.email.message}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="소문자, 대문자, 특수문자를 조합하여 8글자 이상 입력해 주세요."
-            {...register('password', {
-              required: '비밀번호를 입력하세요.',
-              pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                message: '비밀번호 형식에 맞게 입력해 주세요.',
-              },
-            })}
-          />
-          {errors.password && <p>{errors.password.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="password-confirm">비밀번호 확인</label>
-          <input
-            type="password"
-            id="password-confirm"
-            placeholder="입력한 비밀번호를 한번 더 입력해 주세요."
-            {...register('passwordConfirm', {
-              required: '비밀번호를 입력하세요.',
-            })}
-          />
-          {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="birth">생년월일</label>
-          <input
-            type="date"
-            id="birth"
-            placeholder="생년월일을 입력하세요"
-            min="1940-01-01"
-            {...register('birth', {
-              required: '생년월일을 입력하세요.',
-            })}
-          />
-          {errors.birth && <p>{errors.birth.message}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="phone">전화번호</label>
-          <input
-            type="text"
-            id="phone"
-            placeholder="휴대폰 번호를 입력하세요"
-            {...register('phone', {
-              required: '휴대폰 번호를 입력하세요.',
-            })}
-          />
-          {errors.phone && <p>{errors.phone.message}</p>}
-        </div>
-
-        <Button type="submit" size="medium" bgColor="primary">
-          다음 단계
-        </Button>
-      </form>
-      <Button size="medium" bgColor="dark" handleClick={handleBack}>
-        이전
-      </Button>
-    </div>
+        </SignUpWrapper>
+      )}
+    </>
   );
 }
 

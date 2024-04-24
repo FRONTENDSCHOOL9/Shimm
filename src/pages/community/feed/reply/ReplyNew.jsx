@@ -8,6 +8,7 @@ import {
 } from '@pages/community/feed/Feed.style';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,6 +21,16 @@ function ReplyNew({ user, id, pid }) {
   } = useForm();
   const axios = useCustomAxios();
   const navigate = useNavigate();
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  async function fetchUser() {
+    const res = await axios(`/users/${user._id}`);
+    setData(res.data);
+  }
 
   const queryClient = useQueryClient();
   const addReply = useMutation({
@@ -37,11 +48,17 @@ function ReplyNew({ user, id, pid }) {
     }
   }
 
+  const item = data?.item;
+
   return (
     <Reply>
       <ProfileImage>
         <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+          src={
+            item?.profileImage.startsWith('http://')
+              ? item?.profileImage
+              : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item?.profileImage}`
+          }
           alt="내 프로필 이미지"
         />
       </ProfileImage>

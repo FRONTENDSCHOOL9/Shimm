@@ -1,28 +1,13 @@
-import styled from 'styled-components';
+import iconArrow from '@assets/images/icon-arrow-black.svg';
 import iconOvals from '@assets/images/icon-ovals.svg';
 import iconShapes from '@assets/images/icon-shapes.svg';
-import iconArrow from '@assets/images/icon-arrow-black.svg';
-// import iconLogin from '@assets/images/icon-login.svg'
-// import iconSignup from '@assets/images/icon-signup.svg'
+import styled from 'styled-components';
 
 export const StyledMain = styled.main`
   margin-top: -100px;
 
   > section {
     margin-top: 30px;
-  }
-`;
-
-export const CarouselWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-  max-height: 400px;
-
-  &:before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.3);
   }
 `;
 
@@ -33,15 +18,13 @@ export const CarouselText = styled.div`
   transform: translate(-50%);
   text-align: center;
   color: #fff;
-
-  @media (max-width: 740px) {
-    top: 60%;
-  }
 `;
 
 export const CarouselImage = styled.img`
   width: 100%;
+  height: auto;
   object-fit: cover;
+  overflow: hidden;
 `;
 
 export const CaraouselTitle = styled.h3`
@@ -78,7 +61,7 @@ export const SectionLink = styled.section`
   box-sizing: border-box;
 
   > div {
-    width: 100vw;
+    width: 100%;
     max-width: 400px;
     margin: 0 auto 10px;
     height: 150px;
@@ -148,7 +131,7 @@ export const SectionUser = styled.section`
   font-size: 1.4rem;
 
   > button {
-    width: 100vw;
+    width: 100%;
     max-width: 400px;
     height: 40px;
     margin: 0 auto 10px;
@@ -180,24 +163,3 @@ export const SectionUser = styled.section`
     }
   }
 `;
-
-// export const IconLogin = styled.div`
-//     background-image: url(${iconLogin});
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     width: 200px;
-//     height:200px;
-//     flex-grow: 1;
-
-//     @media (min-width: 740px) {
-//         display: block;
-
-//     }
-// `
-// export const IconSignup = styled.div`
-//     background-image: url(${iconSignup});
-
-//     @media (min-width: 740px) {
-//         display: block;
-//     }
-// `
