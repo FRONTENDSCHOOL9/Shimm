@@ -1,6 +1,6 @@
 import iconBuy from '@assets/images/icon-buy.svg';
-import iconPlay from '@assets/images/icon-play.svg';
 import iconPause from '@assets/images/icon-pause.svg';
+import iconPlay from '@assets/images/icon-play.svg';
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';

@@ -1,6 +1,6 @@
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useCustomAxios from '@hooks/useCustomAxios';
 import FeedList from '@pages/community/feed/FeedList';
 import { NoPost } from '@pages/mypage/myactivity/MyActivity.style';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
@@ -27,7 +27,6 @@ function MyPosts() {
         },
       }),
     select: response => {
-      console.log(response);
       response = {
         items: response.pages.map(page => page.data.item.item),
         page: response.pages.at(-1).data.item.pagination.page,
@@ -39,7 +38,6 @@ function MyPosts() {
     },
 
     getNextPageParam: lastPage => {
-      console.log(lastPage);
       const pagination = lastPage.data.item.pagination;
       let nextPage =
         pagination.page < pagination.totalPages ? pagination.page + 1 : false;
@@ -60,7 +58,6 @@ function MyPosts() {
     hasNext = data.page < data.totalPages;
   }
 
-  console.log(data);
   async function handleDelete(id) {
     try {
       await axios.delete(`/posts/${id}`);
@@ -102,7 +99,6 @@ function MyPosts() {
           pageStart={1}
           loadMore={fetchNextPage}
           hasMore={!isFetching && hasNext}
-          loader={<Loading key={0} />}
         >
           {list}
         </InfiniteScroll>

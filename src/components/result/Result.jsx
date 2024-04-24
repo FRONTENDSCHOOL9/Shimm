@@ -1,11 +1,11 @@
+import iconGood from '@assets/images/icon-good.svg';
 import {
-  Text,
   Image,
+  StyledDescription,
   StyledDiv,
   StyledTitle,
-  StyledDescription,
+  Text,
 } from '@components/result/Result.style';
-import iconGood from '@assets/images/icon-good.svg';
 
 function Result({ width = 'wide', date, message }) {
   return (

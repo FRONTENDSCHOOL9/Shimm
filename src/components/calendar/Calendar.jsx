@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Calendar, Whisper, Popover, Badge } from 'rsuite';
-import 'rsuite/dist/rsuite.min.css';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import {
+  RecordList,
   StyleGetRecord,
   TodoItemBadge,
-  RecordList,
 } from '@components/calendar/Calendar.style';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useUserStore from '@zustand/user';
+import { useEffect, useState } from 'react';
+import { Calendar, Popover, Whisper } from 'rsuite';
+import 'rsuite/dist/rsuite-no-reset.min.css';
 
 const MyCalendar = () => {
   const [events, setEvents] = useState([]);
+  const { user } = useUserStore();
   const axios = useCustomAxios();
   useEffect(() => {
     async function fetchEvents() {
       try {
         const res = await axios.get(
-          `/posts?type=meditation&year=${year}&month=${month}`,
+          `/posts/users/${user._id}?type=meditation&year=${year}&month=${month}`,
         );
-        if (res.data && res.data.item) {
-          const EventsRes = res.data.item.map(item => ({
-            time: item.updatedAt,
-            title: item.content,
-          }));
-          setEvents(EventsRes);
-        }
-        console.log(res);
+
+        const EventsRes = res.data?.item?.item.map(item => ({
+          time: item.updatedAt,
+          title: item.content,
+        }));
+        setEvents(EventsRes);
       } catch (err) {
         console.error(err);
       }
@@ -35,16 +34,6 @@ const MyCalendar = () => {
     const month = today.getMonth() + 1;
     fetchEvents(today);
   }, []);
-
-  function parseUpdatedAt(updatedAt) {
-    const dateObj = new Date(updatedAt);
-    const formattedTime = `${padZero(dateObj.getHours())}:${padZero(dateObj.getMinutes())}`;
-    return formattedTime;
-  }
-
-  function padZero(num) {
-    return num.toString().padStart(2, '0');
-  }
 
   function getMeditation(date) {
     const year = date.getFullYear();

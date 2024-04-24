@@ -1,10 +1,10 @@
-import { createGlobalStyle } from 'styled-components';
+import NanumSquareNeo from '@assets/fonts/NanumSquareNeoTTF-cBd.woff';
+import NanumSquareNeo2 from '@assets/fonts/NanumSquareNeoTTF-cBd.woff2';
 import PretendardLight from '@assets/fonts/Pretendard-Light.subset.woff';
 import PretendardLight2 from '@assets/fonts/Pretendard-Light.subset.woff2';
 import PretendardMedium from '@assets/fonts/Pretendard-Medium.subset.woff';
 import PretendardMedium2 from '@assets/fonts/Pretendard-Medium.subset.woff2';
-import NanumSquareNeo from '@assets/fonts/NanumSquareNeoTTF-cBd.woff';
-import NanumSquareNeo2 from '@assets/fonts/NanumSquareNeoTTF-cBd.woff2';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   
@@ -41,6 +41,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   textarea {
+    all: unset;
+  }
+
+  hr {
     all: unset;
   }
   
@@ -84,13 +88,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   // Layout
-  :root {
-    padding-top: 50px;
-
-    @media (min-width: 740px) {
-      padding-top: 110px;
-      }
-    }
+  #root {
+    height: 100vh;
+  }
 
   // Swiper
   .swiper-pagination-bullet { 
