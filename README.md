@@ -431,6 +431,208 @@ render() {
 
 ---
 
+## Project Tree
+
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📂fonts
+ ┃ ┃ ┣ 📜NanumSquareNeoTTF-cBd.woff
+ ┃ ┃ ┣ 📜NanumSquareNeoTTF-cBd.woff2
+ ┃ ┃ ┣ 📜Pretendard-Light.subset.woff
+ ┃ ┃ ┣ 📜Pretendard-Light.subset.woff2
+ ┃ ┃ ┣ 📜Pretendard-Medium.subset.woff
+ ┃ ┃ ┗ 📜Pretendard-Medium.subset.woff2
+ ┃ ┗ 📂images
+ ┃ ┃ ┣ 📜bg-theme01.svg
+ ┃ ┃ ┣ 📜bg-theme02.svg
+ ┃ ┃ ┣ 📜bg-theme03.svg
+ ┃ ┃ ┣ 📜bg-theme04.svg
+ ┃ ┃ ┣ 📜bg-theme05.svg
+ ┃ ┃ ┣ 📜carousel-image01.png
+ ┃ ┃ ┣ 📜carousel-image02.png
+ ┃ ┃ ┣ 📜carousel-image03.png
+ ┃ ┃ ┣ 📜carousel-image04.png
+ ┃ ┃ ┣ 📜icon-arrow-black.svg
+ ┃ ┃ ┣ 📜icon-bookmark-active.svg
+ ┃ ┃ ┣ 📜icon-bookmark.svg
+ ┃ ┃ ┣ 📜icon-breadcrumb-active.svg
+ ┃ ┃ ┣ 📜icon-breadcrumb.svg
+ ┃ ┃ ┣ 📜icon-buy.svg
+ ┃ ┃ ┣ 📜icon-check.svg
+ ┃ ┃ ┣ 📜icon-close.svg
+ ┃ ┃ ┣ 📜icon-darkmode.svg
+ ┃ ┃ ┣ 📜icon-delete-post.svg
+ ┃ ┃ ┣ 📜icon-down.svg
+ ┃ ┃ ┣ 📜icon-dropper.svg
+ ┃ ┃ ┣ 📜icon-edit.svg
+ ┃ ┃ ┣ 📜icon-file.svg
+ ┃ ┃ ┣ 📜icon-github.svg
+ ┃ ┃ ┣ 📜icon-good.svg
+ ┃ ┃ ┣ 📜icon-google.png
+ ┃ ┃ ┣ 📜icon-hide.png
+ ┃ ┃ ┣ 📜icon-kakao.png
+ ┃ ┃ ┣ 📜icon-lightmode.svg
+ ┃ ┃ ┣ 📜icon-lock.svg
+ ┃ ┃ ┣ 📜icon-login.svg
+ ┃ ┃ ┣ 📜icon-menu.svg
+ ┃ ┃ ┣ 📜icon-more.svg
+ ┃ ┃ ┣ 📜icon-music.svg
+ ┃ ┃ ┣ 📜icon-naver.png
+ ┃ ┃ ┣ 📜icon-ovals.svg
+ ┃ ┃ ┣ 📜icon-pause.svg
+ ┃ ┃ ┣ 📜icon-play.svg
+ ┃ ┃ ┣ 📜icon-search.svg
+ ┃ ┃ ┣ 📜icon-send.svg
+ ┃ ┃ ┣ 📜icon-shapes.svg
+ ┃ ┃ ┣ 📜icon-show.png
+ ┃ ┃ ┣ 📜icon-signup.svg
+ ┃ ┃ ┗ 📜image-error.png
+ ┣ 📂components
+ ┃ ┣ 📂animation
+ ┃ ┃ ┣ 📜Animation.jsx
+ ┃ ┃ ┗ 📜meditation-animation01.json
+ ┃ ┣ 📂button
+ ┃ ┃ ┣ 📜Button.jsx
+ ┃ ┃ ┗ 📜Button.style.jsx
+ ┃ ┣ 📂calendar
+ ┃ ┃ ┣ 📜Calendar.jsx
+ ┃ ┃ ┗ 📜Calendar.style.jsx
+ ┃ ┣ 📂input
+ ┃ ┃ ┣ 📜Input.jsx
+ ┃ ┃ ┗ 📜Input.style.jsx
+ ┃ ┣ 📂layout
+ ┃ ┃ ┣ 📂footer
+ ┃ ┃ ┃ ┣ 📜Footer.jsx
+ ┃ ┃ ┃ ┗ 📜Footer.style.jsx
+ ┃ ┃ ┣ 📂header
+ ┃ ┃ ┃ ┣ 📜Header.jsx
+ ┃ ┃ ┃ ┗ 📜Header.style.jsx
+ ┃ ┃ ┗ 📂layout
+ ┃ ┃ ┃ ┣ 📜Layout.jsx
+ ┃ ┃ ┃ ┗ 📜Layout.style.jsx
+ ┃ ┣ 📂loading
+ ┃ ┃ ┣ 📜Loading.jsx
+ ┃ ┃ ┣ 📜Loading.style.jsx
+ ┃ ┃ ┗ 📜loading.json
+ ┃ ┣ 📂modal
+ ┃ ┃ ┣ 📜ModalWindow.jsx
+ ┃ ┃ ┗ 📜ModalWindow.style.jsx
+ ┃ ┣ 📂result
+ ┃ ┃ ┣ 📜Result.jsx
+ ┃ ┃ ┗ 📜Result.style.jsx
+ ┃ ┣ 📂socialButton
+ ┃ ┃ ┣ 📜SocialButton.jsx
+ ┃ ┃ ┗ 📜SocialButton.style.jsx
+ ┃ ┣ 📂socialLogin
+ ┃ ┃ ┗ 📜SocialKakao.jsx
+ ┃ ┗ 📂styles
+ ┃ ┃ ┗ 📜GlobalStyle.jsx
+ ┣ 📂hooks
+ ┃ ┣ 📜useClickOutside.mjs
+ ┃ ┣ 📜useCustomAxios.mjs
+ ┃ ┣ 📜useDetectClose.mjs
+ ┃ ┗ 📜useWindowWide.mjs
+ ┣ 📂pages
+ ┃ ┣ 📂admin
+ ┃ ┃ ┣ 📜UploadTheme.jsx
+ ┃ ┃ ┗ 📜UploadTheme.style.jsx
+ ┃ ┣ 📂auth
+ ┃ ┃ ┗ 📜Kakao.jsx
+ ┃ ┣ 📂community
+ ┃ ┃ ┣ 📂feed
+ ┃ ┃ ┃ ┣ 📂create
+ ┃ ┃ ┃ ┃ ┣ 📜FeedCreate.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜FeedCreate.style.jsx
+ ┃ ┃ ┃ ┣ 📂dropdown
+ ┃ ┃ ┃ ┃ ┣ 📜FeedDropdown.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜FeedDropdown.style.jsx
+ ┃ ┃ ┃ ┣ 📂editor
+ ┃ ┃ ┃ ┃ ┣ 📜FeedEditor.style.jsx
+ ┃ ┃ ┃ ┃ ┣ 📜FeedEditorEdit.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜FeedEditorNew.jsx
+ ┃ ┃ ┃ ┣ 📂reply
+ ┃ ┃ ┃ ┃ ┣ 📜Reply.style.jsx
+ ┃ ┃ ┃ ┃ ┣ 📜ReplyItem.jsx
+ ┃ ┃ ┃ ┃ ┣ 📜ReplyList.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜ReplyNew.jsx
+ ┃ ┃ ┃ ┣ 📜Feed.jsx
+ ┃ ┃ ┃ ┣ 📜Feed.style.jsx
+ ┃ ┃ ┃ ┣ 📜FeedDetail.jsx
+ ┃ ┃ ┃ ┣ 📜FeedEdit.jsx
+ ┃ ┃ ┃ ┣ 📜FeedList.jsx
+ ┃ ┃ ┃ ┣ 📜FeedNew.jsx
+ ┃ ┃ ┃ ┗ 📜PostDetail.jsx
+ ┃ ┃ ┗ 📜Community.jsx
+ ┃ ┣ 📂error
+ ┃ ┃ ┣ 📜ErrorPage.jsx
+ ┃ ┃ ┗ 📜ErrorPage.style.jsx
+ ┃ ┣ 📂home
+ ┃ ┃ ┣ 📜Home.jsx
+ ┃ ┃ ┣ 📜Home.style.jsx
+ ┃ ┃ ┗ 📜HomeCarousel.jsx
+ ┃ ┣ 📂meditation
+ ┃ ┃ ┣ 📂themeset
+ ┃ ┃ ┃ ┣ 📂themeitem
+ ┃ ┃ ┃ ┃ ┣ 📜ThemeItem.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜ThemeItem.style.jsx
+ ┃ ┃ ┃ ┣ 📜ThemeMenu.jsx
+ ┃ ┃ ┃ ┣ 📜ThemeSet.jsx
+ ┃ ┃ ┃ ┗ 📜ThemeSet.style.jsx
+ ┃ ┃ ┣ 📂timer
+ ┃ ┃ ┃ ┣ 📜Timer.jsx
+ ┃ ┃ ┃ ┗ 📜Timer.style.jsx
+ ┃ ┃ ┣ 📂timeset
+ ┃ ┃ ┃ ┣ 📜TimeMenu.jsx
+ ┃ ┃ ┃ ┣ 📜TimeSet.jsx
+ ┃ ┃ ┃ ┗ 📜TimeSet.style.jsx
+ ┃ ┃ ┣ 📜Meditation.jsx
+ ┃ ┃ ┣ 📜Meditation.style.jsx
+ ┃ ┃ ┣ 📜MeditationMain.jsx
+ ┃ ┃ ┣ 📜MeditationProgress.jsx
+ ┃ ┃ ┗ 📜MeditationRecord.jsx
+ ┃ ┣ 📂mypage
+ ┃ ┃ ┣ 📂editprofile
+ ┃ ┃ ┃ ┣ 📜EditProfile.jsx
+ ┃ ┃ ┃ ┗ 📜EditProfile.style.jsx
+ ┃ ┃ ┣ 📂myactivity
+ ┃ ┃ ┃ ┣ 📜BookmarkedPosts.jsx
+ ┃ ┃ ┃ ┣ 📜MyActivity.jsx
+ ┃ ┃ ┃ ┣ 📜MyActivity.style.jsx
+ ┃ ┃ ┃ ┗ 📜MyPosts.jsx
+ ┃ ┃ ┣ 📂myinfo
+ ┃ ┃ ┃ ┣ 📜MyInfo.jsx
+ ┃ ┃ ┃ ┣ 📜MyInfo.style.jsx
+ ┃ ┃ ┃ ┗ 📜MyInfoCheck.jsx
+ ┃ ┃ ┣ 📂myrecord
+ ┃ ┃ ┃ ┣ 📜MyRecord.jsx
+ ┃ ┃ ┃ ┗ 📜MyRecord.style.jsx
+ ┃ ┃ ┣ 📜MyPage.jsx
+ ┃ ┃ ┗ 📜MyPage.style.jsx
+ ┃ ┣ 📂purchase
+ ┃ ┃ ┣ 📜Purchase.jsx
+ ┃ ┃ ┗ 📜Purchase.style.jsx
+ ┃ ┗ 📂users
+ ┃ ┃ ┣ 📜Login.jsx
+ ┃ ┃ ┣ 📜Login.style.jsx
+ ┃ ┃ ┣ 📜SignUp.jsx
+ ┃ ┃ ┣ 📜SignUp.style.jsx
+ ┃ ┃ ┣ 📜SignUpOneStep.jsx
+ ┃ ┃ ┗ 📜SignUpTwoStep.jsx
+ ┣ 📂zustand
+ ┃ ┣ 📜form.mjs
+ ┃ ┣ 📜modal.mjs
+ ┃ ┣ 📜themeSelection.mjs
+ ┃ ┣ 📜timeSelection.mjs
+ ┃ ┣ 📜timer.mjs
+ ┃ ┗ 📜user.mjs
+ ┣ 📜App.css
+ ┣ 📜App.jsx
+ ┣ 📜index.css
+ ┣ 📜main.jsx
+ ┗ 📜routes.jsx
+
+ ---
+ 
 ## 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 ### 홈 (캐러셀)
