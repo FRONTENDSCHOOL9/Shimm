@@ -83,6 +83,12 @@ export const StyledNickName = styled.div`
     display: block;
     margin-bottom: 8px;
   }
+
+  & p {
+    margin-top: 10px;
+    font-weight: 200;
+    color: #f00;
+  }
 `;
 
 export const Password = styled.div``;
@@ -148,6 +154,12 @@ export const PasswordInputs = styled.div`
     display: block;
     margin-bottom: 8px;
   }
+
+  & p {
+    margin-top: 10px;
+    font-weight: 200;
+    color: #f00;
+  }
 `;
 
 export const StyledBirth = styled.div`
@@ -159,6 +171,12 @@ export const StyledBirth = styled.div`
     display: block;
     margin-bottom: 8px;
   }
+
+  & p {
+    margin-top: 10px;
+    font-weight: 200;
+    color: #f00;
+  }
 `;
 
 export const StyledPhoneNumber = styled.div`
@@ -169,5 +187,11 @@ export const StyledPhoneNumber = styled.div`
   & label {
     display: block;
     margin-bottom: 8px;
+  }
+
+  & p {
+    margin-top: 10px;
+    font-weight: 200;
+    color: #f00;
   }
 `;
