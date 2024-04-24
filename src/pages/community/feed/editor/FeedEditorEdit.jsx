@@ -30,7 +30,6 @@ function FeedEditorEdit() {
   async function fetchPost() {
     try {
       const res = await axios(`/posts/${id}`);
-      setData(res.data);
 
       if (res.data.item.extra?.image) {
         setImgValue(res.data.item.extra?.image);

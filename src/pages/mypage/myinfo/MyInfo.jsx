@@ -1,8 +1,14 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import {
+  ButtonLink,
+  EditButton,
+  MyInfoHeader,
+  MyInfoMain,
+  MyInfoWrapper,
+  UserInfoStyled,
+} from '@pages/mypage/myinfo/MyInfo.style';
 import useUserStore from '@zustand/user.mjs';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 function MyInfo() {
   const { user } = useUserStore();

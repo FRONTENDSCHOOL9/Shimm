@@ -39,10 +39,13 @@ export const ProfileImage = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  aspect-ratio: 1/1;
 
   & img {
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
   }
 `;
 

@@ -50,7 +50,12 @@ function BookmarkedPosts() {
   }
 
   const bookmarkedPostList = data?.map(item => (
-    <FeedList key={item._id} item={item} handleBookmark={handleBookmark} />
+    <FeedList
+      key={item._id}
+      item={item}
+      mypage={true}
+      handleBookmark={handleBookmark}
+    />
   ));
   return (
     <>

@@ -15,7 +15,7 @@ function ReplyList({ id, pid }) {
   const { user } = useUserStore();
   const queryClient = useQueryClient();
 
-  const { data, fetchNextPage, isFetching, isLoading } = useInfiniteQuery({
+  const { data, fetchNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['replies'],
     queryFn: ({ pageParam = 1 }) =>
       axios.get(`/posts/${pid}/replies`, {
@@ -42,10 +42,8 @@ function ReplyList({ id, pid }) {
   let list = [];
   let hasNext = false;
   if (data) {
-    list = _.flatten(data.items).map(item => {
-      return (
-        <ReplyItem key={item._id} item={item} handleDelete={handleDelete} />
-      );
+    list = _.flatten(data.items).map((item, index) => {
+      return <ReplyItem key={index} item={item} handleDelete={handleDelete} />;
     });
     hasNext = data.page < data.totalPages;
   }
@@ -53,7 +51,6 @@ function ReplyList({ id, pid }) {
   async function handleDelete(reply_id) {
     await axios.delete(`/posts/${pid}/replies/${reply_id}`);
 
-    // 삭제한 후기 제거
     const newPagesArray =
       produce(data.pages, draft =>
         draft.forEach(page => {
@@ -74,7 +71,6 @@ function ReplyList({ id, pid }) {
         pageStart={1}
         loadMore={fetchNextPage}
         hasMore={!isFetching && hasNext}
-        loader={<Loading key={0} />}
       >
         {list}
       </InfiniteScroll>

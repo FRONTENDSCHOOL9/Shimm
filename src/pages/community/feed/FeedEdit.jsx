@@ -4,7 +4,7 @@ import {
   FeedWrite,
 } from '@pages/community/feed/Feed.style';
 import FeedEditorEdit from '@pages/community/feed/editor/FeedEditorEdit';
-import useUserStore from '@zustand/user.mjs';
+import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
 
 function FeedEdit() {

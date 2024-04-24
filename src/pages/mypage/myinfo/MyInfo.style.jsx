@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const MyInfoWrapper = styled.div`
   padding: 20px;
@@ -88,5 +89,54 @@ export const EditButton = styled.button`
 
   &:hover {
     background-color: #335633;
+  }
+`;
+
+export const CheckWrapper = styled.div`
+  padding: 20px;
+  max-width: 450px;
+  width: 100%;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  margin: 0 auto;
+`;
+
+export const Check = styled.div`
+  margin-top: 192px;
+  display: flex;
+  flex-direction: column;
+
+  & span {
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  & #password {
+    height: 40px;
+    margin-bottom: 40px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+  }
+
+  & p {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+`;
+
+export const StyledLabel = styled.label`
+  margin-top: 62px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+  font-weight: 200;
+  margin-bottom: 14px;
+
+  & input {
   }
 `;

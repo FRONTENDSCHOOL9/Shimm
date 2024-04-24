@@ -1,21 +1,30 @@
-import Input from '@components/input/Input';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import useUserStore from '@zustand/user.mjs';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import iconDelete from '@assets/images/icon-delete-post.svg';
 import Button from '@components/button/Button';
+import Input from '@components/input/Input';
 import Loading from '@components/loading/Loading';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import useCustomAxios from '@hooks/useCustomAxios';
+import {
+  ChangePassword,
+  FormWrapper,
+  Password,
+  PasswordInputs,
+  StyledBirth,
+  StyledForm,
+  StyledNickName,
+  StyledPhoneNumber,
+  Toggle,
+  ProfileImage,
+} from '@pages/mypage/editprofile/EditProfile.style';
 import useModalStore from '@zustand/modal';
-import { StyledForm } from '@pages/mypage/EditProfile.style';
+import useUserStore from '@zustand/user';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 function EditProfile() {
   const [data, setData] = useState();
   const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [imageValue, setImageValue] = useState();
   const axios = useCustomAxios();
   const { user, setUser } = useUserStore();
   const { setShowModal, setModalData } = useModalStore();
@@ -23,7 +32,6 @@ function EditProfile() {
 
   useEffect(() => {
     fetchUserInfo();
-    setImageValue(user.profile);
   }, []);
 
   async function fetchUserInfo() {
@@ -41,7 +49,7 @@ function EditProfile() {
     getValues,
   } = useForm({
     values: {
-      name: data?.item?.name || '',
+      name: data?.item?.name,
       birth: data?.item?.birth,
       phone: data?.item?.phone,
       profileImage: user.profile,
@@ -93,11 +101,11 @@ function EditProfile() {
           data: imageFormData,
         });
 
-        if (fileRes.data.item.length === 0) {
+        if (fileRes.data.item.length !== 0) {
+          formData.profileImage = fileRes.data.item[0].name;
+        } else {
           formData.profileImage = user.profile;
         }
-
-        formData.profileImage = fileRes.data.item[0].name;
       } else {
         formData.profileImage = 'icon-user-default.png';
       }
@@ -106,14 +114,16 @@ function EditProfile() {
         delete formData.password;
       }
 
+      console.log(formData);
+
       const res = await axios.patch(`/users/${user._id}`, formData);
 
       setUser({
-        _id: user._id,
+        _id: data?.item?._id,
         name: formData.name,
-        email: user.email,
-        type: user.type,
-        loginType: user.loginType,
+        email: data?.item?.email,
+        type: data?.item?.type,
+        loginType: data?.item?.loginType,
         phone: formData.phone,
         profile: formData.profileImage,
         token: user.token,

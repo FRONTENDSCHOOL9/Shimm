@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useNavigate, useParams } from 'react-router-dom';
-import PostDetail from '@pages/community/feed/PostDetail';
-import { StyledFeed } from '@pages/community/feed/Feed.style';
 import Loading from '@components/loading/Loading';
+import useCustomAxios from '@hooks/useCustomAxios';
+import { StyledFeed } from '@pages/community/feed/Feed.style';
+import PostDetail from '@pages/community/feed/PostDetail';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function FeedDetail() {
   const [isLoading, setIsLoading] = useState(false);

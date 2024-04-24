@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
+import iconLock from '@assets/images/icon-lock.svg';
+import iconMusic from '@assets/images/icon-music.svg';
 import {
-  Lock,
-  Icon,
-  Theme,
-  Price,
   Contents,
-  LockIcon,
   DeleteButton,
+  Icon,
+  Lock,
+  LockIcon,
   PaidBadge,
+  Price,
   StyledDiv,
+  Theme,
   ThemeButton,
   ThemeDescription,
 } from '@pages/meditation/themeset/themeitem/ThemeItem.style';
-import iconMusic from '@assets/images/icon-music.svg';
-import iconLock from '@assets/images/icon-lock.svg';
 import useUserStore from '@zustand/user';
+import PropTypes from 'prop-types';
 
 function ThemeItem({ item, handleTheme, handleDelete, isNotPaid }) {
   const { user } = useUserStore();
