@@ -690,7 +690,7 @@ project
 
 ### ✨ 기호
 
-#### 역할<br />
+#### 역할
 
 - 커뮤니티
 - 마이페이지
@@ -720,134 +720,139 @@ project
 - 회원정보 수정
 - 나의 명상 기록 페이지에 명상 기록 저장 후 캘린더페이지에서 날짜별로 명상 기록 확인 <br /><br />
 
-  ***
+***
 
 ## 핵심 코드 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 - 모바일 화면에서 드롭 다운 형식으로 작동하는 반응형 헤더와 명상 시간을 설정하는 드롭다운 메뉴에서, 해당 컴포넌트 이외의 영역을 클릭하거나 터치하면 드롭다운 메뉴를 접는 기능을 구현 <br />
 
-```jsx
-useEffect(() => {
-  function handleClickOutside(event) {
-    if (ref.current && !ref.current.contains(event.target)) {
-      onClickOutside();
+  ```jsx
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        onClickOutside();
+      }
     }
-  }
-
-  document.addEventListener('mousedown', handleClickOutside);
-
-  return () => {
-    document.removeEventListener('mousedown', handleClickOutside);
-  };
-}, [ref, onClickOutside]);
-```
+  
+    document.addEventListener('mousedown', handleClickOutside);
+  
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref, onClickOutside]);
+  ```
+  
+<br />
 
 - 카카오 API를 이용해 카카오에서 사용자의 인가 코드를 받아온 후, api 서버에 발급받은 인가코드와 Redirect URI를 전달하여 카카오 로그인 및 회원가입을 구현
   <br />`카카오에서 인가코드를 받아 params로 받아오는 것이 핵심`
 
-```jsx
-const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-const handleLogin = () => {
-  window.location.href = KAKAO_URL;
-};
-
-const [searchParams] = useSearchParams();
-const code = searchParams.get('code');
-
-const res = await axios.post('users/login/kakao', {
-  code,
-  redirect_uri: `${window.location.origin}/auth/kakao`,
-});
-```
+  ```jsx
+  const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  
+  const handleLogin = () => {
+    window.location.href = KAKAO_URL;
+  };
+  
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
+  
+  const res = await axios.post('users/login/kakao', {
+    code,
+    redirect_uri: `${window.location.origin}/auth/kakao`,
+  });
+  ```
 
 <br />
 
 - setInterval 함수를 이용해 사용자가 설정한 시간부터 1초 간격으로 time을 변경 후 렌더링하며 동작하는 타이머를 구현
-
-```jsx
-(function handleStart() {
-  if (!isStarted) {
-    formatTime();
-    timerRef.current = setInterval(() => {
-      setTime(prevTime => prevTime - 1);
-    }, 1000);
-    setIsStarted(true);
-  }
-})();
-```
+  
+  ```jsx
+  (function handleStart() {
+    if (!isStarted) {
+      formatTime();
+      timerRef.current = setInterval(() => {
+        setTime(prevTime => prevTime - 1);
+      }, 1000);
+      setIsStarted(true);
+    }
+  })();
+  ```
 
 <br />
 
 - React Player 라이브러리를 이용하여, Sound Cloud에 저장되어 있는 쉼의 자체 제작 명상 음악을 재생, Sound Cloud 플레이어는 반복 재생 기능을 제공하지 않아 음악이 종료될 시점에 다시 처음으로 이동하며 명상 시간 동안 반복 재생할 수 있도록 구현
 
-```jsx
-function handleProgress(state) {
-  const { playedSeconds } = state;
-  const remainingTime = duration - playedSeconds;
-  const threshold = 3;
-
-  if (remainingTime <= threshold) {
-    setIsPlaying(false);
-    playerRef.current.seekTo(0);
+  ```jsx
+  function handleProgress(state) {
+    const { playedSeconds } = state;
+    const remainingTime = duration - playedSeconds;
+    const threshold = 3;
+  
+    if (remainingTime <= threshold) {
+      setIsPlaying(false);
+      playerRef.current.seekTo(0);
+      setIsPlaying(true);
+    }
+  }
+  
+  function handleReady() {
+    const trackDuration = playerRef.current.getDuration();
+    setDuration(trackDuration);
     setIsPlaying(true);
   }
-}
+  
+  <ReactPlayer
+    ref={playerRef}
+    url={selectedTheme.music}
+    loop={false}
+    playing={isPlaying}
+    controls={false}
+    onReady={handleReady}
+    onProgress={handleProgress}
+  />;
+  ```
 
-function handleReady() {
-  const trackDuration = playerRef.current.getDuration();
-  setDuration(trackDuration);
-  setIsPlaying(true);
-}
-
-<ReactPlayer
-  ref={playerRef}
-  url={selectedTheme.music}
-  loop={false}
-  playing={isPlaying}
-  controls={false}
-  onReady={handleReady}
-  onProgress={handleProgress}
-/>;
-```
+  <br />
 
 - JavaScript CDN으로 포트원 결제 API를 연동하여 KCP 결제 서비스를 통해 유료 테마를 구매할 수 있는 기능 구현,<br /> 테스트 결제가 가능하고, 결제 완료 시 사용자의 테마 목록에서 구매 여부를 렌더링<br />
 
-```jsx
+  ```jsx
 
-const { IMP } = window;
-    IMP.init(import.meta.env.VITE_MERCHANT_CODE);
-    IMP.request_pay(
-      {
-        pg: 'kcp',
-        pay_method: 'card',
-        merchant_uid:
-          new Date().getTime() + Math.floor(Math.random() * 1000000),
-        name: '테마 결제',
-        amount: 1000,
-        buyer_name: user.name,
-        buyer_tel: user.phone,
-        buyer_email: user.email,
-      },
-      async res => {
-        try {
-          if (res.success) {
-            await axios.post('/orders', {
-              products: [
-                {
-                  _id: JSON.parse(sessionStorage.getItem('theme')).state
-                    .selectedTheme.id,
-                  quantity: 1,
-                  extra: { ...res },
-                },
-              ],
-            });
+  const { IMP } = window;
+      IMP.init(import.meta.env.VITE_MERCHANT_CODE);
+      IMP.request_pay(
+        {
+          pg: 'kcp',
+          pay_method: 'card',
+          merchant_uid:
+            new Date().getTime() + Math.floor(Math.random() * 1000000),
+          name: '테마 결제',
+          amount: 1000,
+          buyer_name: user.name,
+          buyer_tel: user.phone,
+          buyer_email: user.email,
+        },
+        async res => {
+          try {
+            if (res.success) {
+              await axios.post('/orders', {
+                products: [
+                  {
+                    _id: JSON.parse(sessionStorage.getItem('theme')).state
+                      .selectedTheme.id,
+                    quantity: 1,
+                    extra: { ...res },
+                  },
+                ],
+              });
+  
+  
+  … 중략
+  ```
+<br />
 
-
-… 중략
-```
-
----
+***
 
 ### 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
