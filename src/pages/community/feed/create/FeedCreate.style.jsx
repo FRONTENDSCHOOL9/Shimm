@@ -6,15 +6,19 @@ export const CircleButton = styled.button`
   border-radius: 50%;
   background-color: #e6e6e6;
   position: fixed;
-  bottom: 10%;
-  right: 10%;
-  transform: translate(-50%, 50%);
+  bottom: 5%;
+  right: 35%;
+  transform: translate(-50%);
   font-size: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0.8;
   transition: 0.3s ease-in-out;
+
+  @media (min-width: 800px) {
+    right: 20%;
+  }
 
   &:hover {
     background: #cbcbcb;
