@@ -339,7 +339,7 @@ export const initData = async nextSeq => {
         user: {
           _id: 5,
           name: '베찌',
-          profile: 'bacon.jpg',
+          profile: 'bacon.png',
         },
         replies: [
           {
