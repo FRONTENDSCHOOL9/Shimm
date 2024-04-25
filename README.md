@@ -47,13 +47,12 @@ PW: 11111111
 <br />
 </div>
 
-
 <div align="center">
 
 | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/0f19575c-b85b-4740-99ab-4590f5140c0d" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/ead528a9-969f-4468-a8bb-a25e4a9ac624" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/df681754-1e22-434a-894d-6154aa964509" width="200" height="200"> |
-|---|---|---|
-| [정진욱 TEAM LEADER](https://github.com/JWJung-99) | [민다인](https://github.com/danggin) | [정기호](https://github.com/kihonoluluhawaii) |
-| 명상 서비스 구현 및 총괄 | 로그인, 소셜로그인,<br>회원가입 구현 및 디자인 총괄 | 커뮤니티, 마이페이지, 캘린더 |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| [정진욱 TEAM LEADER](https://github.com/JWJung-99)                                                                                  | [민다인](https://github.com/danggin)                                                                                                | [정기호](https://github.com/kihonoluluhawaii)                                                                                       |
+| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br>회원가입 구현 및 디자인 총괄                                                                                 | 커뮤니티, 마이페이지, 캘린더                                                                                                        |
 
 </div>
 
@@ -781,10 +780,12 @@ project
 - 나의 명상 기록 페이지에 명상 기록 저장 후 캘린더페이지에서 날짜별로 명상 기록 확인 <br /><br />
 
 ---
-<br />
 
-### 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+## 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
+#### 시연 영상
+
+https://youtu.be/AHaA8VEULZM
 <br />
 
 ---
