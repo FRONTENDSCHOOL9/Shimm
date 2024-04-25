@@ -11,7 +11,7 @@
 
 ## 쉼 배포 링크 및 테스트 계정 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-<a href='https://shimm.netlify.app/home'>Shimm</a> <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+<a href='https://shimm.netlify.app/home'>Shimm<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34"></a>
 
 ```
 일반 유저
@@ -32,7 +32,7 @@ PW: 11111111
 <br />
 <span>고단했던 하루에 고요함을 선물해보세요.</span><br />
 <br />
-<span>마음을 가다듬고 내면의 평화와 깊은 휴식을 찾아가는 여정을 지원합니다</span>
+<span>마음을 가다듬고 내면의 평화와 깊은 휴식을 찾아가는 여정을 지원합니다.</span>
 
 ---
 
@@ -42,7 +42,7 @@ PW: 11111111
 <div align="center"><img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/8c5ee870-9cea-428e-9c3d-e3608bc4b182" alt="팀로고 사진" />
 <br />
 <br />
-  멋쟁이 사자처럼 프엔9기 2팀 < 2thetop >
+  멋쟁이 사자처럼 FES 9기 2팀 < 2thetop >
 <br />
 <br />
 </div>
@@ -56,14 +56,12 @@ PW: 11111111
 
 ## 개발 일정 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-- 아이템 아이디어 구상 ( 2024.03.29 - 2024.04.01 )
+- 아이디어 구상 ( 2024.03.29 - 2024.04.01 )
 - 프로젝트 기획 ( 2024.04.02 - 2024.04.03 )
-- 화면 설계 및 디자인 ( 2024.04.03 - 2024.04.07 )
-- 코드 컨벤션 , 스타일 가이드 설정 ( 2024.04.05 - 2024.04.05 )
-- 컴포넌트 분리 ( 2024.04.05 - 2024.04.07 )
-- 개발 ( 2024.04.08 - 2024.04.19 )
-- 코드 보완 및 에러 수정, 프로젝트 발표 준비 ( 2024.04.20 - 2024.04.24 )
-  <br />
+- 화면 설계 및 디자인 ( 2024.04.03 - 2024.04.10 )
+- 코드 컨벤션 설정, 컴포넌트 분리 ( 2024.04.05 )
+- 개발 ( 2024.04.08 - 2024.04.22 )
+- 코드 보완 및 에러 수정, 개발 내용 문서화 ( 2024.04.23 - 2024.04.24 )
   <br />
   <img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
 
@@ -79,9 +77,9 @@ PW: 11111111
 
 ### Front-end
 
-|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                                      React-<br>Router                                                                       |                                                                                    Styled-<br>Components                                                                                    |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |                                                            KaKaoLogin                                                             |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="55" height="55"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="55" height="55" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/aab37584-dedf-44f3-aa3c-12288e1951c4" width="65" height="30"> |
+|                                                                                     Html                                                                                     |                                                                             CSS                                                                              |                                                            JavaScript                                                             |                                                                              React                                                                               |                                                              Zustand                                                              |                                                                                    Styled-<br>Components                                                                                    |                                                                              Prettier                                                                               |                                                                       React-<br>Query                                                                       |                                                            KaKaoLogin                                                             |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/77375bc3-9ea7-4d49-919d-6c4c01a93ac3" width="55" height="55"> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img width="108" alt="image" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/84115816/fb675509-7722-4d52-a67e-f335aa599844"> | <div><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/e28ef945-61aa-4d38-af81-4e0154e0ea08" alt="styled-components icon" width="55" height="55" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/aab37584-dedf-44f3-aa3c-12288e1951c4" width="65" height="30"> |
 
 ---
 
@@ -759,8 +757,8 @@ project
 - 커뮤니티 메인 페이지
 - 커뮤니티 게시글 등록 페이지
 - 커뮤니티 게시글 상세 페이지
-- 회원정보확인 페이지
-- 회원정보수정 페이지
+- 회원정보 확인 페이지
+- 회원정보 수정 페이지
 - 나의 명상 기록 페이지 <br /><br />
 
 #### 기능 구현
