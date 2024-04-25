@@ -48,12 +48,14 @@ PW: 11111111
 </div>
 
 
+<div align="center">
+
 | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/0f19575c-b85b-4740-99ab-4590f5140c0d" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/ead528a9-969f-4468-a8bb-a25e4a9ac624" width="200" height="200"> | <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/df681754-1e22-434a-894d-6154aa964509" width="200" height="200"> |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| <a href="https://github.com/JWJung-99" >정진욱 TEAM LEADER</a>                                                                      | <a href="https://github.com/danggin">민다인</a>                                                                                     | <a href="https://github.com/kihonoluluhawaii">정기호</a>                                                                            |
-| 명상 서비스 구현 및 총괄                                                                                                            | 로그인, 소셜로그인,<br />회원가입 구현 및 디자인 총괄                                                                               | 커뮤니티, 마이페이지, 캘린더                                                                                                        |
+|---|---|---|
+| [정진욱 TEAM LEADER](https://github.com/JWJung-99) | [민다인](https://github.com/danggin) | [정기호](https://github.com/kihonoluluhawaii) |
+| 명상 서비스 구현 및 총괄 | 로그인, 소셜로그인,<br>회원가입 구현 및 디자인 총괄 | 커뮤니티, 마이페이지, 캘린더 |
 
-
+</div>
 
 ---
 
@@ -65,6 +67,7 @@ PW: 11111111
 - 코드 컨벤션 설정, 컴포넌트 분리 ( 2024.04.05 )
 - 개발 ( 2024.04.08 - 2024.04.22 )
 - 코드 보완 및 에러 수정, 개발 내용 문서화 ( 2024.04.23 - 2024.04.24 )
+  <br />
   <br />
   <img width="1208" alt="스크린샷 2024-04-24 오후 8 47 38" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/b489b193-0470-420a-8281-72e00129babe">
 
@@ -776,6 +779,13 @@ project
 - 마이페이지 비밀번호 확인 후 일치하면 회원정보 수정 페이지로 이동
 - 회원정보 수정
 - 나의 명상 기록 페이지에 명상 기록 저장 후 캘린더페이지에서 날짜별로 명상 기록 확인 <br /><br />
+
+---
+<br />
+
+### 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+
+<br />
 
 ---
 
