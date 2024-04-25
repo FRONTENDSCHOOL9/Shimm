@@ -686,7 +686,50 @@ project
 
 ### ✨ 다인
 
-- 전체 디자인, 기획, 소셜로그인, 회원가입<br /><br />
+#### 역할
+
+- 기획 및 디자인
+- 로그인, 소셜로그인, 회원가입<br /><br />
+
+#### 기획 및 디자인
+
+- Figma를 이용한 플로우차트, 와이어 프레임 작성
+- Figma를 이용한 반응형 디자인 작성
+
+#### UI 구현
+
+##### [ 공통 ]
+
+- Lottie를 이용한 로딩중 애니메이션
+- 에러 페이지
+- Footer
+
+##### [ 메인 ] <br />
+
+- 메인 페이지
+
+##### [ 명상 ]
+
+= Lottie를 이용한 명상 화면 애니메이션
+
+##### [ 회원 ]
+
+- 로그인 페이지
+- 회원가입 페이지 (2 Step)
+- 소셜 로그인 페이지 <br /><br />
+
+#### 기능 구현
+
+##### [ 메인 ]
+
+- react-swiper 라이브러리를 이용한 메인 비주얼 캐러셀
+
+##### [ 로그인 및 회원가입 ]
+
+- Zustand를 이용해 단계별로 데이터를 저장하는 멀티 스텝 폼
+- react-hook-form 을 이용한 회원가입 시 유효성 검증 및 데이터 전송
+- 이메일 중복체크 로직
+- 카카오로 로그인 버튼 클릭 시 Redirect Url로 이동<br /><br />
 
 ### ✨ 기호
 
@@ -720,7 +763,7 @@ project
 - 회원정보 수정
 - 나의 명상 기록 페이지에 명상 기록 저장 후 캘린더페이지에서 날짜별로 명상 기록 확인 <br /><br />
 
-***
+---
 
 ## 핵심 코드 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
@@ -733,15 +776,15 @@ project
         onClickOutside();
       }
     }
-  
+
     document.addEventListener('mousedown', handleClickOutside);
-  
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [ref, onClickOutside]);
   ```
-  
+
 <br />
 
 - 카카오 API를 이용해 카카오에서 사용자의 인가 코드를 받아온 후, api 서버에 발급받은 인가코드와 Redirect URI를 전달하여 카카오 로그인 및 회원가입을 구현
@@ -749,14 +792,14 @@ project
 
   ```jsx
   const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-  
+
   const handleLogin = () => {
     window.location.href = KAKAO_URL;
   };
-  
+
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
-  
+
   const res = await axios.post('users/login/kakao', {
     code,
     redirect_uri: `${window.location.origin}/auth/kakao`,
@@ -766,7 +809,7 @@ project
 <br />
 
 - setInterval 함수를 이용해 사용자가 설정한 시간부터 1초 간격으로 time을 변경 후 렌더링하며 동작하는 타이머를 구현
-  
+
   ```jsx
   (function handleStart() {
     if (!isStarted) {
@@ -788,20 +831,20 @@ project
     const { playedSeconds } = state;
     const remainingTime = duration - playedSeconds;
     const threshold = 3;
-  
+
     if (remainingTime <= threshold) {
       setIsPlaying(false);
       playerRef.current.seekTo(0);
       setIsPlaying(true);
     }
   }
-  
+
   function handleReady() {
     const trackDuration = playerRef.current.getDuration();
     setDuration(trackDuration);
     setIsPlaying(true);
   }
-  
+
   <ReactPlayer
     ref={playerRef}
     url={selectedTheme.music}
@@ -846,13 +889,14 @@ project
                   },
                 ],
               });
-  
-  
+
+
   … 중략
   ```
-<br />
 
-***
+  <br />
+
+---
 
 ### 주요 기능 소개 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
@@ -921,13 +965,13 @@ project
 
 ## 프로젝트를 마치며 아쉬웠던 점 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
-- 처음 기획에는 카카오 외에도 구글과 네이버 로그인까지 총 3개의 소셜 로그인을 구현하여 사용자의 편이성을 고려했지만 구현하지 못하여 아쉬움.
+- 처음 기획에는 카카오 외에도 구글과 네이버 로그인까지 총 3개의 소셜 로그인을 구현하여 사용자의 편의성을 고려했지만 구현하지 못하여 아쉬움.
 
 - 웹 접근성을 처음부터 많이 신경쓰기로 기획을 하였지만 시간 관계상 다른 중요 기능에 밀려 생각보다 접근성 중요 비중이 뒤로 밀려 처음 기획단계보다 많이 챙기지 못해 아쉬움.
 
-- CSS Variable을 사용하고 싶었으나 styled component와 친해지는게 먼저였기 때문에 신경을 쓰지 못함.
+- CSS Variable을 사용하고 싶었으나 styled component와 친해지는게 먼저였기 때문에 신경을 쓰지 못한 점이 아쉬움.
 
-- 다크모드를 구현하지 못해 아쉬움.
+- 다크모드 기능을 구현하지 못해 아쉬움.
 
 - 성능 최적화 테스트를 충분히 하지 못해 아쉬움.
 
