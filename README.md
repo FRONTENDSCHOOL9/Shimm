@@ -89,6 +89,8 @@ PW: 11111111
 
 <img width="1212" alt="스크린샷 2024-04-24 오후 2 55 49" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/13796afd-c4cf-4343-9554-a999dff43158">
 
+---
+
 ## 컨벤션 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
 <details>
@@ -444,6 +446,17 @@ render() {
 ```
 
 ## </details>
+
+---
+
+## 스타일 가이드 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
+
+<img width="100%" alt="image" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/84115816/1e493022-158d-4f91-9507-b321d57f4ae5">
+<img width="100%" alt="image" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/84115816/eee2b8a5-9b5d-468e-b234-c78ada3bdd18">
+<img width="100%" alt="image" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/84115816/55d816c8-44db-4562-886b-da2549ef6206">
+<img width="100%" alt="image" src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/84115816/236448c6-ed12-4cae-9466-ed82e7f2011c">
+
+---
 
 ## 플로우 차트 <img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/d01ce1ff-e893-4439-89cc-18178d66eca6" width="20" height="34">
 
