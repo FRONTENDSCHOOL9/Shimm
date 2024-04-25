@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c65ec746-1170-4ed3-80a6-2d0221934be5" width="400" height="80">
+<img src="https://github.com/FRONTENDSCHOOL9/Shimm/assets/153144213/c65ec746-1170-4ed3-80a6-2d0221934be5" width="50%">
 </div>
 <br />
 <h1 align=center> 쉼 - 고단했던 하루에 고요함을 선물해보세요. </h1>
