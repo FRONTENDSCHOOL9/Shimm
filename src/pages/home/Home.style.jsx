@@ -141,6 +141,11 @@ export const SectionUser = styled.section`
     transition: all 0.3s ease-in;
   }
 
+  :focus {
+    box-shadow: inset 0 0 0 1px #000;
+    font-weight: 500;
+  }
+
   :hover {
     gap: 10px;
   }
