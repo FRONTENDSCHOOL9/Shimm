@@ -45,4 +45,8 @@ export const CircleButton = styled.button`
     border-radius: 4px;
     background-image: linear-gradient(to bottom right, #1e00ff, lime);
   }
+
+  @media (max-width: 540px) {
+    transform: translate(-120%, 50%);
+  }
 `;
