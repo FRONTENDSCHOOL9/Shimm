@@ -138,7 +138,11 @@ export const ReplyInput = styled(Input)`
   height: 30px;
 `;
 
-export const More = styled.button`
+export const MoreDiv = styled.div`
+  cursor: default;
+`;
+
+export const MoreBtn = styled.button`
   position: relative;
 `;
 

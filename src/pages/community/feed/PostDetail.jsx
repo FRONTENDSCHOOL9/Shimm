@@ -1,9 +1,11 @@
 import iconBookMarkActive from '@assets/images/icon-bookmark-active.svg';
 import iconBookMark from '@assets/images/icon-bookmark.svg';
+import useClickOutside from '@hooks/useClickOutside.mjs';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   Bookmark,
-  More,
+  MoreBtn,
+  MoreDiv,
   Post,
   PostHeader,
   PostInfo,
@@ -14,13 +16,15 @@ import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
 import ReplyList from '@pages/community/feed/reply/ReplyList';
 import useUserStore from '@zustand/user';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function PostDetail({ item, handleDelete }) {
   const [isActive, setIsActive] = useState();
   const [isOpened, setIsOpened] = useState(false);
   const [bookmarkId, setBookmarkId] = useState();
+  const [outside, setOutside] = useState(false);
+  const menuRef = useRef(null);
   const { user } = useUserStore();
   const { _id, user: writer, content, createdAt, extra } = item;
   const axios = useCustomAxios();
@@ -76,8 +80,12 @@ function PostDetail({ item, handleDelete }) {
   }
 
   function handleMore() {
-    setIsOpened(!isOpened);
+    setIsOpened(true);
   }
+
+  useClickOutside(menuRef, () => {
+    if (isOpened) setIsOpened(false);
+  });
 
   return (
     <Post>
@@ -125,24 +133,40 @@ function PostDetail({ item, handleDelete }) {
 
         {user && user._id === writer._id && (
           <>
-            <More type="button" onClick={handleMore}>
-              •••
-            </More>
-            {isOpened && <FeedDropDown id={_id} handleDelete={handleDelete} />}
+            {isOpened ? (
+              <>
+                <MoreDiv>•••</MoreDiv>
+                <FeedDropDown
+                  ref={menuRef}
+                  id={_id}
+                  handleDelete={handleDelete}
+                  type={user.type}
+                />
+              </>
+            ) : (
+              <MoreBtn type="button" onClick={handleMore}>
+                •••
+              </MoreBtn>
+            )}
           </>
         )}
 
         {user && user.type === 'seller' && (
           <>
-            <More type="button" onClick={handleMore}>
-              •••
-            </More>
-            {isOpened && (
-              <FeedDropDown
-                id={_id}
-                handleDelete={handleDelete}
-                type={user.type}
-              />
+            {isOpened ? (
+              <>
+                <MoreDiv>•••</MoreDiv>
+                <FeedDropDown
+                  ref={menuRef}
+                  id={_id}
+                  handleDelete={handleDelete}
+                  type={user.type}
+                />
+              </>
+            ) : (
+              <MoreBtn type="button" onClick={handleMore}>
+                •••
+              </MoreBtn>
             )}
           </>
         )}
