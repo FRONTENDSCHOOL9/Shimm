@@ -18,7 +18,6 @@ export const Menu = styled.ul`
 
 export const MenuItem = styled.li`
   text-align: center;
-  padding: 10px 0;
   border-bottom: 1px solid #545956;
 
   font-size: 1.4rem;
@@ -45,15 +44,33 @@ export const MenuItem = styled.li`
 `;
 
 export const MenuLink = styled(Link)`
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px #55a25a;
+    border-radius: 5px;
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: unset;
+  }
 `;
 
 export const MenuButton = styled.button`
+  width: 100%;
+  padding: 10px 0;
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px #55a25a;
+    border-radius: 5px;
+    border-top-left-radius: unset;
+    border-top-right-radius: unset;
+  }
 `;

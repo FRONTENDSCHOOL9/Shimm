@@ -75,6 +75,13 @@ export const PostInfo = styled.div`
 
 export const Bookmark = styled.div`
   margin-left: auto;
+
+  & button {
+    &:focus {
+      box-shadow: inset 0 0 0 1px #55a25a;
+      border-radius: 4px;
+    }
+  }
 `;
 
 export const PostMain = styled(Link)`
@@ -94,7 +101,31 @@ export const PostMain = styled(Link)`
   }
 
   &:focus {
-    box-shadow: inset 0 0 0 2px #55a25a;
+    box-shadow: inset 0 0 0 1px #55a25a;
+    border-radius: 4px;
+  }
+
+  @media (min-width: 740px) {
+    & p {
+      font-size: 1.6rem;
+    }
+  }
+`;
+
+export const PostContent = styled.div`
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  & p {
+    font-size: 1.4rem;
+    margin: 10px 0;
+  }
+
+  & img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 5px;
   }
 
   @media (min-width: 740px) {
@@ -108,6 +139,12 @@ export const ReplyMore = styled(Link)`
   font-size: 1.4rem;
   font-weight: 300;
   color: #727272;
+
+  &:focus {
+    font-weight: 500;
+    color: #55a25a;
+    text-decoration: underline;
+  }
 `;
 
 export const Reply = styled.div`
@@ -131,6 +168,16 @@ export const ReplyMain = styled.form`
       color: red;
     }
   }
+
+  & button {
+    padding: 2px;
+    box-sizing: border-box;
+
+    &:focus {
+      box-shadow: inset 0 0 0 1px #55a25a;
+      border-radius: 4px;
+    }
+  }
 `;
 
 export const ReplyInput = styled(Input)`
@@ -138,12 +185,22 @@ export const ReplyInput = styled(Input)`
   height: 30px;
 `;
 
-export const MoreDiv = styled.div`
+export const MoreClose = styled.button`
   cursor: default;
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px #55a25a;
+    border-radius: 4px;
+  }
 `;
 
-export const MoreBtn = styled.button`
+export const MoreOpen = styled.button`
   position: relative;
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px #55a25a;
+    border-radius: 4px;
+  }
 `;
 
 export const FeedWrite = styled.div`

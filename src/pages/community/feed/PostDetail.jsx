@@ -4,12 +4,12 @@ import useClickOutside from '@hooks/useClickOutside.mjs';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   Bookmark,
-  MoreBtn,
-  MoreDiv,
+  MoreClose,
+  MoreOpen,
   Post,
   PostHeader,
   PostInfo,
-  PostMain,
+  PostContent,
   ProfileImage,
 } from '@pages/community/feed/Feed.style';
 import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
@@ -135,7 +135,9 @@ function PostDetail({ item, handleDelete }) {
           <>
             {isOpened ? (
               <>
-                <MoreDiv>•••</MoreDiv>
+                <MoreClose type="button" onClick={() => setIsOpened(false)}>
+                  •••
+                </MoreClose>
                 <FeedDropDown
                   ref={menuRef}
                   id={_id}
@@ -144,9 +146,9 @@ function PostDetail({ item, handleDelete }) {
                 />
               </>
             ) : (
-              <MoreBtn type="button" onClick={handleMore}>
+              <MoreOpen type="button" onClick={handleMore}>
                 •••
-              </MoreBtn>
+              </MoreOpen>
             )}
           </>
         )}
@@ -155,7 +157,9 @@ function PostDetail({ item, handleDelete }) {
           <>
             {isOpened ? (
               <>
-                <MoreDiv>•••</MoreDiv>
+                <MoreClose type="button" onClick={() => setIsOpened(false)}>
+                  •••
+                </MoreClose>
                 <FeedDropDown
                   ref={menuRef}
                   id={_id}
@@ -164,15 +168,15 @@ function PostDetail({ item, handleDelete }) {
                 />
               </>
             ) : (
-              <MoreBtn type="button" onClick={handleMore}>
+              <MoreOpen type="button" onClick={handleMore}>
                 •••
-              </MoreBtn>
+              </MoreOpen>
             )}
           </>
         )}
       </PostHeader>
 
-      <PostMain to={`/community/${_id}`}>
+      <PostContent>
         <p>{content}</p>
         {extra?.image && (
           <img
@@ -180,7 +184,7 @@ function PostDetail({ item, handleDelete }) {
             alt={`${extra.image}`}
           />
         )}
-      </PostMain>
+      </PostContent>
 
       <ReplyList id={_id} pid={Number(pid)} />
     </Post>

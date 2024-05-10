@@ -49,4 +49,9 @@ export const CircleButton = styled.button`
     border-radius: 4px;
     background-image: linear-gradient(to bottom right, #1e00ff, lime);
   }
+
+  &:focus {
+    box-shadow: inset 0 0 0 4px #224124;
+    border-radius: 50%;
+  }
 `;

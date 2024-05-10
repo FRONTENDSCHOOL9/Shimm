@@ -4,8 +4,8 @@ import useClickOutside from '@hooks/useClickOutside.mjs';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   Bookmark,
-  MoreDiv,
-  MoreBtn,
+  MoreClose,
+  MoreOpen,
   Post,
   PostHeader,
   PostInfo,
@@ -80,11 +80,7 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
   }
 
   function handleMore() {
-    if (!isOpened) {
-      setIsOpened(true);
-    } else {
-      setIsOpened(false);
-    }
+    setIsOpened(true);
   }
 
   useClickOutside(menuRef, () => {
@@ -139,7 +135,9 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
           <>
             {isOpened ? (
               <>
-                <MoreDiv>•••</MoreDiv>
+                <MoreClose type="button" onClick={() => setIsOpened(false)}>
+                  •••
+                </MoreClose>
                 <FeedDropDown
                   ref={menuRef}
                   id={_id}
@@ -148,9 +146,9 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
                 />
               </>
             ) : (
-              <MoreBtn type="button" onClick={handleMore}>
+              <MoreOpen type="button" onClick={handleMore}>
                 •••
-              </MoreBtn>
+              </MoreOpen>
             )}
           </>
         )}
@@ -159,7 +157,9 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
           <>
             {isOpened ? (
               <>
-                <MoreDiv>•••</MoreDiv>
+                <MoreClose type="button" onClick={() => setIsOpened(false)}>
+                  •••
+                </MoreClose>
                 <FeedDropDown
                   ref={menuRef}
                   id={_id}
@@ -168,9 +168,9 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
                 />
               </>
             ) : (
-              <MoreBtn type="button" onClick={handleMore}>
+              <MoreOpen type="button" onClick={handleMore}>
                 •••
-              </MoreBtn>
+              </MoreOpen>
             )}
           </>
         )}
