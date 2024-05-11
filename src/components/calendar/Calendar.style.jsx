@@ -1,98 +1,14 @@
-// import styled from 'styled-components';
-
-// export const CalendarWrapper = styled.div`
-//   padding: 20px;
-//   max-width: 1000px;
-//   min-width: 440px;
-//   width: 100%;
-//   height: 600px;
-//   display: flex;
-//   flex-direction: column;
-//   margin: 0 auto;
-//   box-sizing: border-box;
-//   align-items: center;
-//   gap: 30px;
-//   /* overflow-x: auto; */
-// `;
-
-// export const Container = styled.div`
-//   padding: 30px;
-//   width: 100%;
-//   height: 100%;
-//   display: flex;
-//   box-sizing: border-box;
-//   flex-direction: column;
-//   align-items: center;
-//   box-shadow: inset 0 0 20px red;
-// `;
-
-// export const Header = styled.div`
-//   display: flex;
-//   align-items: flex-start;
-//   font-size: 1.4rem;
-//   width: 140px;
-//   margin-bottom: 10px;
-//   justify-content: space-between;
-// `;
-
-// export const Calendar = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(7, 1fr);
-//   width: 100%;
-//   height: 100%;
-//   max-width: 800px;
-//   gap: 4px;
-// `;
-
-// export const Day = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   color: white;
-//   background-color: #55a25a;
-//   border-radius: 4px;
-//   transition: all 0.5s;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-
-//   &:hover {
-//     background-color: #335635;
-//   }
-// `;
-
-// export const DayNumber = styled.p`
-//   font-size: 1.4rem;
-//   font-weight: 300;
-//   text-align: center;
-//   margin: 0;
-// `;
-
-// export const EventName = styled.span`
-//   font-size: 1.2rem;
-//   color: #fefefe;
-//   display: block;
-// `;
-
 import styled from 'styled-components';
 
 export const CalendarWrapper = styled.div`
   padding: 20px;
-  max-width: 450px;
+  max-width: 440px;
   width: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   align-items: center;
   margin: 0 auto;
-  transition: all 0.5s ease;
-
-  @media screen and (max-width: 768px) {
-    max-width: 350px;
-  }
-
-  /* @media screen and (max-width: 480px) {
-    padding: 10px;
-  } */
 `;
 
 export const ButtonWrapper = styled.div`
@@ -101,14 +17,16 @@ export const ButtonWrapper = styled.div`
   margin-right: auto;
   align-items: center;
 `;
+
 export const CalendarButton = styled.button`
-  font-size: 1rem;
-  text-align: center;
-  width: 30px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
   height: 20px;
   cursor: pointer;
   box-sizing: border-box;
-  padding: 2px;
   border-radius: 5px;
   color: white;
   background-color: #55a25a;
@@ -120,30 +38,24 @@ export const CalendarButton = styled.button`
 
 export const CalendarHeader = styled.div`
   padding: 10px;
-  color: white;
-  font-size: 3rem;
   display: flex;
 `;
 
 export const Container = styled.div`
-  width: 770px;
+  width: 800px;
   transition: all 0.5s ease;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 740px) {
     width: 100%;
-  }
-
-  @media screen and (max-width: 480px) {
-    width: 100%;
-    max-width: 350px;
+    padding: 10px;
   }
 `;
 
 export const MonthDisplay = styled.div`
   font-size: 2rem;
-  background-color: #55a25a;
+  color: #55a25a;
   border-radius: 4px;
-  padding: 2px;
+  padding: 10px;
   margin-right: 10px;
 `;
 
@@ -162,14 +74,13 @@ export const Weekday = styled.div`
 export const Calendar = styled.div`
   width: 100%;
   margin: auto;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-content: center;
 `;
 
 export const DayCell = styled.div`
-  color: black;
-
-  width: 100px;
+  width: 100%;
   padding: 10px;
   height: 100px;
   cursor: pointer;
@@ -177,85 +88,73 @@ export const DayCell = styled.div`
   background-color: white;
   margin: 5px;
   border-radius: 5px;
-  box-shadow: 0px 0px 3px gray;
+  box-shadow: 0px 0px 10px #e8faed;
   display: flex;
+  gap: 12px;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   &:hover {
     background-color: #e8faed;
   }
-`;
 
-export const EventIndicator = styled.div`
-  font-size: 14px; /* 글자 크기 증가 */
-  color: black; /* 글자색 변경 */
-  padding: 4px 8px; /* 안쪽 여백 추가 */
-  border-radius: 4px; /* 모서리 둥근 정도 */
-`;
-
-export const Event = styled.div`
-  font-size: 10px;
-  padding: 3px;
-  background-color: #58bae4;
-  color: white;
-  border-radius: 5px;
-  max-height: 55px;
-  overflow: hidden;
-`;
-
-// export const Padding = styled.div`
-//   cursor: default !important;
-//   background-color: #fffcff !important;
-//   box-shadow: none !important;
-// `;
-
-export const NewEventModal = styled.div`
-  z-index: 20;
-  padding: 25px;
-  background-color: #e8f4fa;
-  box-shadow: 0px 0px 3px black;
-  border-radius: 5px;
-  width: 350px;
-  top: 100px;
-  left: calc(50% - 175px);
-  position: absolute;
-  font-family: sans-serif;
-`;
-
-export const EventTitleInput = styled.input`
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 25px;
-  border-radius: 3px;
-  outline: none;
-  border: none;
-  box-shadow: 0px 0px 3px gray;
-
-  &.error {
-    border: 2px solid red;
+  @media screen and (max-width: 740px) {
+    width: 100%;
+    gap: 2px;
+    height: 70px;
   }
 `;
 
-export const CancelButton = styled(CalendarButton)`
-  background-color: #d36c6c;
+export const EventIndicator = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1.2rem;
+  color: black;
+  overflow: hidden;
+
+  & > div {
+    position: relative;
+    padding-left: 16px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #4c7b3b;
+    }
+  }
 `;
 
-export const SaveButton = styled(CalendarButton)`
-  background-color: #92a1d1;
-`;
+export const RecordModalStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-export const EventText = styled.div`
-  font-size: 14px;
-`;
+  & > div {
+    position: relative;
+    padding-left: 16px;
 
-export const ModalBackDrop = styled.div`
-  top: 0px;
-  left: 0px;
-  z-index: 10;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #4c7b3b;
+    }
+  }
+
+  & span {
+    font-size: 1.6rem;
+    margin-right: 20px;
+  }
 `;
