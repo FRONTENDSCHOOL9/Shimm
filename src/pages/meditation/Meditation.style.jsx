@@ -10,6 +10,7 @@ export const StyledMain = styled.main`
   flex-grow: 1;
   display: flex;
   background: ${props => (props.$bgColor ? props.$bgColor : '')};
+  z-index: 99;
 `;
 
 export const Cover = styled.section`

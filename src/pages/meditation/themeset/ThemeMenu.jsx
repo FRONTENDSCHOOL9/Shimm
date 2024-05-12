@@ -1,4 +1,3 @@
-import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
 import { Menu, StyledUl } from '@pages/meditation/themeset/ThemeSet.style';
 import ThemeItem from '@pages/meditation/themeset/themeitem/ThemeItem';
@@ -133,12 +132,7 @@ function ThemeMenu() {
     />
   ));
 
-  return (
-    <Menu>
-      {isLoading && <Loading />}
-      {themeData?.item && <StyledUl>{themeList}</StyledUl>}
-    </Menu>
-  );
+  return <Menu>{themeData?.item && <StyledUl>{themeList}</StyledUl>}</Menu>;
 }
 
 export default ThemeMenu;

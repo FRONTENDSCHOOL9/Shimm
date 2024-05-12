@@ -4,10 +4,10 @@ export const CircleButton = styled.button`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #fafafa;
+  background-color: #e6e6e6;
   position: fixed;
-  bottom: 10%;
-  right: 15%;
+  bottom: 5%;
+  right: 30%;
   transform: translate(-50%, 50%);
   font-size: 4rem;
   display: flex;
@@ -16,8 +16,17 @@ export const CircleButton = styled.button`
   opacity: 0.8;
   transition: 0.3s ease-in-out;
 
+  @media (max-width: 800px) {
+    right: 40%;
+  }
+
+  @media (max-width: 540px) {
+    right: 42%;
+    transform: translate(0, 50%);
+  }
+
   &:hover {
-    background: #e9e9e9;
+    background: #cbcbcb;
     transition: 0.14s all ease-in;
     transform: translate(-50%, 50%) rotate(90deg);
   }

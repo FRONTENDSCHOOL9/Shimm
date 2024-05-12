@@ -1,29 +1,31 @@
-import { useState } from 'react';
-import Button from '@components/button/Button';
-import Loading from '@components/loading/Loading';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import useCustomAxios from '@hooks/useCustomAxios';
-import useFormStore from '@zustand/form.mjs';
-import useModalStore from '@zustand/modal';
+import iconCurrentStep from '@assets/images/icon-breadcrumb-active.svg';
+import iconStep from '@assets/images/icon-breadcrumb.svg';
 import iconDelete from '@assets/images/icon-delete-post.svg';
+import Button from '@components/button/Button';
 import Input from '@components/input/Input';
+import Loading from '@components/loading/Loading';
+import useCustomAxios from '@hooks/useCustomAxios';
 import {
-  SignUpWrapper,
-  SignUpTitle,
-  InputLabel,
+  AddImageButton,
+  CurrentStep,
+  DeleteButton,
+  DeleteIcon,
   ErrorMessge,
   FlexContent,
-  Stepper,
-  CurrentStep,
-  Step,
-  ProfileImage,
-  AddImageButton,
-  ProfileImageWrapper,
-  DeleteIcon,
-  DeleteButton,
+  InputLabel,
   MarginBottom,
+  ProfileImage,
+  ProfileImageWrapper,
+  SignUpTitle,
+  SignUpWrapper,
+  Step,
+  Stepper,
 } from '@pages/users/SignUp.style';
+import useFormStore from '@zustand/form';
+import useModalStore from '@zustand/modal';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpTwoStep() {
   const axios = useCustomAxios();
@@ -34,8 +36,12 @@ function SignUpTwoStep() {
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
     reset,
   } = useForm({
+    values: {
+      profileImage: 'icon-user-default.png',
+    },
     shouldFocusError: true,
     mode: 'onChange',
   });
@@ -62,6 +68,7 @@ function SignUpTwoStep() {
   }
 
   function deleteImage() {
+    setValue('profileImage', null);
     setImage({
       imageFile: '',
       previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
@@ -76,9 +83,7 @@ function SignUpTwoStep() {
       formData = { ...formData, ...form };
       delete formData.passwordConfirm;
 
-      // 이미지 먼저 업로드
-      if (formData.profileImage.length > 0) {
-        // 프로필 이미지를 추가한 경우
+      if (formData.profileImage) {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
 
@@ -90,15 +95,14 @@ function SignUpTwoStep() {
           data: imageFormData,
         });
 
-        formData.profileImage = fileRes.data.item[0].name;
+        if (fileRes.data.item.length !== 0) {
+          formData.profileImage = fileRes.data.item[0].name;
+        }
       } else {
         formData.profileImage = `icon-user-default.png`;
       }
 
       const res = await axios.post('/users', formData);
-
-      reset();
-
       setShowModal(true);
       setModalData({
         children: (
@@ -115,10 +119,7 @@ function SignUpTwoStep() {
         ),
         button: 1,
         handleOk() {
-          setShowModal(false);
-          navigate('/users/login');
-        },
-        handleClose() {
+          reset();
           setShowModal(false);
           navigate('/users/login');
         },
@@ -143,63 +144,72 @@ function SignUpTwoStep() {
   }
 
   return (
-    <SignUpWrapper>
-      {isLoading && <Loading />}
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <SignUpWrapper>
+          <SignUpTitle>회원가입</SignUpTitle>
+          <Stepper>
+            <Step>
+              <img src={iconStep} />
+              <span>기본 정보 입력</span>
+            </Step>
+            <CurrentStep>
+              <img src={iconCurrentStep} />
+              <span>프로필 설정</span>
+            </CurrentStep>
+          </Stepper>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <ProfileImageWrapper>
+                <ProfileImage src={image.previewURL} alt="프로필 이미지" />
+              </ProfileImageWrapper>
+              <FlexContent>
+                <AddImageButton htmlFor="profileImage">
+                  프로필 사진 추가하기
+                </AddImageButton>
+                <input
+                  type="file"
+                  {...register('profileImage', { onChange: saveImage })}
+                  style={{ display: 'none' }}
+                  id="profileImage"
+                  accept=".png, .jpeg, .jpg"
+                  onClick={e => (e.target.value = null)}
+                />
+                <DeleteButton type="button" onClick={deleteImage}>
+                  <i>이미지 제거</i>
+                  <DeleteIcon src={iconDelete} alt="프로필 이미지 삭제하기" />
+                </DeleteButton>
+              </FlexContent>
+            </div>
+            <MarginBottom>
+              <InputLabel htmlFor="name">닉네임</InputLabel>
+              <Input
+                type="text"
+                id="name"
+                placeholder="닉네임을 입력해 주세요."
+                {...register('name', {
+                  required: '닉네임을 입력해 주세요.',
+                  minLength: {
+                    value: 2,
+                    message: '닉네임을 2글자 이상 입력하세요.',
+                  },
+                })}
+              />
+              {errors.name && <ErrorMessge>{errors.name.message}</ErrorMessge>}
+            </MarginBottom>
+            <Button type="submit" size="full" bgColor="dark">
+              회원가입 완료
+            </Button>
+          </form>
 
-      <SignUpTitle>회원가입</SignUpTitle>
-      <Stepper>
-        <Step>기본 정보 입력</Step>
-        <CurrentStep>프로필 설정</CurrentStep>
-      </Stepper>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <ProfileImageWrapper>
-            <ProfileImage src={image.previewURL} alt="프로필 이미지" />
-          </ProfileImageWrapper>
-          <FlexContent>
-            <AddImageButton htmlFor="profileImage">
-              프로필 사진 추가하기
-            </AddImageButton>
-            <input
-              type="file"
-              {...register('profileImage')}
-              style={{ display: 'none' }}
-              id="profileImage"
-              name="profileImage"
-              accept=".png, .jpeg, .jpg"
-              onChange={saveImage}
-              onClick={e => (e.target.value = null)}
-            />
-            <DeleteButton onClick={deleteImage}>
-              <DeleteIcon src={iconDelete} alt="프로필 이미지 삭제하기" />
-            </DeleteButton>
-          </FlexContent>
-        </div>
-        <MarginBottom>
-          <InputLabel htmlFor="name">닉네임</InputLabel>
-          <Input
-            type="text"
-            id="name"
-            placeholder="닉네임을 입력해 주세요."
-            {...register('name', {
-              required: '닉네임을 입력해 주세요.',
-              minLength: {
-                value: 2,
-                message: '닉네임을 2글자 이상 입력하세요.',
-              },
-            })}
-          />
-          {errors.name && <ErrorMessge>{errors.name.message}</ErrorMessge>}
-        </MarginBottom>
-        <Button type="submit" size="full" bgColor="dark">
-          회원가입 완료
-        </Button>
-      </form>
-
-      <Button size="full" bgColor="primary" handleClick={handleBack}>
-        이전
-      </Button>
-    </SignUpWrapper>
+          <Button size="full" bgColor="primary" handleClick={handleBack}>
+            이전
+          </Button>
+        </SignUpWrapper>
+      )}
+    </>
   );
 }
 

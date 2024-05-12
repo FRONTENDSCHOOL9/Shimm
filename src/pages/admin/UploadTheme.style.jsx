@@ -1,4 +1,3 @@
-import Input from '@components/input/Input';
 import styled from 'styled-components';
 
 export const Main = styled.main`

@@ -1,12 +1,12 @@
 import useCustomAxios from '@hooks/useCustomAxios';
 import { StyledFeed } from '@pages/community/feed/Feed.style';
-import FeedCreate from '@pages/community/feed/create/FeedCreate';
 import FeedList from '@pages/community/feed/FeedList';
-import _ from 'lodash';
+import FeedCreate from '@pages/community/feed/create/FeedCreate';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { produce } from 'immer';
-import Loading from '@components/loading/Loading';
+import _ from 'lodash';
 import InfiniteScroll from 'react-infinite-scroller';
+import Loading from '@components/loading/Loading';
 
 function Feed() {
   const axios = useCustomAxios();
@@ -18,7 +18,7 @@ function Feed() {
       axios.get('/posts?type=community', {
         params: {
           page: pageParam,
-          limit: 2,
+          limit: 4,
           sort: JSON.stringify({ _id: -1 }),
         },
       }),
@@ -68,22 +68,25 @@ function Feed() {
   }
 
   return (
-    <StyledFeed>
+    <>
       {isLoading ? (
         <Loading />
       ) : (
-        <InfiniteScroll
-          key={0}
-          pageStart={1}
-          loadMore={fetchNextPage}
-          hasMore={!isFetching && hasNext}
-          loader={<Loading key={0} />}
-        >
-          {list}
-        </InfiniteScroll>
+        <StyledFeed>
+          <InfiniteScroll
+            key={0}
+            pageStart={1}
+            loadMore={fetchNextPage}
+            hasMore={!isFetching && hasNext}
+            loader={<Loading key={0} />}
+          >
+            {list}
+          </InfiniteScroll>
+
+          <FeedCreate />
+        </StyledFeed>
       )}
-      <FeedCreate />
-    </StyledFeed>
+    </>
   );
 }
 

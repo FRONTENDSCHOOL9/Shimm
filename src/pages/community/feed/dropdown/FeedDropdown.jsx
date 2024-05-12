@@ -9,7 +9,7 @@ import {
 import useModalStore from '@zustand/modal';
 import PropTypes from 'prop-types';
 
-function FeedDropDown({ id, handleDelete }) {
+function FeedDropDown({ id, handleDelete, type }) {
   const { setShowModal, setModalData } = useModalStore();
 
   function deletePost() {
@@ -35,12 +35,14 @@ function FeedDropDown({ id, handleDelete }) {
 
   return (
     <Menu>
-      <MenuItem>
-        <MenuLink to={`/community/${id}/edit`}>
-          <img src={iconEdit} alt="게시글 수정" />
-          <span>게시글 수정</span>
-        </MenuLink>
-      </MenuItem>
+      {type === 'user' && (
+        <MenuItem>
+          <MenuLink to={`/community/${id}/edit`}>
+            <img src={iconEdit} alt="게시글 수정" />
+            <span>게시글 수정</span>
+          </MenuLink>
+        </MenuItem>
+      )}
       <MenuItem>
         <MenuButton type="button" onClick={deletePost}>
           <img src={iconDelete} alt="게시글 삭제" />
@@ -54,6 +56,7 @@ function FeedDropDown({ id, handleDelete }) {
 FeedDropDown.propTypes = {
   id: PropTypes.number.isRequired,
   handleDelete: PropTypes.func,
+  type: PropTypes.string,
 };
 
 export default FeedDropDown;

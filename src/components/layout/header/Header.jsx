@@ -1,25 +1,36 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useWindowWide from '@hooks/useWindowWide';
-import useUserStore from '@zustand/user';
-import iconClose from '@assets/images/icon-close.svg';
-import iconMenu from '@assets/images/icon-menu.svg';
+// import iconClose from '@assets/images/icon-close.svg';
+// import iconMenu from '@assets/images/icon-menu.svg';
 import Button from '@components/button/Button';
 import {
-  StyledHeader,
-  Logo,
-  Img,
-  StyledNav,
   HeaderLink,
-  NavButton,
+  Img,
   LoginContainer,
+  Logo,
+  NavButton,
+  StyledHeader,
+  StyledNav,
 } from '@components/layout/header/Header.style';
+import useClickOutside from '@hooks/useClickOutside';
+import useWindowWide from '@hooks/useWindowWide';
+import useUserStore from '@zustand/user';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const wide = useWindowWide(740);
   const [isClicked, setIsClicked] = useState(false);
   const { user, setUser } = useUserStore();
   const navigate = useNavigate();
+  const headerRef = useRef(null);
+
+  useClickOutside(headerRef, () => {
+    if (!isClicked) {
+      setIsClicked(false);
+    } else {
+      setIsClicked(true);
+    }
+    setIsClicked(false);
+  });
 
   useEffect(() => {
     setIsClicked(false);
@@ -30,16 +41,18 @@ function Header() {
   }
 
   function handleLogout() {
+    setIsClicked(!isClicked);
     setUser(null);
     navigate('/');
   }
 
   function handleLogin() {
+    setIsClicked(!isClicked);
     navigate('/users/login');
   }
 
   return (
-    <StyledHeader>
+    <StyledHeader ref={headerRef} $clicked={isClicked}>
       <Logo to="/home">
         <Img src="/logo.png" alt="쉼" />
       </Logo>
@@ -72,12 +85,7 @@ function Header() {
           </LoginContainer>
         )}
       </StyledNav>
-      <NavButton
-        onClick={handleClick}
-        $clicked={isClicked}
-        $iconClose={iconClose}
-        $iconMenu={iconMenu}
-      >
+      <NavButton onClick={handleClick} $isClicked={isClicked}>
         <i>버튼</i>
       </NavButton>
     </StyledHeader>

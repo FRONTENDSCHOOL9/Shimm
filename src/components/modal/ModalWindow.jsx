@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
 import iconClose from '@assets/images/icon-close.svg';
 import {
+  ButtonClose,
+  ButtonContainer,
   Inside,
-  Modal,
   Message,
+  Modal,
   ModalClose,
   ModalOk,
-  ButtonContainer,
-  ButtonClose,
 } from '@components/modal/ModalWindow.style';
+import PropTypes from 'prop-types';
 
 function ModalWindow({
   children,

@@ -9,11 +9,12 @@ import {
   StyledMain,
   TextSection,
 } from '@pages/home/Home.style';
-import { Line } from '@pages/users/SignUp.style';
 import HomeCarousel from '@pages/home/HomeCarousel';
+import { Line } from '@pages/users/SignUp.style';
 import useModalStore from '@zustand/modal';
 import useUserStore from '@zustand/user';
 import { useNavigate } from 'react-router-dom';
+import iconArrow from '@assets/images/icon-arrow-black.svg';
 
 function Home() {
   const { user } = useUserStore();
@@ -65,7 +66,7 @@ function Home() {
   return (
     <>
       <StyledMain>
-        <HomeCarousel></HomeCarousel>
+        <HomeCarousel />
         <SectionLink>
           <RightBox>
             <TextSection>
@@ -103,10 +104,12 @@ function Home() {
         {!user && (
           <SectionUser>
             <button type="button" onClick={handleLogin}>
-              로그인
+              <span>로그인</span>
+              <img src={iconArrow} />
             </button>
             <button type="button" onClick={handleSignupModal}>
-              회원가입
+              <span>회원가입</span>
+              <img src={iconArrow} />
             </button>
           </SectionUser>
         )}

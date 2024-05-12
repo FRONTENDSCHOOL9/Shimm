@@ -13,9 +13,9 @@ import {
   RecordModalStyle,
 } from '@components/calendar/Calendar.style';
 import ModalWindow from '@components/modal/ModalWindow';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useCustomAxios from '@hooks/useCustomAxios';
 import useDate from '@hooks/useDate';
-import useUserStore from '@zustand/user.mjs';
+import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
 
 function MyCalendar() {
