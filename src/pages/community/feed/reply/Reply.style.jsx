@@ -66,4 +66,11 @@ export const ReplyDelete = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+
+  & button {
+    &:focus {
+      box-shadow: inset 0 0 0 1px #55a25a;
+      border-radius: 4px;
+    }
+  }
 `;

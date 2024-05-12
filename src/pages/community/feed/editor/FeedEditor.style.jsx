@@ -25,6 +25,11 @@ export const TextContent = styled.div`
     font-size: 1.4rem;
     font-weight: 300;
     color: #545956;
+
+    &:focus {
+      box-shadow: inset 0 0 0 2px #224124;
+      border-radius: 5px;
+    }
   }
 
   & p {
@@ -75,6 +80,11 @@ export const FileMain = styled.div`
     word-break: break-all;
   }
 
+  &:focus-within label {
+    box-shadow: inset 0 0 0 2px #55a25a;
+    border-radius: 5px;
+  }
+
   & label {
     cursor: pointer;
     display: flex;
@@ -101,7 +111,10 @@ export const FileMain = styled.div`
   }
 
   & input {
-    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 
