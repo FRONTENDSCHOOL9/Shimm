@@ -18,9 +18,8 @@ function useDate(events, nav) {
     ];
     const currentDate = new Date();
 
-    const updatedDate = new Date(currentDate);
     if (nav !== 0) {
-      updatedDate.setMonth(new Date().getMonth() + nav);
+      currentDate.setMonth(new Date().getMonth() + nav);
     }
 
     const day = currentDate.getDate();
@@ -37,7 +36,7 @@ function useDate(events, nav) {
     });
 
     setDateDisplay(
-      `${updatedDate.toLocaleDateString('en-us', { month: 'long' })} ${year}`,
+      `${currentDate.toLocaleDateString('en-us', { month: 'long' })} ${year}`,
     );
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 

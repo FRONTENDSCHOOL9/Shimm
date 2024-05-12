@@ -60,11 +60,12 @@ function MyCalendar() {
   }, [currentYear, currentMonth, user]);
 
   function onNext() {
-    setNav(nav + 1);
+    setNav(nextNav => nextNav + 1);
+    console.log(nav);
   }
 
   function onBack() {
-    setNav(nav - 1);
+    setNav(prevNav => prevNav - 1);
   }
 
   function DayClick(date) {
@@ -83,12 +84,8 @@ function MyCalendar() {
         <CalendarHeader>
           <MonthDisplay>{dateDisplay}</MonthDisplay>
           <ButtonWrapper>
-            <CalendarButton onClick={onBack} id="backButton">
-              &lt;
-            </CalendarButton>
-            <CalendarButton onClick={onNext} id="nextButton">
-              &gt;
-            </CalendarButton>
+            <CalendarButton onClick={onBack}>&lt;</CalendarButton>
+            <CalendarButton onClick={onNext}>&gt;</CalendarButton>
           </ButtonWrapper>
         </CalendarHeader>
 
@@ -128,34 +125,39 @@ function MyCalendar() {
               </DayCell>
             ))}
         </Calendar>
-        {showModal && (
-          <ModalWindow
-            button={1}
-            handleClose={handleCloseModal}
-            handleOk={handleCloseModal}
-          >
-            <RecordModalStyle>
-              {events
-                .filter(
-                  event =>
-                    new Date(event.time).toDateString() ===
-                    new Date(clicked).toDateString(),
-                )
-                .map((event, index) => (
-                  <div key={index}>
-                    <span>
-                      {new Date(event.time).toLocaleString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                      })}
-                    </span>
-                    <span>{event.title}</span>
-                  </div>
-                ))}
-            </RecordModalStyle>
-          </ModalWindow>
-        )}
+        {showModal &&
+          events.some(
+            event =>
+              new Date(event.time).toDateString() ===
+              new Date(clicked).toDateString(),
+          ) && (
+            <ModalWindow
+              button={1}
+              handleClose={handleCloseModal}
+              handleOk={handleCloseModal}
+            >
+              <RecordModalStyle>
+                {events
+                  .filter(
+                    event =>
+                      new Date(event.time).toDateString() ===
+                      new Date(clicked).toDateString(),
+                  )
+                  .map((event, index) => (
+                    <div key={index}>
+                      <span>
+                        {new Date(event.time).toLocaleString('ko-KR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                        })}
+                      </span>
+                      <span>{event.title}</span>
+                    </div>
+                  ))}
+              </RecordModalStyle>
+            </ModalWindow>
+          )}
       </Container>
     </CalendarWrapper>
   );
