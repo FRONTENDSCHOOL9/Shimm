@@ -1,103 +1,164 @@
 import {
-  RecordList,
-  StyleGetRecord,
-  TodoItemBadge,
+  CalendarWrapper,
+  Calendar,
+  Container,
+  Weekdays,
+  CalendarHeader,
+  MonthDisplay,
+  CalendarButton,
+  Weekday,
+  ButtonWrapper,
+  DayCell,
+  EventIndicator,
+  RecordModalStyle,
 } from '@components/calendar/Calendar.style';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import ModalWindow from '@components/modal/ModalWindow';
+import useCustomAxios from '@hooks/useCustomAxios';
+import useDate from '@hooks/useDate';
 import useUserStore from '@zustand/user';
 import { useEffect, useState } from 'react';
-import { Calendar, Popover, Whisper } from 'rsuite';
-import 'rsuite/dist/rsuite-no-reset.min.css';
 
-const MyCalendar = () => {
+function MyCalendar() {
+  const [nav, setNav] = useState(0);
+  const [clicked, setClicked] = useState();
   const [events, setEvents] = useState([]);
-  const { user } = useUserStore();
   const axios = useCustomAxios();
+  const { user } = useUserStore();
+  const { days, dateDisplay } = useDate(events, nav);
+  const [showModal, setShowModal] = useState(false);
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+
   useEffect(() => {
     async function fetchEvents() {
       try {
         const res = await axios.get(
-          `/posts/users/${user._id}?type=meditation&year=${year}&month=${month}`,
+          `/posts?type=meditation&year=${currentYear}&month=${currentMonth + 1}`,
         );
+        if (res.data && res.data.item) {
+          const EventsRes = res.data.item
+            .filter(item => item.user._id === user._id)
+            .map(item => ({
+              time: item.updatedAt,
+              title: item.content,
+            }));
 
-        const EventsRes = res.data?.item?.item.map(item => ({
-          time: item.updatedAt,
-          title: item.content,
-        }));
-        setEvents(EventsRes);
+          return EventsRes;
+        }
       } catch (err) {
         console.error(err);
       }
     }
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    fetchEvents(today);
-  }, []);
 
-  function getMeditation(date) {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    const filteredEvents = events.filter(event => {
-      const eventDate = new Date(event.time);
-      return (
-        eventDate.getFullYear() === year &&
-        eventDate.getMonth() + 1 === month &&
-        eventDate.getDate() === day
-      );
+    fetchEvents().then(EventsRes => {
+      if (EventsRes) {
+        setEvents(EventsRes);
+      }
     });
+  }, [currentYear, currentMonth, user]);
 
-    if (filteredEvents.length > 0) {
-      return filteredEvents.map(event => ({
-        time: event.time,
-        title: event.title,
-      }));
-    } else {
-      return [];
-    }
+  function onNext() {
+    setNav(nav + 1);
   }
 
-  function renderCell(date) {
-    const list = getMeditation(date);
-    const displayList = list.filter((item, index) => index < 2);
+  function onBack() {
+    setNav(nav - 1);
+  }
 
-    if (list.length > 0) {
-      const moreCount = list.length - displayList.length;
-      const moreItem = (
-        <StyleGetRecord>
-          <Whisper
-            placement="top"
-            trigger="click"
-            speaker={
-              <Popover>
-                {list.map((item, index) => (
-                  <p key={index}>{item.title}</p>
-                ))}
-              </Popover>
-            }
+  function DayClick(date) {
+    setClicked(date);
+    setShowModal(true);
+  }
+
+  function handleCloseModal() {
+    setClicked(null);
+    setShowModal(false);
+  }
+
+  return (
+    <CalendarWrapper>
+      <Container>
+        <CalendarHeader>
+          <MonthDisplay>{dateDisplay}</MonthDisplay>
+          <ButtonWrapper>
+            <CalendarButton onClick={onBack} id="backButton">
+              &lt;
+            </CalendarButton>
+            <CalendarButton onClick={onNext} id="nextButton">
+              &gt;
+            </CalendarButton>
+          </ButtonWrapper>
+        </CalendarHeader>
+
+        <Weekdays>
+          <Weekday>Sun</Weekday>
+          <Weekday>Mon</Weekday>
+          <Weekday>Tue</Weekday>
+          <Weekday>Wed</Weekday>
+          <Weekday>Thu</Weekday>
+          <Weekday>Fri</Weekday>
+          <Weekday>Sat</Weekday>
+        </Weekdays>
+
+        <Calendar>
+          {events &&
+            days.map((item, index) => (
+              <DayCell
+                key={index}
+                day={item}
+                onClick={() => DayClick(item.date)}
+              >
+                {item.value !== 'padding' && item.value}
+
+                {events && events.length > 0 && (
+                  <EventIndicator>
+                    {events.map(
+                      (event, eventIndex) =>
+                        new Date(event.time).toDateString() ===
+                          new Date(item.date).toDateString() && (
+                          <div key={eventIndex}>
+                            <span>{event.title}</span>
+                          </div>
+                        ),
+                    )}
+                  </EventIndicator>
+                )}
+              </DayCell>
+            ))}
+        </Calendar>
+        {showModal && (
+          <ModalWindow
+            button={1}
+            handleClose={handleCloseModal}
+            handleOk={handleCloseModal}
           >
-            <a>{moreCount} more</a>
-          </Whisper>
-        </StyleGetRecord>
-      );
-      return (
-        <RecordList>
-          {displayList.map((item, index) => (
-            <StyleGetRecord key={index}>
-              <TodoItemBadge />
-              {item.title}
-            </StyleGetRecord>
-          ))}
-          {moreCount ? moreItem : null}
-        </RecordList>
-      );
-    }
-    return null;
-  }
-
-  return <Calendar bordered renderCell={renderCell} />;
-};
+            <RecordModalStyle>
+              {events
+                .filter(
+                  event =>
+                    new Date(event.time).toDateString() ===
+                    new Date(clicked).toDateString(),
+                )
+                .map((event, index) => (
+                  <div key={index}>
+                    <span>
+                      {new Date(event.time).toLocaleString('ko-KR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                      })}
+                    </span>
+                    <span>{event.title}</span>
+                  </div>
+                ))}
+            </RecordModalStyle>
+          </ModalWindow>
+        )}
+      </Container>
+    </CalendarWrapper>
+  );
+}
 
 export default MyCalendar;
