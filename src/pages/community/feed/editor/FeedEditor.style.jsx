@@ -47,18 +47,6 @@ export const TextContent = styled.div`
 export const FileContent = styled.div`
   margin-bottom: 30px;
   color: #0a0b0a;
-  display: flex;
-  align-items: start;
-  gap: 7px;
-
-  & img {
-    width: 24px;
-    height: 24px;
-  }
-
-  @media (min-width: 1280px) {
-    gap: 9px;
-  }
 `;
 
 export const FileMain = styled.div`
@@ -121,10 +109,27 @@ export const FileMain = styled.div`
 export const Title = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 10px;
 
   & p {
+    font-size: 1.4rem;
+    font-weight: 500;
     flex-grow: 1;
+  }
+
+  & img {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (min-width: 320px) {
+    flex-wrap: nowrap;
+  }
+
+  @media (min-width: 1280px) {
+    gap: 9px;
   }
 `;
 

@@ -131,19 +131,18 @@ function FeedEditorEdit({ setLoading }) {
         {errors.content && <p>{errors.content.message}</p>}
       </TextContent>
       <FileContent>
-        <img src={iconImage} alt="변경할 사진 첨부" />
+        <Title>
+          <img src={iconImage} alt="변경할 사진 첨부" />
+          <p>변경할 사진 첨부하기</p>
+          <DeleteButton
+            size="mediumLow"
+            bgColor="black"
+            handleClick={handleDelete}
+          >
+            사진 지우기
+          </DeleteButton>
+        </Title>
         <FileMain>
-          <Title>
-            <p>변경할 사진 첨부하기</p>
-            <DeleteButton
-              size="mediumLow"
-              bgColor="black"
-              handleClick={handleDelete}
-            >
-              사진 지우기
-            </DeleteButton>
-          </Title>
-
           <div>
             <label htmlFor="image">
               <span>파일 선택</span>

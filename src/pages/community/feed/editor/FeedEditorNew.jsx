@@ -7,6 +7,7 @@ import {
   FileContent,
   FileMain,
   TextContent,
+  Title,
 } from '@pages/community/feed/editor/FeedEditor.style';
 import useModalStore from '@zustand/modal';
 import useUserStore from '@zustand/user';
@@ -118,9 +119,11 @@ function FeedEditorNew({ setLoading }) {
         {errors.content && <p>{errors.content.message}</p>}
       </TextContent>
       <FileContent>
-        <img src={iconImage} alt="사진 첨부" />
-        <FileMain>
+        <Title>
+          <img src={iconImage} alt="사진 첨부" />
           <p>사진 첨부하기</p>
+        </Title>
+        <FileMain>
           <div>
             <label htmlFor="image">
               <span>파일 선택</span>
