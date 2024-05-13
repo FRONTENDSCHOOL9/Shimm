@@ -28,12 +28,19 @@ export const CalendarButton = styled.button`
   cursor: pointer;
   box-sizing: border-box;
   border-radius: 5px;
-  color: white;
-  background-color: #55a25a;
+  background-color: white;
 
   &:hover {
-    background-color: #4c7b3b;
+    background-color: #55a25a;
   }
+`;
+
+export const OnBackStyle = styled.img`
+  transform: rotate(270deg);
+`;
+
+export const OnNextStyle = styled.img`
+  transform: rotate(90deg);
 `;
 
 export const CalendarHeader = styled.div`
@@ -101,7 +108,9 @@ export const DayCell = styled.div`
   @media screen and (max-width: 740px) {
     width: 100%;
     gap: 2px;
-    height: 70px;
+    height: auto;
+    min-height: 70px;
+    overflow: hidden;
   }
 `;
 
@@ -111,11 +120,13 @@ export const EventIndicator = styled.div`
   gap: 4px;
   font-size: 1.2rem;
   color: black;
-  overflow: hidden;
 
   & > div {
     position: relative;
     padding-left: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &::before {
       content: '';
@@ -156,5 +167,11 @@ export const RecordModalStyle = styled.div`
   & span {
     font-size: 1.6rem;
     margin-right: 20px;
+  }
+
+  @media screen and (max-width: 740px) {
+    & span {
+      font-size: 1.2rem;
+    }
   }
 `;
