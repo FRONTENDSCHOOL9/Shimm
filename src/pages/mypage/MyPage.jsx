@@ -12,7 +12,7 @@ import {
   MyPageWrapper,
   PostArchive,
   RecordDate,
-  RecordLi,
+  RecordButton,
   UserProfile,
   NoRecord,
 } from '@pages/mypage/MyPage.style';
@@ -48,15 +48,16 @@ function MyPage() {
   }
 
   const recordList = record?.map(item => (
-    <RecordLi
-      key={item._id}
-      item={item}
-      onClick={handleMoveArchive}
-      $background={item.extra?.background}
-    >
-      <RecordDate>{item.createdAt.slice(0, 10)}</RecordDate>
-      <p>{item.content}</p>
-    </RecordLi>
+    <li key={item._id}>
+      <RecordButton
+        item={item}
+        onClick={handleMoveArchive}
+        $background={item.extra?.background}
+      >
+        <RecordDate>{item.createdAt.slice(0, 10)}</RecordDate>
+        <p>{item.content}</p>
+      </RecordButton>
+    </li>
   ));
 
   useEffect(() => {
@@ -117,11 +118,9 @@ function MyPage() {
         <ArchiveContainer>
           <ArchiveHeader>
             <h2>나의 기록</h2>
-            <img
-              src={iconright}
-              alt="더보기 버튼"
-              onClick={handleMoveArchive}
-            />
+            <button type="button" onClick={handleMoveArchive}>
+              <img src={iconright} alt="나의 기록 더 보기" />
+            </button>
           </ArchiveHeader>
           <ArchiveBox>
             {record?.length !== 0 ? (
@@ -141,18 +140,24 @@ function MyPage() {
           </ArchiveBox>
           <ArchiveHeader>
             <h2>나의 활동</h2>
-            <img src={iconright} alt="더보기 버튼" onClick={handleMoveMyList} />
+            <button type="button" onClick={handleMoveMyList}>
+              <img src={iconright} alt="더보기 버튼" />
+            </button>
           </ArchiveHeader>
           <ArchiveBox>
             <PostArchive>
-              <ActiveLi onClick={handleMoveMyList}>
-                <h3>{getPosts}</h3>
-                <p>내가 쓴 글</p>
+              <ActiveLi>
+                <button type="button" onClick={handleMoveMyList}>
+                  <span>{getPosts}</span>
+                  <span>내가 쓴 글</span>
+                </button>
               </ActiveLi>
               <hr />
-              <ActiveLi onClick={handleMoveMyBookmark}>
-                <h3>{activity?.item.bookmark.posts}</h3>
-                <p>북마크 한 글</p>
+              <ActiveLi>
+                <button type="button" onClick={handleMoveMyBookmark}>
+                  <span>{activity?.item.bookmark.posts}</span>
+                  <span>북마크 한 글</span>
+                </button>
               </ActiveLi>
             </PostArchive>
           </ArchiveBox>

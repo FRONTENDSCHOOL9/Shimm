@@ -166,6 +166,10 @@ function EditProfile() {
           <FormWrapper>
             <form onSubmit={handleSubmit(onSubmit)}>
               <ProfileImage>
+                <DeleteButton type="button" onClick={deleteImage}>
+                  <i>이미지 제거</i>
+                  <img src={iconDelete} alt="프로필 이미지 삭제하기" />
+                </DeleteButton>
                 <img src={image.previewURL} alt="변경할 프로필 이미지" />
                 <div>
                   <input
@@ -176,10 +180,6 @@ function EditProfile() {
                     onClick={e => (e.target.value = null)}
                   />
                   <label htmlFor="profileImage">프로필 사진 변경하기</label>
-                  <DeleteButton type="button" onClick={deleteImage}>
-                    <i>이미지 제거</i>
-                    <img src={iconDelete} alt="프로필 이미지 삭제하기" />
-                  </DeleteButton>
                 </div>
               </ProfileImage>
 
