@@ -11,12 +11,15 @@ import {
   DayCell,
   EventIndicator,
   RecordModalStyle,
+  OnBackStyle,
+  OnNextStyle,
 } from '@components/calendar/Calendar.style';
+import iconDown from '@assets/images/icon-down.svg';
 import ModalWindow from '@components/modal/ModalWindow';
 import useCustomAxios from '@hooks/useCustomAxios';
 import useDate from '@hooks/useDate';
 import useUserStore from '@zustand/user';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function MyCalendar() {
   const [nav, setNav] = useState(0);
@@ -61,7 +64,6 @@ function MyCalendar() {
 
   function onNext() {
     setNav(nextNav => nextNav + 1);
-    console.log(nav);
   }
 
   function onBack() {
@@ -84,8 +86,12 @@ function MyCalendar() {
         <CalendarHeader>
           <MonthDisplay>{dateDisplay}</MonthDisplay>
           <ButtonWrapper>
-            <CalendarButton onClick={onBack}>&lt;</CalendarButton>
-            <CalendarButton onClick={onNext}>&gt;</CalendarButton>
+            <CalendarButton onClick={onBack}>
+              <OnBackStyle src={iconDown} />
+            </CalendarButton>
+            <CalendarButton onClick={onNext}>
+              <OnNextStyle src={iconDown} />
+            </CalendarButton>
           </ButtonWrapper>
         </CalendarHeader>
 
