@@ -1,5 +1,3 @@
-// import iconClose from '@assets/images/icon-close.svg';
-// import iconMenu from '@assets/images/icon-menu.svg';
 import Button from '@components/button/Button';
 import {
   HeaderLink,

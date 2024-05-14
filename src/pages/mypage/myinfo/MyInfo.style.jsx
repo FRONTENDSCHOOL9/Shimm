@@ -83,6 +83,10 @@ export const EditButton = styled.button`
   &:hover {
     background-color: #335633;
   }
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px #224124;
+  }
 `;
 
 export const CheckSection = styled.section`

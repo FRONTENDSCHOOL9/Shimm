@@ -25,6 +25,11 @@ export const TextContent = styled.div`
     font-size: 1.4rem;
     font-weight: 300;
     color: #545956;
+
+    &:focus {
+      box-shadow: inset 0 0 0 2px #224124;
+      border-radius: 5px;
+    }
   }
 
   & p {
@@ -42,18 +47,6 @@ export const TextContent = styled.div`
 export const FileContent = styled.div`
   margin-bottom: 30px;
   color: #0a0b0a;
-  display: flex;
-  align-items: start;
-  gap: 7px;
-
-  & img {
-    width: 24px;
-    height: 24px;
-  }
-
-  @media (min-width: 1280px) {
-    gap: 9px;
-  }
 `;
 
 export const FileMain = styled.div`
@@ -73,6 +66,11 @@ export const FileMain = styled.div`
     font-weight: 300;
     color: #545956;
     word-break: break-all;
+  }
+
+  &:focus-within label {
+    box-shadow: inset 0 0 0 2px #55a25a;
+    border-radius: 5px;
   }
 
   & label {
@@ -101,17 +99,37 @@ export const FileMain = styled.div`
   }
 
   & input {
-    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 
 export const Title = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 10px;
 
   & p {
+    font-size: 1.4rem;
+    font-weight: 500;
     flex-grow: 1;
+  }
+
+  & img {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (min-width: 320px) {
+    flex-wrap: nowrap;
+  }
+
+  @media (min-width: 1280px) {
+    gap: 9px;
   }
 `;
 

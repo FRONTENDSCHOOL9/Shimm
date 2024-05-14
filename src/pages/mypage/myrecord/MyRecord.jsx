@@ -1,6 +1,11 @@
+import styled from 'styled-components';
 import MyCalendar from '@components/calendar/Calendar';
 import { CalendarWrapper } from '@components/calendar/Calendar.style';
-import { TitleSpan } from '@pages/mypage/myrecord/MyRecord.style';
+
+const TitleSpan = styled.span`
+  font-size: 2rem;
+  font-weight: 500;
+`;
 
 function MyRecord() {
   return (

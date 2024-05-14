@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 function useClickOutside(ref, onClickOutside) {
   useEffect(() => {
     function handleClickOutside(event) {
+      event.stopPropagation();
+
       if (ref.current && !ref.current.contains(event.target)) {
         onClickOutside();
       }

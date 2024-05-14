@@ -123,8 +123,7 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #B5DE13 0%, #06B7AC 100%)',
-          music:
-            'https://soundcloud.com/1qza8k6e3opg/gihgcldr6xby?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          music: 'https://market-lion.koyeb.app/api/files/02-Shimm/forest.mp3',
         },
       },
       {
@@ -149,8 +148,7 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #93DADF 0%, #4E81EB 100%)',
-          music:
-            'https://soundcloud.com/1qza8k6e3opg/qdasktrrrqjj?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          music: 'https://market-lion.koyeb.app/api/files/02-Shimm/sea.mp3',
         },
       },
       {
@@ -175,8 +173,7 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #60E66D 0%, #F6815B 100%)',
-          music:
-            'https://soundcloud.com/1qza8k6e3opg/x4cfcirlsxtp?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          music: 'https://market-lion.koyeb.app/api/files/02-Shimm/morning.mp3',
         },
       },
       {
@@ -201,8 +198,7 @@ export const initData = async nextSeq => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           background: 'linear-gradient(45deg, #FF8541 0%, #F0B31A 100%)',
-          music:
-            'https://soundcloud.com/1qza8k6e3opg/ql4zikqixman?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          music: 'https://market-lion.koyeb.app/api/files/02-Shimm/sunset.mp3',
         },
       },
       {
@@ -228,7 +224,7 @@ export const initData = async nextSeq => {
         extra: {
           background: 'linear-gradient(45deg, #9A17C8 0%, #4E81EB 100%)',
           music:
-            'https://soundcloud.com/1qza8k6e3opg/umoti9kegdyo?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+            'https://market-lion.koyeb.app/api/files/02-Shimm/nightsky.mp3',
         },
       },
     ],

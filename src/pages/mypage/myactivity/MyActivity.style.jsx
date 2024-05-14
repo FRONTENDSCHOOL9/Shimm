@@ -40,6 +40,11 @@ export const NavItem = styled(NavLink)`
     border-bottom: 2px solid #000;
     box-shadow: unset;
   }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px #55a25a;
+    border-radius: 4px;
+  }
 `;
 
 export const Post = styled.div`

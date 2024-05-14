@@ -35,6 +35,14 @@ export const ButtonClose = styled.button`
   position: absolute;
   top: 15px;
   right: 15px;
+  padding: 5px;
+  padding-bottom: 0;
+  box-sizing: border-box;
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px #55a25a;
+    border-radius: 4px;
+  }
 `;
 
 export const Message = styled.div`
@@ -59,6 +67,11 @@ export const ModalClose = styled.button`
   text-align: center;
   color: #fff;
 
+  &:focus {
+    box-shadow: inset 0 0 0 2px #224124;
+    border-bottom-left-radius: 20px;
+  }
+
   @media (min-width: 740px) {
     height: 60px;
   }
@@ -71,6 +84,11 @@ export const ModalOk = styled.button`
   background-color: rgba(85, 162, 90, 1);
   text-align: center;
   color: #fff;
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px #224124;
+    border-bottom-right-radius: 20px;
+  }
 
   @media (min-width: 740px) {
     height: 60px;
