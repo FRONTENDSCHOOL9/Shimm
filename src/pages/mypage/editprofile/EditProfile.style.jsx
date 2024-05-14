@@ -40,9 +40,17 @@ export const ProfileImage = styled.div`
     height: 40px;
     border-radius: 20px;
     margin-top: 20px;
+    position: relative;
 
     & input {
-      display: none;
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    &:focus-within label {
+      box-shadow: inset 0 0 0 2px #224124;
     }
 
     & label {
@@ -66,11 +74,20 @@ export const ProfileImage = styled.div`
 export const DeleteButton = styled.button`
   width: 30px;
   height: 30px;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(calc(-50% + 50px));
 
   & img {
     width: 30px;
     height: 30px;
     object-fit: contain;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px #55a25a;
+    border-radius: 4px;
   }
 `;
 
@@ -105,8 +122,15 @@ export const PasswordOption = styled.div`
 `;
 
 export const Toggle = styled.div`
+  position: relative;
+
   & input {
-    display: none;
+    opacity: 0;
+    position: absolute;
+  }
+
+  &:focus-within label {
+    box-shadow: inset 0 0 0 1px #224124;
   }
 
   & label {
@@ -117,7 +141,7 @@ export const Toggle = styled.div`
     background-color: #e0e0e0;
     border-radius: 10px;
     position: relative;
-    transition: 0.5s ease-out;
+    transition: 0.2s ease-out;
     margin-bottom: 2px;
   }
 

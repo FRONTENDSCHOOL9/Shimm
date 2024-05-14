@@ -8,8 +8,12 @@ import {
 } from '@pages/community/feed/dropdown/FeedDropdown.style';
 import useModalStore from '@zustand/modal';
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
-function FeedDropDown({ id, handleDelete, type }) {
+const FeedDropDown = forwardRef(function (
+  { id, handleDelete, type },
+  forwardedRef,
+) {
   const { setShowModal, setModalData } = useModalStore();
 
   function deletePost() {
@@ -34,7 +38,7 @@ function FeedDropDown({ id, handleDelete, type }) {
   }
 
   return (
-    <Menu>
+    <Menu ref={forwardedRef}>
       {type === 'user' && (
         <MenuItem>
           <MenuLink to={`/community/${id}/edit`}>
@@ -51,7 +55,7 @@ function FeedDropDown({ id, handleDelete, type }) {
       </MenuItem>
     </Menu>
   );
-}
+});
 
 FeedDropDown.propTypes = {
   id: PropTypes.number.isRequired,

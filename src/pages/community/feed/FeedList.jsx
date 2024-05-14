@@ -1,9 +1,11 @@
 import iconBookMarkActive from '@assets/images/icon-bookmark-active.svg';
 import iconBookMark from '@assets/images/icon-bookmark.svg';
+import useClickOutside from '@hooks/useClickOutside.mjs';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   Bookmark,
-  More,
+  MoreClose,
+  MoreOpen,
   Post,
   PostHeader,
   PostInfo,
@@ -15,12 +17,13 @@ import FeedDropDown from '@pages/community/feed/dropdown/FeedDropdown';
 import ReplyNew from '@pages/community/feed/reply/ReplyNew';
 import useUserStore from '@zustand/user';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function FeedList({ item, handleDelete, mypage, handleBookmark }) {
   const [isActive, setIsActive] = useState();
   const [isOpened, setIsOpened] = useState(false);
   const [bookmarkId, setBookmarkId] = useState();
+  const menuRef = useRef(null);
   const { user } = useUserStore();
   const { _id, user: writer, content, createdAt, repliesCount, extra } = item;
   const axios = useCustomAxios();
@@ -77,8 +80,12 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
   }
 
   function handleMore() {
-    setIsOpened(!isOpened);
+    setIsOpened(true);
   }
+
+  useClickOutside(menuRef, () => {
+    if (isOpened) setIsOpened(false);
+  });
 
   return (
     <Post>
@@ -126,26 +133,44 @@ function FeedList({ item, handleDelete, mypage, handleBookmark }) {
 
         {user && user._id === writer._id && (
           <>
-            <More type="button" onClick={handleMore}>
-              •••
-            </More>
-            {isOpened && (
-              <FeedDropDown
-                id={_id}
-                handleDelete={() => handleDelete(_id)}
-                type={user.type}
-              />
+            {isOpened ? (
+              <>
+                <MoreClose type="button" onClick={() => setIsOpened(false)}>
+                  •••
+                </MoreClose>
+                <FeedDropDown
+                  ref={menuRef}
+                  id={_id}
+                  handleDelete={handleDelete}
+                  type={user.type}
+                />
+              </>
+            ) : (
+              <MoreOpen type="button" onClick={handleMore}>
+                •••
+              </MoreOpen>
             )}
           </>
         )}
 
         {user && user.type === 'seller' && (
           <>
-            <More type="button" onClick={handleMore}>
-              •••
-            </More>
-            {isOpened && (
-              <FeedDropDown id={_id} handleDelete={() => handleDelete(_id)} />
+            {isOpened ? (
+              <>
+                <MoreClose type="button" onClick={() => setIsOpened(false)}>
+                  •••
+                </MoreClose>
+                <FeedDropDown
+                  ref={menuRef}
+                  id={_id}
+                  handleDelete={handleDelete}
+                  type={user.type}
+                />
+              </>
+            ) : (
+              <MoreOpen type="button" onClick={handleMore}>
+                •••
+              </MoreOpen>
             )}
           </>
         )}

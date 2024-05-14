@@ -59,17 +59,24 @@ export const ArchiveContainer = styled.div``;
 export const ArchiveHeader = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 
   & h2 {
     font-weight: 500;
     font-size: 2rem;
   }
 
-  & img {
+  & button {
     margin-left: auto;
+
+    &:focus {
+      box-shadow: inset 0 0 0 2px #55a25a;
+      border-radius: 4px;
+    }
+  }
+
+  & img {
     width: 30px;
-    cursor: pointer;
     transform: rotate(90deg);
     transition:
       transform 0.2s ease-in-out,
@@ -95,7 +102,7 @@ export const MyArchive = styled.ul`
   gap: 15px;
 `;
 
-export const RecordLi = styled.li`
+export const RecordButton = styled.button`
   flex-shrink: 0;
   word-break: keep-all;
   margin-bottom: 20px;
@@ -108,6 +115,10 @@ export const RecordLi = styled.li`
   cursor: pointer;
   font-size: 1.4rem;
   color: white;
+
+  &:focus {
+    box-shadow: inset 0 0 0 3px #224124;
+  }
 `;
 
 export const RecordDate = styled.p`
@@ -136,18 +147,27 @@ export const PostArchive = styled.div`
 `;
 
 export const ActiveLi = styled.li`
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  font-weight: 500;
-  cursor: pointer;
+  & button {
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    font-weight: 500;
 
-  & h3 {
-    font-size: 3.6rem;
+    &:focus {
+      box-shadow: inset 0 0 0 2px #55a25a;
+      border-radius: 4px;
+    }
   }
 
-  & p {
+  & span:first-child {
+    font-size: 3.6rem;
+    display: block;
+  }
+
+  & span:last-child {
     font-size: 1.4rem;
   }
 `;

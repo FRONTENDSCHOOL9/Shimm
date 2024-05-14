@@ -26,7 +26,7 @@ export const SelectButton = styled.button`
   position: relative;
 
   &:focus {
-    border-color: rgba(51, 86, 53, 1);
+    border: 3px solid #224124;
   }
 `;
 
@@ -64,10 +64,12 @@ export const StyledButton = styled.button`
   border: 1px solid transparent;
 
   &:hover {
+    border: 3px solid #55a25a;
     background-color: #f0f5ed;
   }
 
   &:focus {
-    border-color: rgba(115, 146, 125, 1);
+    border: 3px solid #55a25a;
+    background-color: #f0f5ed;
   }
 `;
