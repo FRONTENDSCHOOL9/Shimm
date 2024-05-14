@@ -43,15 +43,16 @@ function Timer({ selectedTime, handleMusic }) {
     }
   }
 
-  (function handleStart() {
+  function handleStart() {
     if (!isStarted) {
       formatTime();
       timerRef.current = setInterval(() => {
         setTime(prevTime => prevTime - 1);
       }, 1000);
       setIsStarted(true);
+      handleMusic(true);
     }
-  })();
+  }
 
   function handlePause() {
     handleMusic(false);
@@ -106,9 +107,15 @@ function Timer({ selectedTime, handleMusic }) {
           잘 하고 있어요! <br /> 집중하는 모습이 멋져요.
         </span>
       </TimerDiv>
-      <Button size="full" handleClick={handlePause}>
-        종료하기
-      </Button>
+      {isStarted ? (
+        <Button size="full" bgColor="dark" handleClick={handlePause}>
+          종료하기
+        </Button>
+      ) : (
+        <Button size="full" handleClick={handleStart}>
+          시작하기
+        </Button>
+      )}
     </StyledTimer>
   );
 }
