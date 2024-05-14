@@ -2,7 +2,6 @@ import Animation from '@components/animation/Animation';
 import Button from '@components/button/Button';
 import {
   PageTitle,
-  Player,
   StyledDiv,
   StyledMain,
   StyledSection,
@@ -10,16 +9,13 @@ import {
 import Timer from '@pages/meditation/timer/Timer';
 import { useSelectedThemeStore } from '@zustand/themeSelection';
 import { useSelectedTimeStore } from '@zustand/timeSelection';
-import { useRef, useState } from 'react';
-import ReactPlayer from 'react-player';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function MeditationProgress() {
   const { selectedTime } = useSelectedTimeStore();
   const { selectedTheme } = useSelectedThemeStore();
-  const playerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [duration, setDuration] = useState(0);
+  const audioRef = useRef(null);
   const navigate = useNavigate();
 
   let time = 0;
@@ -46,41 +42,25 @@ function MeditationProgress() {
   }
 
   function handleMusic(value) {
-    setIsPlaying(value);
-  }
-
-  function handleProgress(state) {
-    const { playedSeconds } = state;
-    const remainingTime = duration - playedSeconds;
-    const threshold = 3;
-
-    if (remainingTime <= threshold) {
-      setIsPlaying(false);
-      playerRef.current.seekTo(0);
-      setIsPlaying(true);
+    if (value) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
     }
-  }
-
-  function handleReady() {
-    const trackDuration = playerRef.current.getDuration();
-    setDuration(trackDuration);
-    setIsPlaying(true);
   }
 
   return (
     <StyledMain $bgColor={selectedTheme.background}>
       <Animation />
-      <Player>
-        <ReactPlayer
-          ref={playerRef}
-          url={selectedTheme.music}
-          loop={true}
-          playing={isPlaying}
-          controls={false}
-          onReady={handleReady}
-          onProgress={handleProgress}
-        />
-      </Player>
+      <div>
+        <audio
+          ref={audioRef}
+          loop
+          src={selectedTheme.music}
+          type="audio/mpeg"
+        ></audio>
+      </div>
+
       <StyledSection>
         <PageTitle>명상하기</PageTitle>
         <Timer selectedTime={time} handleMusic={handleMusic} />
