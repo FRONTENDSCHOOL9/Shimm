@@ -74,7 +74,7 @@ function MeditationProgress() {
         <ReactPlayer
           ref={playerRef}
           url={selectedTheme.music}
-          loop={false}
+          loop={true}
           playing={isPlaying}
           controls={false}
           onReady={handleReady}
