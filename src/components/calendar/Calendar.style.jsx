@@ -19,14 +19,10 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const CalendarButton = styled.button`
-  font-size: 2rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   cursor: pointer;
-  box-sizing: border-box;
   border-radius: 5px;
   background-color: white;
 
@@ -50,9 +46,10 @@ export const CalendarHeader = styled.div`
 
 export const Container = styled.div`
   width: 800px;
+  min-width: 290px;
   transition: all 0.5s ease;
 
-  @media screen and (max-width: 740px) {
+  @media screen and (max-width: 840px) {
     width: 100%;
     padding: 10px;
   }
@@ -62,7 +59,7 @@ export const MonthDisplay = styled.div`
   font-size: 2rem;
   color: #55a25a;
   border-radius: 4px;
-  padding: 10px;
+  padding: 8px;
   margin-right: 10px;
 `;
 
@@ -76,6 +73,11 @@ export const Weekdays = styled.div`
 export const Weekday = styled.div`
   width: 100px;
   padding: 10px;
+
+  @media screen and (max-width: 358px) {
+    width: 100%;
+    padding: 8px;
+  }
 `;
 
 export const Calendar = styled.div`
@@ -105,13 +107,23 @@ export const DayCell = styled.div`
     background-color: #e8faed;
   }
 
-  @media screen and (max-width: 740px) {
+  @media screen and (max-width: 840px) {
+    overflow: hidden;
     width: 100%;
     gap: 2px;
     height: auto;
     min-height: 70px;
-    overflow: hidden;
   }
+
+  ${props =>
+    props.value === 'emptydays' &&
+    `
+      all: unset;
+      
+      &:hover {
+        all: unset;
+      }
+    `}
 `;
 
 export const EventIndicator = styled.div`

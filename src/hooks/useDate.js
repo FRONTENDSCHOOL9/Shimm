@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-function useDate(events, nav) {
+function useDate(calendarEvents, nav) {
   const [dateDisplay, setDateDisplay] = useState('');
   const [days, setDays] = useState([]);
 
-  const eventForDate = date => events.find(e => e.date === date);
+  const eventForDate = date => calendarEvents.find(e => e.date === date);
 
   useEffect(() => {
     const weekdays = [
@@ -38,23 +38,23 @@ function useDate(events, nav) {
     setDateDisplay(
       `${currentDate.toLocaleDateString('en-us', { month: 'long' })} ${year}`,
     );
-    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+    const startDayIndex = weekdays.indexOf(dateString.split(', ')[0]);
 
     const daysArr = [];
-    for (let i = 1; i <= paddingDays + daysInMonth; i++) {
-      const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+    for (let i = 1; i <= startDayIndex + daysInMonth; i++) {
+      const dayString = `${month + 1}/${i - startDayIndex}/${year}`;
 
-      if (i > paddingDays) {
+      if (i > startDayIndex) {
         const event = eventForDate(dayString);
         daysArr.push({
-          value: i - paddingDays,
+          value: i - startDayIndex,
           event: event ? event : null,
-          isCurrentDay: i - paddingDays === day && nav === 0,
+          isCurrentDay: i - startDayIndex === day && nav === 0,
           date: dayString,
         });
       } else {
         daysArr.push({
-          value: 'padding',
+          value: 'emptydays',
           event: null,
           isCurrentDay: false,
           date: '',
@@ -62,7 +62,7 @@ function useDate(events, nav) {
       }
     }
     setDays(daysArr);
-  }, [events, nav]);
+  }, [calendarEvents, nav]);
 
   return {
     days,
