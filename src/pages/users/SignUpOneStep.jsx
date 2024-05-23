@@ -48,59 +48,75 @@ function SignUpOneStep() {
   const email = watch('email');
 
   async function handleEmail() {
-    setIsLoading(true);
+    if (email) {
+      setIsLoading(true);
+      const isValid = await trigger('email');
 
-    const isValid = await trigger('email');
-    if (!isValid) {
-      setError(
-        'email',
-        { message: '올바른 이메일을 입력해 주세요.' },
-        { shouldFocus: true },
-      );
-      return;
-    }
-
-    try {
-      const resultCheck = await axios.get(`/users/email?email=${email}`);
-      if (resultCheck.data.ok) {
-        setEmailChecked(true);
-        setShowModal(true);
-        setModalData({
-          children: <span>사용 가능한 이메일입니다.</span>,
-          button: 1,
-          handleOk() {
-            setShowModal(false);
-            setFocus('email');
-          },
-          handleClose() {
-            setShowModal(false);
-            setFocus('email');
-          },
-        });
-      }
-    } catch (err) {
-      setEmailChecked(false);
-      if (err.response?.data.errors) {
-        err.response?.data.errors.forEach(error =>
-          setError(error.path, { message: error.msg }),
+      if (!isValid) {
+        setError(
+          'email',
+          { message: '올바른 이메일을 입력해 주세요.' },
+          { shouldFocus: true },
         );
-      } else if (err.response?.data.message) {
-        setShowModal(true);
-        setModalData({
-          children: <span>이미 등록된 이메일입니다.</span>,
-          button: 1,
-          handleOk() {
-            setShowModal(false);
-            setFocus('email');
-          },
-          handleClose() {
-            setShowModal(false);
-            setFocus('email');
-          },
-        });
+        return;
       }
-    } finally {
-      setIsLoading(false);
+
+      try {
+        const resultCheck = await axios.get(`/users/email?email=${email}`);
+        if (resultCheck.data.ok) {
+          setEmailChecked(true);
+          setShowModal(true);
+          setModalData({
+            children: <span>사용 가능한 이메일입니다.</span>,
+            button: 1,
+            handleOk() {
+              setShowModal(false);
+              setFocus('email');
+            },
+            handleClose() {
+              setShowModal(false);
+              setFocus('email');
+            },
+          });
+        }
+      } catch (err) {
+        setEmailChecked(false);
+        if (err.response?.data.errors) {
+          err.response?.data.errors.forEach(error =>
+            setError(error.path, { message: error.msg }),
+          );
+        } else if (err.response?.data.message) {
+          setShowModal(true);
+          setModalData({
+            children: <span>이미 등록된 이메일입니다.</span>,
+            button: 1,
+            handleOk() {
+              setShowModal(false);
+              setFocus('email');
+            },
+            handleClose() {
+              setShowModal(false);
+              setFocus('email');
+            },
+          });
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      setShowModal(true);
+      setModalData({
+        children: <span>이메일을 입력해 주세요.</span>,
+        button: 1,
+        handleOk() {
+          setShowModal(false);
+          setFocus('email');
+        },
+        handleClose() {
+          setShowModal(false);
+          setFocus('email');
+        },
+      });
     }
   }
 
