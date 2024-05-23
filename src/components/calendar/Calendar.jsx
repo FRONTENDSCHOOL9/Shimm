@@ -24,10 +24,10 @@ import { useEffect, useRef, useState } from 'react';
 function MyCalendar() {
   const [nav, setNav] = useState(0);
   const [clicked, setClicked] = useState();
-  const [events, setEvents] = useState([]);
+  const [userEvents, setUserEvents] = useState([]);
   const axios = useCustomAxios();
   const { user } = useUserStore();
-  const { days, dateDisplay } = useDate(events, nav);
+  const { days, dateDisplay } = useDate(userEvents, nav);
   const [showModal, setShowModal] = useState(false);
 
   const currentDate = new Date();
@@ -57,7 +57,7 @@ function MyCalendar() {
 
     fetchEvents().then(EventsRes => {
       if (EventsRes) {
-        setEvents(EventsRes);
+        setUserEvents(EventsRes);
       }
     });
   }, [currentYear, currentMonth, user]);
@@ -106,33 +106,37 @@ function MyCalendar() {
         </Weekdays>
 
         <Calendar>
-          {events &&
+          {userEvents &&
             days.map((item, index) => (
               <DayCell
                 key={index}
                 day={item}
+                value={item.value}
                 onClick={() => DayClick(item.date)}
               >
-                {item.value !== 'padding' && item.value}
-
-                {events && events.length > 0 && (
-                  <EventIndicator>
-                    {events.map(
-                      (event, eventIndex) =>
-                        new Date(event.time).toDateString() ===
-                          new Date(item.date).toDateString() && (
-                          <div key={eventIndex}>
-                            <span>{event.title}</span>
-                          </div>
-                        ),
+                {item.value !== 'emptydays' && (
+                  <>
+                    {item.value}
+                    {userEvents && userEvents.length > 0 && (
+                      <EventIndicator>
+                        {userEvents.map(
+                          (event, eventIndex) =>
+                            new Date(event.time).toDateString() ===
+                              new Date(item.date).toDateString() && (
+                              <div key={eventIndex}>
+                                <span>{event.title}</span>
+                              </div>
+                            ),
+                        )}
+                      </EventIndicator>
                     )}
-                  </EventIndicator>
+                  </>
                 )}
               </DayCell>
             ))}
         </Calendar>
         {showModal &&
-          events.some(
+          userEvents.some(
             event =>
               new Date(event.time).toDateString() ===
               new Date(clicked).toDateString(),
@@ -143,7 +147,7 @@ function MyCalendar() {
               handleOk={handleCloseModal}
             >
               <RecordModalStyle>
-                {events
+                {userEvents
                   .filter(
                     event =>
                       new Date(event.time).toDateString() ===
