@@ -125,14 +125,20 @@ function SignUpTwoStep() {
         },
       });
     } catch (err) {
-      console.error(err);
       if (err.response?.data.errors) {
         err.response?.data.errors.forEach(error =>
           setError(error.path, { message: error.msg }),
         );
       } else if (err.response?.data.message) {
-        console.error(err);
-        alert(err.response?.data.message);
+        setShowModal(true);
+        setModalData({
+          children: <span>회원가입에 실패하였습니다.</span>,
+          button: 1,
+          handleOk() {
+            reset();
+            setShowModal(false);
+          },
+        });
       }
     } finally {
       setIsLoading(false);
