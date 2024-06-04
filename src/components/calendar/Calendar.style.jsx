@@ -92,7 +92,7 @@ export const Calendar = styled.div`
 export const DayCell = styled.div`
   width: 100%;
   height: 100px;
-  cursor: pointer;
+  cursor: ${props => (props.$ispadding ? 'default' : 'pointer')};
   background-color: white;
   margin: 5px;
   box-sizing: border-box;
