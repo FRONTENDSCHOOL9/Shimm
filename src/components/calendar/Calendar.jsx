@@ -20,6 +20,7 @@ import useCustomAxios from '@hooks/useCustomAxios';
 import useDate from '@hooks/useDate';
 import useUserStore from '@zustand/user';
 import { useEffect, useRef, useState } from 'react';
+import moment from 'moment';
 
 function MyCalendar() {
   const [nav, setNav] = useState(0);
@@ -37,6 +38,8 @@ function MyCalendar() {
   useEffect(() => {
     async function fetchEvents() {
       try {
+        if (!user) return;
+
         const res = await axios.get(
           `/posts?type=meditation&year=${currentYear}&month=${currentMonth + 1}`,
         );
@@ -44,7 +47,7 @@ function MyCalendar() {
           const EventsRes = res.data.item
             .filter(item => item.user._id === user._id)
             .map(item => ({
-              time: item.updatedAt,
+              time: item.updatedAt.slice(0, 10).replaceAll('.', '-'),
               title: item.content,
             }));
 
@@ -54,7 +57,6 @@ function MyCalendar() {
         console.error(err);
       }
     }
-
     fetchEvents().then(EventsRes => {
       if (EventsRes) {
         setUserEvents(EventsRes);
@@ -110,8 +112,7 @@ function MyCalendar() {
             days.map((item, index) => (
               <DayCell
                 key={index}
-                day={item}
-                value={item.value}
+                $ispadding={item.value === 'padding'}
                 onClick={() => DayClick(item.date)}
               >
                 {item.value !== 'emptydays' && (
@@ -155,13 +156,6 @@ function MyCalendar() {
                   )
                   .map((event, index) => (
                     <div key={index}>
-                      <span>
-                        {new Date(event.time).toLocaleString('ko-KR', {
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: '2-digit',
-                        })}
-                      </span>
                       <span>{event.title}</span>
                     </div>
                   ))}

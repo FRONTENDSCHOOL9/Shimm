@@ -9,6 +9,10 @@ export const CalendarWrapper = styled.div`
   box-sizing: border-box;
   align-items: center;
   margin: 0 auto;
+
+  @media screen and (max-width: 740px) {
+    padding: 10px;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -51,7 +55,6 @@ export const Container = styled.div`
 
   @media screen and (max-width: 840px) {
     width: 100%;
-    padding: 10px;
   }
 `;
 
@@ -90,21 +93,22 @@ export const Calendar = styled.div`
 
 export const DayCell = styled.div`
   width: 100%;
-  padding: 10px;
   height: 100px;
   cursor: pointer;
-  box-sizing: border-box;
   background-color: white;
   margin: 5px;
+  box-sizing: border-box;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px #e8faed;
+  box-shadow: ${props => (props.$ispadding ? 'none' : '0px 0px 6px #e8faed')};
   display: flex;
-  gap: 12px;
+  gap: 6px;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: flex-start;
+  overflow: hidden;
 
   &:hover {
-    background-color: #e8faed;
+    background-color: ${props => (props.$ispadding ? 'none' : '#e8faed')};
   }
 
   @media screen and (max-width: 840px) {
@@ -112,9 +116,8 @@ export const DayCell = styled.div`
     box-sizing: border-box;
     overflow: hidden;
     width: 100%;
-    gap: 2px;
+    padding: 4px;
     height: 70px;
-    min-height: 70px;
   }
 
   ${props =>
@@ -129,19 +132,20 @@ export const DayCell = styled.div`
 `;
 
 export const EventIndicator = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
   font-size: 1.2rem;
   color: black;
-  width: 80px;
-  max-height: 100%;
   overflow: hidden;
+  box-sizing: border-box;
 
   & > div {
     width: 100%;
     position: relative;
-    padding-left: 16px;
+    padding-left: 22px;
+    box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -149,11 +153,12 @@ export const EventIndicator = styled.div`
     &::before {
       content: '';
       position: absolute;
+      margin-left: 10px;
       left: 0%;
       top: 50%;
       transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background-color: #4c7b3b;
     }
@@ -171,6 +176,14 @@ export const EventIndicator = styled.div`
         width: 6px;
         height: 6px;
       }
+    }
+  }
+  @media screen and (max-width: 740px) {
+    display: block;
+
+    & > div {
+      font-size: 1rem;
+      -webkit-line-clamp: 3;
     }
   }
 `;

@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 
 function useDate(calendarEvents, nav) {
   const [dateDisplay, setDateDisplay] = useState('');
   const [days, setDays] = useState([]);
 
-  const eventForDate = date => calendarEvents.find(e => e.date === date);
+  function formatDate(date) {
+    return moment(date).format('YYYY-MM-DD');
+  }
+  function eventForDate(date) {
+    const formattedDate = formatDate(date);
+    return events.find(
+      e => moment(e.time).format('YYYY-MM-DD') === formattedDate,
+    );
+  }
 
   useEffect(() => {
     const weekdays = [
@@ -16,41 +25,40 @@ function useDate(calendarEvents, nav) {
       'Friday',
       'Saturday',
     ];
-    const currentDate = new Date();
+    const currentDate = moment();
 
     if (nav !== 0) {
-      currentDate.setMonth(new Date().getMonth() + nav);
+      currentDate.add(nav, 'month');
     }
 
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
+    const day = currentDate.date().toString().padStart(2, '0');
+    const month = currentDate.month();
+    const year = currentDate.year();
+    const firstDayOfMonth = currentDate.clone().startOf('month');
+    const daysInMonth = currentDate.daysInMonth();
+    const dateString = firstDayOfMonth.format('dddd');
 
-    const firstDayOfMonth = new Date(year, month, 1);
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    });
+    setDateDisplay(`${currentDate.format('MMMM')} ${year}`);
 
-    setDateDisplay(
-      `${currentDate.toLocaleDateString('en-us', { month: 'long' })} ${year}`,
-    );
-    const startDayIndex = weekdays.indexOf(dateString.split(', ')[0]);
+
+    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
     const daysArr = [];
-    for (let i = 1; i <= startDayIndex + daysInMonth; i++) {
-      const dayString = `${month + 1}/${i - startDayIndex}/${year}`;
+    for (let i = 1; i <= paddingDays + daysInMonth; i++) {
+      const dayString = moment(
+        `${year}-${month + 1}-${i - paddingDays}`,
+        'YYYY-MM-DD',
+      );
+      const formattedDate = dayString.format('YYYY-MM-DD');
 
-      if (i > startDayIndex) {
-        const event = eventForDate(dayString);
+      if (i > paddingDays) {
+
         daysArr.push({
           value: i - startDayIndex,
           event: event ? event : null,
-          isCurrentDay: i - startDayIndex === day && nav === 0,
-          date: dayString,
+
+          date: formattedDate,
+          isCurrentDay: i - paddingDays === Number(day) && nav === 0,
         });
       } else {
         daysArr.push({
@@ -61,6 +69,7 @@ function useDate(calendarEvents, nav) {
         });
       }
     }
+
     setDays(daysArr);
   }, [calendarEvents, nav]);
 
