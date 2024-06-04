@@ -112,7 +112,7 @@ function MyCalendar() {
             days.map((item, index) => (
               <DayCell
                 key={index}
-                data-is-padding={item.value === 'padding'}
+                $ispadding={item.value === 'padding'}
                 onClick={() => DayClick(item.date)}
               >
                 {item.value !== 'padding' && item.value}

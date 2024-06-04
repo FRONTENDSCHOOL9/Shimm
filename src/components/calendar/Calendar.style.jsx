@@ -97,8 +97,7 @@ export const DayCell = styled.div`
   margin: 5px;
   box-sizing: border-box;
   border-radius: 5px;
-  box-shadow: ${({ isPadding }) =>
-    isPadding ? 'none' : '0px 0px 6px #e8faed'};
+  box-shadow: ${props => (props.$ispadding ? 'none' : '0px 0px 6px #e8faed')};
   display: flex;
   gap: 6px;
   flex-direction: column;
@@ -107,7 +106,7 @@ export const DayCell = styled.div`
   overflow: hidden;
 
   &:hover {
-    background-color: ${({ isPadding }) => (isPadding ? 'none' : '#e8faed')};
+    background-color: ${props => (props.$ispadding ? 'none' : '#e8faed')};
   }
 
   @media screen and (max-width: 740px) {
