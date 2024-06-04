@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 
-function useDate(calendarEvents, nav) {
+function useDate(events, nav) {
   const [dateDisplay, setDateDisplay] = useState('');
   const [days, setDays] = useState([]);
 
@@ -40,7 +40,6 @@ function useDate(calendarEvents, nav) {
 
     setDateDisplay(`${currentDate.format('MMMM')} ${year}`);
 
-
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
     const daysArr = [];
@@ -52,17 +51,15 @@ function useDate(calendarEvents, nav) {
       const formattedDate = dayString.format('YYYY-MM-DD');
 
       if (i > paddingDays) {
-
         daysArr.push({
-          value: i - startDayIndex,
+          value: i - paddingDays,
           event: event ? event : null,
-
           date: formattedDate,
           isCurrentDay: i - paddingDays === Number(day) && nav === 0,
         });
       } else {
         daysArr.push({
-          value: 'emptydays',
+          value: 'padding',
           event: null,
           isCurrentDay: false,
           date: '',
@@ -71,7 +68,7 @@ function useDate(calendarEvents, nav) {
     }
 
     setDays(daysArr);
-  }, [calendarEvents, nav]);
+  }, [events, nav]);
 
   return {
     days,
