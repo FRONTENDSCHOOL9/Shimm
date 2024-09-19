@@ -20,14 +20,15 @@ import useCustomAxios from '@hooks/useCustomAxios';
 import useDate from '@hooks/useDate';
 import useUserStore from '@zustand/user';
 import { useEffect, useRef, useState } from 'react';
+import moment from 'moment';
 
 function MyCalendar() {
   const [nav, setNav] = useState(0);
   const [clicked, setClicked] = useState();
-  const [userEvents, setUserEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const axios = useCustomAxios();
   const { user } = useUserStore();
-  const { days, dateDisplay } = useDate(userEvents, nav);
+  const { days, dateDisplay } = useDate(events, nav);
   const [showModal, setShowModal] = useState(false);
 
   const currentDate = new Date();
@@ -37,6 +38,8 @@ function MyCalendar() {
   useEffect(() => {
     async function fetchEvents() {
       try {
+        if (!user) return;
+
         const res = await axios.get(
           `/posts?type=meditation&year=${currentYear}&month=${currentMonth + 1}`,
         );
@@ -44,7 +47,7 @@ function MyCalendar() {
           const EventsRes = res.data.item
             .filter(item => item.user._id === user._id)
             .map(item => ({
-              time: item.updatedAt,
+              time: item.updatedAt.slice(0, 10).replaceAll('.', '-'),
               title: item.content,
             }));
 
@@ -54,10 +57,9 @@ function MyCalendar() {
         console.error(err);
       }
     }
-
     fetchEvents().then(EventsRes => {
       if (EventsRes) {
-        setUserEvents(EventsRes);
+        setEvents(EventsRes);
       }
     });
   }, [currentYear, currentMonth, user]);
@@ -106,37 +108,33 @@ function MyCalendar() {
         </Weekdays>
 
         <Calendar>
-          {userEvents &&
+          {events &&
             days.map((item, index) => (
               <DayCell
                 key={index}
-                day={item}
-                value={item.value}
+                $ispadding={item.value === 'padding'}
                 onClick={() => DayClick(item.date)}
               >
-                {item.value !== 'emptydays' && (
-                  <>
-                    {item.value}
-                    {userEvents && userEvents.length > 0 && (
-                      <EventIndicator>
-                        {userEvents.map(
-                          (event, eventIndex) =>
-                            new Date(event.time).toDateString() ===
-                              new Date(item.date).toDateString() && (
-                              <div key={eventIndex}>
-                                <span>{event.title}</span>
-                              </div>
-                            ),
-                        )}
-                      </EventIndicator>
+                {item.value !== 'padding' && item.value}
+
+                {events && events.length > 0 && (
+                  <EventIndicator>
+                    {events.map(
+                      (event, eventIndex) =>
+                        new Date(event.time).toDateString() ===
+                          new Date(item.date).toDateString() && (
+                          <div key={eventIndex}>
+                            <span>{event.title}</span>
+                          </div>
+                        ),
                     )}
-                  </>
+                  </EventIndicator>
                 )}
               </DayCell>
             ))}
         </Calendar>
         {showModal &&
-          userEvents.some(
+          events.some(
             event =>
               new Date(event.time).toDateString() ===
               new Date(clicked).toDateString(),
@@ -147,7 +145,7 @@ function MyCalendar() {
               handleOk={handleCloseModal}
             >
               <RecordModalStyle>
-                {userEvents
+                {events
                   .filter(
                     event =>
                       new Date(event.time).toDateString() ===
@@ -155,13 +153,6 @@ function MyCalendar() {
                   )
                   .map((event, index) => (
                     <div key={index}>
-                      <span>
-                        {new Date(event.time).toLocaleString('ko-KR', {
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: '2-digit',
-                        })}
-                      </span>
                       <span>{event.title}</span>
                     </div>
                   ))}

@@ -279,37 +279,62 @@ function UploadTheme() {
             <ThemeDesc>테마 배경 패턴</ThemeDesc>
             <ul>
               <li>
-                <button type="button" onClick={handlePattern}>
+                <button
+                  id="theme-01"
+                  aria-label="테마 1"
+                  type="button"
+                  onClick={handlePattern}
+                >
                   <img
-                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-01.png`}
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-01.webp`}
                   />
                 </button>
               </li>
               <li>
-                <button type="button" onClick={handlePattern}>
+                <button
+                  id="theme-02"
+                  aria-label="테마 2"
+                  type="button"
+                  onClick={handlePattern}
+                >
                   <img
-                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-02.png`}
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-02.webp`}
                   />
                 </button>
               </li>
               <li>
-                <button type="button" onClick={handlePattern}>
+                <button
+                  id="theme-03"
+                  aria-label="테마 3"
+                  type="button"
+                  onClick={handlePattern}
+                >
                   <img
-                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-03.png`}
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-03.webp`}
                   />
                 </button>
               </li>
               <li>
-                <button type="button" onClick={handlePattern}>
+                <button
+                  id="theme-04"
+                  aria-label="테마 4"
+                  type="button"
+                  onClick={handlePattern}
+                >
                   <img
-                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-04.png`}
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-04.webp`}
                   />
                 </button>
               </li>
               <li>
-                <button type="button" onClick={handlePattern}>
+                <button
+                  id="theme-05"
+                  aria-label="테마 5"
+                  type="button"
+                  onClick={handlePattern}
+                >
                   <img
-                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-05.png`}
+                    src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/bg-theme-05.webp`}
                   />
                 </button>
               </li>

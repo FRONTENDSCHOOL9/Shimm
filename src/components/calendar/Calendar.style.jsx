@@ -9,6 +9,10 @@ export const CalendarWrapper = styled.div`
   box-sizing: border-box;
   align-items: center;
   margin: 0 auto;
+
+  @media screen and (max-width: 740px) {
+    padding: 10px;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -19,10 +23,14 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const CalendarButton = styled.button`
+  font-size: 2rem;
   display: flex;
-  width: 18px;
-  height: 18px;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  box-sizing: border-box;
   border-radius: 5px;
   background-color: white;
 
@@ -46,12 +54,10 @@ export const CalendarHeader = styled.div`
 
 export const Container = styled.div`
   width: 800px;
-  min-width: 290px;
   transition: all 0.5s ease;
 
-  @media screen and (max-width: 840px) {
+  @media screen and (max-width: 740px) {
     width: 100%;
-    padding: 10px;
   }
 `;
 
@@ -59,7 +65,7 @@ export const MonthDisplay = styled.div`
   font-size: 2rem;
   color: #55a25a;
   border-radius: 4px;
-  padding: 8px;
+  padding: 10px;
   margin-right: 10px;
 `;
 
@@ -73,11 +79,6 @@ export const Weekdays = styled.div`
 export const Weekday = styled.div`
   width: 100px;
   padding: 10px;
-
-  @media screen and (max-width: 358px) {
-    width: 100%;
-    padding: 8px;
-  }
 `;
 
 export const Calendar = styled.div`
@@ -90,58 +91,46 @@ export const Calendar = styled.div`
 
 export const DayCell = styled.div`
   width: 100%;
-  padding: 10px;
   height: 100px;
-  cursor: pointer;
-  box-sizing: border-box;
+  cursor: ${props => (props.$ispadding ? 'default' : 'pointer')};
   background-color: white;
   margin: 5px;
+  box-sizing: border-box;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px #e8faed;
+  box-shadow: ${props => (props.$ispadding ? 'none' : '0px 0px 6px #e8faed')};
   display: flex;
-  gap: 12px;
+  gap: 6px;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: flex-start;
+  overflow: hidden;
 
   &:hover {
-    background-color: #e8faed;
+    background-color: ${props => (props.$ispadding ? 'none' : '#e8faed')};
   }
 
-  @media screen and (max-width: 840px) {
-    padding: 4px;
-    box-sizing: border-box;
-    overflow: hidden;
+  @media screen and (max-width: 740px) {
     width: 100%;
-    gap: 2px;
+    padding: 4px;
     height: 70px;
-    min-height: 70px;
   }
-
-  ${props =>
-    props.value === 'emptydays' &&
-    `
-      all: unset;
-      
-      &:hover {
-        all: unset;
-      }
-    `}
 `;
 
 export const EventIndicator = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
   font-size: 1.2rem;
   color: black;
-  width: 80px;
-  max-height: 100%;
   overflow: hidden;
+  box-sizing: border-box;
 
   & > div {
     width: 100%;
     position: relative;
-    padding-left: 16px;
+    padding-left: 22px;
+    box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -149,28 +138,22 @@ export const EventIndicator = styled.div`
     &::before {
       content: '';
       position: absolute;
+      margin-left: 10px;
       left: 0%;
       top: 50%;
       transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background-color: #4c7b3b;
     }
+  }
+  @media screen and (max-width: 740px) {
+    display: block;
 
-    @media screen and (max-width: 840px) {
+    & > div {
       font-size: 1rem;
-      padding: 0 8px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 100%;
-      gap: 2px;
-
-      &::before {
-        width: 6px;
-        height: 6px;
-      }
+      -webkit-line-clamp: 3;
     }
   }
 `;
