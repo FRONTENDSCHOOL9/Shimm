@@ -6,7 +6,7 @@ import Loading from '@components/loading/Loading';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
   CurrentStep,
-  ErrorMessge,
+  ErrorMessage,
   FlexContent,
   InputLabel,
   MarginBottom,

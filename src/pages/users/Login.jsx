@@ -4,7 +4,7 @@ import Loading from '@components/loading/Loading';
 import SocialKakao from '@components/socialLogin/SocialKakao';
 import useCustomAxios from '@hooks/useCustomAxios';
 import {
-  ErrorMessge,
+  ErrorMessage,
   InputLabel,
   Line,
   LoginTitle,
