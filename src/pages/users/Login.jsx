@@ -99,7 +99,7 @@ function Login() {
                 })}
               />
               {errors.email && (
-                <ErrorMessge>{errors.email.message}</ErrorMessge>
+                <ErrorMessage>{errors.email.message}</ErrorMessage>
               )}
             </div>
 
@@ -114,7 +114,7 @@ function Login() {
                 })}
               />
               {errors.password && (
-                <ErrorMessge>{errors.password.message}</ErrorMessge>
+                <ErrorMessage>{errors.password.message}</ErrorMessage>
               )}
             </div>
 

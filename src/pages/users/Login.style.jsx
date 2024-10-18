@@ -30,7 +30,7 @@ export const InputLabel = styled.label`
   margin: 10px 0;
 `;
 
-export const ErrorMessge = styled.p`
+export const ErrorMessage = styled.p`
   color: #e10000;
   margin: 5px 0%;
   font-size: 1.4rem;

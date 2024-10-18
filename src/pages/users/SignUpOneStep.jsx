@@ -190,7 +190,7 @@ function SignUpOneStep() {
               </FlexContent>
 
               {errors.email && (
-                <ErrorMessge>{errors.email.message}</ErrorMessge>
+                <ErrorMessage>{errors.email.message}</ErrorMessage>
               )}
             </div>
 
@@ -210,7 +210,7 @@ function SignUpOneStep() {
                 })}
               />
               {errors.password && (
-                <ErrorMessge>{errors.password.message}</ErrorMessge>
+                <ErrorMessage>{errors.password.message}</ErrorMessage>
               )}
             </div>
             <div>
@@ -231,7 +231,7 @@ function SignUpOneStep() {
                 })}
               />
               {errors.passwordConfirm && (
-                <ErrorMessge>{errors.passwordConfirm.message}</ErrorMessge>
+                <ErrorMessage>{errors.passwordConfirm.message}</ErrorMessage>
               )}
             </div>
             <div>
@@ -246,7 +246,7 @@ function SignUpOneStep() {
                 })}
               />
               {errors.birth && (
-                <ErrorMessge>{errors.birth.message}</ErrorMessge>
+                <ErrorMessage>{errors.birth.message}</ErrorMessage>
               )}
             </div>
 
@@ -266,7 +266,7 @@ function SignUpOneStep() {
                 })}
               />
               {errors.phone && (
-                <ErrorMessge>{errors.phone.message}</ErrorMessge>
+                <ErrorMessage>{errors.phone.message}</ErrorMessage>
               )}
             </MarginBottom>
 

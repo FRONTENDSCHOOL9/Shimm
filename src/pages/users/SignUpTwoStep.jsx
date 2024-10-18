@@ -10,7 +10,7 @@ import {
   CurrentStep,
   DeleteButton,
   DeleteIcon,
-  ErrorMessge,
+  ErrorMessage,
   FlexContent,
   InputLabel,
   MarginBottom,
@@ -203,7 +203,7 @@ function SignUpTwoStep() {
                   },
                 })}
               />
-              {errors.name && <ErrorMessge>{errors.name.message}</ErrorMessge>}
+              {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
             </MarginBottom>
             <Button type="submit" size="full" bgColor="dark">
               회원가입 완료

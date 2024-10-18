@@ -3,7 +3,7 @@ import carouselImage02 from '@assets/images/carousel-image02.png';
 import carouselImage03 from '@assets/images/carousel-image03.png';
 import carouselImage04 from '@assets/images/carousel-image04.png';
 import {
-  CaraouselTitle,
+  CarouselTitle,
   CarouselAuthor,
   CarouselImage,
   CarouselText
@@ -16,6 +16,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 function HomeCarousel() {
   SwiperCore.use([Autoplay]);
+
   return (
     <>
       <div>
@@ -30,10 +31,10 @@ function HomeCarousel() {
           <SwiperSlide>
             <img src={carouselImage01} alt="메인 스와이퍼 첫번째 이미지" />
             <CarouselText>
-              <CaraouselTitle>
+              <CarouselTitle>
                 “마음을 고요히 하라. <br />
                 그러면 모든 것이 고요해질 것이다.”
-              </CaraouselTitle>
+              </CarouselTitle>
               <CarouselAuthor>바하우딘 나크시반디</CarouselAuthor>
             </CarouselText>
           </SwiperSlide>
@@ -43,11 +44,11 @@ function HomeCarousel() {
               alt="메인 스와이퍼 두번째 이미지"
             />
             <CarouselText>
-              <CaraouselTitle>
+              <CarouselTitle>
                 “마음을 조용하게 하라,
                 <br />
                 그러면 영혼이 말할 것이다.”
-              </CaraouselTitle>
+              </CarouselTitle>
               <CarouselAuthor>마자야 사티 바가티</CarouselAuthor>
             </CarouselText>
           </SwiperSlide>
@@ -57,7 +58,7 @@ function HomeCarousel() {
               alt="메인 스와이퍼 세번째 이미지"
             />
             <CarouselText>
-              <CaraouselTitle>“명상은 마음의 고요한 바다이다.”</CaraouselTitle>
+              <CarouselTitle>“명상은 마음의 고요한 바다이다.”</CarouselTitle>
               <CarouselAuthor>윌리엄 펜</CarouselAuthor>
             </CarouselText>
           </SwiperSlide>
@@ -67,11 +68,11 @@ function HomeCarousel() {
               alt="메인 스와이퍼 네번째 이미지"
             />
             <CarouselText>
-              <CaraouselTitle>
+              <CarouselTitle>
                 “잠시 멈춰 서서 호흡하라.
                 <br />
                 그리고 계속 나아가라.”
-              </CaraouselTitle>
+              </CarouselTitle>
               <CarouselAuthor>랄프 왈도 에머슨</CarouselAuthor>
             </CarouselText>
           </SwiperSlide>

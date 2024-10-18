@@ -94,7 +94,7 @@ export const DeleteButton = styled.button`
   width: 10%;
 `;
 
-export const ErrorMessge = styled.p`
+export const ErrorMessage = styled.p`
   color: #e10000;
   margin: 10px 0;
   font-size: 1.4rem;
