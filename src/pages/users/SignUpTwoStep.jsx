@@ -45,32 +45,36 @@ function SignUpTwoStep() {
     shouldFocusError: true,
     mode: 'onChange',
   });
+  const { form } = useFormStore();
   const [isLoading, setIsLoading] = useState(false);
+
   const [image, setImage] = useState({
     imageFile: '',
     previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
   });
-  const { form } = useFormStore();
 
   function saveImage(e) {
     e.preventDefault();
-    const fileReader = new FileReader();
+    const file = e.target.files?.[0];
 
-    if (e.target.files[0]) {
-      fileReader.readAsDataURL(e.target.files[0]);
-    }
+    if (!file) return;
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
     fileReader.onload = () => {
-      setImage({
-        imageFile: e.target.files[0],
+      setImage(prev => ({
+        ...prev,
+        imageFile: file,
         previewURL: fileReader.result,
-      });
+      }));
     };
   }
 
   function deleteImage() {
     setValue('profileImage', null);
     setImage({
-      imageFile: '',
+      imageFile: null,
       previewURL: `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/icon-user-default.png`,
     });
   }
@@ -78,45 +82,46 @@ function SignUpTwoStep() {
   async function onSubmit(formData) {
     try {
       setIsLoading(true);
-      formData.type = 'user';
-      formData.loginType = 'email';
-      formData = { ...formData, ...form };
-      delete formData.passwordConfirm;
+      const { passwordConfirm, ...newFormData } = {
+        ...formData,
+        type: 'user',
+        loginType: 'email',
+        ...form,
+      };
 
-      if (formData.profileImage) {
+      if (newFormData.profileImage?.[0]) {
         const imageFormData = new FormData();
-        imageFormData.append('attach', formData.profileImage[0]);
+        imageFormData.append('attach', newFormData.profileImage[0]);
 
-        const fileRes = await axios('/files', {
-          method: 'post',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          data: imageFormData,
+        const fileRes = await axios.post('/files', imageFormData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
         });
 
         if (fileRes.data.item.length !== 0) {
-          formData.profileImage = fileRes.data.item[0].name;
+          newFormData.profileImage = fileRes.data.item[0].name;
         }
       } else {
-        formData.profileImage = `icon-user-default.png`;
+        newFormData.profileImage = 'icon-user-default.png';
       }
 
-      const res = await axios.post('/users', formData);
+      const res = await axios.post('/users', newFormData);
+
+      const successModalContent = (
+        <>
+          <span>
+            환영합니다, {res.data.item.name} 님.
+            <br />
+            가입이 완료되었습니다.
+          </span>
+          <br />
+          <br />
+          <p>로그인 후 서비스를 자유롭게 이용해 보세요!</p>
+        </>
+      );
+
       setShowModal(true);
       setModalData({
-        children: (
-          <>
-            <span>
-              환영합니다, {res.data.item.name} 님.
-              <br />
-              가입이 완료되었습니다.
-            </span>
-            <br />
-            <br />
-            <p>로그인 후 서비스를 자유롭게 이용해 보세요!</p>
-          </>
-        ),
+        children: successModalContent,
         button: 1,
         handleOk() {
           reset();
@@ -126,7 +131,7 @@ function SignUpTwoStep() {
       });
     } catch (err) {
       if (err.response?.data.errors) {
-        err.response?.data.errors.forEach(error =>
+        err.response.data.errors.map(error =>
           setError(error.path, { message: error.msg }),
         );
       } else if (err.response?.data.message) {
@@ -203,7 +208,9 @@ function SignUpTwoStep() {
                   },
                 })}
               />
-              {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+              {errors.name && (
+                <ErrorMessage>{errors.name.message}</ErrorMessage>
+              )}
             </MarginBottom>
             <Button type="submit" size="full" bgColor="dark">
               회원가입 완료

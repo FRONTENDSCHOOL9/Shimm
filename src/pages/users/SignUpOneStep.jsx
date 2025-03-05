@@ -44,111 +44,70 @@ function SignUpOneStep() {
     shouldFocusError: true,
     mode: 'onChange',
   });
+
   const [emailChecked, setEmailChecked] = useState(false);
   const email = watch('email');
 
   async function handleEmail() {
-    if (email) {
-      setIsLoading(true);
-      const isValid = await trigger('email');
+    if (!email) {
+      return showModalWithMessage('이메일을 입력해 주세요.');
+    }
 
-      if (!isValid) {
-        setError(
-          'email',
-          { message: '올바른 이메일을 입력해 주세요.' },
-          { shouldFocus: true },
+    setIsLoading(true);
+    const isValid = await trigger('email');
+
+    if (!isValid) {
+      setError('email', { message: '올바른 이메일을 입력해 주세요.' });
+      return;
+    }
+
+    try {
+      const { data } = await axios.get(`/users/email?email=${email}`);
+
+      if (data.ok) {
+        setEmailChecked(true);
+        return showModalWithMessage('사용 가능한 이메일입니다.');
+      }
+    } catch (err) {
+      setEmailChecked(false);
+      if (err.response?.data.errors) {
+        return err.response.data.errors.forEach(error =>
+          setError(error.path, { message: error.msg }),
         );
-        return;
       }
-
-      try {
-        const resultCheck = await axios.get(`/users/email?email=${email}`);
-        if (resultCheck.data.ok) {
-          setEmailChecked(true);
-          setShowModal(true);
-          setModalData({
-            children: <span>사용 가능한 이메일입니다.</span>,
-            button: 1,
-            handleOk() {
-              setShowModal(false);
-              setFocus('email');
-            },
-            handleClose() {
-              setShowModal(false);
-              setFocus('email');
-            },
-          });
-        }
-      } catch (err) {
-        setEmailChecked(false);
-        if (err.response?.data.errors) {
-          err.response?.data.errors.forEach(error =>
-            setError(error.path, { message: error.msg }),
-          );
-        } else if (err.response?.data.message) {
-          setShowModal(true);
-          setModalData({
-            children: <span>이미 등록된 이메일입니다.</span>,
-            button: 1,
-            handleOk() {
-              setShowModal(false);
-              setFocus('email');
-            },
-            handleClose() {
-              setShowModal(false);
-              setFocus('email');
-            },
-          });
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    } else {
-      setShowModal(true);
-      setModalData({
-        children: <span>이메일을 입력해 주세요.</span>,
-        button: 1,
-        handleOk() {
-          setShowModal(false);
-          setFocus('email');
-        },
-        handleClose() {
-          setShowModal(false);
-          setFocus('email');
-        },
-      });
+      return showModalWithMessage('이미 등록된 이메일입니다.');
+    } finally {
+      setIsLoading(false);
     }
   }
 
-  function saveData(data) {
-    if (emailChecked) {
-      setForm(data);
-      navigate('/signup/twostep');
-    } else {
-      setShowModal(true);
-      setModalData({
-        children: (
-          <span>
-            이메일 중복 확인이 필요합니다.
-            <br />
-            이메일 중복 확인을 해 주세요.
-          </span>
-        ),
-        button: 1,
-        handleOk() {
-          setShowModal(false);
-          setFocus('email');
-        },
-        handleClose() {
-          setShowModal(false);
-          setFocus('email');
-        },
-      });
-    }
+  function showModalWithMessage(message) {
+    setShowModal(true);
+    setModalData({
+      children: <span>{message}</span>,
+      button: 1,
+      handleOk: closeModalAndFocusEmail,
+      handleClose: closeModalAndFocusEmail,
+    });
+  }
+
+  function closeModalAndFocusEmail() {
+    setShowModal(false);
+    setFocus('email');
   }
 
   function handleBack() {
     navigate(-1);
+  }
+
+  function saveData(data) {
+    if (!emailChecked) {
+      return showModalWithMessage(
+        '이메일 중복 확인이 필요합니다.\n이메일 중복 확인을 해 주세요.',
+      );
+    }
+    setForm(data);
+    navigate('/signup/twostep');
   }
 
   return (
@@ -237,7 +196,7 @@ function SignUpOneStep() {
             <div>
               <InputLabel htmlFor="birth">생년월일</InputLabel>
               <Input
-                type="date"
+                type="text"
                 id="birth"
                 placeholder="생년월일을 입력하세요"
                 min="1940-01-01"
