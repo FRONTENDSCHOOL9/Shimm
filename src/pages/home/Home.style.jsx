@@ -24,7 +24,7 @@ export const CarouselImage = styled.img`
   overflow: hidden;
 `;
 
-export const CaraouselTitle = styled.h3`
+export const CarouselTitle = styled.h3`
   font-size: 1.4rem;
   font-weight: 300;
   margin-bottom: 10px;
