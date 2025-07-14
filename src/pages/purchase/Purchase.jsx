@@ -23,8 +23,7 @@ import {
 import useModalStore from '@zustand/modal';
 import { useSelectedThemeStore } from '@zustand/themeSelection';
 import useUserStore from '@zustand/user';
-import { useEffect, useState } from 'react';
-import ReactPlayer from 'react-player';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function Purchase() {
@@ -39,6 +38,7 @@ function Purchase() {
   const navigate = useNavigate();
   const location = useLocation();
   const axios = useCustomAxios();
+  const audioRef = useRef(null);
 
   useEffect(() => {
     if (!user) {
@@ -200,17 +200,22 @@ function Purchase() {
     );
   }
 
-  function handlePlay() {
-    setIsPlaying(!isPlaying);
+  function handleMusic() {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(prevState => !prevState);
   }
 
-  function handleProgress(state) {
-    const { playedSeconds } = state;
-    setPlayTime(playedSeconds);
+  function handleProgress() {
+    const currentTime = audioRef.current.currentTime;
 
-    if (playTime >= 60) {
+    if (currentTime >= 60) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
       setIsPlaying(false);
-      setPlayTime(0);
     }
   }
 
@@ -247,11 +252,11 @@ function Purchase() {
                 <Container>
                   <Description>테마 미리듣기</Description>
                   <Player>
-                    <ReactPlayer
-                      url={selectedTheme.music}
-                      loop={false}
-                      playing={isPlaying}
-                      onProgress={handleProgress}
+                    <audio
+                      ref={audioRef}
+                      src={selectedTheme.music}
+                      type="audio/mpeg"
+                      onTimeUpdate={handleProgress}
                     />
                   </Player>
 
@@ -259,7 +264,7 @@ function Purchase() {
                     $bgColor={selectedTheme.background}
                     $url={`${import.meta.env.VITE_API_SERVER}${item?.mainImages[0]['path']}`}
                   >
-                    <PlayButton type="button" onClick={handlePlay}>
+                    <PlayButton type="button" onClick={handleMusic}>
                       {isPlaying ? (
                         <PlayIcon src={iconPause} alt="재생" />
                       ) : (

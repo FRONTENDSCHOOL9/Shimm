@@ -99,6 +99,27 @@ function Timer({ selectedTime, handleMusic }) {
     });
   }, [handleMusic, setShowModal, setModalData, navigate]);
 
+  const formatTime = useCallback(() => {
+    if (time < 0) {
+      setIsStarted(false);
+      setTime(0);
+      completeTimeSet(selectedTime);
+      handleFinish(); // 명상이 끝났을 때 handleFinish를 호출
+    } else {
+      const hour = Math.floor(time / 3600);
+      const minute = Math.floor((time % 3600) / 60);
+      const second = (time % 3600) % 60;
+
+      setHour(hour);
+      setMinutes(minute);
+      setSeconds(second);
+    }
+  }, [time, selectedTime, handleFinish, completeTimeSet]);
+
+  useEffect(() => {
+    formatTime();
+  }, [time, formatTime]);
+
   return (
     <StyledTimer>
       <TimerDiv>
